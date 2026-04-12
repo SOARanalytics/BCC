@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game 3: BCC vs HCYP Blue — Big Train Intel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--color-void:#080808;--color-carbon:#0D0D0D;--color-graphite:#1A1A1A;--color-steel:#2C2C2C;--color-ash:#4A4A4A;--color-smoke:#6B6B6B;--color-mist:#9A9A9A;--color-silver:#C8C8C8;--color-white:#F0F0F0;--color-gold:#C9A84C;--color-gold-bright:#E8C96A;--color-gold-muted:#8A6F2E;--color-red:#C0272D;--color-blue:#00AEEF;--color-yellow:#F5A623;--color-success:#4CAF50;--font-display:'Barlow Condensed',Impact,'Arial Narrow',sans-serif;--font-body:'Barlow','Helvetica Neue',Helvetica,sans-serif;--radius-sm:2px;--radius-md:4px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{background:var(--color-carbon);color:var(--color-white);font-family:var(--font-body);font-weight:300;line-height:1.6;min-height:100vh;background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(255,255,255,0.012) 2px,rgba(255,255,255,0.012) 4px)}
+.nav{background:var(--color-void);border-bottom:1px solid var(--color-steel);padding:12px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.nav-back{font-family:var(--font-display);font-size:0.8rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-silver);text-decoration:none;border:1px solid var(--color-steel);padding:5px 12px;border-radius:var(--radius-sm);transition:all 180ms}
+.nav-back:hover{color:var(--color-gold);border-color:var(--color-gold-muted)}
+.nav-title{font-family:var(--font-display);font-weight:700;font-size:0.9rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-mist)}
+.container{width:100%;max-width:900px;margin:0 auto;padding:0 16px}
+.hero{padding:36px 16px 28px;border-bottom:1px solid var(--color-steel)}
+.hero-eyebrow{font-size:0.62rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--color-smoke);margin-bottom:8px}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.2rem,8vw,3.8rem);font-weight:900;letter-spacing:-0.02em;line-height:0.95;text-transform:uppercase}
+.hero-title .gold{color:var(--color-gold)}
+.hero-title .vs{color:var(--color-smoke);font-size:60%}
+.accent-bar{display:block;width:40px;height:3px;background:var(--color-gold);margin:12px 0 0}
+.section{padding:24px 0 0}
+.section-label{font-size:0.62rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--color-smoke);margin-bottom:5px}
+.section-title{font-family:var(--font-display);font-size:1.4rem;font-weight:700;text-transform:uppercase;color:var(--color-white);line-height:1.1;margin-bottom:12px}
+.section-title .gold{color:var(--color-gold)}
+.divider{border:none;border-top:1px solid var(--color-steel);margin:24px 0}
+.card{background:var(--color-graphite);border:1px solid var(--color-steel);border-radius:var(--radius-md);padding:18px}
+
+/* SIM */
+.sim-card{background:rgba(201,168,76,0.05);border:1px solid var(--color-gold-muted);border-radius:var(--radius-md);padding:18px;margin-top:12px}
+.sim-label{font-size:0.62rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--color-gold-muted);margin-bottom:10px}
+.score-row{display:flex;align-items:center;gap:0;border:1px solid var(--color-steel);border-radius:var(--radius-md);overflow:hidden;margin-bottom:12px}
+.score-side{flex:1;padding:14px 12px}
+.score-side.bcc{background:rgba(201,168,76,0.08)}
+.score-side.opp{text-align:right}
+.score-name{font-size:0.62rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-smoke)}
+.score-n{font-family:var(--font-display);font-size:2.2rem;font-weight:900;line-height:1}
+.score-n.bcc{color:var(--color-gold)}
+.score-n.opp{color:var(--color-silver)}
+.score-sub{font-size:0.68rem;color:var(--color-mist)}
+.score-mid{padding:0 10px;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;color:var(--color-smoke);display:flex;align-items:center;border-left:1px solid var(--color-steel);border-right:1px solid var(--color-steel)}
+.win-bar{height:7px;border-radius:4px;display:flex;overflow:hidden;background:var(--color-steel)}
+.win-labels{display:flex;justify-content:space-between;font-size:0.72rem;color:var(--color-mist);margin-top:5px}
+.win-labels .bcc-lbl{color:var(--color-gold);font-weight:500}
+
+/* SCENARIO COMPARE */
+.sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:380px){.sc-grid{grid-template-columns:1fr}}
+.sc-card{border-radius:var(--radius-md);padding:14px;border:1px solid var(--color-steel);background:var(--color-graphite)}
+.sc-card.rec{border-color:var(--color-gold-muted);background:rgba(201,168,76,0.07)}
+.sc-tag{font-size:0.58rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:6px}
+.sc-tag.rec{color:var(--color-gold)}
+.sc-tag.base{color:var(--color-smoke)}
+.sc-label{font-family:var(--font-display);font-size:0.75rem;font-weight:700;text-transform:uppercase;color:var(--color-silver);margin-bottom:5px}
+.sc-pct{font-family:var(--font-display);font-size:2rem;font-weight:900;line-height:1}
+.sc-pct.gold{color:var(--color-gold)}
+.sc-pct.muted{color:var(--color-mist)}
+.sc-desc{font-size:0.72rem;color:var(--color-mist);margin-top:4px;line-height:1.4}
+
+/* MOMENTUM */
+.momentum-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}
+.moment-card{display:flex;gap:12px;align-items:flex-start;background:var(--color-graphite);border:1px solid var(--color-steel);border-radius:var(--radius-md);padding:14px}
+.moment-icon{width:32px;height:32px;min-width:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:0.9rem}
+.moment-icon.gold{background:var(--color-gold);color:var(--color-void)}
+.moment-icon.blue{background:var(--color-blue);color:var(--color-void)}
+.moment-icon.red{background:var(--color-red);color:var(--color-white)}
+.moment-body{flex:1}
+.moment-title{font-size:0.9rem;font-weight:500;color:var(--color-white);margin-bottom:3px}
+.moment-desc{font-size:0.8rem;color:var(--color-silver);line-height:1.45}
+
+/* PITCHER PLAN */
+.pit-plan{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.pit-row{display:flex;align-items:center;gap:10px}
+.pit-name{font-size:0.85rem;color:var(--color-white);font-weight:500;min-width:140px}
+.pit-bar-wrap{flex:1;background:var(--color-steel);border-radius:3px;height:7px;overflow:hidden}
+.pit-bar-fill{height:7px;border-radius:3px;background:var(--color-gold)}
+.pit-meta{font-size:0.73rem;color:var(--color-mist);min-width:95px;text-align:right}
+.pit-era{color:var(--color-gold)}
+
+/* LINEUP */
+.lineup-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:0.82rem}
+.lineup-table th{font-size:0.58rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-smoke);padding:6px 8px;text-align:left;border-bottom:1px solid var(--color-steel)}
+.lineup-table td{padding:8px 8px;border-bottom:1px solid rgba(44,44,44,0.5);color:var(--color-silver)}
+.lineup-table td.n{font-family:var(--font-display);font-weight:700;color:var(--color-gold);font-size:0.9rem}
+.lineup-table td.name{color:var(--color-white);font-weight:500}
+.lineup-table td.stat{color:var(--color-gold);font-family:var(--font-display);font-weight:700}
+.dh-row td{color:var(--color-blue)!important}
+.dh-tag{font-size:0.58rem;text-transform:uppercase;background:rgba(0,174,239,0.12);color:var(--color-blue);border:1px solid rgba(0,174,239,0.25);border-radius:2px;padding:1px 5px;margin-left:5px}
+
+/* KEYS */
+.keys-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.keys-list li{display:flex;gap:10px;align-items:flex-start;font-size:0.85rem;color:var(--color-silver);line-height:1.5}
+.k-icon{width:20px;height:20px;min-width:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.7rem;font-weight:900;margin-top:2px}
+.k-icon.gold{background:var(--color-gold);color:var(--color-void)}
+.k-icon.blue{background:var(--color-blue);color:var(--color-void)}
+.k-icon.red{background:var(--color-red);color:var(--color-white)}
+.keys-list li strong{color:var(--color-white);font-weight:500}
+
+.alert{border-radius:var(--radius-md);padding:12px 14px;font-size:0.82rem;line-height:1.5;display:flex;gap:10px;align-items:flex-start;margin-top:10px}
+.alert.gold{background:rgba(201,168,76,0.1);border:1px solid var(--color-gold-muted);color:var(--color-gold-bright)}
+.alert.blue{background:rgba(0,174,239,0.08);border:1px solid rgba(0,174,239,0.25);color:#60c8ef}
+.alert-icon{font-size:1rem;margin-top:1px}
+
+.footer{padding:28px 16px;text-align:center;color:var(--color-smoke);font-size:0.7rem;letter-spacing:0.1em;border-top:1px solid var(--color-steel);margin-top:36px}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-back" href="index.html">← Back</a>
+  <span class="nav-title">Game <span style="color:#00AEEF;font-weight:700">3</span> &nbsp;·&nbsp; vs HCYP Blue</span>
+<span style="display:inline-flex;gap:2px;align-items:center;margin-left:auto">
+  <span style="width:7px;height:7px;background:#C0272D;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)"></span>
+  <span style="width:7px;height:7px;background:#F5A623;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)"></span>
+  <span style="width:7px;height:7px;background:#00AEEF;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)"></span>
+</span>
+</nav>
+
+<div class="hero container">
+  <div class="hero-eyebrow">Game 3 &nbsp;·&nbsp; BCC as Home Team &nbsp;·&nbsp; Ride the momentum</div>
+  <h1 class="hero-title"><span class="gold">BCC</span> <span class="vs">vs</span> HCYP Blue</h1>
+  <span class="accent-bar" style="background:#00AEEF"></span><span style="display:flex;width:120px;height:3px;margin:10px auto 0;gap:2px">
+  <span style="flex:1;background:#C0272D"></span>
+  <span style="flex:1;background:#F5A623"></span>
+  <span style="flex:1;background:#00AEEF"></span>
+</span>
+</div>
+
+<div class="container">
+
+  <!-- SIM + SCENARIOS -->
+  <div class="section">
+    <div class="section-label">Rotation makes the difference</div>
+    <div class="section-title">Two scenarios — <span class="gold">big impact</span></div>
+
+    <div class="sc-grid">
+      <div class="sc-card">
+        <div class="sc-tag base">Scenario A — Original</div>
+        <div class="sc-label">Pressberg opens</div>
+        <div class="sc-pct muted">11%</div>
+        <div class="sc-desc">BCC win probability. Pressberg carries heavy workload from G2 into G3 opener.</div>
+      </div>
+      <div class="sc-card rec" style="border-left:3px solid #00AEEF">
+        <div class="sc-tag rec">★ Scenario B — Recommended</div>
+        <div class="sc-label">Kowalski opens</div>
+        <div class="sc-pct gold">15%</div>
+        <div class="sc-desc">BCC win probability. Kowalski fresh after sitting out G1. Gives us our best arm to hold HCYP's top of the order early.</div>
+      </div>
+    </div>
+
+    <div class="sim-card" style="margin-top:12px">
+      <div class="sim-label">Recommended scenario — projected score</div>
+      <div class="score-row">
+        <div class="score-side bcc">
+          <div class="score-name">BCC Big Train</div>
+          <div class="score-n bcc">5</div>
+          <div class="score-sub">avg 5.1 · mode 4</div>
+        </div>
+        <div class="score-mid">avg</div>
+        <div class="score-side opp">
+          <div class="score-name">HCYP Blue</div>
+          <div class="score-n opp">10</div>
+          <div class="score-sub">avg 9.8 · mode 9</div>
+        </div>
+      </div>
+      <div class="win-bar">
+        <div style="width:15%;background:var(--color-gold);height:7px;border-radius:4px"></div>
+        <div style="width:85%;background:var(--color-steel);height:7px;border-radius:4px"></div>
+      </div>
+      <div class="win-labels">
+        <span class="bcc-lbl">BCC 15% win probability</span>
+        <span>HCYP 85%</span>
+      </div>
+    </div>
+
+    <div class="alert gold">
+      <span class="alert-icon">★</span>
+      <span>A 15% win probability means roughly <strong>1 in 7 times this game plays out, we win.</strong> That's a real result. It happens when we execute our pitching plan, our offense strings together two or three big innings, and we limit HCYP's damage to single runs rather than crooked numbers. Game 3 is about being competitive and finishing the day strong — a close loss by 2-3 runs is a successful outing.</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- MOMENTUM FACTORS -->
+  <div class="section">
+    <div class="section-label">Day 3 factors</div>
+    <div class="section-title">Playing with <span class="gold">momentum</span></div>
+    <div class="momentum-grid">
+      <div class="moment-card">
+        <div class="moment-icon" style="background:#F5A623;color:#080808;width:32px;height:32px;min-width:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:0.9rem">W</div>
+        <div class="moment-body">
+          <div class="moment-title">If we won Game 1</div>
+          <div class="moment-desc">Confidence is everything late in the day. A Game 1 win over Gambrill means we come into Game 3 with our heads up, our guys believing, and proven production. Use that energy — it shows on the field.</div>
+        </div>
+      </div>
+      <div class="moment-card">
+        <div class="moment-icon" style="background:#00AEEF;color:#080808;width:32px;height:32px;min-width:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:0.9rem">F</div>
+        <div class="moment-body">
+          <div class="moment-title">Fatigue is real — for both teams</div>
+          <div class="moment-desc">HCYP also just played two games. Their King A closes Game 3 on the mound — after catching or DHing earlier. Our simulation applies a 15% ERA penalty for both teams' pitching in their second game of the day.</div>
+        </div>
+      </div>
+      <div class="moment-card">
+        <div class="moment-icon" style="background:#C9A84C;color:#080808;width:32px;height:32px;min-width:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:0.9rem">K</div>
+        <div class="moment-body">
+          <div class="moment-title">Kowalski is our freshest arm</div>
+          <div class="moment-desc">By design, Kowalski sat out Game 1. He starts Game 3 completely rested while everyone else has pitched at least once. That's a meaningful edge in the late afternoon when arms are tired across the field.</div>
+        </div>
+      </div>
+      <div class="moment-card">
+        <div class="moment-icon" style="background:#C0272D;color:#F0F0F0;width:32px;height:32px;min-width:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:0.9rem">D</div>
+        <div class="moment-body">
+          <div class="moment-title">Darcy in the lineup matters late</div>
+          <div class="moment-desc">As DH, Darcy is the only player on our roster who hasn't physically expended energy on the field all day. He should be sharp at the plate in Game 3. Look for him in RBI situations — he has shown up in those moments before.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PITCHER PLAN -->
+  <div class="section">
+    <div class="section-label">Mound management — Game 3</div>
+    <div class="section-title">Pitching <span class="gold">plan</span></div>
+    <div class="card">
+      <div class="pit-plan">
+        <div class="pit-row">
+          <span class="pit-name">Will Kowalski &nbsp;<span style="font-size:0.62rem;color:var(--color-gold);font-weight:700">OPENER</span></span>
+          <div class="pit-bar-wrap"><div class="pit-bar-fill" style="width:50%;background:var(--color-gold)"></div></div>
+          <span class="pit-meta">3 IP &nbsp;<span class="pit-era">ERA 4.70</span></span>
+        </div>
+        <div class="pit-row">
+          <span class="pit-name">Ren Endo</span>
+          <div class="pit-bar-wrap"><div class="pit-bar-fill" style="width:33%;background:var(--color-smoke)"></div></div>
+          <span class="pit-meta">2 IP &nbsp;<span class="pit-era">ERA 6.88</span></span>
+        </div>
+        <div class="pit-row">
+          <span class="pit-name">Grant Richards</span>
+          <div class="pit-bar-wrap"><div class="pit-bar-fill" style="width:17%;background:var(--color-ash)"></div></div>
+          <span class="pit-meta">1 IP &nbsp;<span class="pit-era">ERA 8.39</span></span>
+        </div>
+      </div>
+      <p style="font-size:0.73rem;color:var(--color-smoke);margin-top:12px;font-style:italic;padding-top:10px;border-top:1px solid var(--color-steel)">Wells and Pressberg have each thrown 4+ innings today. Use them only in an emergency — protecting their arms matters beyond this weekend. Kowalski is the anchor here.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- LINEUP -->
+  <div class="section">
+    <div class="section-label">Probable batting order</div>
+    <div class="section-title">Our <span class="gold">lineup</span></div>
+    <table class="lineup-table">
+      <thead><tr><th>#</th><th>Player</th><th>AVG</th><th>OBP</th><th>SB</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td class="name">Beckett Dickinson</td><td class="stat">.253</td><td>.422</td><td>31</td></tr>
+        <tr><td class="n">2</td><td class="name">Grant Richards</td><td class="stat">.442</td><td>.500</td><td>21</td></tr>
+        <tr><td class="n">3</td><td class="name">Will Kowalski</td><td class="stat">.365</td><td>.447</td><td>10</td></tr>
+        <tr><td class="n">4</td><td class="name">Everett Harkins</td><td class="stat">.433</td><td>.528</td><td>13</td></tr>
+        <tr><td class="n">5</td><td class="name">Adam Ingram</td><td class="stat">.306</td><td>.424</td><td>18</td></tr>
+        <tr><td class="n">6</td><td class="name">Oliver Wells</td><td class="stat">.314</td><td>.467</td><td>22</td></tr>
+        <tr><td class="n">7</td><td class="name">Logan Pressberg</td><td class="stat">.323</td><td>.470</td><td>24</td></tr>
+        <tr class="dh-row"><td class="n">8</td><td class="name">Darcy Mizejewski <span class="dh-tag">DH</span></td><td class="stat">.206</td><td>.405</td><td>13</td></tr>
+        <tr><td class="n">9</td><td class="name">Joshua Lopez</td><td class="stat">.232</td><td>.456</td><td>23</td></tr>
+        <tr><td class="n">10</td><td class="name">Ren Endo</td><td class="stat">.153</td><td>.375</td><td>9</td></tr>
+        <tr><td class="n">11</td><td class="name">Grant Wang</td><td class="stat">.179</td><td>.352</td><td>17</td></tr>
+      </tbody>
+    </table>
+    <div class="alert blue" style="margin-top:10px">
+      <span class="alert-icon">i</span>
+      <span>Wells and Pressberg bat in the lineup as position players only in Game 3. Their pitching duties for the day are done — protect those arms.</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- KEYS -->
+  <div class="section">
+    <div class="section-label">Coaching focus</div>
+    <div class="section-title">Keys to a strong <span class="gold">Game 3</span></div>
+    <ul class="keys-list">
+      <li><span class="k-icon gold">1</span><span><strong>Ride the fresh legs of Kowalski.</strong> He's our most rested arm and goes against a tired HCYP lineup. Give him the ball and let him establish early control.</span></li>
+      <li><span class="k-icon gold">2</span><span><strong>Target King A on the mound.</strong> HCYP closes with King A — his ERA is 7.83 against the rest of the league. Our top of the order should be patient and make him work.</span></li>
+      <li><span class="k-icon gold">3</span><span><strong>Score in innings 4, 5, or 6.</strong> HCYP's pitching degrades later in games. By the 4th inning their starter rotation turns over — that's when our bats need to be at their best.</span></li>
+      <li><span class="k-icon blue">4</span><span><strong>Darcy at DH is a weapon late.</strong> He's the only guy on our squad with fresh legs and full energy in Game 3. Get him in a position to knock in runs in the middle innings.</span></li>
+      <li><span class="k-icon red">5</span><span><strong>Do not empty the bullpen chasing the game.</strong> If we fall behind by 5+ in Game 3, manage for competitive outs — not a comeback that costs us arms we need next week.</span></li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">BCC Big Train 11U &nbsp;·&nbsp; Game 3 &nbsp;·&nbsp; vs HCYP Blue &nbsp;·&nbsp; April 2026</div>
+</body>
+</html>

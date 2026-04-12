@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game 2: Gambrill vs HCYP Blue — BCC Scouting Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--color-void:#080808;--color-carbon:#0D0D0D;--color-graphite:#1A1A1A;--color-steel:#2C2C2C;--color-ash:#4A4A4A;--color-smoke:#6B6B6B;--color-mist:#9A9A9A;--color-silver:#C8C8C8;--color-white:#F0F0F0;--color-gold:#C9A84C;--color-gold-bright:#E8C96A;--color-gold-muted:#8A6F2E;--color-red:#C0272D;--color-blue:#00AEEF;--color-yellow:#F5A623;--color-success:#4CAF50;--font-display:'Barlow Condensed',Impact,'Arial Narrow',sans-serif;--font-body:'Barlow','Helvetica Neue',Helvetica,sans-serif;--radius-sm:2px;--radius-md:4px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{background:var(--color-carbon);color:var(--color-white);font-family:var(--font-body);font-weight:300;line-height:1.6;min-height:100vh;background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(255,255,255,0.012) 2px,rgba(255,255,255,0.012) 4px)}
+.nav{background:var(--color-void);border-bottom:1px solid var(--color-steel);padding:12px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.nav-back{font-family:var(--font-display);font-size:0.8rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-silver);text-decoration:none;border:1px solid var(--color-steel);padding:5px 12px;border-radius:var(--radius-sm);transition:all 180ms}
+.nav-back:hover{color:var(--color-gold);border-color:var(--color-gold-muted)}
+.nav-title{font-family:var(--font-display);font-weight:700;font-size:0.9rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-mist)}
+.container{width:100%;max-width:900px;margin:0 auto;padding:0 16px}
+.hero{padding:36px 16px 28px;border-bottom:1px solid var(--color-steel)}
+.hero-eyebrow{font-size:0.62rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--color-smoke);margin-bottom:8px}
+.hero-title{font-family:var(--font-display);font-size:clamp(2rem,8vw,3.6rem);font-weight:900;letter-spacing:-0.02em;line-height:0.95;text-transform:uppercase}
+.hero-title .gold{color:var(--color-gold)}
+.hero-title .vs{color:var(--color-smoke);font-size:60%}
+.hero-sub{font-size:0.85rem;color:var(--color-silver);margin-top:10px;line-height:1.5}
+.accent-bar{display:block;width:40px;height:3px;background:var(--color-gold);margin:12px 0 0}
+.bye-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,0.12);border:1px solid var(--color-gold-muted);border-radius:var(--radius-sm);padding:5px 12px;margin-top:12px;font-family:var(--font-display);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold)}
+.section{padding:24px 0 0}
+.section-label{font-size:0.62rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--color-smoke);margin-bottom:5px}
+.section-title{font-family:var(--font-display);font-size:1.4rem;font-weight:700;text-transform:uppercase;color:var(--color-white);line-height:1.1;margin-bottom:12px}
+.section-title .gold{color:var(--color-gold)}
+.divider{border:none;border-top:1px solid var(--color-steel);margin:24px 0}
+
+/* SIM — NEUTRAL */
+.sim-card{background:var(--color-graphite);border:1px solid var(--color-steel);border-radius:var(--radius-md);padding:18px;margin-top:12px}
+.sim-label{font-size:0.62rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--color-smoke);margin-bottom:10px}
+.score-row{display:flex;align-items:center;border:1px solid var(--color-steel);border-radius:var(--radius-md);overflow:hidden;margin-bottom:12px}
+.score-side{flex:1;padding:14px 12px;background:var(--color-graphite)}
+.score-side.right{text-align:right}
+.score-name{font-size:0.62rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-smoke)}
+.score-n{font-family:var(--font-display);font-size:2.2rem;font-weight:900;line-height:1;color:var(--color-silver)}
+.score-sub{font-size:0.68rem;color:var(--color-mist)}
+.score-mid{padding:0 10px;font-size:0.68rem;font-weight:700;color:var(--color-smoke);display:flex;align-items:center;border-left:1px solid var(--color-steel);border-right:1px solid var(--color-steel)}
+.win-bar{height:7px;border-radius:4px;display:flex;overflow:hidden;background:var(--color-steel)}
+.win-labels{display:flex;justify-content:space-between;font-size:0.72rem;color:var(--color-mist);margin-top:5px}
+
+/* WATCH CARDS */
+.watch-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}
+.watch-card{background:var(--color-graphite);border:1px solid var(--color-steel);border-radius:var(--radius-md);padding:14px;display:flex;gap:12px;align-items:flex-start}
+.watch-card.priority{border-color:var(--color-gold-muted);background:rgba(201,168,76,0.06)}
+.w-icon{width:28px;height:28px;min-width:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:0.72rem;margin-top:1px}
+.w-icon.gold{background:var(--color-gold);color:var(--color-void)}
+.w-icon.blue{background:var(--color-blue);color:var(--color-void)}
+.w-icon.gray{background:var(--color-steel);color:var(--color-silver)}
+.w-title{font-size:0.9rem;font-weight:500;color:var(--color-white);margin-bottom:3px}
+.w-tag{display:inline-block;font-size:0.58rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:1px 6px;border-radius:var(--radius-sm);margin-left:6px;background:rgba(201,168,76,0.15);color:var(--color-gold);border:1px solid var(--color-gold-muted)}
+.w-desc{font-size:0.8rem;color:var(--color-silver);line-height:1.45}
+
+/* PITCHER TRACKING */
+.pit-track{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.pt-row{background:var(--color-graphite);border:1px solid var(--color-steel);border-radius:var(--radius-md);padding:12px 14px}
+.pt-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.pt-name{font-size:0.9rem;font-weight:500;color:var(--color-white)}
+.pt-team{font-size:0.62rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-smoke)}
+.pt-era{font-family:var(--font-display);font-size:0.85rem;font-weight:700;color:var(--color-gold)}
+.pt-note{font-size:0.77rem;color:var(--color-mist);line-height:1.4}
+.g3-flag{color:var(--color-gold);font-weight:500}
+
+/* PLAYER WATCH */
+.player-watch{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}
+@media(min-width:480px){.player-watch{grid-template-columns:1fr 1fr}}
+.pw-card{background:var(--color-graphite);border:1px solid var(--color-steel);border-radius:var(--radius-md);padding:12px 14px}
+.pw-team-label{font-size:0.58rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-smoke);margin-bottom:5px}
+.pw-name{font-size:0.9rem;font-weight:500;color:var(--color-white)}
+.pw-stat{font-family:var(--font-display);font-size:0.8rem;font-weight:700;color:var(--color-gold);margin-top:1px}
+.pw-note{font-size:0.75rem;color:var(--color-mist);margin-top:5px;line-height:1.4}
+
+/* CHECKLIST */
+.checklist{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.cl-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:var(--color-graphite);border:1px solid var(--color-steel);border-radius:var(--radius-md);font-size:0.82rem;color:var(--color-silver);line-height:1.45}
+.cl-box{width:16px;height:16px;min-width:16px;border:1px solid var(--color-gold-muted);border-radius:2px;margin-top:2px;flex-shrink:0}
+.cl-item strong{color:var(--color-white);font-weight:500}
+
+.alert{border-radius:var(--radius-md);padding:12px 14px;font-size:0.82rem;line-height:1.5;display:flex;gap:10px;align-items:flex-start;margin-top:10px}
+.alert.gold{background:rgba(201,168,76,0.1);border:1px solid var(--color-gold-muted);color:var(--color-gold-bright)}
+.alert.blue{background:rgba(0,174,239,0.08);border:1px solid rgba(0,174,239,0.25);color:#60c8ef}
+.alert-icon{font-size:1rem;margin-top:1px}
+
+.footer{padding:28px 16px;text-align:center;color:var(--color-smoke);font-size:0.7rem;letter-spacing:0.1em;border-top:1px solid var(--color-steel);margin-top:36px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-back" href="index.html">← Back</a>
+  <span class="nav-title">Game <span style="color:#F5A623;font-weight:700">2</span> &nbsp;·&nbsp; BCC Bye — Scout</span>
+<span style="display:inline-flex;gap:2px;align-items:center;margin-left:auto">
+  <span style="width:7px;height:7px;background:#C0272D;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)"></span>
+  <span style="width:7px;height:7px;background:#F5A623;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)"></span>
+  <span style="width:7px;height:7px;background:#00AEEF;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)"></span>
+</span>
+</nav>
+
+<div class="hero container">
+  <div class="hero-eyebrow">Game 2 &nbsp;·&nbsp; BCC has a bye</div>
+  <h1 class="hero-title">Gambrill <span class="vs">vs</span> <span class="gold">HCYP Blue</span></h1>
+  <p class="hero-sub">We are not on the field this game. Put a coach on each dugout — this is our best live prep window for Game 3. Every inning matters.</p>
+  <span class="accent-bar" style="background:#F5A623"></span><span style="display:flex;width:120px;height:3px;margin:10px auto 0;gap:2px">
+  <span style="flex:1;background:#C0272D"></span>
+  <span style="flex:1;background:#F5A623"></span>
+  <span style="flex:1;background:#00AEEF"></span>
+</span>
+  <div class="bye-badge" style="border-color:#F5A623;color:#F5A623;background:rgba(245,166,35,0.1)">★ &nbsp; BCC scouting window — use it</div>
+</div>
+
+<div class="container">
+
+  <!-- NEUTRAL SIM -->
+  <div class="section">
+    <div class="section-label">Simulation — 10,000 cycles · neutral projection</div>
+    <div class="section-title">How this game <span class="gold">projects</span></div>
+    <div class="sim-card">
+      <div class="sim-label">Average projected score</div>
+      <div class="score-row">
+        <div class="score-side">
+          <div class="score-name">Gambrill</div>
+          <div class="score-n">4</div>
+          <div class="score-sub">avg 4.0 · mode 3</div>
+        </div>
+        <div class="score-mid">avg</div>
+        <div class="score-side right">
+          <div class="score-name">HCYP Blue</div>
+          <div class="score-n">6</div>
+          <div class="score-sub">avg 5.5 · mode 4</div>
+        </div>
+      </div>
+      <div class="win-bar">
+        <div style="width:40%;background:#C0272D;height:7px;border-radius:4px"></div>
+        <div style="width:60%;background:var(--color-smoke);height:7px;border-radius:4px"></div>
+      </div>
+      <div class="win-labels">
+        <span>Gambrill 40%</span>
+        <span>HCYP Blue 60%</span>
+      </div>
+    </div>
+    <div class="alert blue">
+      <span class="alert-icon">i</span>
+      <span>This is a genuinely competitive game — either team can win. Either result changes our round robin picture heading into Game 3. Note the final score and run differential carefully.</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHAT TO WATCH -->
+  <div class="section">
+    <div class="section-label">Primary scouting mission</div>
+    <div class="section-title">What to <span class="gold">watch</span></div>
+    <div class="watch-grid">
+
+      <div class="watch-card priority" style="border-left:3px solid #F5A623" style="border-left:3px solid #F5A623" style="border-left:3px solid #F5A623">
+        <div class="w-icon gold">1</div>
+        <div class="w-body">
+          <div class="w-title">HCYP pitcher pitch counts <span class="w-tag">G3 intel</span></div>
+          <div class="w-desc">Mason W and Mason B will both see innings here. Count their pitches every inning. The more they throw in Game 2, the less they have available for Game 3. If King A comes in early and goes deep, he may be limited or unavailable when we face HCYP.</div>
+        </div>
+      </div>
+
+      <div class="watch-card priority">
+        <div class="w-icon gold">2</div>
+        <div class="w-body">
+          <div class="w-title">HCYP 1–4 hitters — live at-bat tendencies <span class="w-tag">G3 intel</span></div>
+          <div class="w-desc">Daniel E, Gio L, Colin S, and King A face real pitching right now. Watch first-pitch swing rate, how they handle off-speed, whether they chase up or away. Everything you observe here, our pitchers use in Game 3.</div>
+        </div>
+      </div>
+
+      <div class="watch-card priority">
+        <div class="w-icon gold">3</div>
+        <div class="w-body">
+          <div class="w-title">HCYP stolen base patterns <span class="w-tag">G3 intel</span></div>
+          <div class="w-desc">Daniel E (43 SB) and Brennan B are aggressive runners. Note which counts they run on, whether they take big leads, how fast the jump is. Our catcher and pitchers need this information before Game 3 starts.</div>
+        </div>
+      </div>
+
+      <div class="watch-card" style="border-left:3px solid #00AEEF">
+        <div class="w-icon blue">4</div>
+        <div class="w-body">
+          <div class="w-title">Gambrill pitcher usage and depth</div>
+          <div class="w-desc">Miles H, Charlie F, and Ryan B all pitched in Game 1 vs us this morning. Watch who Gambrill deploys here — if they go deep into their staff in Game 2, that's context for any tiebreaker or standings scenario later in the day.</div>
+        </div>
+      </div>
+
+      <div class="watch-card" style="border-left:3px solid #00AEEF">
+        <div class="w-icon blue">5</div>
+        <div class="w-body">
+          <div class="w-title">HCYP defensive positioning</div>
+          <div class="w-desc">Where do they shade their infield against right- vs left-handed hitters? Any errors or mispays flag which fielders to target on the base paths in Game 3. Note positions by inning if you can.</div>
+        </div>
+      </div>
+
+      <div class="watch-card">
+        <div class="w-icon gray">6</div>
+        <div class="w-body">
+          <div class="w-title">Body language and energy level</div>
+          <div class="w-desc">A team that blows out Gambrill early may come into Game 3 coasting. A team that scratches out a tight win may be emotionally spent. Player energy in innings 5 and 6 of this game tells you a lot about what we're walking into.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PITCHER LOG -->
+  <div class="section">
+    <div class="section-label">Track these arms — pitch counts matter</div>
+    <div class="section-title">Pitcher <span class="gold">usage log</span></div>
+    <div class="pit-track">
+      <div class="pt-row">
+        <div class="pt-header">
+          <span class="pt-name">Mason W &nbsp;<span class="pt-team">HCYP</span></span>
+          <span class="pt-era">ERA 3.56</span>
+        </div>
+        <p class="pt-note">HCYP's workhorse. <span class="g3-flag">3+ IP here likely limits him significantly in Game 3.</span> Note exact innings and any visible signs of fatigue — velocity drop, walks, shaking off signs.</p>
+      </div>
+      <div class="pt-row">
+        <div class="pt-header">
+          <span class="pt-name">Mason B &nbsp;<span class="pt-team">HCYP</span></span>
+          <span class="pt-era">ERA 3.53</span>
+        </div>
+        <p class="pt-note">Second ace. <span class="g3-flag">Every pitch he throws today is one less he has against us.</span> HCYP deploying both Masons across two games is their single biggest pitching vulnerability this weekend.</p>
+      </div>
+      <div class="pt-row">
+        <div class="pt-header">
+          <span class="pt-name">King A &nbsp;<span class="pt-team">HCYP</span></span>
+          <span class="pt-era">ERA 7.83</span>
+        </div>
+        <p class="pt-note">Closer option with a higher ERA. <span class="g3-flag">Heavy usage here means King A pitches limited or tired innings in Game 3 — and that's the arm our top of the order can attack.</span></p>
+      </div>
+      <div class="pt-row">
+        <div class="pt-header">
+          <span class="pt-name">Miles H &nbsp;<span class="pt-team">Gambrill</span></span>
+          <span class="pt-era">ERA 0.56</span>
+        </div>
+        <p class="pt-note">Gambrill's best arm, already threw 3 IP vs us in Game 1. If he appears again today, watch closely for signs of fatigue — relevant context if standings or a tiebreaker puts us against Gambrill again.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PLAYER INTEL -->
+  <div class="section">
+    <div class="section-label">Individual player intel</div>
+    <div class="section-title">Watch these <span class="gold">players</span></div>
+    <div class="player-watch">
+      <div class="pw-card">
+        <div class="pw-team-label">HCYP — facing us in G3</div>
+        <div class="pw-name">Daniel E</div>
+        <div class="pw-stat">.590 AVG · .686 OBP · 43 SB</div>
+        <div class="pw-note">Leadoff. How does he approach first-pitch strikes vs balls? Does he take or jump on anything close? His tendencies today directly shape how our G3 pitcher attacks him.</div>
+      </div>
+      <div class="pw-card">
+        <div class="pw-team-label">HCYP — facing us in G3</div>
+        <div class="pw-name">King A</div>
+        <div class="pw-stat">.706 AVG · 52 RBI · P</div>
+        <div class="pw-note">Cleanup hitter and potential G3 pitcher. Watch where he sits in the box, how he handles inside vs outside, and whether he looks tired in later at-bats today.</div>
+      </div>
+      <div class="pw-card">
+        <div class="pw-team-label">HCYP — facing us in G3</div>
+        <div class="pw-name">Colin S</div>
+        <div class="pw-stat">.625 AVG · 42 RBI</div>
+        <div class="pw-note">Bats 3rd. Does he expand the zone with runners on? Any patterns vs left or right side of the plate are intelligence our pitchers can use directly in Game 3.</div>
+      </div>
+      <div class="pw-card">
+        <div class="pw-team-label">Gambrill — possible second-game fatigue</div>
+        <div class="pw-name">Luke P</div>
+        <div class="pw-stat">.400 AVG · 27 SB · P</div>
+        <div class="pw-note">Gambrill leadoff and G2 starter on the mound after pitching in G1 too. Signs of arm fatigue in a second same-day outing are worth noting for broader context.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CHECKLIST -->
+  <div class="section">
+    <div class="section-label">Sideline checklist — print or screenshot</div>
+    <div class="section-title">Things to <span class="gold">log</span> during the game</div>
+    <div class="checklist">
+      <div class="cl-item"><div class="cl-box"></div><span><strong>Mason W pitch count</strong> at end of each inning he pitches</span></div>
+      <div class="cl-item"><div class="cl-box"></div><span><strong>Mason B pitch count</strong> at end of each inning he pitches</span></div>
+      <div class="cl-item"><div class="cl-box"></div><span><strong>King A innings pitched</strong> and any visible fatigue signs</span></div>
+      <div class="cl-item"><div class="cl-box"></div><span><strong>Daniel E stolen base attempts</strong> — count, which counts he runs on, lead size</span></div>
+      <div class="cl-item"><div class="cl-box"></div><span><strong>King A and Colin S at-bat tendencies</strong> — first-pitch approach, chase zone</span></div>
+      <div class="cl-item"><div class="cl-box"></div><span><strong>HCYP defensive errors or mispays</strong> — which fielders, what situations</span></div>
+      <div class="cl-item"><div class="cl-box"></div><span><strong>Final score</strong> — and which team scores in which innings</span></div>
+      <div class="cl-item"><div class="cl-box"></div><span><strong>HCYP energy level in innings 5–6</strong> — who looks gassed, who still looks sharp</span></div>
+    </div>
+    <div class="alert gold" style="margin-top:12px">
+      <span class="alert-icon">★</span>
+      <span>Debrief as a staff between Game 2 and Game 3. Share what you saw, align on any adjustments, and make sure our Game 3 pitchers have heard the scouting notes before they take the mound.</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">BCC Big Train 11U &nbsp;·&nbsp; Game 2 Scouting &nbsp;·&nbsp; Gambrill vs HCYP Blue &nbsp;·&nbsp; April 2026</div>
+</body>
+</html>

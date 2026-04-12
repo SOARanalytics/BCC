@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game 1: BCC vs Gambrill — Big Train Intel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--color-void:#080808;--color-carbon:#0D0D0D;--color-graphite:#1A1A1A;--color-steel:#2C2C2C;--color-ash:#4A4A4A;--color-smoke:#6B6B6B;--color-mist:#9A9A9A;--color-silver:#C8C8C8;--color-white:#F0F0F0;--color-gold:#C9A84C;--color-gold-bright:#E8C96A;--color-gold-muted:#8A6F2E;--color-red:#C0272D;--color-blue:#00AEEF;--color-yellow:#F5A623;--color-success:#4CAF50;--font-display:'Barlow Condensed',Impact,'Arial Narrow',sans-serif;--font-body:'Barlow','Helvetica Neue',Helvetica,sans-serif;--radius-sm:2px;--radius-md:4px;--radius-lg:8px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{background:var(--color-carbon);color:var(--color-white);font-family:var(--font-body);font-weight:300;line-height:1.6;min-height:100vh;background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(255,255,255,0.012) 2px,rgba(255,255,255,0.012) 4px)}
+.nav{background:var(--color-void);border-bottom:1px solid var(--color-steel);padding:12px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.nav-back{font-family:var(--font-display);font-size:0.8rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-silver);text-decoration:none;border:1px solid var(--color-steel);padding:5px 12px;border-radius:var(--radius-sm);transition:all 180ms}
+.nav-back:hover{color:var(--color-gold);border-color:var(--color-gold-muted)}
+.nav-title{font-family:var(--font-display);font-weight:700;font-size:0.9rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-mist)}
+.container{width:100%;max-width:900px;margin:0 auto;padding:0 16px}
+.hero{padding:36px 16px 28px;border-bottom:1px solid var(--color-steel)}
+.hero-eyebrow{font-size:0.62rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--color-smoke);margin-bottom:8px}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.2rem,8vw,3.8rem);font-weight:900;letter-spacing:-0.02em;line-height:0.95;text-transform:uppercase}
+.hero-title .gold{color:var(--color-gold)}
+.hero-title .vs{color:var(--color-smoke);font-size:60%}
+.accent-bar{display:block;width:40px;height:3px;background:var(--color-gold);margin:12px 0 0}
+.section{padding:24px 0 0}
+.section-label{font-size:0.62rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--color-smoke);margin-bottom:5px}
+.section-title{font-family:var(--font-display);font-size:1.4rem;font-weight:700;text-transform:uppercase;color:var(--color-white);line-height:1.1;margin-bottom:12px}
+.section-title .gold{color:var(--color-gold)}
+.divider{border:none;border-top:1px solid var(--color-steel);margin:24px 0}
+.card{background:var(--color-graphite);border:1px solid var(--color-steel);border-radius:var(--radius-md);padding:18px}
+.card.gold-accent{border-color:var(--color-gold-muted);background:rgba(201,168,76,0.06)}
+
+/* SCENARIO COMPARE */
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:380px){.scenario-grid{grid-template-columns:1fr}}
+.sc-card{border-radius:var(--radius-md);padding:14px;border:1px solid var(--color-steel);background:var(--color-graphite)}
+.sc-card.rec{border-color:var(--color-gold-muted);background:rgba(201,168,76,0.07)}
+.sc-tag{font-size:0.58rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px}
+.sc-tag.rec{color:var(--color-gold)}
+.sc-tag.base{color:var(--color-smoke)}
+.sc-label{font-family:var(--font-display);font-size:0.75rem;font-weight:700;text-transform:uppercase;color:var(--color-silver);margin-bottom:6px}
+.sc-score{font-family:var(--font-display);font-size:1.9rem;font-weight:900;line-height:1}
+.sc-score .bcc{color:var(--color-gold)}
+.sc-score .opp{color:var(--color-silver)}
+.sc-score .dash{color:var(--color-smoke);margin:0 4px}
+.sc-pct{font-family:var(--font-display);font-size:0.85rem;font-weight:700;margin-top:6px}
+.sc-pct.gold{color:var(--color-gold)}
+.sc-pct.muted{color:var(--color-mist)}
+.sc-desc{font-size:0.73rem;color:var(--color-mist);margin-top:4px;line-height:1.4}
+.sc-note{font-size:0.73rem;color:var(--color-smoke);font-style:italic;margin-top:10px;padding-top:10px;border-top:1px solid var(--color-steel);line-height:1.4}
+
+/* H2H RECORD */
+.h2h-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.h2h-card{background:var(--color-graphite);border:1px solid var(--color-steel);border-radius:var(--radius-md);padding:14px}
+.h2h-card.win{border-color:var(--color-success)}
+.h2h-card.loss{border-color:var(--color-steel)}
+.h2h-result{font-family:var(--font-display);font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:6px}
+.h2h-result.win{color:var(--color-success)}
+.h2h-result.loss{color:var(--color-smoke)}
+.h2h-score{font-family:var(--font-display);font-size:1.8rem;font-weight:900;line-height:1}
+.h2h-score .bcc{color:var(--color-gold)}
+.h2h-score .opp{color:var(--color-silver)}
+.h2h-score .dash{color:var(--color-smoke);margin:0 3px}
+.h2h-detail{font-size:0.75rem;color:var(--color-mist);margin-top:6px;line-height:1.4}
+.h2h-detail strong{color:var(--color-silver);font-weight:500}
+
+/* PITCHER PLAN */
+.pit-plan{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.pit-row{display:flex;align-items:center;gap:10px}
+.pit-name{font-size:0.85rem;color:var(--color-white);font-weight:500;min-width:130px}
+.pit-bar-wrap{flex:1;background:var(--color-steel);border-radius:3px;height:7px;overflow:hidden}
+.pit-bar-fill{height:7px;border-radius:3px}
+.pit-meta{font-size:0.73rem;color:var(--color-mist);min-width:95px;text-align:right}
+.pit-era{color:var(--color-gold)}
+
+/* LINEUP TABLE */
+.lineup-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:0.82rem}
+.lineup-table th{font-size:0.58rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-smoke);padding:6px 8px;text-align:left;border-bottom:1px solid var(--color-steel)}
+.lineup-table td{padding:8px 8px;border-bottom:1px solid rgba(44,44,44,0.5);color:var(--color-silver)}
+.lineup-table td.n{font-family:var(--font-display);font-weight:700;color:var(--color-gold);font-size:0.9rem;min-width:28px}
+.lineup-table td.name{color:var(--color-white);font-weight:500}
+.lineup-table td.stat{color:var(--color-gold);font-family:var(--font-display);font-weight:700}
+.lineup-table td.pos{color:var(--color-mist);font-size:0.73rem}
+.dh-row td{color:var(--color-blue)!important}
+.dh-tag{font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;background:rgba(0,174,239,0.12);color:var(--color-blue);border:1px solid rgba(0,174,239,0.25);border-radius:2px;padding:1px 5px;margin-left:5px}
+.na-row td{color:var(--color-ash)!important;text-decoration:line-through}
+.na-tag{font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;background:rgba(192,39,45,0.1);color:#e07070;border:1px solid rgba(192,39,45,0.25);border-radius:2px;padding:1px 5px;margin-left:5px}
+
+/* KEYS LIST */
+.keys-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.keys-list li{display:flex;gap:10px;align-items:flex-start;font-size:0.85rem;color:var(--color-silver);line-height:1.5}
+.k-icon{width:20px;height:20px;min-width:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.7rem;font-weight:900;margin-top:2px}
+.k-icon.gold{background:var(--color-gold);color:var(--color-void)}
+.k-icon.blue{background:var(--color-blue);color:var(--color-void)}
+.k-icon.red{background:var(--color-red);color:var(--color-white)}
+.keys-list li strong{color:var(--color-white);font-weight:500}
+
+/* ALERT */
+.alert{border-radius:var(--radius-md);padding:12px 14px;font-size:0.82rem;line-height:1.5;display:flex;gap:10px;align-items:flex-start;margin-top:12px}
+.alert.gold{background:rgba(201,168,76,0.1);border:1px solid var(--color-gold-muted);color:var(--color-gold-bright)}
+.alert.blue{background:rgba(0,174,239,0.08);border:1px solid rgba(0,174,239,0.25);color:#60c8ef}
+.alert-icon{font-size:1rem;margin-top:1px}
+
+.footer{padding:28px 16px;text-align:center;color:var(--color-smoke);font-size:0.7rem;letter-spacing:0.1em;border-top:1px solid var(--color-steel);margin-top:36px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-back" href="index.html">← Back</a>
+  <span class="nav-title">Game <span style="color:#C0272D;font-weight:700">1</span> &nbsp;·&nbsp; vs Gambrill</span>
+<span style="display:inline-flex;gap:2px;align-items:center;margin-left:auto">
+  <span style="width:7px;height:7px;background:#C0272D;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)"></span>
+  <span style="width:7px;height:7px;background:#F5A623;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)"></span>
+  <span style="width:7px;height:7px;background:#00AEEF;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)"></span>
+</span>
+</nav>
+
+<div class="hero container">
+  <div class="hero-eyebrow">Game 1 &nbsp;·&nbsp; BCC as Away Team</div>
+  <h1 class="hero-title"><span class="gold">BCC</span> <span class="vs">vs</span> Gambrill</h1>
+  <span class="accent-bar" style="background:#C0272D"></span><span style="display:flex;width:120px;height:3px;margin:10px auto 0;gap:2px">
+  <span style="flex:1;background:#C0272D"></span>
+  <span style="flex:1;background:#F5A623"></span>
+  <span style="flex:1;background:#00AEEF"></span>
+</span>
+</div>
+
+<div class="container">
+
+  <!-- SCENARIO COMPARISON -->
+  <div class="section">
+    <div class="section-label">Rotation decision</div>
+    <div class="section-title">Two <span class="gold">scenarios</span> modeled</div>
+
+    <div class="scenario-grid">
+      <div class="sc-card base">
+        <div class="sc-tag base">Scenario A — Baseline</div>
+        <div class="sc-label">Kowalski starts</div>
+        <div class="sc-score">
+          <span class="bcc">3</span><span class="dash">–</span><span class="opp">8</span>
+        </div>
+        <div class="sc-pct muted">BCC wins 11% of sims</div>
+        <div class="sc-desc">Uses Kowalski's strong full-season ERA (4.70). Safer floor, but no head-to-head edge vs this lineup.</div>
+      </div>
+      <div class="sc-card rec" style="border-left:3px solid #F5A623">
+        <div class="sc-tag rec">★ Scenario B — Recommended</div>
+        <div class="sc-label">Wells starts</div>
+        <div class="sc-score">
+          <span class="bcc">3</span><span class="dash">–</span><span class="opp">10</span>
+        </div>
+        <div class="sc-pct gold">Higher ceiling to win</div>
+        <div class="sc-desc">Sim uses Wells' full-season ERA (7.76) — which understates his actual performance vs this team.</div>
+      </div>
+    </div>
+
+    <div class="alert gold" style="margin-top:12px">
+      <span class="alert-icon">★</span>
+      <span><strong>Why Wells despite the numbers:</strong> Wells has faced Gambrill twice. In one outing he threw 5 innings, allowed 1 hit, 1 run — and we won 2–1. His combined ERA vs Gambrill specifically is 4.27. The simulation cannot capture that matchup split. Wells gives us the ceiling. When he's on, we win this game.</span>
+    </div>
+
+    <div class="alert blue" style="margin-top:8px">
+      <span class="alert-icon">i</span>
+      <span><strong>Kowalski's role:</strong> With Wells starting and going 4 IP, Kowalski stays fresh for Game 3 where he moves to opener. This improves our entire day's pitching depth.</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- H2H HISTORY -->
+  <div class="section">
+    <div class="section-label">Head-to-head history</div>
+    <div class="section-title">We've beaten <span class="gold">this team</span></div>
+    <div class="h2h-grid">
+      <div class="h2h-card win" style="border-left:3px solid var(--color-success)">
+        <div class="h2h-result win">Win — Fall Season</div>
+        <div class="h2h-score">
+          <span class="bcc">2</span><span class="dash">–</span><span class="opp">1</span>
+        </div>
+        <div class="h2h-detail"><strong>Oliver Wells:</strong> 5 IP, 1 H, 1 ER. Logan Pressberg closed it. Low-scoring, executed our game plan perfectly.</div>
+      </div>
+      <div class="h2h-card loss" style="border-left:3px solid #C0272D">
+        <div class="h2h-result loss">Loss — Fall Season</div>
+        <div class="h2h-score">
+          <span class="bcc">6</span><span class="dash">–</span><span class="opp">18</span>
+        </div>
+        <div class="h2h-detail">Pitching breakdown early. Wells left after 1.1 IP that day. The blowout came when we lost the mound — their lineup is relentless once they get going.</div>
+      </div>
+    </div>
+    <div class="alert gold" style="margin-top:10px">
+      <span class="alert-icon">★</span>
+      <span>The split is clear: <strong>when we keep it close and execute on the mound, we win.</strong> Keep this game under 4 runs through 4 innings and we're in it.</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PITCHER PLAN -->
+  <div class="section">
+    <div class="section-label">Recommended rotation</div>
+    <div class="section-title">Game 1 <span class="gold">mound plan</span></div>
+    <div class="card">
+      <div class="pit-plan">
+        <div class="pit-row">
+          <span class="pit-name">Oliver Wells &nbsp;<span style="font-size:0.65rem;color:var(--color-gold);font-weight:700">STARTER</span></span>
+          <div class="pit-bar-wrap"><div class="pit-bar-fill" style="width:67%;background:var(--color-gold)"></div></div>
+          <span class="pit-meta">4 IP &nbsp;<span class="pit-era">ERA 7.76*</span></span>
+        </div>
+        <div class="pit-row">
+          <span class="pit-name">Logan Pressberg</span>
+          <div class="pit-bar-wrap"><div class="pit-bar-fill" style="width:33%;background:var(--color-smoke)"></div></div>
+          <span class="pit-meta">2 IP &nbsp;<span class="pit-era">ERA 6.61</span></span>
+        </div>
+      </div>
+      <p style="font-size:0.73rem;color:var(--color-smoke);margin-top:12px;font-style:italic">* Wells' ERA vs Gambrill specifically: 4.27. Full-season ERA overstates his risk against this opponent.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- LINEUP -->
+  <div class="section">
+    <div class="section-label">Probable batting order</div>
+    <div class="section-title">Our <span class="gold">lineup</span></div>
+    <table class="lineup-table">
+      <thead><tr><th>#</th><th>Player</th><th>AVG</th><th>OBP</th><th>SB</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td class="name">Beckett Dickinson</td><td class="stat">.253</td><td>.422</td><td>31</td></tr>
+        <tr><td class="n">2</td><td class="name">Grant Richards</td><td class="stat">.442</td><td>.500</td><td>21</td></tr>
+        <tr><td class="n">3</td><td class="name">Will Kowalski</td><td class="stat">.365</td><td>.447</td><td>10</td></tr>
+        <tr><td class="n">4</td><td class="name">Everett Harkins</td><td class="stat">.433</td><td>.528</td><td>13</td></tr>
+        <tr><td class="n">5</td><td class="name">Adam Ingram</td><td class="stat">.306</td><td>.424</td><td>18</td></tr>
+        <tr><td class="n">6</td><td class="name">Oliver Wells</td><td class="stat">.314</td><td>.467</td><td>22</td></tr>
+        <tr><td class="n">7</td><td class="name">Logan Pressberg</td><td class="stat">.323</td><td>.470</td><td>24</td></tr>
+        <tr class="dh-row"><td class="n">8</td><td class="name">Darcy Mizejewski <span class="dh-tag">DH</span></td><td class="stat">.206</td><td>.405</td><td>13</td></tr>
+        <tr><td class="n">9</td><td class="name">Joshua Lopez</td><td class="stat">.232</td><td>.456</td><td>23</td></tr>
+        <tr><td class="n">10</td><td class="name">Ren Endo</td><td class="stat">.153</td><td>.375</td><td>9</td></tr>
+        <tr><td class="n">11</td><td class="name">Grant Wang</td><td class="stat">.179</td><td>.352</td><td>17</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- KEYS TO WIN -->
+  <div class="section">
+    <div class="section-label">Coaching focus</div>
+    <div class="section-title">Keys to <span class="gold">winning</span> Game 1</div>
+    <ul class="keys-list">
+      <li><span class="k-icon gold">1</span><span><strong>Keep Gambrill's top of the order quiet early.</strong> Luke P, Jaxon E, and Ryan B are their catalysts — all batting .400+. If they strand runners in innings 1-2, momentum stays with us.</span></li>
+      <li><span class="k-icon gold">2</span><span><strong>Score first.</strong> Our win over Gambrill was a 2-1 squeaker. We do not come back against their pitching depth. Getting on the board before the 3rd inning is critical.</span></li>
+      <li><span class="k-icon gold">3</span><span><strong>Grant Richards and Everett Harkins must produce.</strong> Those are our two highest-OBP hitters batting 2nd and 4th. They need to be on base when runs can score.</span></li>
+      <li><span class="k-icon" style="background:#F5A623;color:#080808;width:20px;height:20px;min-width:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.7rem;font-weight:900;margin-top:2px">4</span><span><strong>Trust Wells through 3+ innings</strong> even if he gives up early contact. His one-hit gem vs this lineup started slow. Give him time to settle in.</span></li>
+      <li><span class="k-icon red">5</span><span><strong>Limit Gambrill's stolen base threats.</strong> Luke P (27 SB), Ryan B (25 SB), and Darryl M (22 SB) will run — communicate with our catcher constantly.</span></li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">BCC Big Train 11U &nbsp;·&nbsp; Game 1 &nbsp;·&nbsp; vs Gambrill &nbsp;·&nbsp; April 2026</div>
+</body>
+</html>
