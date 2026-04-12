@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scout Report — Gambrill | BCC Big Train 11U</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--color-void:#080808;--color-carbon:#0D0D0D;--color-graphite:#1A1A1A;--color-steel:#2C2C2C;--color-ash:#4A4A4A;--color-smoke:#6B6B6B;--color-mist:#9A9A9A;--color-silver:#C8C8C8;--color-white:#F0F0F0;--color-gold:#C9A84C;--color-gold-bright:#E8C96A;--color-gold-muted:#8A6F2E;--color-red:#C0272D;--color-blue:#00AEEF;--color-yellow:#F5A623;--color-success:#4CAF50;--color-warn:#E07030;--font-display:'Barlow Condensed',Impact,'Arial Narrow',sans-serif;--font-body:'Barlow','Helvetica Neue',Helvetica,sans-serif;--radius-sm:2px;--radius-md:4px;--radius-lg:8px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{background:var(--color-carbon);color:var(--color-white);font-family:var(--font-body);font-weight:300;line-height:1.6;min-height:100vh;background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(255,255,255,0.012) 2px,rgba(255,255,255,0.012) 4px)}
+
+.nav{background:var(--color-void);border-bottom:1px solid var(--color-steel);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-brand{font-family:var(--font-display);font-weight:900;font-size:1.05rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-gold)}
+.nav-back{font-family:var(--font-display);font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-smoke);border:1px solid var(--color-steel);padding:4px 10px;border-radius:var(--radius-sm);text-decoration:none;transition:color 150ms,border-color 150ms}
+.nav-back:hover{color:var(--color-gold);border-color:var(--color-gold-muted)}
+
+.container{width:100%;max-width:900px;margin:0 auto;padding:0 16px}
+
+.hero{padding:36px 16px 32px;border-bottom:1px solid var(--color-steel)}
+.hero-eyebrow{font-family:var(--font-body);font-size:0.62rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--color-smoke);margin-bottom:8px}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.8rem,10vw,5rem);font-weight:900;letter-spacing:-0.02em;line-height:0.92;text-transform:uppercase;color:var(--color-white)}
+.hero-title .accent{color:var(--color-red)}
+.hero-sub{font-family:var(--font-display);font-size:1rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-smoke);margin-top:10px}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.meta-chip{font-family:var(--font-display);font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:4px 10px;border-radius:var(--radius-sm);border:1px solid var(--color-steel);color:var(--color-mist)}
+.meta-chip.warn{border-color:rgba(224,112,48,0.4);color:var(--color-warn);background:rgba(224,112,48,0.07)}
+.accent-bar{display:block;width:40px;height:3px;background:var(--color-red);margin-top:14px}
+
+.section{padding:28px 0 0}
+.section-label{font-family:var(--font-body);font-size:0.62rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--color-smoke);margin-bottom:6px}
+.section-title{font-family:var(--font-display);font-size:1.5rem;font-weight:700;text-transform:uppercase;color:var(--color-white);line-height:1.1;margin-bottom:4px}
+.section-title .gold{color:var(--color-gold)}
+.section-title .red{color:var(--color-red)}
+
+.divider{border:none;border-top:1px solid var(--color-steel);margin:28px 0}
+
+/* SUMMARY STAT ROW */
+.summary-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+@media(min-width:500px){.summary-row{grid-template-columns:repeat(6,1fr)}}
+.sum-chip{background:var(--color-graphite);border:1px solid var(--color-steel);border-radius:var(--radius-md);padding:14px 10px;text-align:center}
+.sum-chip.hl-gold{border-color:var(--color-gold-muted);background:rgba(201,168,76,0.07)}
+.sum-chip.hl-red{border-color:rgba(192,39,45,0.4);background:rgba(192,39,45,0.07)}
+.sum-num{font-family:var(--font-display);font-size:1.9rem;font-weight:900;line-height:1;color:var(--color-gold)}
+.sum-num.red{color:var(--color-red)}
+.sum-lbl{font-size:0.58rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-smoke);margin-top:4px}
+.sum-sub{font-size:0.68rem;color:var(--color-mist);margin-top:2px}
+
+/* ALERT BANNER */
+.alert{border-left:3px solid var(--color-warn);background:rgba(224,112,48,0.06);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:12px 14px;margin-top:16px;font-size:0.83rem;color:var(--color-silver);line-height:1.5}
+.alert strong{color:var(--color-warn);font-weight:500}
+.alert.red{border-color:var(--color-red);background:rgba(192,39,45,0.06)}
+.alert.red strong{color:#e07070}
+.alert.gold{border-color:var(--color-gold);background:rgba(201,168,76,0.06)}
+.alert.gold strong{color:var(--color-gold)}
+
+/* PLAYER TABLE */
+.tbl-wrap{margin-top:14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:0.8rem}
+thead tr{border-bottom:2px solid var(--color-steel)}
+th{font-family:var(--font-display);font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-smoke);padding:8px 10px;text-align:left;white-space:nowrap}
+th.r{text-align:right}
+td{padding:8px 10px;color:var(--color-silver);border-bottom:1px solid rgba(44,44,44,0.7);white-space:nowrap}
+td.r{text-align:right;font-family:var(--font-display);font-size:0.85rem;font-weight:600}
+td .name-num{font-family:var(--font-display);font-weight:700;font-size:0.9rem;color:var(--color-white)}
+td .pos{font-size:0.68rem;color:var(--color-smoke);margin-left:4px}
+tr.danger td{background:rgba(192,39,45,0.05)}
+tr.danger td .name-num{color:#e07070}
+tr.note td{background:rgba(201,168,76,0.04)}
+tr.note td .name-num{color:var(--color-gold)}
+tr:last-child td{border-bottom:none}
+
+/* SPRAY BAR */
+.spray-row{display:flex;height:8px;border-radius:3px;overflow:hidden;gap:1px;margin-top:2px;min-width:80px}
+.spray-l{background:var(--color-blue);border-radius:3px 0 0 3px}
+.spray-c{background:var(--color-gold)}
+.spray-r{background:var(--color-red);border-radius:0 3px 3px 0}
+.spray-label{display:flex;justify-content:space-between;font-size:0.58rem;color:var(--color-smoke);letter-spacing:0.05em;margin-top:2px}
+
+/* INTEL CARDS */
+.intel-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}
+@media(min-width:500px){.intel-grid{grid-template-columns:1fr 1fr}}
+.intel-card{background:var(--color-graphite);border:1px solid var(--color-steel);border-radius:var(--radius-md);padding:16px}
+.intel-head{font-family:var(--font-display);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;color:var(--color-white)}
+.intel-head .gold{color:var(--color-gold)}
+.intel-head .red{color:var(--color-red)}
+.intel-head .blue{color:var(--color-blue)}
+.intel-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.intel-list li{display:flex;gap:10px;align-items:flex-start;font-size:0.83rem;color:var(--color-silver);line-height:1.45}
+.i-dot{width:5px;height:5px;min-width:5px;border-radius:50%;margin-top:7px}
+.i-dot.gold{background:var(--color-gold)}
+.i-dot.red{background:var(--color-red)}
+.i-dot.blue{background:var(--color-blue)}
+.i-dot.warn{background:var(--color-warn)}
+.intel-list li strong{color:var(--color-white);font-weight:500}
+
+.footer{padding:28px 16px;text-align:center;color:var(--color-smoke);font-size:0.7rem;letter-spacing:0.1em;border-top:1px solid var(--color-steel);margin-top:40px}
+
+/* FPS BAR */
+.fps-bar-wrap{min-width:70px}
+.fps-bar{height:6px;background:var(--color-steel);border-radius:3px;overflow:hidden;margin-top:3px}
+.fps-fill{height:6px;border-radius:3px;background:var(--color-gold)}
+.fps-fill.low{background:var(--color-red)}
+.fps-fill.med{background:var(--color-warn)}
+.fps-pct{font-family:var(--font-display);font-size:0.78rem;font-weight:700;color:var(--color-mist)}
+
+/* STEAL BADGE */
+.sb-badge{display:inline-flex;align-items:center;gap:3px;font-family:var(--font-display);font-size:0.72rem;font-weight:700;padding:1px 6px;border-radius:var(--radius-sm);background:rgba(192,39,45,0.15);color:#e07070;border:1px solid rgba(192,39,45,0.3)}
+.sb-badge.low{background:rgba(107,107,107,0.15);color:var(--color-smoke);border-color:var(--color-steel)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-brand">BCC Big Train 11U</span>
+  <a class="nav-back" href="index.html">← Game Plan</a>
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Opponent Scouting Report</div>
+    <div class="hero-title"><span class="accent">Gambrill</span></div>
+    <div class="hero-sub">BCC Big Train 11U &nbsp;·&nbsp; April 2026</div>
+    <div class="hero-meta">
+      <span class="meta-chip">27 Games Scouted</span>
+      <span class="meta-chip">Spring + Fall 2025–26</span>
+      <span class="meta-chip warn">⚠ Contact-heavy lineup</span>
+      <span class="meta-chip warn">⚠ Active running game</span>
+    </div>
+    <span class="accent-bar"></span>
+  </div>
+
+  <!-- TEAM OVERVIEW -->
+  <div class="section">
+    <div class="section-label">Team overview</div>
+    <div class="section-title">What to <span class="gold">expect</span></div>
+    <div class="summary-row">
+      <div class="sum-chip"><div class="sum-num">27</div><div class="sum-lbl">Games</div><div class="sum-sub">Scouted</div></div>
+      <div class="sum-chip hl-red"><div class="sum-num red">Low</div><div class="sum-lbl">K Rate</div><div class="sum-sub">Put ball in play</div></div>
+      <div class="sum-chip"><div class="sum-num">~54%</div><div class="sum-lbl">Avg FPS%</div><div class="sum-sub">Pitching staff</div></div>
+      <div class="sum-chip hl-gold"><div class="sum-num">63+</div><div class="sum-lbl">Active</div><div class="sum-sub">Base stealers</div></div>
+      <div class="sum-chip"><div class="sum-num">0</div><div class="sum-lbl">Caught</div><div class="sum-sub">Not thrown out</div></div>
+      <div class="sum-chip hl-red"><div class="sum-num red">Multi</div><div class="sum-lbl">Arms/game</div><div class="sum-sub">Deep staff</div></div>
+    </div>
+
+    <div class="alert warn" style="margin-top:14px">
+      <strong>Contact machine.</strong> Gambrill does not strike out much. Do not pitch around these hitters expecting Ks — work the zone, induce groundballs, and limit walks at all costs. Every walk they get becomes a stolen base threat.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- KEY HITTERS -->
+  <div class="section">
+    <div class="section-label">Offensive scouting</div>
+    <div class="section-title">Hitters to <span class="red">watch</span></div>
+
+    <div class="alert gold">
+      <strong>Danger trio:</strong> Jaxson G (#7), Mason M (#3), and Parker W (#3) are the highest-average hitters with the most extra-base production. Keep them off base or pitch them carefully — they punish mistakes. Luke W (#1) has the highest hard-hit rate in the dataset at 54%.
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th class="r">AVG</th>
+            <th class="r">OBP</th>
+            <th class="r">K%</th>
+            <th class="r">HH%</th>
+            <th class="r">SB</th>
+            <th>Spray</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="danger">
+            <td><span class="name-num">#7 Jaxson G</span><span class="pos">SS/2B</span></td>
+            <td class="r">.800</td><td class="r">.833</td><td class="r">0%</td><td class="r">20%</td>
+            <td class="r"><span class="sb-badge">3 SB</span></td>
+            <td>
+              <div class="spray-row"><div class="spray-l" style="flex:1"></div><div class="spray-c" style="flex:1"></div><div class="spray-r" style="flex:3"></div></div>
+              <div class="spray-label"><span>L</span><span>C</span><span>R</span></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Pull-heavy, no K. Triple threat</td>
+          </tr>
+          <tr class="danger">
+            <td><span class="name-num">#3 Mason M</span><span class="pos">SS/P</span></td>
+            <td class="r">.600</td><td class="r">.667</td><td class="r">20%</td><td class="r">—</td>
+            <td class="r"><span class="sb-badge">2 SB</span></td>
+            <td>
+              <div class="spray-row"><div class="spray-l" style="flex:1"></div><div class="spray-c" style="flex:3"></div><div class="spray-r" style="flex:1"></div></div>
+              <div class="spray-label"><span>L</span><span>C</span><span>R</span></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">3 triples — gap hitter</td>
+          </tr>
+          <tr class="danger">
+            <td><span class="name-num">#3 Parker W</span><span class="pos">1B/P</span></td>
+            <td class="r">.667</td><td class="r">.667</td><td class="r">0%</td><td class="r">17%</td>
+            <td class="r"><span class="sb-badge low">0 SB</span></td>
+            <td>
+              <div class="spray-row"><div class="spray-l" style="flex:0"></div><div class="spray-c" style="flex:4"></div><div class="spray-r" style="flex:2"></div></div>
+              <div class="spray-label"><span>L</span><span>C</span><span>R</span></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">CF/RF, no walk. Attack in zone</td>
+          </tr>
+          <tr class="danger">
+            <td><span class="name-num">#1 Luke W</span><span class="pos">P</span></td>
+            <td class="r">—</td><td class="r">—</td><td class="r">23%</td><td class="r"><strong style="color:var(--color-red)">54%</strong></td>
+            <td class="r"><span class="sb-badge">2 SB</span></td>
+            <td>
+              <div class="spray-row"><div class="spray-l" style="flex:5"></div><div class="spray-c" style="flex:5"></div><div class="spray-r" style="flex:3"></div></div>
+              <div class="spray-label"><span>L</span><span>C</span><span>R</span></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Highest HH% — drives ball hard</td>
+          </tr>
+          <tr class="note">
+            <td><span class="name-num">#2 Hunter S</span><span class="pos">1B</span></td>
+            <td class="r">.750</td><td class="r">.833</td><td class="r">0%</td><td class="r">—</td>
+            <td class="r"><span class="sb-badge">1 SB</span></td>
+            <td>
+              <div class="spray-row"><div class="spray-l" style="flex:2"></div><div class="spray-c" style="flex:2"></div><div class="spray-r" style="flex:1"></div></div>
+              <div class="spray-label"><span>L</span><span>C</span><span>R</span></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Patient, 0 Ks. No free outs here</td>
+          </tr>
+          <tr class="note">
+            <td><span class="name-num">#1 Hunter C</span><span class="pos">C/P</span></td>
+            <td class="r">.571</td><td class="r">.667</td><td class="r">0%</td><td class="r">43%</td>
+            <td class="r"><span class="sb-badge">2 SB</span></td>
+            <td>
+              <div class="spray-row"><div class="spray-l" style="flex:4"></div><div class="spray-c" style="flex:2"></div><div class="spray-r" style="flex:1"></div></div>
+              <div class="spray-label"><span>L</span><span>C</span><span>R</span></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Drives to LF side, patient eye</td>
+          </tr>
+          <tr class="note">
+            <td><span class="name-num">#6 Maverick S</span><span class="pos">2B</span></td>
+            <td class="r">.600</td><td class="r">.600</td><td class="r">0%</td><td class="r">20%</td>
+            <td class="r"><span class="sb-badge">1 SB</span></td>
+            <td>
+              <div class="spray-row"><div class="spray-l" style="flex:2"></div><div class="spray-c" style="flex:2"></div><div class="spray-r" style="flex:1"></div></div>
+              <div class="spray-label"><span>L</span><span>C</span><span>R</span></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Has HR power, pure contact</td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#12 Logan P</span><span class="pos">P</span></td>
+            <td class="r">.600</td><td class="r">.600</td><td class="r">10%</td><td class="r">20%</td>
+            <td class="r"><span class="sb-badge low">0 SB</span></td>
+            <td>
+              <div class="spray-row"><div class="spray-l" style="flex:3"></div><div class="spray-c" style="flex:2"></div><div class="spray-r" style="flex:5"></div></div>
+              <div class="spray-label"><span>L</span><span>C</span><span>R</span></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Goes oppo with authority</td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#10 Matias K</span><span class="pos">CF</span></td>
+            <td class="r">.500</td><td class="r">.667</td><td class="r">0%</td><td class="r">—</td>
+            <td class="r"><span class="sb-badge">5 SB</span></td>
+            <td>
+              <div class="spray-row"><div class="spray-l" style="flex:1"></div><div class="spray-c" style="flex:2"></div><div class="spray-r" style="flex:2"></div></div>
+              <div class="spray-label"><span>L</span><span>C</span><span>R</span></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Active runner, 2B hitter</td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#4 Drew D</span><span class="pos">C/SS/P</span></td>
+            <td class="r">.333</td><td class="r">.333</td><td class="r">0%</td><td class="r">—</td>
+            <td class="r"><span class="sb-badge">3 SB</span></td>
+            <td>
+              <div class="spray-row"><div class="spray-l" style="flex:1"></div><div class="spray-c" style="flex:1"></div><div class="spray-r" style="flex:1"></div></div>
+              <div class="spray-label"><span>L</span><span>C</span><span>R</span></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Even spray, runs well</td>
+          </tr>
+          <!-- Free outs -->
+          <tr>
+            <td><span class="name-num">#8 Connor K</span><span class="pos">3B/SS/P</span></td>
+            <td class="r">.000</td><td class="r">.000</td><td class="r">17%</td><td class="r">0%</td>
+            <td class="r"><span class="sb-badge low">0 SB</span></td>
+            <td>
+              <div class="spray-row"><div class="spray-l" style="flex:0"></div><div class="spray-c" style="flex:2"></div><div class="spray-r" style="flex:2"></div></div>
+              <div class="spray-label"><span>L</span><span>C</span><span>R</span></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-success)">Attack zone — 0 hits</td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#12 Cooper T</span><span class="pos">1B/P</span></td>
+            <td class="r">.000</td><td class="r">.000</td><td class="r">40%</td><td class="r">12%</td>
+            <td class="r"><span class="sb-badge low">0 SB</span></td>
+            <td>
+              <div class="spray-row"><div class="spray-l" style="flex:0"></div><div class="spray-c" style="flex:3"></div><div class="spray-r" style="flex:5"></div></div>
+              <div class="spray-label"><span>L</span><span>C</span><span>R</span></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-success)">High K%, attack first pitch</td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#16 Harry E</span><span class="pos">3B/P</span></td>
+            <td class="r">.000</td><td class="r">.000</td><td class="r">40%</td><td class="r">0%</td>
+            <td class="r"><span class="sb-badge low">0 SB</span></td>
+            <td>—</td>
+            <td style="font-size:0.75rem;color:var(--color-success)">Free out — go after him</td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#14 Patrick M</span><span class="pos">LF/RF</span></td>
+            <td class="r">.000</td><td class="r">.000</td><td class="r">50%</td><td class="r">0%</td>
+            <td class="r"><span class="sb-badge">1 SB</span></td>
+            <td>—</td>
+            <td style="font-size:0.75rem;color:var(--color-success)">Free out — attack zone</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- RUNNING GAME -->
+  <div class="section">
+    <div class="section-label">Baserunning</div>
+    <div class="section-title">Running <span class="red">game</span></div>
+
+    <div class="alert red">
+      <strong>They run freely and they're not getting caught.</strong> Across 27 scouted games, Gambrill runners were caught stealing only a handful of times. Assume anyone who gets on base will attempt to advance. Quick release from your catcher is critical.
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th class="r">SB2</th>
+            <th class="r">SB3</th>
+            <th class="r">SB Home</th>
+            <th class="r">CS</th>
+            <th class="r">Total SB</th>
+            <th>Threat Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="danger">
+            <td><span class="name-num">#4 Noah J</span><span class="pos">CF/SS/P</span></td>
+            <td class="r">2</td><td class="r">3</td><td class="r"><strong style="color:var(--color-red)">1</strong></td><td class="r">0</td><td class="r"><strong>6</strong></td>
+            <td><span class="sb-badge">⚡ High — steals home</span></td>
+          </tr>
+          <tr class="danger">
+            <td><span class="name-num">#5 Miles S</span></td>
+            <td class="r">3</td><td class="r">3</td><td class="r">0</td><td class="r">0</td><td class="r"><strong>6</strong></td>
+            <td><span class="sb-badge">⚡ High</span></td>
+          </tr>
+          <tr class="danger">
+            <td><span class="name-num">#10 Matias K</span><span class="pos">CF</span></td>
+            <td class="r">1</td><td class="r">3</td><td class="r"><strong style="color:var(--color-red)">1</strong></td><td class="r">0</td><td class="r"><strong>5</strong></td>
+            <td><span class="sb-badge">⚡ High — steals home</span></td>
+          </tr>
+          <tr class="note">
+            <td><span class="name-num">#14 Graham W</span></td>
+            <td class="r">1</td><td class="r">2</td><td class="r"><strong style="color:var(--color-red)">1</strong></td><td class="r">0</td><td class="r"><strong>4</strong></td>
+            <td><span class="sb-badge">⚡ Steals home</span></td>
+          </tr>
+          <tr class="note">
+            <td><span class="name-num">#24 Johnny C</span></td>
+            <td class="r">1</td><td class="r">1</td><td class="r"><strong style="color:var(--color-red)">2</strong></td><td class="r">0</td><td class="r"><strong>4</strong></td>
+            <td><span class="sb-badge">⚡ Steals home x2</span></td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#7 Jaxson G</span><span class="pos">SS/2B</span></td>
+            <td class="r">2</td><td class="r">1</td><td class="r">0</td><td class="r">0</td><td class="r"><strong>3</strong></td>
+            <td><span class="sb-badge">Moderate</span></td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#4 Drew D</span><span class="pos">C/SS</span></td>
+            <td class="r">3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r"><strong>3</strong></td>
+            <td><span class="sb-badge">Moderate</span></td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#6 Dylan O</span></td>
+            <td class="r">2</td><td class="r">1</td><td class="r">0</td><td class="r">0</td><td class="r"><strong>3</strong></td>
+            <td><span class="sb-badge">Moderate</span></td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#99 Gabriel D</span></td>
+            <td class="r">3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r"><strong>3</strong></td>
+            <td><span class="sb-badge">Moderate</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert" style="margin-top:10px">
+      <strong>Steal-home alert:</strong> Noah J, Matias K, Graham W, and Johnny C have all stolen home. Watch for delayed steals and aggressive reads on passed balls. Keep runners close — don't let them get a walking lead.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PITCHING STAFF -->
+  <div class="section">
+    <div class="section-label">Pitching scouting</div>
+    <div class="section-title">Their <span class="gold">arms</span></div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Pitcher</th>
+            <th class="r">IP</th>
+            <th class="r">ERA</th>
+            <th class="r">K/7</th>
+            <th class="r">BB/7</th>
+            <th class="r">HBP</th>
+            <th>FPS%</th>
+            <th>Approach</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="danger">
+            <td><span class="name-num">#12 Brayden G</span></td>
+            <td class="r">6</td><td class="r">1.17</td><td class="r">8.2</td><td class="r">1.2</td><td class="r">0</td>
+            <td>
+              <div class="fps-pct">67%</div>
+              <div class="fps-bar"><div class="fps-fill" style="width:67%"></div></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Best arm. Attacks zone. Grind counts, look for his pitch</td>
+          </tr>
+          <tr class="danger">
+            <td><span class="name-num">#14 Oliver W</span></td>
+            <td class="r">5</td><td class="r">1.40</td><td class="r">2.8</td><td class="r">1.4</td><td class="r">1</td>
+            <td>
+              <div class="fps-pct">66%</div>
+              <div class="fps-bar"><div class="fps-fill" style="width:66%"></div></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Gets ahead, low Ks. Put ball in play early, run on him</td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#37 JJ K</span></td>
+            <td class="r">6</td><td class="r">3.50</td><td class="r">5.8</td><td class="r">5.8</td><td class="r">0</td>
+            <td>
+              <div class="fps-pct">56%</div>
+              <div class="fps-bar"><div class="fps-fill med" style="width:56%"></div></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Average command. Patient approach works</td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#6 Marco M</span></td>
+            <td class="r">4</td><td class="r">3.50</td><td class="r">5.3</td><td class="r">5.3</td><td class="r">0</td>
+            <td>
+              <div class="fps-pct">60%</div>
+              <div class="fps-bar"><div class="fps-fill med" style="width:60%"></div></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Serviceable. Work counts</td>
+          </tr>
+          <tr>
+            <td><span class="name-num">#1 Paxten U</span></td>
+            <td class="r">6</td><td class="r">7.00</td><td class="r">7.0</td><td class="r">4.7</td><td class="r">1</td>
+            <td>
+              <div class="fps-pct">59%</div>
+              <div class="fps-bar"><div class="fps-fill med" style="width:59%"></div></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-mist)">Hittable ERA. Patient, make him throw strikes</td>
+          </tr>
+          <tr class="note">
+            <td><span class="name-num">#3 Parker W</span></td>
+            <td class="r">3</td><td class="r">14.00</td><td class="r">4.7</td><td class="r">11.7</td><td class="r">0</td>
+            <td>
+              <div class="fps-pct">50%</div>
+              <div class="fps-bar"><div class="fps-fill med" style="width:50%"></div></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-gold)">Take pitches. Walk machine, 11.7 BB/7</td>
+          </tr>
+          <tr class="note">
+            <td><span class="name-num">#23 Kaden T</span></td>
+            <td class="r">2</td><td class="r">7.00</td><td class="r">7.0</td><td class="r">7.0</td><td class="r">1</td>
+            <td>
+              <div class="fps-pct">40%</div>
+              <div class="fps-bar"><div class="fps-fill low" style="width:40%"></div></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-gold)">Low FPS% — take first pitch</td>
+          </tr>
+          <tr class="note">
+            <td><span class="name-num">#0 Ty J</span></td>
+            <td class="r">0.1</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">0</td>
+            <td>
+              <div class="fps-pct">37%</div>
+              <div class="fps-bar"><div class="fps-fill low" style="width:37%"></div></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-gold)">Cannot find zone. Take everything</td>
+          </tr>
+          <tr class="note">
+            <td><span class="name-num">#4 Hudson K</span></td>
+            <td class="r">1</td><td class="r">42.00</td><td class="r">7.0</td><td class="r">14.0</td><td class="r">0</td>
+            <td>
+              <div class="fps-pct">39%</div>
+              <div class="fps-bar"><div class="fps-fill low" style="width:39%"></div></div>
+            </td>
+            <td style="font-size:0.75rem;color:var(--color-gold)">Gets hit very hard. Be ready to swing</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- COACHING INTEL -->
+  <div class="section">
+    <div class="section-label">Coaching keys</div>
+    <div class="section-title">Game <span class="gold">plan</span></div>
+    <div class="intel-grid">
+      <div class="intel-card">
+        <div class="intel-head"><span class="red">Pitching</span> vs Gambrill</div>
+        <ul class="intel-list">
+          <li><span class="i-dot red"></span><span><strong>Do not walk anyone.</strong> Every free pass becomes a stolen base. The running game ignites off walks more than anything.</span></li>
+          <li><span class="i-dot gold"></span><span><strong>Work the corners.</strong> They're a contact team — weak contact to the right spots beats Ks. Groundball outs are your friend.</span></li>
+          <li><span class="i-dot red"></span><span><strong>Watch for delayed steals</strong> on any deep count or passed ball. Noah J, Matias K, and Johnny C have all stolen home.</span></li>
+          <li><span class="i-dot gold"></span><span><strong>Free outs:</strong> Connor K (#8), Cooper T (#12), Harry E (#16), Patrick M (#14) — attack the zone early vs all four.</span></li>
+        </ul>
+      </div>
+      <div class="intel-card">
+        <div class="intel-head"><span class="gold">Hitting</span> vs Gambrill</div>
+        <ul class="intel-list">
+          <li><span class="i-dot gold"></span><span><strong>vs Brayden G or Oliver W:</strong> Both get ahead early — look for first-pitch strikes to drive. Don't let them get ahead 0-2.</span></li>
+          <li><span class="i-dot blue"></span><span><strong>vs Parker W, Ty J, Kaden T, Hudson K:</strong> Take first pitch — all below 50% FPS. Work the walk. They'll fall behind.</span></li>
+          <li><span class="i-dot gold"></span><span><strong>Put ball in play.</strong> Gambrill arms give up contact hits regularly. Be aggressive when ahead in the count.</span></li>
+          <li><span class="i-dot red"></span><span><strong>Cohen B, Ty J</strong> — if they enter, they're walk dispensers. Take pitches and let them work themselves out of the zone.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">BCC Big Train 11U &nbsp;·&nbsp; Scout Report: Gambrill &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; Internal Use Only &nbsp;·&nbsp; 27 games analyzed</div>
+
+</body>
+</html>
