@@ -1,0 +1,5977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Who's Who Scouting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── HZRDUS Design System v2 — embedded ─── */
+:root {
+  --color-ground:        #F4F2EE;
+  --color-surface:       #ECEAE5;
+  --color-sunken:        #E2DFD8;
+  --color-border:        #C8C4BB;
+  --color-border-strong: #A09A90;
+  --color-ink:           #1A1714;
+  --color-ink-soft:      #3D3830;
+  --color-ink-muted:     #6B6157;
+  --color-ink-faint:     #9A9189;
+  --color-gold:          #8A6410;
+  --color-gold-mid:      #A67C1A;
+  --color-gold-bright:   #C9A84C;
+  --color-gold-tint:     #F5EDD6;
+  --color-gold-border:   #C9A84C;
+  --color-reversed-bg:   #1A1714;
+  --color-reversed-text: #F4F2EE;
+  --color-reversed-muted:#9A9189;
+  --color-danger:        #B01E24;
+  --color-info:          #0076A3;
+  --color-success:       #2E7D32;
+  --color-bcc-accent:    #0076A3;  /* BCC team highlight — blue */
+
+  --font-display: 'Barlow Condensed', Impact, 'Arial Narrow', sans-serif;
+  --font-body:    'Barlow', 'Helvetica Neue', Helvetica, sans-serif;
+
+  --text-xs:   0.8125rem;
+  --text-sm:   0.9375rem;
+  --text-base: 1.0625rem;
+  --text-md:   1.1875rem;
+  --text-lg:   1.375rem;
+  --text-xl:   1.75rem;
+  --text-2xl:  2.25rem;
+  --text-3xl:  3rem;
+
+  --weight-regular:  400;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    900;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  --shadow-sm: 0 1px 3px rgba(26,23,20,0.10);
+  --shadow-md: 0 3px 10px rgba(26,23,20,0.14);
+  --transition-base: 180ms cubic-bezier(0.25,0,0,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body {
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  min-height: 100vh;
+  overscroll-behavior: none;
+}
+
+/* ── App Shell ─────────────────────────────── */
+.view { display: none; min-height: 100vh; }
+.view.active { display: block; }
+
+/* ── Header / Nav ──────────────────────────── */
+.app-header {
+  background: var(--color-reversed-bg);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 52px;
+}
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-black);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  background: var(--color-gold-bright);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  padding: var(--space-2) var(--space-3);
+  min-height: 40px;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.back-btn:active { opacity: 0.75; transform: scale(0.97); }
+.back-chevron { font-size: 1.3em; line-height: 1; }
+.header-title {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-black);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-reversed-text);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Hero / Wordmark ───────────────────────── */
+.app-wordmark {
+  background: var(--color-reversed-bg);
+  padding: var(--space-5) var(--space-4) var(--space-4);
+  text-align: left;
+  border-bottom: 2px solid var(--color-gold-border);
+}
+.wordmark-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-gold-bright);
+  margin-bottom: var(--space-1);
+}
+.wordmark-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-black);
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--color-reversed-text);
+}
+.wordmark-sub {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-reversed-muted);
+  margin-top: var(--space-2);
+}
+
+/* ── Content Padding ───────────────────────── */
+.content { padding: var(--space-4); }
+
+/* ── Block Buttons (team/section nav) ──────── */
+.block-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all var(--transition-base);
+  margin-bottom: var(--space-3);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+}
+.block-btn::after {
+  content: '›';
+  position: absolute;
+  right: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: var(--color-ink-muted);
+  font-family: var(--font-display);
+}
+.block-btn:active {
+  background: var(--color-sunken);
+  transform: scale(0.98);
+}
+.block-btn__label {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-black);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  line-height: 1.1;
+}
+.block-btn__sub {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-ink-muted);
+  margin-top: 2px;
+}
+
+/* BCC team button — blue accent */
+.block-btn--bcc {
+  border-left: 4px solid var(--color-bcc-accent);
+  background: #EBF4FA;
+}
+.block-btn--bcc .block-btn__label { color: var(--color-bcc-accent); }
+
+/* Section buttons (BATTERS / PITCHERS) */
+.section-btn {
+  display: block;
+  width: 100%;
+  background: var(--color-reversed-bg);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-5);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all var(--transition-base);
+  margin-bottom: var(--space-3);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.section-btn::after {
+  content: '›';
+  position: absolute;
+  right: var(--space-5);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: var(--color-gold-bright);
+  font-family: var(--font-display);
+}
+.section-btn:active { opacity: 0.85; transform: scale(0.98); }
+.section-btn__label {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-black);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-reversed-text);
+}
+.section-btn__sub {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-reversed-muted);
+  margin-top: var(--space-1);
+}
+
+/* ── Record Strip ──────────────────────────── */
+.record-strip {
+  background: var(--color-sunken);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-3);
+}
+.record-strip__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+}
+.record-strip__label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+.record-strip__value {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-black);
+  color: var(--color-ink);
+  letter-spacing: 0.02em;
+}
+.record-strip__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--space-2) 0;
+}
+.record-strip__rs { color: var(--color-success); }
+.record-strip__ra { color: var(--color-danger); }
+
+/* ── Spring Results ────────────────────────── */
+.results-row {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+.results-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+.result-pill-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.result-pill-opp {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-soft);
+}
+.result-pill {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.result-pill--W {
+  background: #E3F2E4;
+  color: var(--color-success);
+  border: 1px solid #A8D5AB;
+}
+.result-pill--L {
+  background: #FDECEA;
+  color: var(--color-danger);
+  border: 1px solid #EFB2AF;
+}
+.result-pill--T {
+  background: var(--color-sunken);
+  color: var(--color-ink-muted);
+  border: 1px solid var(--color-border);
+}
+
+/* ── Section Label ─────────────────────────── */
+.section-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-2);
+  padding-bottom: var(--space-1);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ── Player Row (list) ─────────────────────── */
+.player-row {
+  display: block;
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-2);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all var(--transition-base);
+  text-align: left;
+  position: relative;
+}
+.player-row::after {
+  content: '›';
+  position: absolute;
+  right: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: var(--color-ink-muted);
+  font-family: var(--font-display);
+}
+.player-row:active { background: var(--color-sunken); transform: scale(0.99); }
+
+.player-row__top {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
+}
+.player-row__number {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-black);
+  color: var(--color-gold);
+  letter-spacing: -0.02em;
+  min-width: 2.2rem;
+}
+.player-row__name {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  color: var(--color-ink);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 1.5rem;
+}
+
+/* Power rank badge */
+.rank-badge {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+.rank-badge--ace { background: var(--color-ink); color: var(--color-gold-bright); }
+.rank-badge--2   { background: var(--color-gold-tint); color: var(--color-gold); border: 1px solid var(--color-gold-border); }
+.rank-badge--3   { background: var(--color-sunken); color: var(--color-ink-muted); border: 1px solid var(--color-border); }
+.rank-badge--4   { background: var(--color-surface); color: var(--color-ink-faint); border: 1px solid var(--color-border); }
+
+/* ── Stat Row (in player list row) ────────── */
+.stat-chips {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.stat-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.stat-chip__label {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  line-height: 1.2;
+}
+.stat-chip__value {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  color: var(--color-ink);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+.stat-chip__value--hot { color: var(--color-danger); }
+.stat-chip__value--gold { color: var(--color-gold); }
+
+/* ── Player Detail Page ────────────────────── */
+.detail-hero {
+  background: var(--color-reversed-bg);
+  padding: var(--space-4);
+  border-bottom: 2px solid var(--color-gold-border);
+}
+.detail-number {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-black);
+  color: var(--color-gold-bright);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.detail-name {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-black);
+  color: var(--color-reversed-text);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  margin-top: var(--space-1);
+}
+.detail-meta {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-reversed-muted);
+  margin-top: var(--space-1);
+}
+
+/* Slash line */
+.slash-line {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: var(--space-4) 0 var(--space-3);
+}
+.slash-stat {
+  flex: 1;
+  text-align: center;
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-md);
+}
+.slash-stat__label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+.slash-stat__value {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-black);
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.slash-divider {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--color-border-strong);
+  font-weight: 300;
+  flex-shrink: 0;
+}
+
+/* Stat cards grid */
+.stat-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+.stat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  text-align: center;
+}
+.stat-card--highlight {
+  background: var(--color-gold-tint);
+  border-color: var(--color-gold-border);
+}
+.stat-card--danger {
+  background: #FFF1F0;
+  border-color: #EFB2AF;
+}
+.stat-card__label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  margin-bottom: 2px;
+}
+.stat-card__value {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-black);
+  color: var(--color-ink);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+.stat-card--highlight .stat-card__value { color: var(--color-gold); }
+.stat-card--danger .stat-card__value { color: var(--color-danger); }
+.stat-card__sub {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-ink-muted);
+  margin-top: 1px;
+}
+
+/* Counting table */
+.count-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-display);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-3);
+}
+.count-table th {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  padding: var(--space-2) var(--space-2);
+  text-align: center;
+  background: var(--color-sunken);
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-body);
+}
+.count-table td {
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  color: var(--color-ink);
+  text-align: center;
+  padding: var(--space-3) var(--space-2);
+}
+
+/* Spring trend badge */
+.trend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  background: var(--color-gold-tint);
+  border: 1px solid var(--color-gold-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-3);
+  color: var(--color-gold);
+  margin-bottom: var(--space-3);
+}
+.trend-badge__label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.gold-rule {
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold-border), transparent);
+  border: none;
+  margin: var(--space-4) 0 var(--space-3);
+}
+
+/* ── Login Overlay ──────────────────────────── */
+#login-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--color-reversed-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+}
+#login-overlay.hidden { display: none; }
+.login-wordmark {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-black);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--color-reversed-text);
+  text-align: center;
+  line-height: 1;
+  margin-bottom: var(--space-1);
+}
+.login-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-gold-bright);
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+.login-box {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.login-input {
+  background: #2C2825;
+  border: 1px solid #4A4540;
+  border-radius: var(--radius-md);
+  color: var(--color-reversed-text);
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  letter-spacing: 0.3em;
+  text-align: center;
+  min-height: 56px;
+  padding: var(--space-3) var(--space-4);
+  width: 100%;
+  outline: none;
+  transition: border-color 180ms;
+}
+.login-input:focus { border-color: var(--color-gold-bright); }
+.login-input::placeholder { letter-spacing: 0.1em; color: #5A544E; }
+.login-btn {
+  background: var(--color-gold-bright);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-black);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--radius-md);
+  min-height: 56px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 180ms;
+}
+.login-btn:active { opacity: 0.8; }
+.login-error {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: #EF9A9A;
+  text-align: center;
+  min-height: 1.4em;
+}
+
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.text-muted { color: var(--color-ink-muted); font-size: var(--text-sm); }
+.bcc-flag {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--color-bcc-accent);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-2);
+  margin-left: var(--space-2);
+  vertical-align: middle;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     LOGIN OVERLAY
+═══════════════════════════════════════════ -->
+<div id="login-overlay">
+  <div class="login-eyebrow">Who's Who Baseball · 2026</div>
+  <div class="login-wordmark">Scouting<br>Report</div>
+  <div class="login-eyebrow" style="margin-top: var(--space-5); margin-bottom: var(--space-4);">Enter Access Code</div>
+  <div class="login-box">
+    <input class="login-input" id="login-input" type="password" placeholder="••••" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <div class="login-error" id="login-error"></div>
+    <button class="login-btn" id="login-btn">Enter</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     VIEW 1: TEAM INDEX
+═══════════════════════════════════════════ -->
+<div id="view-index" class="view active">
+  <div class="app-wordmark">
+    <div class="wordmark-eyebrow">Who's Who Baseball</div>
+    <div class="wordmark-title">Scouting<br>Report</div>
+    <div class="wordmark-sub">11U · April 2026</div>
+  </div>
+  <div class="content">
+    <div class="section-label mb-3">Teams</div>
+    <div id="team-list"></div>
+    <div class="section-label mb-3" style="margin-top: var(--space-5);">Tools</div>
+    <a href="pool_play_sim.html" class="block-btn" style="text-decoration:none; display:block;">
+      <div class="block-btn__label">Pool Play Sim</div>
+      <div class="block-btn__sub">Bracket simulation &amp; standings projections</div>
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     VIEW 2: TEAM OVERVIEW
+═══════════════════════════════════════════ -->
+<div id="view-team" class="view">
+  <div class="app-header">
+    <button class="back-btn" onclick="navigate('index')">
+      <span class="back-chevron">‹</span> Teams
+    </button>
+    <span class="header-title" id="team-header-title"></span>
+  </div>
+  <div id="team-content"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     VIEW 3: BATTERS LIST
+═══════════════════════════════════════════ -->
+<div id="view-batters" class="view">
+  <div class="app-header">
+    <button class="back-btn" id="batters-back-btn">
+      <span class="back-chevron">‹</span> <span id="batters-back-label"></span>
+    </button>
+    <span class="header-title">Batters</span>
+  </div>
+  <div class="content">
+    <div class="section-label mb-3">Batting Order — Last Game</div>
+    <div id="batters-list"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     VIEW 4: PITCHERS LIST
+═══════════════════════════════════════════ -->
+<div id="view-pitchers" class="view">
+  <div class="app-header">
+    <button class="back-btn" id="pitchers-back-btn">
+      <span class="back-chevron">‹</span> <span id="pitchers-back-label"></span>
+    </button>
+    <span class="header-title">Pitchers</span>
+  </div>
+  <div class="content">
+    <div class="section-label mb-3">Power Ranking</div>
+    <div id="pitchers-list"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     VIEW 5: PLAYER DETAIL
+═══════════════════════════════════════════ -->
+<div id="view-player" class="view">
+  <div class="app-header">
+    <button class="back-btn" id="player-back-btn">
+      <span class="back-chevron">‹</span> <span id="player-back-label"></span>
+    </button>
+    <span class="header-title" id="player-header-title"></span>
+  </div>
+  <div id="player-content"></div>
+</div>
+
+<script>
+// ── Login / Auth ────────────────────────────────────────────────────────────
+(function initLogin() {
+  const COOKIE_NAME = 'ww_auth';
+  const PASSWORD    = 'tilt';
+  const DAYS        = 30;
+
+  function getCookie(name) {
+    return document.cookie.split('; ').reduce((acc, c) => {
+      const [k, v] = c.split('=');
+      return k === name ? decodeURIComponent(v) : acc;
+    }, null);
+  }
+
+  function setCookie(name, value, days) {
+    const exp = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${exp}; path=/; SameSite=Lax`;
+  }
+
+  const overlay = document.getElementById('login-overlay');
+  const input   = document.getElementById('login-input');
+  const btn     = document.getElementById('login-btn');
+  const err     = document.getElementById('login-error');
+
+  // Already authenticated?
+  if (getCookie(COOKIE_NAME) === 'ok') {
+    overlay.classList.add('hidden');
+    return;
+  }
+
+  function attempt() {
+    if (input.value.trim().toLowerCase() === PASSWORD) {
+      setCookie(COOKIE_NAME, 'ok', DAYS);
+      overlay.classList.add('hidden');
+    } else {
+      err.textContent = 'Incorrect code. Try again.';
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  btn.addEventListener('click', attempt);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+  // Focus input on load
+  setTimeout(() => input.focus(), 100);
+})();
+
+// ── Embedded Data ───────────────────────────────────────────────────────────
+const TEAMS = {
+  "bcc": {
+    "team": "BCC Big Train",
+    "team_short": "BCC",
+    "is_user_team": true,
+    "fall_record": "25-10",
+    "spring_record": "2-1",
+    "fall_rs": 294,
+    "fall_ra": 200,
+    "spr_rs": 24,
+    "spr_ra": 20,
+    "spring_games": [
+      {
+        "bcc": 12,
+        "opp": 10,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 8,
+        "opp": 9,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 4,
+        "opp": 1,
+        "result": "W",
+        "opp_name": "Gambrills Athletic Club"
+      }
+    ],
+    "batters": [
+      {
+        "name": "Beckett Dickinson",
+        "number": "21",
+        "G": 38,
+        "AB": 88,
+        "R": 43,
+        "H": 24,
+        "2B": 7,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 21,
+        "BB": 24,
+        "SO": 19,
+        "SB": 32,
+        "HBP": 5,
+        "AVG": 0.273,
+        "OBP": 0.453,
+        "SLG": 0.352,
+        "OPS": 0.805,
+        "Kpct": 0.162,
+        "spr_G": 3,
+        "spr_AB": 9,
+        "spr_H": 4,
+        "spr_AVG": 0.444,
+        "spr_OPS": 1.101,
+        "BIP": 69,
+        "HardHit": 17,
+        "HHpct": 0.246
+      },
+      {
+        "name": "Grant Richards",
+        "number": "22",
+        "G": 38,
+        "AB": 103,
+        "R": 43,
+        "H": 45,
+        "2B": 16,
+        "3B": 1,
+        "HR": 1,
+        "RBI": 32,
+        "BB": 14,
+        "SO": 10,
+        "SB": 23,
+        "HBP": 1,
+        "AVG": 0.437,
+        "OBP": 0.508,
+        "SLG": 0.641,
+        "OPS": 1.149,
+        "Kpct": 0.085,
+        "spr_G": 3,
+        "spr_AB": 8,
+        "spr_H": 3,
+        "spr_AVG": 0.375,
+        "spr_OPS": 0.92,
+        "BIP": 93,
+        "HardHit": 28,
+        "HHpct": 0.301
+      },
+      {
+        "name": "Will Kowalski",
+        "number": "98",
+        "G": 32,
+        "AB": 82,
+        "R": 29,
+        "H": 31,
+        "2B": 10,
+        "3B": 2,
+        "HR": 6,
+        "RBI": 37,
+        "BB": 13,
+        "SO": 14,
+        "SB": 10,
+        "HBP": 0,
+        "AVG": 0.378,
+        "OBP": 0.463,
+        "SLG": 0.768,
+        "OPS": 1.231,
+        "Kpct": 0.147,
+        "spr_G": 3,
+        "spr_AB": 8,
+        "spr_H": 4,
+        "spr_AVG": 0.5,
+        "spr_OPS": 1.6,
+        "BIP": 68,
+        "HardHit": 23,
+        "HHpct": 0.338
+      },
+      {
+        "name": "Everett Harkins",
+        "number": "51",
+        "G": 30,
+        "AB": 64,
+        "R": 20,
+        "H": 28,
+        "2B": 9,
+        "3B": 2,
+        "HR": 1,
+        "RBI": 38,
+        "BB": 12,
+        "SO": 12,
+        "SB": 13,
+        "HBP": 7,
+        "AVG": 0.438,
+        "OBP": 0.566,
+        "SLG": 0.688,
+        "OPS": 1.254,
+        "Kpct": 0.145,
+        "spr_G": 2,
+        "spr_AB": 4,
+        "spr_H": 2,
+        "spr_AVG": 0.5,
+        "spr_OPS": 1.0,
+        "BIP": 52,
+        "HardHit": 16,
+        "HHpct": 0.308
+      },
+      {
+        "name": "Oliver Wells",
+        "number": "14",
+        "G": 38,
+        "AB": 75,
+        "R": 32,
+        "H": 22,
+        "2B": 5,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 17,
+        "BB": 24,
+        "SO": 9,
+        "SB": 22,
+        "HBP": 1,
+        "AVG": 0.293,
+        "OBP": 0.47,
+        "SLG": 0.36,
+        "OPS": 0.83,
+        "Kpct": 0.09,
+        "spr_G": 3,
+        "spr_AB": 5,
+        "spr_H": 0,
+        "spr_AVG": 0.0,
+        "spr_OPS": 0.444,
+        "BIP": 68,
+        "HardHit": 7,
+        "HHpct": 0.103
+      },
+      {
+        "name": "Adam Ingram",
+        "number": "3",
+        "G": 25,
+        "AB": 54,
+        "R": 17,
+        "H": 16,
+        "2B": 4,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 13,
+        "BB": 13,
+        "SO": 8,
+        "SB": 19,
+        "HBP": 5,
+        "AVG": 0.296,
+        "OBP": 0.472,
+        "SLG": 0.37,
+        "OPS": 0.843,
+        "Kpct": 0.111,
+        "spr_G": 3,
+        "spr_AB": 5,
+        "spr_H": 1,
+        "spr_AVG": 0.2,
+        "spr_OPS": 0.956,
+        "BIP": 46,
+        "HardHit": 11,
+        "HHpct": 0.239
+      },
+      {
+        "name": "Logan Pressberg",
+        "number": "12",
+        "G": 35,
+        "AB": 71,
+        "R": 25,
+        "H": 22,
+        "2B": 2,
+        "3B": 4,
+        "HR": 0,
+        "RBI": 15,
+        "BB": 20,
+        "SO": 12,
+        "SB": 26,
+        "HBP": 6,
+        "AVG": 0.31,
+        "OBP": 0.495,
+        "SLG": 0.451,
+        "OPS": 0.946,
+        "Kpct": 0.124,
+        "spr_G": 3,
+        "spr_AB": 6,
+        "spr_H": 1,
+        "spr_AVG": 0.167,
+        "spr_OPS": 0.611,
+        "BIP": 59,
+        "HardHit": 12,
+        "HHpct": 0.203
+      },
+      {
+        "name": "Joshua Lopez",
+        "number": "2",
+        "G": 34,
+        "AB": 61,
+        "R": 32,
+        "H": 15,
+        "2B": 3,
+        "3B": 1,
+        "HR": 0,
+        "RBI": 11,
+        "BB": 26,
+        "SO": 15,
+        "SB": 26,
+        "HBP": 1,
+        "AVG": 0.246,
+        "OBP": 0.477,
+        "SLG": 0.328,
+        "OPS": 0.805,
+        "Kpct": 0.17,
+        "spr_G": 3,
+        "spr_AB": 5,
+        "spr_H": 2,
+        "spr_AVG": 0.4,
+        "spr_OPS": 1.025,
+        "BIP": 48,
+        "HardHit": 10,
+        "HHpct": 0.208
+      },
+      {
+        "name": "Ren Endo",
+        "number": "11",
+        "G": 38,
+        "AB": 65,
+        "R": 22,
+        "H": 9,
+        "2B": 0,
+        "3B": 1,
+        "HR": 0,
+        "RBI": 10,
+        "BB": 22,
+        "SO": 22,
+        "SB": 9,
+        "HBP": 4,
+        "AVG": 0.138,
+        "OBP": 0.385,
+        "SLG": 0.169,
+        "OPS": 0.554,
+        "Kpct": 0.242,
+        "spr_G": 3,
+        "spr_AB": 6,
+        "spr_H": 0,
+        "spr_AVG": 0.0,
+        "spr_OPS": 0.25,
+        "BIP": 43,
+        "HardHit": 8,
+        "HHpct": 0.186
+      },
+      {
+        "name": "Tommy DiPompeo",
+        "number": "24",
+        "G": 33,
+        "AB": 82,
+        "R": 25,
+        "H": 24,
+        "2B": 7,
+        "3B": 3,
+        "HR": 0,
+        "RBI": 24,
+        "BB": 9,
+        "SO": 8,
+        "SB": 19,
+        "HBP": 0,
+        "AVG": 0.293,
+        "OBP": 0.363,
+        "SLG": 0.451,
+        "OPS": 0.814,
+        "Kpct": 0.088,
+        "spr_G": 2,
+        "spr_AB": 4,
+        "spr_H": 0,
+        "spr_AVG": 0.0,
+        "spr_OPS": 0.0,
+        "BIP": 74,
+        "HardHit": 17,
+        "HHpct": 0.23
+      },
+      {
+        "name": "Grant Wang",
+        "number": "17",
+        "G": 33,
+        "AB": 60,
+        "R": 18,
+        "H": 12,
+        "2B": 1,
+        "3B": 1,
+        "HR": 0,
+        "RBI": 12,
+        "BB": 15,
+        "SO": 11,
+        "SB": 20,
+        "HBP": 1,
+        "AVG": 0.2,
+        "OBP": 0.368,
+        "SLG": 0.25,
+        "OPS": 0.618,
+        "Kpct": 0.145,
+        "spr_G": 2,
+        "spr_AB": 4,
+        "spr_H": 2,
+        "spr_AVG": 0.5,
+        "spr_OPS": 1.0,
+        "BIP": 49,
+        "HardHit": 8,
+        "HHpct": 0.163
+      },
+      {
+        "name": "Darcy Mizejewski",
+        "number": "7",
+        "G": 35,
+        "AB": 67,
+        "R": 10,
+        "H": 13,
+        "2B": 6,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 6,
+        "BB": 21,
+        "SO": 17,
+        "SB": 13,
+        "HBP": 1,
+        "AVG": 0.194,
+        "OBP": 0.393,
+        "SLG": 0.284,
+        "OPS": 0.677,
+        "Kpct": 0.191,
+        "spr_G": 2,
+        "spr_AB": 4,
+        "spr_H": 0,
+        "spr_AVG": 0.0,
+        "spr_OPS": 0.0,
+        "BIP": 50,
+        "HardHit": 9,
+        "HHpct": 0.18
+      }
+    ],
+    "pitchers": [
+      {
+        "name": "Will Kowalski",
+        "number": "98",
+        "IP": "42.0",
+        "IP_float": 42.0,
+        "H": 41,
+        "R": 27,
+        "ER": 19,
+        "BB": 15,
+        "SO": 43,
+        "ERA": 3.17,
+        "WHIP": 1.33,
+        "K9": 9.21,
+        "spr_IP": "6.1",
+        "spr_ERA": 1.11,
+        "FPS_tot": 191,
+        "FPS_str": 117,
+        "FPSpct": 0.613,
+        "power_rank": 1
+      },
+      {
+        "name": "Oliver Wells",
+        "number": "14",
+        "IP": "34.2",
+        "IP_float": 34.67,
+        "H": 42,
+        "R": 37,
+        "ER": 30,
+        "BB": 11,
+        "SO": 25,
+        "ERA": 6.06,
+        "WHIP": 1.53,
+        "K9": 6.49,
+        "spr_IP": "3.1",
+        "spr_ERA": 10.5,
+        "FPS_tot": 175,
+        "FPS_str": 101,
+        "FPSpct": 0.577,
+        "power_rank": 2
+      },
+      {
+        "name": "Logan Pressberg",
+        "number": "12",
+        "IP": "26.1",
+        "IP_float": 26.33,
+        "H": 26,
+        "R": 25,
+        "ER": 19,
+        "BB": 15,
+        "SO": 22,
+        "ERA": 5.05,
+        "WHIP": 1.56,
+        "K9": 7.52,
+        "spr_IP": "2.2",
+        "spr_ERA": 7.88,
+        "FPS_tot": 80,
+        "FPS_str": 42,
+        "FPSpct": 0.525,
+        "power_rank": 3
+      },
+      {
+        "name": "Darcy Mizejewski",
+        "number": "7",
+        "IP": "20.0",
+        "IP_float": 20.0,
+        "H": 26,
+        "R": 21,
+        "ER": 12,
+        "BB": 9,
+        "SO": 13,
+        "ERA": 4.2,
+        "WHIP": 1.75,
+        "K9": 5.85,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 99,
+        "FPS_str": 57,
+        "FPSpct": 0.576,
+        "power_rank": 4
+      },
+      {
+        "name": "Grant Richards",
+        "number": "22",
+        "IP": "20.0",
+        "IP_float": 20.0,
+        "H": 25,
+        "R": 27,
+        "ER": 17,
+        "BB": 17,
+        "SO": 18,
+        "ERA": 5.95,
+        "WHIP": 2.1,
+        "K9": 8.1,
+        "spr_IP": "1.1",
+        "spr_ERA": 10.5,
+        "FPS_tot": 89,
+        "FPS_str": 47,
+        "FPSpct": 0.528,
+        "power_rank": 5
+      },
+      {
+        "name": "Ren Endo",
+        "number": "11",
+        "IP": "17.1",
+        "IP_float": 17.33,
+        "H": 28,
+        "R": 18,
+        "ER": 13,
+        "BB": 11,
+        "SO": 7,
+        "ERA": 5.25,
+        "WHIP": 2.25,
+        "K9": 3.63,
+        "spr_IP": "2.0",
+        "spr_ERA": 7.0,
+        "FPS_tot": 77,
+        "FPS_str": 41,
+        "FPSpct": 0.532,
+        "power_rank": 6
+      },
+      {
+        "name": "Adam Ingram",
+        "number": "3",
+        "IP": "13.2",
+        "IP_float": 13.67,
+        "H": 23,
+        "R": 19,
+        "ER": 15,
+        "BB": 13,
+        "SO": 17,
+        "ERA": 7.68,
+        "WHIP": 2.63,
+        "K9": 11.2,
+        "spr_IP": "1.1",
+        "spr_ERA": 5.25,
+        "FPS_tot": 70,
+        "FPS_str": 37,
+        "FPSpct": 0.529,
+        "power_rank": 7
+      },
+      {
+        "name": "Grant Wang",
+        "number": "17",
+        "IP": "12.1",
+        "IP_float": 12.33,
+        "H": 20,
+        "R": 15,
+        "ER": 14,
+        "BB": 8,
+        "SO": 4,
+        "ERA": 7.95,
+        "WHIP": 2.27,
+        "K9": 2.92,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 37,
+        "FPS_str": 18,
+        "FPSpct": 0.486,
+        "power_rank": 8
+      },
+      {
+        "name": "Joshua Lopez",
+        "number": "2",
+        "IP": "9.2",
+        "IP_float": 9.67,
+        "H": 12,
+        "R": 16,
+        "ER": 8,
+        "BB": 16,
+        "SO": 6,
+        "ERA": 5.79,
+        "WHIP": 2.9,
+        "K9": 5.59,
+        "spr_IP": "1.0",
+        "spr_ERA": 0.0,
+        "FPS_tot": 38,
+        "FPS_str": 19,
+        "FPSpct": 0.5,
+        "power_rank": 9
+      },
+      {
+        "name": "Beckett Dickinson",
+        "number": "21",
+        "IP": "7.2",
+        "IP_float": 7.67,
+        "H": 9,
+        "R": 8,
+        "ER": 7,
+        "BB": 4,
+        "SO": 3,
+        "ERA": 6.39,
+        "WHIP": 1.7,
+        "K9": 3.52,
+        "spr_IP": "0.2",
+        "spr_ERA": 0.0,
+        "FPS_tot": 43,
+        "FPS_str": 27,
+        "FPSpct": 0.628,
+        "power_rank": 10
+      },
+      {
+        "name": "Everett Harkins",
+        "number": "51",
+        "IP": "2.2",
+        "IP_float": 2.67,
+        "H": 4,
+        "R": 7,
+        "ER": 6,
+        "BB": 6,
+        "SO": 2,
+        "ERA": 15.75,
+        "WHIP": 3.75,
+        "K9": 6.75,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 17,
+        "FPS_str": 5,
+        "FPSpct": 0.294,
+        "power_rank": 11
+      },
+      {
+        "name": "Tommy DiPompeo",
+        "number": "24",
+        "IP": "0.1",
+        "IP_float": 0.33,
+        "H": 0,
+        "R": 0,
+        "ER": 0,
+        "BB": 1,
+        "SO": 1,
+        "ERA": 0.0,
+        "WHIP": 3.0,
+        "K9": 27.0,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 0,
+        "FPS_str": 0,
+        "FPSpct": null,
+        "power_rank": 12
+      }
+    ]
+  },
+  "bagel": {
+    "team": "Bagel Bombers",
+    "team_short": "BAGEL",
+    "is_user_team": false,
+    "fall_record": null,
+    "spring_record": "10-2",
+    "fall_rs": 0,
+    "fall_ra": 0,
+    "spr_rs": 158,
+    "spr_ra": 46,
+    "spring_games": [
+      {
+        "bcc": 23,
+        "opp": 0,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 21,
+        "opp": 1,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 2,
+        "opp": 11,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 13,
+        "opp": 2,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 11,
+        "opp": 2,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 12,
+        "opp": 0,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 1,
+        "opp": 8,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 15,
+        "opp": 1,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 20,
+        "opp": 4,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 7,
+        "opp": 4,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 18,
+        "opp": 3,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 15,
+        "opp": 10,
+        "result": "W",
+        "opp_name": "Opponent"
+      }
+    ],
+    "batters": [
+      {
+        "name": "Jaxon K",
+        "number": "3",
+        "G": 12,
+        "AB": 33,
+        "R": 22,
+        "H": 19,
+        "2B": 4,
+        "3B": 0,
+        "HR": 1,
+        "RBI": 11,
+        "BB": 4,
+        "SO": 3,
+        "SB": 12,
+        "HBP": 1,
+        "AVG": 0.576,
+        "OBP": 0.632,
+        "SLG": 0.788,
+        "OPS": 1.419,
+        "Kpct": 0.079,
+        "spr_G": 12,
+        "spr_AB": 33,
+        "spr_H": 19,
+        "spr_AVG": 0.576,
+        "spr_OPS": 1.42,
+        "BIP": 30,
+        "HardHit": 15,
+        "HHpct": 0.5
+      },
+      {
+        "name": "Evan C",
+        "number": "2",
+        "G": 12,
+        "AB": 28,
+        "R": 17,
+        "H": 16,
+        "2B": 1,
+        "3B": 0,
+        "HR": 1,
+        "RBI": 11,
+        "BB": 7,
+        "SO": 5,
+        "SB": 2,
+        "HBP": 1,
+        "AVG": 0.571,
+        "OBP": 0.667,
+        "SLG": 0.714,
+        "OPS": 1.381,
+        "Kpct": 0.139,
+        "spr_G": 12,
+        "spr_AB": 28,
+        "spr_H": 16,
+        "spr_AVG": 0.571,
+        "spr_OPS": 1.381,
+        "BIP": 24,
+        "HardHit": 4,
+        "HHpct": 0.167
+      },
+      {
+        "name": "Gavin M",
+        "number": "1",
+        "G": 12,
+        "AB": 25,
+        "R": 18,
+        "H": 10,
+        "2B": 0,
+        "3B": 0,
+        "HR": 4,
+        "RBI": 17,
+        "BB": 9,
+        "SO": 9,
+        "SB": 3,
+        "HBP": 1,
+        "AVG": 0.4,
+        "OBP": 0.571,
+        "SLG": 0.88,
+        "OPS": 1.451,
+        "Kpct": 0.257,
+        "spr_G": 12,
+        "spr_AB": 25,
+        "spr_H": 10,
+        "spr_AVG": 0.4,
+        "spr_OPS": 1.451,
+        "BIP": 18,
+        "HardHit": 7,
+        "HHpct": 0.389
+      },
+      {
+        "name": "Beau M",
+        "number": "35",
+        "G": 12,
+        "AB": 30,
+        "R": 18,
+        "H": 13,
+        "2B": 4,
+        "3B": 0,
+        "HR": 3,
+        "RBI": 21,
+        "BB": 3,
+        "SO": 6,
+        "SB": 1,
+        "HBP": 0,
+        "AVG": 0.433,
+        "OBP": 0.485,
+        "SLG": 0.867,
+        "OPS": 1.352,
+        "Kpct": 0.182,
+        "spr_G": 12,
+        "spr_AB": 30,
+        "spr_H": 13,
+        "spr_AVG": 0.433,
+        "spr_OPS": 1.338,
+        "BIP": 26,
+        "HardHit": 11,
+        "HHpct": 0.423
+      },
+      {
+        "name": "Vinny A",
+        "number": "8",
+        "G": 12,
+        "AB": 27,
+        "R": 16,
+        "H": 13,
+        "2B": 3,
+        "3B": 0,
+        "HR": 4,
+        "RBI": 19,
+        "BB": 6,
+        "SO": 4,
+        "SB": 4,
+        "HBP": 1,
+        "AVG": 0.481,
+        "OBP": 0.588,
+        "SLG": 1.037,
+        "OPS": 1.625,
+        "Kpct": 0.118,
+        "spr_G": 12,
+        "spr_AB": 27,
+        "spr_H": 13,
+        "spr_AVG": 0.481,
+        "spr_OPS": 1.625,
+        "BIP": 23,
+        "HardHit": 7,
+        "HHpct": 0.304
+      },
+      {
+        "name": "Krew J",
+        "number": "87",
+        "G": 12,
+        "AB": 30,
+        "R": 8,
+        "H": 11,
+        "2B": 2,
+        "3B": 0,
+        "HR": 1,
+        "RBI": 10,
+        "BB": 4,
+        "SO": 2,
+        "SB": 0,
+        "HBP": 0,
+        "AVG": 0.367,
+        "OBP": 0.441,
+        "SLG": 0.533,
+        "OPS": 0.975,
+        "Kpct": 0.059,
+        "spr_G": 12,
+        "spr_AB": 30,
+        "spr_H": 11,
+        "spr_AVG": 0.367,
+        "spr_OPS": 0.974,
+        "BIP": 28,
+        "HardHit": 4,
+        "HHpct": 0.143
+      },
+      {
+        "name": "Luca A",
+        "number": "10",
+        "G": 12,
+        "AB": 26,
+        "R": 17,
+        "H": 14,
+        "2B": 1,
+        "3B": 1,
+        "HR": 0,
+        "RBI": 10,
+        "BB": 7,
+        "SO": 2,
+        "SB": 3,
+        "HBP": 0,
+        "AVG": 0.538,
+        "OBP": 0.636,
+        "SLG": 0.654,
+        "OPS": 1.29,
+        "Kpct": 0.061,
+        "spr_G": 12,
+        "spr_AB": 26,
+        "spr_H": 14,
+        "spr_AVG": 0.538,
+        "spr_OPS": 1.29,
+        "BIP": 24,
+        "HardHit": 5,
+        "HHpct": 0.208
+      },
+      {
+        "name": "Ronan L",
+        "number": "12",
+        "G": 12,
+        "AB": 22,
+        "R": 15,
+        "H": 8,
+        "2B": 3,
+        "3B": 1,
+        "HR": 0,
+        "RBI": 7,
+        "BB": 4,
+        "SO": 3,
+        "SB": 7,
+        "HBP": 2,
+        "AVG": 0.364,
+        "OBP": 0.5,
+        "SLG": 0.591,
+        "OPS": 1.091,
+        "Kpct": 0.107,
+        "spr_G": 12,
+        "spr_AB": 22,
+        "spr_H": 8,
+        "spr_AVG": 0.364,
+        "spr_OPS": 1.091,
+        "BIP": 19,
+        "HardHit": 4,
+        "HHpct": 0.211
+      },
+      {
+        "name": "Preston C",
+        "number": "97",
+        "G": 11,
+        "AB": 15,
+        "R": 6,
+        "H": 5,
+        "2B": 1,
+        "3B": 0,
+        "HR": 1,
+        "RBI": 7,
+        "BB": 8,
+        "SO": 6,
+        "SB": 2,
+        "HBP": 0,
+        "AVG": 0.333,
+        "OBP": 0.565,
+        "SLG": 0.6,
+        "OPS": 1.165,
+        "Kpct": 0.261,
+        "spr_G": 11,
+        "spr_AB": 15,
+        "spr_H": 5,
+        "spr_AVG": 0.333,
+        "spr_OPS": 1.165,
+        "BIP": 9,
+        "HardHit": 3,
+        "HHpct": 0.333
+      },
+      {
+        "name": "Jacob R",
+        "number": "77",
+        "G": 12,
+        "AB": 16,
+        "R": 8,
+        "H": 2,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 5,
+        "BB": 9,
+        "SO": 2,
+        "SB": 3,
+        "HBP": 1,
+        "AVG": 0.125,
+        "OBP": 0.462,
+        "SLG": 0.125,
+        "OPS": 0.587,
+        "Kpct": 0.077,
+        "spr_G": 12,
+        "spr_AB": 16,
+        "spr_H": 2,
+        "spr_AVG": 0.125,
+        "spr_OPS": 0.587,
+        "BIP": 14,
+        "HardHit": 3,
+        "HHpct": 0.214
+      },
+      {
+        "name": "Deacon J",
+        "number": "6",
+        "G": 12,
+        "AB": 17,
+        "R": 4,
+        "H": 6,
+        "2B": 3,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 5,
+        "BB": 4,
+        "SO": 3,
+        "SB": 1,
+        "HBP": 0,
+        "AVG": 0.353,
+        "OBP": 0.476,
+        "SLG": 0.529,
+        "OPS": 1.006,
+        "Kpct": 0.143,
+        "spr_G": 12,
+        "spr_AB": 17,
+        "spr_H": 6,
+        "spr_AVG": 0.353,
+        "spr_OPS": 1.005,
+        "BIP": 14,
+        "HardHit": 2,
+        "HHpct": 0.143
+      },
+      {
+        "name": "Wyatt D",
+        "number": "5",
+        "G": 10,
+        "AB": 12,
+        "R": 6,
+        "H": 2,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 3,
+        "BB": 6,
+        "SO": 5,
+        "SB": 2,
+        "HBP": 0,
+        "AVG": 0.167,
+        "OBP": 0.444,
+        "SLG": 0.167,
+        "OPS": 0.611,
+        "Kpct": 0.278,
+        "spr_G": 10,
+        "spr_AB": 12,
+        "spr_H": 2,
+        "spr_AVG": 0.167,
+        "spr_OPS": 0.611,
+        "BIP": 7,
+        "HardHit": 3,
+        "HHpct": 0.429
+      },
+      {
+        "name": "Michael D",
+        "number": "55",
+        "G": 1,
+        "AB": 0,
+        "R": 0,
+        "H": 0,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 0,
+        "BB": 1,
+        "SO": 0,
+        "SB": 0,
+        "HBP": 0,
+        "AVG": 0.0,
+        "OBP": 1.0,
+        "SLG": 0.0,
+        "OPS": 0.0,
+        "Kpct": 0.0,
+        "spr_G": 1,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 0,
+        "HardHit": 0,
+        "HHpct": null
+      },
+      {
+        "name": "Dominic N",
+        "number": "20",
+        "G": 2,
+        "AB": 2,
+        "R": 3,
+        "H": 1,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 0,
+        "BB": 1,
+        "SO": 0,
+        "SB": 0,
+        "HBP": 1,
+        "AVG": 0.5,
+        "OBP": 0.75,
+        "SLG": 0.5,
+        "OPS": 1.25,
+        "Kpct": 0.0,
+        "spr_G": 2,
+        "spr_AB": 2,
+        "spr_H": 1,
+        "spr_AVG": 0.5,
+        "spr_OPS": 1.25,
+        "BIP": 2,
+        "HardHit": 0,
+        "HHpct": null
+      }
+    ],
+    "pitchers": [
+      {
+        "name": "Krew J",
+        "number": "87",
+        "IP": "12.0",
+        "IP_float": 12.0,
+        "H": 13,
+        "R": 11,
+        "ER": 9,
+        "BB": 12,
+        "SO": 14,
+        "ERA": 5.25,
+        "WHIP": 2.08,
+        "K9": 10.5,
+        "spr_IP": "12.0",
+        "spr_ERA": 5.25,
+        "FPS_tot": 39,
+        "FPS_str": 20,
+        "FPSpct": 0.513,
+        "power_rank": 1
+      },
+      {
+        "name": "Gavin M",
+        "number": "1",
+        "IP": "10.1",
+        "IP_float": 10.33,
+        "H": 15,
+        "R": 10,
+        "ER": 8,
+        "BB": 6,
+        "SO": 13,
+        "ERA": 5.42,
+        "WHIP": 2.03,
+        "K9": 11.32,
+        "spr_IP": "10.1",
+        "spr_ERA": 5.42,
+        "FPS_tot": 64,
+        "FPS_str": 35,
+        "FPSpct": 0.547,
+        "power_rank": 2
+      },
+      {
+        "name": "Evan C",
+        "number": "2",
+        "IP": "8.2",
+        "IP_float": 8.67,
+        "H": 9,
+        "R": 7,
+        "ER": 2,
+        "BB": 9,
+        "SO": 10,
+        "ERA": 1.62,
+        "WHIP": 2.08,
+        "K9": 10.38,
+        "spr_IP": "8.2",
+        "spr_ERA": 1.62,
+        "FPS_tot": 46,
+        "FPS_str": 23,
+        "FPSpct": 0.5,
+        "power_rank": 3
+      },
+      {
+        "name": "Preston C",
+        "number": "97",
+        "IP": "6.2",
+        "IP_float": 6.67,
+        "H": 4,
+        "R": 6,
+        "ER": 1,
+        "BB": 5,
+        "SO": 5,
+        "ERA": 1.05,
+        "WHIP": 1.35,
+        "K9": 6.75,
+        "spr_IP": "6.2",
+        "spr_ERA": 1.05,
+        "FPS_tot": 32,
+        "FPS_str": 19,
+        "FPSpct": 0.594,
+        "power_rank": 4
+      },
+      {
+        "name": "Luca A",
+        "number": "10",
+        "IP": "3.2",
+        "IP_float": 3.67,
+        "H": 4,
+        "R": 4,
+        "ER": 1,
+        "BB": 3,
+        "SO": 8,
+        "ERA": 1.91,
+        "WHIP": 1.91,
+        "K9": 19.64,
+        "spr_IP": "3.2",
+        "spr_ERA": 1.91,
+        "FPS_tot": 14,
+        "FPS_str": 9,
+        "FPSpct": 0.643,
+        "power_rank": 5
+      },
+      {
+        "name": "Beau M",
+        "number": "35",
+        "IP": "3.2",
+        "IP_float": 3.67,
+        "H": 3,
+        "R": 4,
+        "ER": 4,
+        "BB": 4,
+        "SO": 4,
+        "ERA": 7.64,
+        "WHIP": 1.91,
+        "K9": 9.82,
+        "spr_IP": "3.2",
+        "spr_ERA": 7.64,
+        "FPS_tot": 1,
+        "FPS_str": 0,
+        "FPSpct": null,
+        "power_rank": 6
+      },
+      {
+        "name": "Dominic N",
+        "number": "20",
+        "IP": "3.0",
+        "IP_float": 3.0,
+        "H": 4,
+        "R": 1,
+        "ER": 1,
+        "BB": 1,
+        "SO": 5,
+        "ERA": 2.33,
+        "WHIP": 1.67,
+        "K9": 15.0,
+        "spr_IP": "3.0",
+        "spr_ERA": 2.33,
+        "FPS_tot": 10,
+        "FPS_str": 6,
+        "FPSpct": 0.6,
+        "power_rank": 7
+      },
+      {
+        "name": "Michael D",
+        "number": "55",
+        "IP": "3.0",
+        "IP_float": 3.0,
+        "H": 4,
+        "R": 3,
+        "ER": 2,
+        "BB": 2,
+        "SO": 6,
+        "ERA": 4.67,
+        "WHIP": 2.0,
+        "K9": 18.0,
+        "spr_IP": "3.0",
+        "spr_ERA": 4.67,
+        "FPS_tot": 29,
+        "FPS_str": 12,
+        "FPSpct": 0.414,
+        "power_rank": 8
+      }
+    ]
+  },
+  "delmarva": {
+    "team": "Delmarva Aces",
+    "team_short": "DELMARVA",
+    "is_user_team": false,
+    "fall_record": "4-5-1",
+    "spring_record": "4-2-7",
+    "fall_rs": 66,
+    "fall_ra": 88,
+    "spr_rs": 68,
+    "spr_ra": 41,
+    "spring_games": [
+      {
+        "bcc": 16,
+        "opp": 6,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 6,
+        "opp": 5,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 18,
+        "opp": 10,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 11,
+        "opp": 12,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 6,
+        "opp": 7,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 11,
+        "opp": 1,
+        "result": "W",
+        "opp_name": "Opponent"
+      }
+    ],
+    "batters": [
+      {
+        "name": "Kj D",
+        "number": "24",
+        "G": 6,
+        "AB": 17,
+        "R": 7,
+        "H": 5,
+        "2B": 0,
+        "3B": 0,
+        "HR": 1,
+        "RBI": 5,
+        "BB": 2,
+        "SO": 1,
+        "SB": 3,
+        "HBP": 0,
+        "AVG": 0.294,
+        "OBP": 0.368,
+        "SLG": 0.471,
+        "OPS": 0.839,
+        "Kpct": 0.053,
+        "spr_G": 6,
+        "spr_AB": 17,
+        "spr_H": 5,
+        "spr_AVG": 0.294,
+        "spr_OPS": 0.839,
+        "BIP": 16,
+        "HardHit": 2,
+        "HHpct": 0.125
+      },
+      {
+        "name": "Aidan T",
+        "number": "22",
+        "G": 6,
+        "AB": 15,
+        "R": 6,
+        "H": 7,
+        "2B": 2,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 9,
+        "BB": 3,
+        "SO": 2,
+        "SB": 8,
+        "HBP": 0,
+        "AVG": 0.467,
+        "OBP": 0.556,
+        "SLG": 0.6,
+        "OPS": 1.156,
+        "Kpct": 0.111,
+        "spr_G": 3,
+        "spr_AB": 7,
+        "spr_H": 3,
+        "spr_AVG": 0.429,
+        "spr_OPS": 1.071,
+        "BIP": 13,
+        "HardHit": 1,
+        "HHpct": 0.077
+      },
+      {
+        "name": "Reed M",
+        "number": "33",
+        "G": 16,
+        "AB": 42,
+        "R": 18,
+        "H": 24,
+        "2B": 5,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 17,
+        "BB": 4,
+        "SO": 1,
+        "SB": 9,
+        "HBP": 0,
+        "AVG": 0.571,
+        "OBP": 0.609,
+        "SLG": 0.69,
+        "OPS": 1.299,
+        "Kpct": 0.022,
+        "spr_G": 6,
+        "spr_AB": 19,
+        "spr_H": 13,
+        "spr_AVG": 0.684,
+        "spr_OPS": 1.526,
+        "BIP": 42,
+        "HardHit": 11,
+        "HHpct": 0.262
+      },
+      {
+        "name": "Deacon C",
+        "number": "50",
+        "G": 16,
+        "AB": 39,
+        "R": 13,
+        "H": 15,
+        "2B": 2,
+        "3B": 0,
+        "HR": 1,
+        "RBI": 9,
+        "BB": 6,
+        "SO": 5,
+        "SB": 10,
+        "HBP": 0,
+        "AVG": 0.385,
+        "OBP": 0.467,
+        "SLG": 0.513,
+        "OPS": 0.979,
+        "Kpct": 0.111,
+        "spr_G": 6,
+        "spr_AB": 14,
+        "spr_H": 3,
+        "spr_AVG": 0.214,
+        "spr_OPS": 0.547,
+        "BIP": 34,
+        "HardHit": 7,
+        "HHpct": 0.206
+      },
+      {
+        "name": "Jude M",
+        "number": "23",
+        "G": 16,
+        "AB": 39,
+        "R": 17,
+        "H": 20,
+        "2B": 5,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 14,
+        "BB": 5,
+        "SO": 2,
+        "SB": 13,
+        "HBP": 0,
+        "AVG": 0.513,
+        "OBP": 0.568,
+        "SLG": 0.641,
+        "OPS": 1.209,
+        "Kpct": 0.045,
+        "spr_G": 6,
+        "spr_AB": 14,
+        "spr_H": 9,
+        "spr_AVG": 0.643,
+        "spr_OPS": 1.42,
+        "BIP": 37,
+        "HardHit": 7,
+        "HHpct": 0.189
+      },
+      {
+        "name": "Nathan J",
+        "number": "52",
+        "G": 16,
+        "AB": 30,
+        "R": 10,
+        "H": 6,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 9,
+        "BB": 9,
+        "SO": 17,
+        "SB": 8,
+        "HBP": 2,
+        "AVG": 0.2,
+        "OBP": 0.415,
+        "SLG": 0.2,
+        "OPS": 0.615,
+        "Kpct": 0.415,
+        "spr_G": 6,
+        "spr_AB": 13,
+        "spr_H": 3,
+        "spr_AVG": 0.231,
+        "spr_OPS": 0.643,
+        "BIP": 17,
+        "HardHit": 3,
+        "HHpct": 0.176
+      },
+      {
+        "name": "KJ D",
+        "number": "8",
+        "G": 16,
+        "AB": 35,
+        "R": 11,
+        "H": 12,
+        "2B": 0,
+        "3B": 0,
+        "HR": 1,
+        "RBI": 7,
+        "BB": 9,
+        "SO": 9,
+        "SB": 17,
+        "HBP": 1,
+        "AVG": 0.343,
+        "OBP": 0.489,
+        "SLG": 0.429,
+        "OPS": 0.917,
+        "Kpct": 0.2,
+        "spr_G": 6,
+        "spr_AB": 12,
+        "spr_H": 8,
+        "spr_AVG": 0.667,
+        "spr_OPS": 1.695,
+        "BIP": 26,
+        "HardHit": 4,
+        "HHpct": 0.154
+      },
+      {
+        "name": "Harrison H",
+        "number": "21",
+        "G": 16,
+        "AB": 41,
+        "R": 11,
+        "H": 13,
+        "2B": 2,
+        "3B": 1,
+        "HR": 0,
+        "RBI": 10,
+        "BB": 1,
+        "SO": 11,
+        "SB": 4,
+        "HBP": 1,
+        "AVG": 0.317,
+        "OBP": 0.349,
+        "SLG": 0.415,
+        "OPS": 0.763,
+        "Kpct": 0.256,
+        "spr_G": 6,
+        "spr_AB": 16,
+        "spr_H": 4,
+        "spr_AVG": 0.25,
+        "spr_OPS": 0.562,
+        "BIP": 31,
+        "HardHit": 3,
+        "HHpct": 0.097
+      },
+      {
+        "name": "Mason D",
+        "number": "44",
+        "G": 16,
+        "AB": 31,
+        "R": 14,
+        "H": 12,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 7,
+        "BB": 7,
+        "SO": 5,
+        "SB": 10,
+        "HBP": 1,
+        "AVG": 0.387,
+        "OBP": 0.513,
+        "SLG": 0.387,
+        "OPS": 0.9,
+        "Kpct": 0.128,
+        "spr_G": 6,
+        "spr_AB": 12,
+        "spr_H": 4,
+        "spr_AVG": 0.333,
+        "spr_OPS": 0.862,
+        "BIP": 27,
+        "HardHit": 5,
+        "HHpct": 0.185
+      },
+      {
+        "name": "David C",
+        "number": "12",
+        "G": 14,
+        "AB": 29,
+        "R": 6,
+        "H": 6,
+        "2B": 1,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 8,
+        "BB": 4,
+        "SO": 7,
+        "SB": 6,
+        "HBP": 0,
+        "AVG": 0.207,
+        "OBP": 0.303,
+        "SLG": 0.241,
+        "OPS": 0.544,
+        "Kpct": 0.212,
+        "spr_G": 5,
+        "spr_AB": 11,
+        "spr_H": 2,
+        "spr_AVG": 0.182,
+        "spr_OPS": 0.49,
+        "BIP": 22,
+        "HardHit": 3,
+        "HHpct": 0.136
+      },
+      {
+        "name": "Quinn P",
+        "number": "24",
+        "G": 16,
+        "AB": 30,
+        "R": 13,
+        "H": 7,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 1,
+        "BB": 9,
+        "SO": 11,
+        "SB": 13,
+        "HBP": 1,
+        "AVG": 0.233,
+        "OBP": 0.425,
+        "SLG": 0.233,
+        "OPS": 0.658,
+        "Kpct": 0.275,
+        "spr_G": 6,
+        "spr_AB": 10,
+        "spr_H": 3,
+        "spr_AVG": 0.3,
+        "spr_OPS": 0.762,
+        "BIP": 20,
+        "HardHit": 1,
+        "HHpct": 0.05
+      },
+      {
+        "name": "Bodhi B",
+        "number": "3",
+        "G": 10,
+        "AB": 24,
+        "R": 9,
+        "H": 9,
+        "2B": 2,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 4,
+        "BB": 3,
+        "SO": 5,
+        "SB": 8,
+        "HBP": 1,
+        "AVG": 0.375,
+        "OBP": 0.464,
+        "SLG": 0.458,
+        "OPS": 0.923,
+        "Kpct": 0.179,
+        "spr_G": 0,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 19,
+        "HardHit": 4,
+        "HHpct": 0.211
+      },
+      {
+        "name": "Ryan B",
+        "number": "29",
+        "G": 3,
+        "AB": 8,
+        "R": 0,
+        "H": 3,
+        "2B": 1,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 2,
+        "BB": 0,
+        "SO": 2,
+        "SB": 2,
+        "HBP": 0,
+        "AVG": 0.375,
+        "OBP": 0.375,
+        "SLG": 0.5,
+        "OPS": 0.875,
+        "Kpct": 0.25,
+        "spr_G": 0,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 6,
+        "HardHit": 1,
+        "HHpct": 0.167
+      }
+    ],
+    "pitchers": [
+      {
+        "name": "KJ D",
+        "number": "8",
+        "IP": "16.0",
+        "IP_float": 16.0,
+        "H": 19,
+        "R": 20,
+        "ER": 9,
+        "BB": 11,
+        "SO": 16,
+        "ERA": 3.94,
+        "WHIP": 1.88,
+        "K9": 9.0,
+        "spr_IP": "4.0",
+        "spr_ERA": 7.0,
+        "FPS_tot": 67,
+        "FPS_str": 40,
+        "FPSpct": 0.597,
+        "power_rank": 1
+      },
+      {
+        "name": "Deacon C",
+        "number": "50",
+        "IP": "15.0",
+        "IP_float": 15.0,
+        "H": 16,
+        "R": 21,
+        "ER": 13,
+        "BB": 17,
+        "SO": 24,
+        "ERA": 6.07,
+        "WHIP": 2.2,
+        "K9": 14.4,
+        "spr_IP": "6.1",
+        "spr_ERA": 7.74,
+        "FPS_tot": 99,
+        "FPS_str": 50,
+        "FPSpct": 0.505,
+        "power_rank": 2
+      },
+      {
+        "name": "Reed M",
+        "number": "33",
+        "IP": "12.0",
+        "IP_float": 12.0,
+        "H": 12,
+        "R": 21,
+        "ER": 19,
+        "BB": 22,
+        "SO": 11,
+        "ERA": 11.08,
+        "WHIP": 2.83,
+        "K9": 8.25,
+        "spr_IP": "7.1",
+        "spr_ERA": 3.82,
+        "FPS_tot": 67,
+        "FPS_str": 29,
+        "FPSpct": 0.433,
+        "power_rank": 3
+      },
+      {
+        "name": "Ryan B",
+        "number": "29",
+        "IP": "7.2",
+        "IP_float": 7.67,
+        "H": 2,
+        "R": 4,
+        "ER": 4,
+        "BB": 7,
+        "SO": 5,
+        "ERA": 3.65,
+        "WHIP": 1.17,
+        "K9": 5.87,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 18,
+        "FPS_str": 8,
+        "FPSpct": 0.444,
+        "power_rank": 4
+      },
+      {
+        "name": "Jude M",
+        "number": "23",
+        "IP": "7.0",
+        "IP_float": 7.0,
+        "H": 19,
+        "R": 17,
+        "ER": 7,
+        "BB": 1,
+        "SO": 8,
+        "ERA": 7.0,
+        "WHIP": 2.86,
+        "K9": 10.29,
+        "spr_IP": "3.0",
+        "spr_ERA": 0.0,
+        "FPS_tot": 30,
+        "FPS_str": 13,
+        "FPSpct": 0.433,
+        "power_rank": 5
+      },
+      {
+        "name": "Harrison H",
+        "number": "21",
+        "IP": "5.1",
+        "IP_float": 5.33,
+        "H": 8,
+        "R": 10,
+        "ER": 4,
+        "BB": 10,
+        "SO": 1,
+        "ERA": 5.25,
+        "WHIP": 3.38,
+        "K9": 1.69,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 18,
+        "FPS_str": 4,
+        "FPSpct": 0.222,
+        "power_rank": 6
+      },
+      {
+        "name": "Bodhi B",
+        "number": "3",
+        "IP": "4.1",
+        "IP_float": 4.33,
+        "H": 8,
+        "R": 10,
+        "ER": 8,
+        "BB": 7,
+        "SO": 4,
+        "ERA": 12.92,
+        "WHIP": 3.46,
+        "K9": 8.31,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 19,
+        "FPS_str": 2,
+        "FPSpct": 0.105,
+        "power_rank": 7
+      },
+      {
+        "name": "Kj D",
+        "number": "24",
+        "IP": "3.2",
+        "IP_float": 3.67,
+        "H": 1,
+        "R": 0,
+        "ER": 0,
+        "BB": 3,
+        "SO": 2,
+        "ERA": 0.0,
+        "WHIP": 1.09,
+        "K9": 4.91,
+        "spr_IP": "3.2",
+        "spr_ERA": 0.0,
+        "FPS_tot": 16,
+        "FPS_str": 10,
+        "FPSpct": 0.625,
+        "power_rank": 8
+      },
+      {
+        "name": "Mason D",
+        "number": "44",
+        "IP": "3.1",
+        "IP_float": 3.33,
+        "H": 3,
+        "R": 7,
+        "ER": 5,
+        "BB": 5,
+        "SO": 4,
+        "ERA": 10.5,
+        "WHIP": 2.4,
+        "K9": 10.8,
+        "spr_IP": "2.1",
+        "spr_ERA": 15.0,
+        "FPS_tot": 17,
+        "FPS_str": 8,
+        "FPSpct": 0.471,
+        "power_rank": 9
+      },
+      {
+        "name": "Aidan T",
+        "number": "22",
+        "IP": "2.2",
+        "IP_float": 2.67,
+        "H": 2,
+        "R": 4,
+        "ER": 3,
+        "BB": 3,
+        "SO": 4,
+        "ERA": 7.88,
+        "WHIP": 1.88,
+        "K9": 13.5,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 10,
+        "FPS_str": 4,
+        "FPSpct": 0.4,
+        "power_rank": 10
+      },
+      {
+        "name": "David C",
+        "number": "12",
+        "IP": "1.1",
+        "IP_float": 1.33,
+        "H": 1,
+        "R": 1,
+        "ER": 0,
+        "BB": 1,
+        "SO": 2,
+        "ERA": 0.0,
+        "WHIP": 1.5,
+        "K9": 13.5,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 4,
+        "FPS_str": 1,
+        "FPSpct": null,
+        "power_rank": 11
+      },
+      {
+        "name": "Quinn P",
+        "number": "24",
+        "IP": "1.1",
+        "IP_float": 1.33,
+        "H": 6,
+        "R": 14,
+        "ER": 14,
+        "BB": 10,
+        "SO": 1,
+        "ERA": 73.5,
+        "WHIP": 12.0,
+        "K9": 6.75,
+        "spr_IP": "1.1",
+        "spr_ERA": 42.0,
+        "FPS_tot": 3,
+        "FPS_str": 1,
+        "FPSpct": null,
+        "power_rank": 12
+      }
+    ]
+  },
+  "gambrills": {
+    "team": "Gambrills Athletic Club",
+    "team_short": "GAMBRILLS",
+    "is_user_team": false,
+    "fall_record": "17-5",
+    "spring_record": "5-4-2",
+    "fall_rs": 194,
+    "fall_ra": 78,
+    "spr_rs": 73,
+    "spr_ra": 59,
+    "spring_games": [
+      {
+        "bcc": 0,
+        "opp": 10,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 8,
+        "opp": 7,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 8,
+        "opp": 7,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 8,
+        "opp": 10,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 12,
+        "opp": 14,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 12,
+        "opp": 3,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 1,
+        "opp": 4,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 11,
+        "opp": 1,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 13,
+        "opp": 3,
+        "result": "W",
+        "opp_name": "Opponent"
+      }
+    ],
+    "batters": [
+      {
+        "name": "Luke P",
+        "number": "11",
+        "G": 31,
+        "AB": 87,
+        "R": 45,
+        "H": 36,
+        "2B": 6,
+        "3B": 0,
+        "HR": 1,
+        "RBI": 16,
+        "BB": 14,
+        "SO": 5,
+        "SB": 29,
+        "HBP": 1,
+        "AVG": 0.414,
+        "OBP": 0.5,
+        "SLG": 0.517,
+        "OPS": 1.017,
+        "Kpct": 0.049,
+        "spr_G": 9,
+        "spr_AB": 25,
+        "spr_H": 12,
+        "spr_AVG": 0.48,
+        "spr_OPS": 1.072,
+        "BIP": 82,
+        "HardHit": 16,
+        "HHpct": 0.195
+      },
+      {
+        "name": "Ryan B",
+        "number": "7",
+        "G": 30,
+        "AB": 74,
+        "R": 36,
+        "H": 29,
+        "2B": 5,
+        "3B": 3,
+        "HR": 2,
+        "RBI": 30,
+        "BB": 16,
+        "SO": 11,
+        "SB": 26,
+        "HBP": 1,
+        "AVG": 0.392,
+        "OBP": 0.505,
+        "SLG": 0.622,
+        "OPS": 1.127,
+        "Kpct": 0.121,
+        "spr_G": 9,
+        "spr_AB": 22,
+        "spr_H": 10,
+        "spr_AVG": 0.455,
+        "spr_OPS": 1.234,
+        "BIP": 63,
+        "HardHit": 10,
+        "HHpct": 0.159
+      },
+      {
+        "name": "Darryl M",
+        "number": "86",
+        "G": 27,
+        "AB": 63,
+        "R": 31,
+        "H": 30,
+        "2B": 8,
+        "3B": 2,
+        "HR": 3,
+        "RBI": 31,
+        "BB": 18,
+        "SO": 18,
+        "SB": 24,
+        "HBP": 3,
+        "AVG": 0.476,
+        "OBP": 0.607,
+        "SLG": 0.81,
+        "OPS": 1.417,
+        "Kpct": 0.214,
+        "spr_G": 9,
+        "spr_AB": 23,
+        "spr_H": 13,
+        "spr_AVG": 0.565,
+        "spr_OPS": 1.612,
+        "BIP": 45,
+        "HardHit": 13,
+        "HHpct": 0.289
+      },
+      {
+        "name": "Miles H",
+        "number": "15",
+        "G": 26,
+        "AB": 58,
+        "R": 15,
+        "H": 17,
+        "2B": 5,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 13,
+        "BB": 17,
+        "SO": 11,
+        "SB": 4,
+        "HBP": 1,
+        "AVG": 0.293,
+        "OBP": 0.461,
+        "SLG": 0.379,
+        "OPS": 0.84,
+        "Kpct": 0.145,
+        "spr_G": 9,
+        "spr_AB": 23,
+        "spr_H": 7,
+        "spr_AVG": 0.304,
+        "spr_OPS": 0.839,
+        "BIP": 47,
+        "HardHit": 8,
+        "HHpct": 0.17
+      },
+      {
+        "name": "Luke B",
+        "number": "14",
+        "G": 31,
+        "AB": 78,
+        "R": 18,
+        "H": 30,
+        "2B": 7,
+        "3B": 2,
+        "HR": 0,
+        "RBI": 23,
+        "BB": 6,
+        "SO": 12,
+        "SB": 11,
+        "HBP": 1,
+        "AVG": 0.385,
+        "OBP": 0.435,
+        "SLG": 0.526,
+        "OPS": 0.961,
+        "Kpct": 0.141,
+        "spr_G": 9,
+        "spr_AB": 28,
+        "spr_H": 14,
+        "spr_AVG": 0.5,
+        "spr_OPS": 1.179,
+        "BIP": 68,
+        "HardHit": 13,
+        "HHpct": 0.191
+      },
+      {
+        "name": "Johnny Q",
+        "number": "2",
+        "G": 28,
+        "AB": 69,
+        "R": 19,
+        "H": 17,
+        "2B": 5,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 14,
+        "BB": 14,
+        "SO": 5,
+        "SB": 28,
+        "HBP": 0,
+        "AVG": 0.246,
+        "OBP": 0.373,
+        "SLG": 0.319,
+        "OPS": 0.692,
+        "Kpct": 0.06,
+        "spr_G": 9,
+        "spr_AB": 21,
+        "spr_H": 2,
+        "spr_AVG": 0.095,
+        "spr_OPS": 0.383,
+        "BIP": 64,
+        "HardHit": 11,
+        "HHpct": 0.172
+      },
+      {
+        "name": "Cooper P",
+        "number": "16",
+        "G": 31,
+        "AB": 74,
+        "R": 23,
+        "H": 24,
+        "2B": 5,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 23,
+        "BB": 15,
+        "SO": 8,
+        "SB": 19,
+        "HBP": 1,
+        "AVG": 0.324,
+        "OBP": 0.444,
+        "SLG": 0.392,
+        "OPS": 0.836,
+        "Kpct": 0.089,
+        "spr_G": 9,
+        "spr_AB": 25,
+        "spr_H": 8,
+        "spr_AVG": 0.32,
+        "spr_OPS": 0.73,
+        "BIP": 66,
+        "HardHit": 9,
+        "HHpct": 0.136
+      },
+      {
+        "name": "Charlie F",
+        "number": "17",
+        "G": 29,
+        "AB": 58,
+        "R": 22,
+        "H": 21,
+        "2B": 5,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 11,
+        "BB": 19,
+        "SO": 17,
+        "SB": 19,
+        "HBP": 0,
+        "AVG": 0.362,
+        "OBP": 0.519,
+        "SLG": 0.448,
+        "OPS": 0.968,
+        "Kpct": 0.221,
+        "spr_G": 7,
+        "spr_AB": 15,
+        "spr_H": 7,
+        "spr_AVG": 0.467,
+        "spr_OPS": 1.104,
+        "BIP": 41,
+        "HardHit": 9,
+        "HHpct": 0.22
+      },
+      {
+        "name": "Logan F",
+        "number": "1",
+        "G": 31,
+        "AB": 66,
+        "R": 17,
+        "H": 21,
+        "2B": 1,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 11,
+        "BB": 12,
+        "SO": 20,
+        "SB": 9,
+        "HBP": 1,
+        "AVG": 0.318,
+        "OBP": 0.43,
+        "SLG": 0.333,
+        "OPS": 0.764,
+        "Kpct": 0.253,
+        "spr_G": 9,
+        "spr_AB": 20,
+        "spr_H": 5,
+        "spr_AVG": 0.25,
+        "spr_OPS": 0.675,
+        "BIP": 47,
+        "HardHit": 3,
+        "HHpct": 0.064
+      },
+      {
+        "name": "Spencer S",
+        "number": "13",
+        "G": 2,
+        "AB": 5,
+        "R": 1,
+        "H": 0,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 0,
+        "BB": 0,
+        "SO": 4,
+        "SB": 0,
+        "HBP": 1,
+        "AVG": 0.0,
+        "OBP": 0.167,
+        "SLG": 0.0,
+        "OPS": 0.167,
+        "Kpct": 0.667,
+        "spr_G": 2,
+        "spr_AB": 5,
+        "spr_H": 0,
+        "spr_AVG": 0.0,
+        "spr_OPS": 0.167,
+        "BIP": 1,
+        "HardHit": 0,
+        "HHpct": null
+      },
+      {
+        "name": "Grant Z",
+        "number": "19",
+        "G": 26,
+        "AB": 58,
+        "R": 19,
+        "H": 23,
+        "2B": 10,
+        "3B": 2,
+        "HR": 0,
+        "RBI": 22,
+        "BB": 18,
+        "SO": 10,
+        "SB": 22,
+        "HBP": 1,
+        "AVG": 0.397,
+        "OBP": 0.545,
+        "SLG": 0.638,
+        "OPS": 1.183,
+        "Kpct": 0.13,
+        "spr_G": 4,
+        "spr_AB": 9,
+        "spr_H": 1,
+        "spr_AVG": 0.111,
+        "spr_OPS": 0.555,
+        "BIP": 48,
+        "HardHit": 6,
+        "HHpct": 0.125
+      },
+      {
+        "name": "Jaxon E",
+        "number": "13",
+        "G": 24,
+        "AB": 55,
+        "R": 21,
+        "H": 24,
+        "2B": 7,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 9,
+        "BB": 18,
+        "SO": 15,
+        "SB": 16,
+        "HBP": 2,
+        "AVG": 0.436,
+        "OBP": 0.587,
+        "SLG": 0.564,
+        "OPS": 1.15,
+        "Kpct": 0.2,
+        "spr_G": 2,
+        "spr_AB": 5,
+        "spr_H": 0,
+        "spr_AVG": 0.0,
+        "spr_OPS": 0.167,
+        "BIP": 40,
+        "HardHit": 9,
+        "HHpct": 0.225
+      }
+    ],
+    "pitchers": [
+      {
+        "name": "Ryan B",
+        "number": "7",
+        "IP": "27.2",
+        "IP_float": 27.67,
+        "H": 27,
+        "R": 24,
+        "ER": 14,
+        "BB": 17,
+        "SO": 28,
+        "ERA": 3.54,
+        "WHIP": 1.59,
+        "K9": 9.11,
+        "spr_IP": "10.1",
+        "spr_ERA": 5.42,
+        "FPS_tot": 119,
+        "FPS_str": 64,
+        "FPSpct": 0.538,
+        "power_rank": 1
+      },
+      {
+        "name": "Luke P",
+        "number": "11",
+        "IP": "23.1",
+        "IP_float": 23.33,
+        "H": 28,
+        "R": 19,
+        "ER": 11,
+        "BB": 5,
+        "SO": 19,
+        "ERA": 3.3,
+        "WHIP": 1.41,
+        "K9": 7.33,
+        "spr_IP": "5.1",
+        "spr_ERA": 6.56,
+        "FPS_tot": 135,
+        "FPS_str": 78,
+        "FPSpct": 0.578,
+        "power_rank": 2
+      },
+      {
+        "name": "Charlie F",
+        "number": "17",
+        "IP": "19.1",
+        "IP_float": 19.33,
+        "H": 19,
+        "R": 6,
+        "ER": 5,
+        "BB": 6,
+        "SO": 12,
+        "ERA": 1.81,
+        "WHIP": 1.29,
+        "K9": 5.59,
+        "spr_IP": "3.2",
+        "spr_ERA": 3.82,
+        "FPS_tot": 85,
+        "FPS_str": 49,
+        "FPSpct": 0.576,
+        "power_rank": 3
+      },
+      {
+        "name": "Cooper P",
+        "number": "16",
+        "IP": "18.2",
+        "IP_float": 18.67,
+        "H": 23,
+        "R": 18,
+        "ER": 11,
+        "BB": 11,
+        "SO": 18,
+        "ERA": 4.12,
+        "WHIP": 1.82,
+        "K9": 8.68,
+        "spr_IP": "7.1",
+        "spr_ERA": 8.59,
+        "FPS_tot": 109,
+        "FPS_str": 72,
+        "FPSpct": 0.661,
+        "power_rank": 4
+      },
+      {
+        "name": "Miles H",
+        "number": "15",
+        "IP": "18.1",
+        "IP_float": 18.33,
+        "H": 9,
+        "R": 4,
+        "ER": 1,
+        "BB": 11,
+        "SO": 19,
+        "ERA": 0.38,
+        "WHIP": 1.09,
+        "K9": 9.33,
+        "spr_IP": "5.1",
+        "spr_ERA": 1.31,
+        "FPS_tot": 84,
+        "FPS_str": 48,
+        "FPSpct": 0.571,
+        "power_rank": 5
+      },
+      {
+        "name": "Grant Z",
+        "number": "19",
+        "IP": "18.0",
+        "IP_float": 18.0,
+        "H": 25,
+        "R": 15,
+        "ER": 14,
+        "BB": 10,
+        "SO": 12,
+        "ERA": 5.44,
+        "WHIP": 1.94,
+        "K9": 6.0,
+        "spr_IP": "3.2",
+        "spr_ERA": 15.27,
+        "FPS_tot": 52,
+        "FPS_str": 37,
+        "FPSpct": 0.712,
+        "power_rank": 6
+      },
+      {
+        "name": "Logan F",
+        "number": "1",
+        "IP": "15.1",
+        "IP_float": 15.33,
+        "H": 22,
+        "R": 17,
+        "ER": 12,
+        "BB": 4,
+        "SO": 9,
+        "ERA": 5.48,
+        "WHIP": 1.7,
+        "K9": 5.28,
+        "spr_IP": "5.1",
+        "spr_ERA": 7.88,
+        "FPS_tot": 50,
+        "FPS_str": 26,
+        "FPSpct": 0.52,
+        "power_rank": 7
+      },
+      {
+        "name": "Johnny Q",
+        "number": "2",
+        "IP": "7.2",
+        "IP_float": 7.67,
+        "H": 13,
+        "R": 14,
+        "ER": 12,
+        "BB": 6,
+        "SO": 4,
+        "ERA": 10.96,
+        "WHIP": 2.48,
+        "K9": 4.7,
+        "spr_IP": "4.2",
+        "spr_ERA": 12.0,
+        "FPS_tot": 37,
+        "FPS_str": 24,
+        "FPSpct": 0.649,
+        "power_rank": 8
+      },
+      {
+        "name": "Jaxon E",
+        "number": "13",
+        "IP": "7.1",
+        "IP_float": 7.33,
+        "H": 5,
+        "R": 7,
+        "ER": 5,
+        "BB": 7,
+        "SO": 10,
+        "ERA": 4.77,
+        "WHIP": 1.64,
+        "K9": 12.27,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 51,
+        "FPS_str": 37,
+        "FPSpct": 0.725,
+        "power_rank": 9
+      },
+      {
+        "name": "Luke B",
+        "number": "14",
+        "IP": "7.0",
+        "IP_float": 7.0,
+        "H": 7,
+        "R": 9,
+        "ER": 9,
+        "BB": 8,
+        "SO": 10,
+        "ERA": 9.0,
+        "WHIP": 2.14,
+        "K9": 12.86,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 0,
+        "FPS_str": 0,
+        "FPSpct": null,
+        "power_rank": 10
+      },
+      {
+        "name": "Darryl M",
+        "number": "86",
+        "IP": "5.0",
+        "IP_float": 5.0,
+        "H": 4,
+        "R": 5,
+        "ER": 4,
+        "BB": 8,
+        "SO": 5,
+        "ERA": 5.6,
+        "WHIP": 2.4,
+        "K9": 9.0,
+        "spr_IP": "2.0",
+        "spr_ERA": 0.0,
+        "FPS_tot": 5,
+        "FPS_str": 4,
+        "FPSpct": 0.8,
+        "power_rank": 11
+      }
+    ]
+  },
+  "graysox": {
+    "team": "Lake Shore Graysox",
+    "team_short": "GRAYSOX",
+    "is_user_team": false,
+    "fall_record": "21-5",
+    "spring_record": "3-1-19",
+    "fall_rs": 309,
+    "fall_ra": 114,
+    "spr_rs": 44,
+    "spr_ra": 34,
+    "spring_games": [
+      {
+        "bcc": 11,
+        "opp": 10,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 5,
+        "opp": 12,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 18,
+        "opp": 4,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 10,
+        "opp": 8,
+        "result": "W",
+        "opp_name": "Opponent"
+      }
+    ],
+    "batters": [
+      {
+        "name": "Ryan D",
+        "number": "8",
+        "G": 30,
+        "AB": 71,
+        "R": 29,
+        "H": 28,
+        "2B": 1,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 22,
+        "BB": 16,
+        "SO": 12,
+        "SB": 19,
+        "HBP": 3,
+        "AVG": 0.394,
+        "OBP": 0.522,
+        "SLG": 0.408,
+        "OPS": 0.931,
+        "Kpct": 0.133,
+        "spr_G": 4,
+        "spr_AB": 10,
+        "spr_H": 2,
+        "spr_AVG": 0.2,
+        "spr_OPS": 0.585,
+        "BIP": 60,
+        "HardHit": 10,
+        "HHpct": 0.167
+      },
+      {
+        "name": "Dylan H",
+        "number": "2",
+        "G": 29,
+        "AB": 69,
+        "R": 38,
+        "H": 29,
+        "2B": 3,
+        "3B": 2,
+        "HR": 1,
+        "RBI": 21,
+        "BB": 18,
+        "SO": 7,
+        "SB": 32,
+        "HBP": 3,
+        "AVG": 0.42,
+        "OBP": 0.556,
+        "SLG": 0.565,
+        "OPS": 1.121,
+        "Kpct": 0.078,
+        "spr_G": 4,
+        "spr_AB": 10,
+        "spr_H": 5,
+        "spr_AVG": 0.5,
+        "spr_OPS": 1.215,
+        "BIP": 63,
+        "HardHit": 9,
+        "HHpct": 0.143
+      },
+      {
+        "name": "Eli O",
+        "number": "1",
+        "G": 27,
+        "AB": 67,
+        "R": 29,
+        "H": 23,
+        "2B": 7,
+        "3B": 2,
+        "HR": 0,
+        "RBI": 22,
+        "BB": 12,
+        "SO": 7,
+        "SB": 14,
+        "HBP": 1,
+        "AVG": 0.343,
+        "OBP": 0.45,
+        "SLG": 0.507,
+        "OPS": 0.957,
+        "Kpct": 0.087,
+        "spr_G": 4,
+        "spr_AB": 9,
+        "spr_H": 3,
+        "spr_AVG": 0.333,
+        "spr_OPS": 1.167,
+        "BIP": 62,
+        "HardHit": 12,
+        "HHpct": 0.194
+      },
+      {
+        "name": "Nolan W",
+        "number": "11",
+        "G": 30,
+        "AB": 84,
+        "R": 45,
+        "H": 47,
+        "2B": 17,
+        "3B": 2,
+        "HR": 5,
+        "RBI": 35,
+        "BB": 15,
+        "SO": 9,
+        "SB": 26,
+        "HBP": 3,
+        "AVG": 0.56,
+        "OBP": 0.637,
+        "SLG": 0.988,
+        "OPS": 1.625,
+        "Kpct": 0.088,
+        "spr_G": 4,
+        "spr_AB": 12,
+        "spr_H": 4,
+        "spr_AVG": 0.333,
+        "spr_OPS": 1.302,
+        "BIP": 78,
+        "HardHit": 25,
+        "HHpct": 0.321
+      },
+      {
+        "name": "Luke R",
+        "number": "5",
+        "G": 30,
+        "AB": 69,
+        "R": 47,
+        "H": 32,
+        "2B": 11,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 32,
+        "BB": 24,
+        "SO": 9,
+        "SB": 30,
+        "HBP": 2,
+        "AVG": 0.464,
+        "OBP": 0.611,
+        "SLG": 0.623,
+        "OPS": 1.234,
+        "Kpct": 0.095,
+        "spr_G": 4,
+        "spr_AB": 9,
+        "spr_H": 4,
+        "spr_AVG": 0.444,
+        "spr_OPS": 1.282,
+        "BIP": 63,
+        "HardHit": 17,
+        "HHpct": 0.27
+      },
+      {
+        "name": "Jacob S",
+        "number": "6",
+        "G": 4,
+        "AB": 8,
+        "R": 3,
+        "H": 3,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 4,
+        "BB": 5,
+        "SO": 2,
+        "SB": 2,
+        "HBP": 0,
+        "AVG": 0.375,
+        "OBP": 0.615,
+        "SLG": 0.375,
+        "OPS": 0.99,
+        "Kpct": 0.154,
+        "spr_G": 4,
+        "spr_AB": 8,
+        "spr_H": 3,
+        "spr_AVG": 0.375,
+        "spr_OPS": 0.99,
+        "BIP": 6,
+        "HardHit": 1,
+        "HHpct": 0.167
+      },
+      {
+        "name": "Camden B",
+        "number": "7",
+        "G": 28,
+        "AB": 70,
+        "R": 20,
+        "H": 26,
+        "2B": 3,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 31,
+        "BB": 16,
+        "SO": 8,
+        "SB": 2,
+        "HBP": 1,
+        "AVG": 0.371,
+        "OBP": 0.494,
+        "SLG": 0.414,
+        "OPS": 0.909,
+        "Kpct": 0.092,
+        "spr_G": 3,
+        "spr_AB": 9,
+        "spr_H": 4,
+        "spr_AVG": 0.444,
+        "spr_OPS": 0.944,
+        "BIP": 62,
+        "HardHit": 15,
+        "HHpct": 0.242
+      },
+      {
+        "name": "Miles T",
+        "number": "44",
+        "G": 27,
+        "AB": 57,
+        "R": 26,
+        "H": 19,
+        "2B": 3,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 12,
+        "BB": 16,
+        "SO": 8,
+        "SB": 25,
+        "HBP": 2,
+        "AVG": 0.333,
+        "OBP": 0.493,
+        "SLG": 0.386,
+        "OPS": 0.879,
+        "Kpct": 0.107,
+        "spr_G": 4,
+        "spr_AB": 11,
+        "spr_H": 4,
+        "spr_AVG": 0.364,
+        "spr_OPS": 0.872,
+        "BIP": 50,
+        "HardHit": 11,
+        "HHpct": 0.22
+      },
+      {
+        "name": "Andrew R",
+        "number": "9",
+        "G": 23,
+        "AB": 51,
+        "R": 16,
+        "H": 16,
+        "2B": 4,
+        "3B": 1,
+        "HR": 0,
+        "RBI": 14,
+        "BB": 9,
+        "SO": 10,
+        "SB": 8,
+        "HBP": 1,
+        "AVG": 0.314,
+        "OBP": 0.426,
+        "SLG": 0.431,
+        "OPS": 0.858,
+        "Kpct": 0.164,
+        "spr_G": 4,
+        "spr_AB": 8,
+        "spr_H": 1,
+        "spr_AVG": 0.125,
+        "spr_OPS": 0.542,
+        "BIP": 42,
+        "HardHit": 13,
+        "HHpct": 0.31
+      },
+      {
+        "name": "Greyson N",
+        "number": "13",
+        "G": 27,
+        "AB": 55,
+        "R": 28,
+        "H": 19,
+        "2B": 4,
+        "3B": 1,
+        "HR": 0,
+        "RBI": 12,
+        "BB": 19,
+        "SO": 18,
+        "SB": 20,
+        "HBP": 1,
+        "AVG": 0.345,
+        "OBP": 0.52,
+        "SLG": 0.455,
+        "OPS": 0.975,
+        "Kpct": 0.24,
+        "spr_G": 4,
+        "spr_AB": 8,
+        "spr_H": 1,
+        "spr_AVG": 0.125,
+        "spr_OPS": 0.542,
+        "BIP": 41,
+        "HardHit": 12,
+        "HHpct": 0.293
+      },
+      {
+        "name": "Raymond N",
+        "number": "3",
+        "G": 30,
+        "AB": 70,
+        "R": 41,
+        "H": 27,
+        "2B": 9,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 22,
+        "BB": 20,
+        "SO": 18,
+        "SB": 16,
+        "HBP": 1,
+        "AVG": 0.386,
+        "OBP": 0.527,
+        "SLG": 0.514,
+        "OPS": 1.042,
+        "Kpct": 0.198,
+        "spr_G": 4,
+        "spr_AB": 10,
+        "spr_H": 5,
+        "spr_AVG": 0.5,
+        "spr_OPS": 1.215,
+        "BIP": 53,
+        "HardHit": 10,
+        "HHpct": 0.189
+      },
+      {
+        "name": "Cole K",
+        "number": "21",
+        "G": 24,
+        "AB": 68,
+        "R": 33,
+        "H": 37,
+        "2B": 14,
+        "3B": 2,
+        "HR": 1,
+        "RBI": 29,
+        "BB": 11,
+        "SO": 4,
+        "SB": 12,
+        "HBP": 0,
+        "AVG": 0.544,
+        "OBP": 0.608,
+        "SLG": 0.853,
+        "OPS": 1.461,
+        "Kpct": 0.051,
+        "spr_G": 0,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 64,
+        "HardHit": 19,
+        "HHpct": 0.297
+      },
+      {
+        "name": "KJ",
+        "number": "35",
+        "G": 2,
+        "AB": 6,
+        "R": 3,
+        "H": 3,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 1,
+        "BB": 0,
+        "SO": 2,
+        "SB": 3,
+        "HBP": 0,
+        "AVG": 0.5,
+        "OBP": 0.5,
+        "SLG": 0.5,
+        "OPS": 1.0,
+        "Kpct": 0.333,
+        "spr_G": 0,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 4,
+        "HardHit": 1,
+        "HHpct": null
+      }
+    ],
+    "pitchers": [
+      {
+        "name": "Raymond N",
+        "number": "3",
+        "IP": "32.0",
+        "IP_float": 32.0,
+        "H": 41,
+        "R": 23,
+        "ER": 14,
+        "BB": 7,
+        "SO": 26,
+        "ERA": 3.06,
+        "WHIP": 1.5,
+        "K9": 7.31,
+        "spr_IP": "6.0",
+        "spr_ERA": 2.33,
+        "FPS_tot": 108,
+        "FPS_str": 73,
+        "FPSpct": 0.676,
+        "power_rank": 1
+      },
+      {
+        "name": "Cole K",
+        "number": "21",
+        "IP": "24.0",
+        "IP_float": 24.0,
+        "H": 27,
+        "R": 19,
+        "ER": 16,
+        "BB": 8,
+        "SO": 11,
+        "ERA": 4.67,
+        "WHIP": 1.46,
+        "K9": 4.12,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 124,
+        "FPS_str": 91,
+        "FPSpct": 0.734,
+        "power_rank": 2
+      },
+      {
+        "name": "Ryan D",
+        "number": "8",
+        "IP": "20.2",
+        "IP_float": 20.67,
+        "H": 28,
+        "R": 26,
+        "ER": 13,
+        "BB": 12,
+        "SO": 17,
+        "ERA": 4.4,
+        "WHIP": 1.94,
+        "K9": 7.4,
+        "spr_IP": "3.0",
+        "spr_ERA": 9.33,
+        "FPS_tot": 145,
+        "FPS_str": 80,
+        "FPSpct": 0.552,
+        "power_rank": 3
+      },
+      {
+        "name": "Luke R",
+        "number": "5",
+        "IP": "16.1",
+        "IP_float": 16.33,
+        "H": 15,
+        "R": 19,
+        "ER": 12,
+        "BB": 20,
+        "SO": 17,
+        "ERA": 5.14,
+        "WHIP": 2.14,
+        "K9": 9.37,
+        "spr_IP": "2.2",
+        "spr_ERA": 7.88,
+        "FPS_tot": 77,
+        "FPS_str": 38,
+        "FPSpct": 0.494,
+        "power_rank": 4
+      },
+      {
+        "name": "Miles T",
+        "number": "44",
+        "IP": "13.2",
+        "IP_float": 13.67,
+        "H": 24,
+        "R": 21,
+        "ER": 14,
+        "BB": 5,
+        "SO": 11,
+        "ERA": 7.17,
+        "WHIP": 2.12,
+        "K9": 7.24,
+        "spr_IP": "3.0",
+        "spr_ERA": 9.33,
+        "FPS_tot": 27,
+        "FPS_str": 18,
+        "FPSpct": 0.667,
+        "power_rank": 5
+      },
+      {
+        "name": "Camden B",
+        "number": "7",
+        "IP": "13.0",
+        "IP_float": 13.0,
+        "H": 10,
+        "R": 13,
+        "ER": 9,
+        "BB": 10,
+        "SO": 7,
+        "ERA": 4.85,
+        "WHIP": 1.54,
+        "K9": 4.85,
+        "spr_IP": "1.2",
+        "spr_ERA": 12.6,
+        "FPS_tot": 71,
+        "FPS_str": 34,
+        "FPSpct": 0.479,
+        "power_rank": 6
+      },
+      {
+        "name": "Nolan W",
+        "number": "11",
+        "IP": "10.0",
+        "IP_float": 10.0,
+        "H": 10,
+        "R": 6,
+        "ER": 2,
+        "BB": 2,
+        "SO": 10,
+        "ERA": 1.4,
+        "WHIP": 1.2,
+        "K9": 9.0,
+        "spr_IP": "2.1",
+        "spr_ERA": 0.0,
+        "FPS_tot": 50,
+        "FPS_str": 31,
+        "FPSpct": 0.62,
+        "power_rank": 7
+      },
+      {
+        "name": "Eli O",
+        "number": "1",
+        "IP": "8.2",
+        "IP_float": 8.67,
+        "H": 7,
+        "R": 11,
+        "ER": 11,
+        "BB": 13,
+        "SO": 5,
+        "ERA": 8.88,
+        "WHIP": 2.31,
+        "K9": 5.19,
+        "spr_IP": "0.1",
+        "spr_ERA": 126.0,
+        "FPS_tot": 39,
+        "FPS_str": 20,
+        "FPSpct": 0.513,
+        "power_rank": 8
+      },
+      {
+        "name": "Andrew R",
+        "number": "9",
+        "IP": "6.0",
+        "IP_float": 6.0,
+        "H": 4,
+        "R": 7,
+        "ER": 7,
+        "BB": 7,
+        "SO": 7,
+        "ERA": 8.17,
+        "WHIP": 1.83,
+        "K9": 10.5,
+        "spr_IP": "0.0",
+        "spr_ERA": null,
+        "FPS_tot": 34,
+        "FPS_str": 15,
+        "FPSpct": 0.441,
+        "power_rank": 9
+      },
+      {
+        "name": "Greyson N",
+        "number": "13",
+        "IP": "3.0",
+        "IP_float": 3.0,
+        "H": 0,
+        "R": 0,
+        "ER": 0,
+        "BB": 2,
+        "SO": 4,
+        "ERA": 0.0,
+        "WHIP": 0.67,
+        "K9": 12.0,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 9,
+        "FPS_str": 7,
+        "FPSpct": 0.778,
+        "power_rank": 10
+      },
+      {
+        "name": "Dylan H",
+        "number": "2",
+        "IP": "2.1",
+        "IP_float": 2.33,
+        "H": 3,
+        "R": 3,
+        "ER": 2,
+        "BB": 1,
+        "SO": 2,
+        "ERA": 6.0,
+        "WHIP": 1.71,
+        "K9": 7.71,
+        "spr_IP": "0.1",
+        "spr_ERA": 0.0,
+        "FPS_tot": 13,
+        "FPS_str": 8,
+        "FPSpct": 0.615,
+        "power_rank": 11
+      },
+      {
+        "name": "KJ",
+        "number": "35",
+        "IP": "2.0",
+        "IP_float": 2.0,
+        "H": 0,
+        "R": 0,
+        "ER": 0,
+        "BB": 1,
+        "SO": 0,
+        "ERA": 0.0,
+        "WHIP": 0.5,
+        "K9": 0.0,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 0,
+        "FPS_str": 0,
+        "FPSpct": null,
+        "power_rank": 12
+      }
+    ]
+  },
+  "kent": {
+    "team": "Kent Island Bucs",
+    "team_short": "KENT IS.",
+    "is_user_team": false,
+    "fall_record": "3-7",
+    "spring_record": "4-7-42",
+    "fall_rs": 61,
+    "fall_ra": 106,
+    "spr_rs": 86,
+    "spr_ra": 127,
+    "spring_games": [
+      {
+        "bcc": 5,
+        "opp": 13,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 9,
+        "opp": 3,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 10,
+        "opp": 16,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 9,
+        "opp": 7,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 10,
+        "opp": 15,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 6,
+        "opp": 16,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 0,
+        "opp": 14,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 9,
+        "opp": 7,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 10,
+        "opp": 15,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 14,
+        "opp": 9,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 4,
+        "opp": 12,
+        "result": "L",
+        "opp_name": "Opponent"
+      }
+    ],
+    "batters": [
+      {
+        "name": "Jay M",
+        "number": "11",
+        "G": 19,
+        "AB": 45,
+        "R": 25,
+        "H": 19,
+        "2B": 3,
+        "3B": 1,
+        "HR": 0,
+        "RBI": 14,
+        "BB": 11,
+        "SO": 5,
+        "SB": 32,
+        "HBP": 2,
+        "AVG": 0.422,
+        "OBP": 0.552,
+        "SLG": 0.533,
+        "OPS": 1.085,
+        "Kpct": 0.086,
+        "spr_G": 9,
+        "spr_AB": 26,
+        "spr_H": 14,
+        "spr_AVG": 0.538,
+        "spr_OPS": 1.317,
+        "BIP": 40,
+        "HardHit": 4,
+        "HHpct": 0.1
+      },
+      {
+        "name": "Tilghman O",
+        "number": "24",
+        "G": 19,
+        "AB": 45,
+        "R": 12,
+        "H": 12,
+        "2B": 0,
+        "3B": 1,
+        "HR": 0,
+        "RBI": 10,
+        "BB": 8,
+        "SO": 17,
+        "SB": 18,
+        "HBP": 0,
+        "AVG": 0.267,
+        "OBP": 0.377,
+        "SLG": 0.311,
+        "OPS": 0.688,
+        "Kpct": 0.321,
+        "spr_G": 9,
+        "spr_AB": 26,
+        "spr_H": 10,
+        "spr_AVG": 0.385,
+        "spr_OPS": 0.869,
+        "BIP": 30,
+        "HardHit": 7,
+        "HHpct": 0.233
+      },
+      {
+        "name": "Mason C",
+        "number": "13",
+        "G": 17,
+        "AB": 40,
+        "R": 12,
+        "H": 12,
+        "2B": 4,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 9,
+        "BB": 8,
+        "SO": 9,
+        "SB": 16,
+        "HBP": 0,
+        "AVG": 0.3,
+        "OBP": 0.417,
+        "SLG": 0.4,
+        "OPS": 0.817,
+        "Kpct": 0.188,
+        "spr_G": 9,
+        "spr_AB": 21,
+        "spr_H": 7,
+        "spr_AVG": 0.333,
+        "spr_OPS": 0.938,
+        "BIP": 31,
+        "HardHit": 8,
+        "HHpct": 0.258
+      },
+      {
+        "name": "Chase W",
+        "number": "10",
+        "G": 19,
+        "AB": 40,
+        "R": 11,
+        "H": 17,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 12,
+        "BB": 12,
+        "SO": 2,
+        "SB": 25,
+        "HBP": 1,
+        "AVG": 0.425,
+        "OBP": 0.566,
+        "SLG": 0.425,
+        "OPS": 0.991,
+        "Kpct": 0.038,
+        "spr_G": 9,
+        "spr_AB": 20,
+        "spr_H": 6,
+        "spr_AVG": 0.3,
+        "spr_OPS": 0.762,
+        "BIP": 38,
+        "HardHit": 4,
+        "HHpct": 0.105
+      },
+      {
+        "name": "Caden S",
+        "number": "3",
+        "G": 13,
+        "AB": 24,
+        "R": 10,
+        "H": 7,
+        "2B": 1,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 7,
+        "BB": 5,
+        "SO": 6,
+        "SB": 5,
+        "HBP": 3,
+        "AVG": 0.292,
+        "OBP": 0.469,
+        "SLG": 0.333,
+        "OPS": 0.802,
+        "Kpct": 0.188,
+        "spr_G": 8,
+        "spr_AB": 15,
+        "spr_H": 5,
+        "spr_AVG": 0.333,
+        "spr_OPS": 0.833,
+        "BIP": 19,
+        "HardHit": 3,
+        "HHpct": 0.158
+      },
+      {
+        "name": "Sam M",
+        "number": "12",
+        "G": 7,
+        "AB": 14,
+        "R": 5,
+        "H": 7,
+        "2B": 2,
+        "3B": 1,
+        "HR": 0,
+        "RBI": 5,
+        "BB": 1,
+        "SO": 3,
+        "SB": 0,
+        "HBP": 2,
+        "AVG": 0.5,
+        "OBP": 0.588,
+        "SLG": 0.786,
+        "OPS": 1.374,
+        "Kpct": 0.176,
+        "spr_G": 6,
+        "spr_AB": 12,
+        "spr_H": 6,
+        "spr_AVG": 0.5,
+        "spr_OPS": 1.267,
+        "BIP": 11,
+        "HardHit": 2,
+        "HHpct": 0.182
+      },
+      {
+        "name": "Colin M",
+        "number": "2",
+        "G": 19,
+        "AB": 42,
+        "R": 14,
+        "H": 10,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 9,
+        "BB": 8,
+        "SO": 4,
+        "SB": 20,
+        "HBP": 1,
+        "AVG": 0.238,
+        "OBP": 0.373,
+        "SLG": 0.238,
+        "OPS": 0.611,
+        "Kpct": 0.078,
+        "spr_G": 9,
+        "spr_AB": 20,
+        "spr_H": 2,
+        "spr_AVG": 0.1,
+        "spr_OPS": 0.317,
+        "BIP": 38,
+        "HardHit": 2,
+        "HHpct": 0.053
+      },
+      {
+        "name": "Mason T",
+        "number": "7",
+        "G": 14,
+        "AB": 21,
+        "R": 6,
+        "H": 7,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 8,
+        "BB": 11,
+        "SO": 10,
+        "SB": 8,
+        "HBP": 1,
+        "AVG": 0.333,
+        "OBP": 0.576,
+        "SLG": 0.333,
+        "OPS": 0.909,
+        "Kpct": 0.303,
+        "spr_G": 7,
+        "spr_AB": 12,
+        "spr_H": 4,
+        "spr_AVG": 0.333,
+        "spr_OPS": 0.833,
+        "BIP": 11,
+        "HardHit": 1,
+        "HHpct": 0.091
+      },
+      {
+        "name": "Liam R",
+        "number": "14",
+        "G": 17,
+        "AB": 23,
+        "R": 13,
+        "H": 2,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 2,
+        "BB": 19,
+        "SO": 15,
+        "SB": 19,
+        "HBP": 0,
+        "AVG": 0.087,
+        "OBP": 0.5,
+        "SLG": 0.087,
+        "OPS": 0.587,
+        "Kpct": 0.357,
+        "spr_G": 9,
+        "spr_AB": 14,
+        "spr_H": 2,
+        "spr_AVG": 0.143,
+        "spr_OPS": 0.621,
+        "BIP": 8,
+        "HardHit": 0,
+        "HHpct": 0.0
+      },
+      {
+        "name": "Matt F",
+        "number": "18",
+        "G": 19,
+        "AB": 31,
+        "R": 6,
+        "H": 2,
+        "2B": 1,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 6,
+        "BB": 12,
+        "SO": 20,
+        "SB": 6,
+        "HBP": 2,
+        "AVG": 0.065,
+        "OBP": 0.356,
+        "SLG": 0.097,
+        "OPS": 0.452,
+        "Kpct": 0.444,
+        "spr_G": 9,
+        "spr_AB": 15,
+        "spr_H": 0,
+        "spr_AVG": 0.0,
+        "spr_OPS": 0.286,
+        "BIP": 11,
+        "HardHit": 1,
+        "HHpct": 0.091
+      },
+      {
+        "name": "Myles H",
+        "number": "99",
+        "G": 2,
+        "AB": 2,
+        "R": 1,
+        "H": 1,
+        "2B": 1,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 0,
+        "BB": 1,
+        "SO": 1,
+        "SB": 1,
+        "HBP": 0,
+        "AVG": 0.5,
+        "OBP": 0.667,
+        "SLG": 1.0,
+        "OPS": 1.667,
+        "Kpct": 0.333,
+        "spr_G": 0,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 1,
+        "HardHit": 1,
+        "HHpct": null
+      },
+      {
+        "name": "Mason L",
+        "number": "23",
+        "G": 1,
+        "AB": 2,
+        "R": 0,
+        "H": 1,
+        "2B": 1,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 2,
+        "BB": 0,
+        "SO": 1,
+        "SB": 0,
+        "HBP": 0,
+        "AVG": 0.5,
+        "OBP": 0.5,
+        "SLG": 1.0,
+        "OPS": 1.5,
+        "Kpct": 0.5,
+        "spr_G": 0,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 1,
+        "HardHit": 0,
+        "HHpct": null
+      },
+      {
+        "name": "Henry P",
+        "number": "27",
+        "G": 2,
+        "AB": 4,
+        "R": 0,
+        "H": 0,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 0,
+        "BB": 2,
+        "SO": 3,
+        "SB": 0,
+        "HBP": 0,
+        "AVG": 0.0,
+        "OBP": 0.333,
+        "SLG": 0.0,
+        "OPS": 0.333,
+        "Kpct": 0.5,
+        "spr_G": 0,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 1,
+        "HardHit": 0,
+        "HHpct": null
+      },
+      {
+        "name": "Jax W",
+        "number": "8",
+        "G": 2,
+        "AB": 3,
+        "R": 3,
+        "H": 1,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 0,
+        "BB": 2,
+        "SO": 0,
+        "SB": 2,
+        "HBP": 0,
+        "AVG": 0.333,
+        "OBP": 0.6,
+        "SLG": 0.333,
+        "OPS": 0.933,
+        "Kpct": 0.0,
+        "spr_G": 0,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 3,
+        "HardHit": 0,
+        "HHpct": null
+      },
+      {
+        "name": "Jack E",
+        "number": "16",
+        "G": 11,
+        "AB": 21,
+        "R": 4,
+        "H": 6,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 3,
+        "BB": 4,
+        "SO": 9,
+        "SB": 4,
+        "HBP": 1,
+        "AVG": 0.286,
+        "OBP": 0.423,
+        "SLG": 0.286,
+        "OPS": 0.709,
+        "Kpct": 0.346,
+        "spr_G": 8,
+        "spr_AB": 16,
+        "spr_H": 6,
+        "spr_AVG": 0.375,
+        "spr_OPS": 0.849,
+        "BIP": 12,
+        "HardHit": 0,
+        "HHpct": 0.0
+      },
+      {
+        "name": "Easton W",
+        "number": "42",
+        "G": 1,
+        "AB": 1,
+        "R": 1,
+        "H": 0,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 0,
+        "BB": 1,
+        "SO": 0,
+        "SB": 1,
+        "HBP": 0,
+        "AVG": 0.0,
+        "OBP": 0.5,
+        "SLG": 0.0,
+        "OPS": 0.5,
+        "Kpct": 0.0,
+        "spr_G": 0,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 1,
+        "HardHit": 0,
+        "HHpct": null
+      },
+      {
+        "name": "Baron W",
+        "number": "25",
+        "G": 1,
+        "AB": 3,
+        "R": 0,
+        "H": 0,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 0,
+        "BB": 0,
+        "SO": 1,
+        "SB": 0,
+        "HBP": 0,
+        "AVG": 0.0,
+        "OBP": 0.0,
+        "SLG": 0.0,
+        "OPS": 0.0,
+        "Kpct": 0.333,
+        "spr_G": 0,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 2,
+        "HardHit": 0,
+        "HHpct": null
+      }
+    ],
+    "pitchers": [
+      {
+        "name": "Chase W",
+        "number": "10",
+        "IP": "25.0",
+        "IP_float": 25.0,
+        "H": 55,
+        "R": 65,
+        "ER": 40,
+        "BB": 22,
+        "SO": 28,
+        "ERA": 11.2,
+        "WHIP": 3.08,
+        "K9": 10.08,
+        "spr_IP": "5.2",
+        "spr_ERA": 18.53,
+        "FPS_tot": 115,
+        "FPS_str": 60,
+        "FPSpct": 0.522,
+        "power_rank": 1
+      },
+      {
+        "name": "Caden S",
+        "number": "3",
+        "IP": "15.0",
+        "IP_float": 15.0,
+        "H": 28,
+        "R": 32,
+        "ER": 22,
+        "BB": 13,
+        "SO": 19,
+        "ERA": 10.27,
+        "WHIP": 2.73,
+        "K9": 11.4,
+        "spr_IP": "9.0",
+        "spr_ERA": 12.44,
+        "FPS_tot": 63,
+        "FPS_str": 32,
+        "FPSpct": 0.508,
+        "power_rank": 2
+      },
+      {
+        "name": "Colin M",
+        "number": "2",
+        "IP": "8.2",
+        "IP_float": 8.67,
+        "H": 18,
+        "R": 20,
+        "ER": 18,
+        "BB": 11,
+        "SO": 10,
+        "ERA": 14.54,
+        "WHIP": 3.35,
+        "K9": 10.38,
+        "spr_IP": "3.2",
+        "spr_ERA": 19.09,
+        "FPS_tot": 90,
+        "FPS_str": 47,
+        "FPSpct": 0.522,
+        "power_rank": 3
+      },
+      {
+        "name": "Jay M",
+        "number": "11",
+        "IP": "8.2",
+        "IP_float": 8.67,
+        "H": 30,
+        "R": 30,
+        "ER": 26,
+        "BB": 9,
+        "SO": 9,
+        "ERA": 21.0,
+        "WHIP": 4.5,
+        "K9": 9.35,
+        "spr_IP": "4.2",
+        "spr_ERA": 18.0,
+        "FPS_tot": 55,
+        "FPS_str": 39,
+        "FPSpct": 0.709,
+        "power_rank": 4
+      },
+      {
+        "name": "Matt F",
+        "number": "18",
+        "IP": "7.0",
+        "IP_float": 7.0,
+        "H": 5,
+        "R": 4,
+        "ER": 1,
+        "BB": 3,
+        "SO": 4,
+        "ERA": 1.0,
+        "WHIP": 1.14,
+        "K9": 5.14,
+        "spr_IP": "7.0",
+        "spr_ERA": 1.0,
+        "FPS_tot": 23,
+        "FPS_str": 10,
+        "FPSpct": 0.435,
+        "power_rank": 5
+      },
+      {
+        "name": "Mason C",
+        "number": "13",
+        "IP": "4.2",
+        "IP_float": 4.67,
+        "H": 8,
+        "R": 5,
+        "ER": 5,
+        "BB": 2,
+        "SO": 3,
+        "ERA": 7.5,
+        "WHIP": 2.14,
+        "K9": 5.79,
+        "spr_IP": "1.0",
+        "spr_ERA": 7.0,
+        "FPS_tot": 0,
+        "FPS_str": 0,
+        "FPSpct": null,
+        "power_rank": 6
+      },
+      {
+        "name": "Tilghman O",
+        "number": "24",
+        "IP": "4.2",
+        "IP_float": 4.67,
+        "H": 19,
+        "R": 36,
+        "ER": 31,
+        "BB": 28,
+        "SO": 2,
+        "ERA": 46.5,
+        "WHIP": 10.07,
+        "K9": 3.86,
+        "spr_IP": "2.1",
+        "spr_ERA": 48.0,
+        "FPS_tot": 67,
+        "FPS_str": 30,
+        "FPSpct": 0.448,
+        "power_rank": 7
+      },
+      {
+        "name": "Sam M",
+        "number": "12",
+        "IP": "4.0",
+        "IP_float": 4.0,
+        "H": 2,
+        "R": 7,
+        "ER": 7,
+        "BB": 12,
+        "SO": 9,
+        "ERA": 12.25,
+        "WHIP": 3.5,
+        "K9": 20.25,
+        "spr_IP": "4.0",
+        "spr_ERA": 12.25,
+        "FPS_tot": 37,
+        "FPS_str": 16,
+        "FPSpct": 0.432,
+        "power_rank": 8
+      },
+      {
+        "name": "Liam R",
+        "number": "14",
+        "IP": "3.0",
+        "IP_float": 3.0,
+        "H": 0,
+        "R": 1,
+        "ER": 1,
+        "BB": 3,
+        "SO": 4,
+        "ERA": 2.33,
+        "WHIP": 1.0,
+        "K9": 12.0,
+        "spr_IP": "3.0",
+        "spr_ERA": 2.33,
+        "FPS_tot": 3,
+        "FPS_str": 1,
+        "FPSpct": null,
+        "power_rank": 9
+      },
+      {
+        "name": "Easton W",
+        "number": "42",
+        "IP": "1.1",
+        "IP_float": 1.33,
+        "H": 5,
+        "R": 7,
+        "ER": 7,
+        "BB": 3,
+        "SO": 1,
+        "ERA": 36.75,
+        "WHIP": 6.0,
+        "K9": 6.75,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 33,
+        "FPS_str": 20,
+        "FPSpct": 0.606,
+        "power_rank": 10
+      }
+    ]
+  },
+  "prospects": {
+    "team": "Rawlings Prospects",
+    "team_short": "PROSPECTS",
+    "is_user_team": false,
+    "fall_record": "22-4",
+    "spring_record": "5-4-14",
+    "fall_rs": 304,
+    "fall_ra": 123,
+    "spr_rs": 73,
+    "spr_ra": 45,
+    "spring_games": [
+      {
+        "bcc": 6,
+        "opp": 7,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 9,
+        "opp": 0,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 10,
+        "opp": 9,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 10,
+        "opp": 0,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 7,
+        "opp": 8,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 5,
+        "opp": 7,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 3,
+        "opp": 12,
+        "result": "L",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 10,
+        "opp": 2,
+        "result": "W",
+        "opp_name": "Opponent"
+      },
+      {
+        "bcc": 13,
+        "opp": 0,
+        "result": "W",
+        "opp_name": "Opponent"
+      }
+    ],
+    "batters": [
+      {
+        "name": "Everett C",
+        "number": "1",
+        "G": 35,
+        "AB": 104,
+        "R": 48,
+        "H": 51,
+        "2B": 10,
+        "3B": 1,
+        "HR": 3,
+        "RBI": 46,
+        "BB": 8,
+        "SO": 4,
+        "SB": 32,
+        "HBP": 0,
+        "AVG": 0.49,
+        "OBP": 0.527,
+        "SLG": 0.692,
+        "OPS": 1.219,
+        "Kpct": 0.036,
+        "spr_G": 9,
+        "spr_AB": 28,
+        "spr_H": 15,
+        "spr_AVG": 0.536,
+        "spr_OPS": 1.373,
+        "BIP": 101,
+        "HardHit": 29,
+        "HHpct": 0.287
+      },
+      {
+        "name": "Carson B",
+        "number": "22",
+        "G": 26,
+        "AB": 59,
+        "R": 30,
+        "H": 27,
+        "2B": 5,
+        "3B": 0,
+        "HR": 1,
+        "RBI": 18,
+        "BB": 12,
+        "SO": 7,
+        "SB": 29,
+        "HBP": 4,
+        "AVG": 0.458,
+        "OBP": 0.573,
+        "SLG": 0.593,
+        "OPS": 1.167,
+        "Kpct": 0.093,
+        "spr_G": 9,
+        "spr_AB": 22,
+        "spr_H": 9,
+        "spr_AVG": 0.409,
+        "spr_OPS": 1.097,
+        "BIP": 54,
+        "HardHit": 9,
+        "HHpct": 0.167
+      },
+      {
+        "name": "Grayson C",
+        "number": "16",
+        "G": 35,
+        "AB": 94,
+        "R": 42,
+        "H": 39,
+        "2B": 9,
+        "3B": 2,
+        "HR": 0,
+        "RBI": 36,
+        "BB": 16,
+        "SO": 6,
+        "SB": 33,
+        "HBP": 1,
+        "AVG": 0.415,
+        "OBP": 0.505,
+        "SLG": 0.553,
+        "OPS": 1.058,
+        "Kpct": 0.054,
+        "spr_G": 9,
+        "spr_AB": 21,
+        "spr_H": 7,
+        "spr_AVG": 0.333,
+        "spr_OPS": 0.929,
+        "BIP": 89,
+        "HardHit": 26,
+        "HHpct": 0.292
+      },
+      {
+        "name": "Maxwell W",
+        "number": "32",
+        "G": 33,
+        "AB": 81,
+        "R": 43,
+        "H": 48,
+        "2B": 7,
+        "3B": 2,
+        "HR": 2,
+        "RBI": 41,
+        "BB": 17,
+        "SO": 9,
+        "SB": 34,
+        "HBP": 3,
+        "AVG": 0.593,
+        "OBP": 0.673,
+        "SLG": 0.802,
+        "OPS": 1.476,
+        "Kpct": 0.089,
+        "spr_G": 9,
+        "spr_AB": 23,
+        "spr_H": 13,
+        "spr_AVG": 0.565,
+        "spr_OPS": 1.326,
+        "BIP": 72,
+        "HardHit": 22,
+        "HHpct": 0.306
+      },
+      {
+        "name": "Zaiden G",
+        "number": "44",
+        "G": 35,
+        "AB": 88,
+        "R": 35,
+        "H": 44,
+        "2B": 8,
+        "3B": 1,
+        "HR": 4,
+        "RBI": 50,
+        "BB": 15,
+        "SO": 14,
+        "SB": 24,
+        "HBP": 2,
+        "AVG": 0.5,
+        "OBP": 0.581,
+        "SLG": 0.75,
+        "OPS": 1.331,
+        "Kpct": 0.133,
+        "spr_G": 9,
+        "spr_AB": 19,
+        "spr_H": 9,
+        "spr_AVG": 0.474,
+        "spr_OPS": 1.247,
+        "BIP": 75,
+        "HardHit": 22,
+        "HHpct": 0.293
+      },
+      {
+        "name": "Mitchell C",
+        "number": "4",
+        "G": 31,
+        "AB": 69,
+        "R": 37,
+        "H": 26,
+        "2B": 5,
+        "3B": 1,
+        "HR": 1,
+        "RBI": 21,
+        "BB": 18,
+        "SO": 15,
+        "SB": 31,
+        "HBP": 7,
+        "AVG": 0.377,
+        "OBP": 0.543,
+        "SLG": 0.522,
+        "OPS": 1.064,
+        "Kpct": 0.16,
+        "spr_G": 9,
+        "spr_AB": 19,
+        "spr_H": 6,
+        "spr_AVG": 0.316,
+        "spr_OPS": 0.751,
+        "BIP": 55,
+        "HardHit": 15,
+        "HHpct": 0.273
+      },
+      {
+        "name": "Wyatt B",
+        "number": "17",
+        "G": 35,
+        "AB": 85,
+        "R": 34,
+        "H": 30,
+        "2B": 5,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 21,
+        "BB": 15,
+        "SO": 11,
+        "SB": 31,
+        "HBP": 0,
+        "AVG": 0.353,
+        "OBP": 0.45,
+        "SLG": 0.412,
+        "OPS": 0.862,
+        "Kpct": 0.11,
+        "spr_G": 9,
+        "spr_AB": 16,
+        "spr_H": 4,
+        "spr_AVG": 0.25,
+        "spr_OPS": 0.645,
+        "BIP": 74,
+        "HardHit": 9,
+        "HHpct": 0.122
+      },
+      {
+        "name": "Brooks H",
+        "number": "5",
+        "G": 35,
+        "AB": 65,
+        "R": 28,
+        "H": 13,
+        "2B": 2,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 13,
+        "BB": 25,
+        "SO": 17,
+        "SB": 24,
+        "HBP": 1,
+        "AVG": 0.2,
+        "OBP": 0.429,
+        "SLG": 0.231,
+        "OPS": 0.659,
+        "Kpct": 0.187,
+        "spr_G": 9,
+        "spr_AB": 21,
+        "spr_H": 6,
+        "spr_AVG": 0.286,
+        "spr_OPS": 0.681,
+        "BIP": 51,
+        "HardHit": 6,
+        "HHpct": 0.118
+      },
+      {
+        "name": "Johnny H",
+        "number": "25",
+        "G": 35,
+        "AB": 66,
+        "R": 21,
+        "H": 14,
+        "2B": 2,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 19,
+        "BB": 21,
+        "SO": 15,
+        "SB": 12,
+        "HBP": 4,
+        "AVG": 0.212,
+        "OBP": 0.429,
+        "SLG": 0.242,
+        "OPS": 0.671,
+        "Kpct": 0.165,
+        "spr_G": 9,
+        "spr_AB": 12,
+        "spr_H": 2,
+        "spr_AVG": 0.167,
+        "spr_OPS": 0.726,
+        "BIP": 51,
+        "HardHit": 8,
+        "HHpct": 0.157
+      },
+      {
+        "name": "Jayce M",
+        "number": "11",
+        "G": 32,
+        "AB": 61,
+        "R": 29,
+        "H": 22,
+        "2B": 1,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 24,
+        "BB": 15,
+        "SO": 10,
+        "SB": 20,
+        "HBP": 2,
+        "AVG": 0.361,
+        "OBP": 0.5,
+        "SLG": 0.377,
+        "OPS": 0.877,
+        "Kpct": 0.128,
+        "spr_G": 9,
+        "spr_AB": 17,
+        "spr_H": 6,
+        "spr_AVG": 0.353,
+        "spr_OPS": 0.803,
+        "BIP": 53,
+        "HardHit": 9,
+        "HHpct": 0.17
+      },
+      {
+        "name": "Trey D",
+        "number": "2",
+        "G": 21,
+        "AB": 39,
+        "R": 25,
+        "H": 13,
+        "2B": 3,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 13,
+        "BB": 16,
+        "SO": 9,
+        "SB": 20,
+        "HBP": 0,
+        "AVG": 0.333,
+        "OBP": 0.527,
+        "SLG": 0.41,
+        "OPS": 0.938,
+        "Kpct": 0.164,
+        "spr_G": 2,
+        "spr_AB": 4,
+        "spr_H": 0,
+        "spr_AVG": 0.0,
+        "spr_OPS": 0.0,
+        "BIP": 31,
+        "HardHit": 12,
+        "HHpct": 0.387
+      },
+      {
+        "name": "JP K",
+        "number": "24",
+        "G": 3,
+        "AB": 7,
+        "R": 4,
+        "H": 1,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 0,
+        "BB": 0,
+        "SO": 2,
+        "SB": 1,
+        "HBP": 0,
+        "AVG": 0.143,
+        "OBP": 0.143,
+        "SLG": 0.143,
+        "OPS": 0.286,
+        "Kpct": 0.286,
+        "spr_G": 0,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 5,
+        "HardHit": 1,
+        "HHpct": 0.2
+      },
+      {
+        "name": "Wyatt S",
+        "number": "6",
+        "G": 2,
+        "AB": 5,
+        "R": 1,
+        "H": 1,
+        "2B": 0,
+        "3B": 0,
+        "HR": 0,
+        "RBI": 0,
+        "BB": 1,
+        "SO": 1,
+        "SB": 2,
+        "HBP": 0,
+        "AVG": 0.2,
+        "OBP": 0.333,
+        "SLG": 0.2,
+        "OPS": 0.533,
+        "Kpct": 0.167,
+        "spr_G": 0,
+        "spr_AB": 0,
+        "spr_H": 0,
+        "spr_AVG": null,
+        "spr_OPS": null,
+        "BIP": 4,
+        "HardHit": 2,
+        "HHpct": null
+      }
+    ],
+    "pitchers": [
+      {
+        "name": "Johnny H",
+        "number": "25",
+        "IP": "35.0",
+        "IP_float": 35.0,
+        "H": 26,
+        "R": 22,
+        "ER": 18,
+        "BB": 20,
+        "SO": 18,
+        "ERA": 3.6,
+        "WHIP": 1.31,
+        "K9": 4.63,
+        "spr_IP": "11.1",
+        "spr_ERA": 5.56,
+        "FPS_tot": 101,
+        "FPS_str": 51,
+        "FPSpct": 0.505,
+        "power_rank": 1
+      },
+      {
+        "name": "Brooks H",
+        "number": "5",
+        "IP": "25.1",
+        "IP_float": 25.33,
+        "H": 23,
+        "R": 19,
+        "ER": 11,
+        "BB": 16,
+        "SO": 19,
+        "ERA": 3.04,
+        "WHIP": 1.54,
+        "K9": 6.75,
+        "spr_IP": "7.0",
+        "spr_ERA": 0.0,
+        "FPS_tot": 102,
+        "FPS_str": 62,
+        "FPSpct": 0.608,
+        "power_rank": 2
+      },
+      {
+        "name": "Trey D",
+        "number": "2",
+        "IP": "22.1",
+        "IP_float": 22.33,
+        "H": 24,
+        "R": 19,
+        "ER": 13,
+        "BB": 10,
+        "SO": 14,
+        "ERA": 4.07,
+        "WHIP": 1.52,
+        "K9": 5.64,
+        "spr_IP": "1.0",
+        "spr_ERA": 49.0,
+        "FPS_tot": 78,
+        "FPS_str": 38,
+        "FPSpct": 0.487,
+        "power_rank": 3
+      },
+      {
+        "name": "Everett C",
+        "number": "1",
+        "IP": "18.1",
+        "IP_float": 18.33,
+        "H": 20,
+        "R": 18,
+        "ER": 14,
+        "BB": 9,
+        "SO": 16,
+        "ERA": 5.35,
+        "WHIP": 1.58,
+        "K9": 7.85,
+        "spr_IP": "8.0",
+        "spr_ERA": 4.38,
+        "FPS_tot": 64,
+        "FPS_str": 33,
+        "FPSpct": 0.516,
+        "power_rank": 4
+      },
+      {
+        "name": "Grayson C",
+        "number": "16",
+        "IP": "16.1",
+        "IP_float": 16.33,
+        "H": 22,
+        "R": 18,
+        "ER": 17,
+        "BB": 13,
+        "SO": 18,
+        "ERA": 7.29,
+        "WHIP": 2.14,
+        "K9": 9.92,
+        "spr_IP": "1.0",
+        "spr_ERA": 28.0,
+        "FPS_tot": 101,
+        "FPS_str": 49,
+        "FPSpct": 0.485,
+        "power_rank": 5
+      },
+      {
+        "name": "Wyatt B",
+        "number": "17",
+        "IP": "15.2",
+        "IP_float": 15.67,
+        "H": 18,
+        "R": 26,
+        "ER": 20,
+        "BB": 27,
+        "SO": 15,
+        "ERA": 8.94,
+        "WHIP": 2.87,
+        "K9": 8.62,
+        "spr_IP": "5.0",
+        "spr_ERA": 9.8,
+        "FPS_tot": 106,
+        "FPS_str": 50,
+        "FPSpct": 0.472,
+        "power_rank": 6
+      },
+      {
+        "name": "Jayce M",
+        "number": "11",
+        "IP": "15.1",
+        "IP_float": 15.33,
+        "H": 16,
+        "R": 12,
+        "ER": 9,
+        "BB": 17,
+        "SO": 5,
+        "ERA": 4.11,
+        "WHIP": 2.15,
+        "K9": 2.93,
+        "spr_IP": "4.0",
+        "spr_ERA": 1.75,
+        "FPS_tot": 53,
+        "FPS_str": 22,
+        "FPSpct": 0.415,
+        "power_rank": 7
+      },
+      {
+        "name": "Mitchell C",
+        "number": "4",
+        "IP": "8.1",
+        "IP_float": 8.33,
+        "H": 12,
+        "R": 17,
+        "ER": 10,
+        "BB": 17,
+        "SO": 10,
+        "ERA": 8.4,
+        "WHIP": 3.48,
+        "K9": 10.8,
+        "spr_IP": "1.0",
+        "spr_ERA": 14.0,
+        "FPS_tot": 74,
+        "FPS_str": 41,
+        "FPSpct": 0.554,
+        "power_rank": 8
+      },
+      {
+        "name": "Zaiden G",
+        "number": "44",
+        "IP": "6.1",
+        "IP_float": 6.33,
+        "H": 4,
+        "R": 2,
+        "ER": 1,
+        "BB": 6,
+        "SO": 4,
+        "ERA": 1.11,
+        "WHIP": 1.58,
+        "K9": 5.68,
+        "spr_IP": "4.1",
+        "spr_ERA": 1.62,
+        "FPS_tot": 27,
+        "FPS_str": 11,
+        "FPSpct": 0.407,
+        "power_rank": 9
+      },
+      {
+        "name": "Maxwell W",
+        "number": "32",
+        "IP": "4.2",
+        "IP_float": 4.67,
+        "H": 7,
+        "R": 13,
+        "ER": 8,
+        "BB": 14,
+        "SO": 1,
+        "ERA": 12.0,
+        "WHIP": 4.5,
+        "K9": 1.93,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 40,
+        "FPS_str": 13,
+        "FPSpct": 0.325,
+        "power_rank": 10
+      },
+      {
+        "name": "JP K",
+        "number": "24",
+        "IP": "2.0",
+        "IP_float": 2.0,
+        "H": 6,
+        "R": 2,
+        "ER": 2,
+        "BB": 1,
+        "SO": 0,
+        "ERA": 7.0,
+        "WHIP": 3.5,
+        "K9": 0.0,
+        "spr_IP": null,
+        "spr_ERA": null,
+        "FPS_tot": 0,
+        "FPS_str": 0,
+        "FPSpct": null,
+        "power_rank": 11
+      }
+    ]
+  }
+};
+
+// ── State ───────────────────────────────────────────────────────────────────
+let currentTeam   = null;
+let currentSection= null; // 'batters' | 'pitchers'
+
+// ── Navigation ──────────────────────────────────────────────────────────────
+function navigate(view, params) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + view).classList.add('active');
+  window.scrollTo(0, 0);
+  if (params) renderView(view, params);
+}
+
+function renderView(view, params) {
+  if (view === 'team') renderTeam(params.teamKey);
+  if (view === 'batters') renderBatters(params.teamKey);
+  if (view === 'pitchers') renderPitchers(params.teamKey);
+  if (view === 'player') renderPlayer(params.teamKey, params.type, params.idx);
+}
+
+// ── Formatters ──────────────────────────────────────────────────────────────
+function fmtAvg(v)  { return v.toFixed(3).replace(/^0/, ''); }
+function fmtPct(v)  {
+  if (v === null || v === undefined) return '—';
+  return Math.round(v * 100) + '%';
+}
+function fmtStat(v) { return v !== null && v !== undefined ? v : '—'; }
+function rankLabel(r) {
+  if (r === 1) return ['ACE', 'ace'];
+  if (r === 2) return ['#2', '2'];
+  if (r === 3) return ['#3', '3'];
+  return ['#' + r, '4'];
+}
+
+// ── Render: Team Index ───────────────────────────────────────────────────────
+(function renderIndex() {
+  const list = document.getElementById('team-list');
+  Object.entries(TEAMS).forEach(([key, team]) => {
+    const isBcc = team.is_user_team;
+    const btn = document.createElement('button');
+    btn.className = 'block-btn' + (isBcc ? ' block-btn--bcc' : '');
+    const record = `${team.fall_record || ''} Fall&nbsp;&nbsp;${team.spring_record || ''} Spring`;
+    btn.innerHTML = `
+      <div class="block-btn__label">${team.team}</div>
+      <div class="block-btn__sub">${team.fall_record} Fall &nbsp;·&nbsp; ${team.spring_record} Spring</div>
+    `;
+    btn.onclick = () => navigate('team', { teamKey: key });
+    list.appendChild(btn);
+  });
+})();
+
+// ── Render: Team Overview ────────────────────────────────────────────────────
+function renderTeam(key) {
+  currentTeam = key;
+  const team = TEAMS[key];
+  document.getElementById('team-header-title').textContent = team.team_short;
+
+  const fallRS = team.fall_rs, fallRA = team.fall_ra;
+  const sprRS  = team.spr_rs,  sprRA  = team.spr_ra;
+  const totalRS = fallRS + sprRS;
+  const totalRA = fallRA + sprRA;
+  const rd = totalRS - totalRA;
+  const rdStr = rd >= 0 ? '+' + rd : String(rd);
+
+  // Spring results — with opponent name, one pill per line
+  let springHTML = '';
+  if (team.spring_games && team.spring_games.length) {
+    const pills = team.spring_games.map(g => {
+      const oppLabel = g.opp_name && g.opp_name !== 'Unknown' ? g.opp_name : 'Opponent';
+      const scoreStr = g.result === 'W'
+        ? `W&nbsp;${g.bcc}–${g.opp}`
+        : g.result === 'L'
+        ? `L&nbsp;${g.bcc}–${g.opp}`
+        : `T&nbsp;${g.bcc}–${g.opp}`;
+      return `
+        <div class="result-pill-row">
+          <span class="result-pill result-pill--${g.result}">${scoreStr}</span>
+          <span class="result-pill-opp">${oppLabel}</span>
+        </div>`;
+    }).join('');
+    springHTML = `
+      <div class="section-label mb-2">Spring 2026 Results</div>
+      <div class="results-stack mb-2">${pills}</div>
+    `;
+  }
+
+  const bccFlag = team.is_user_team ? '<span class="bcc-flag">Your Team</span>' : '';
+
+  document.getElementById('team-content').innerHTML = `
+    <div class="detail-hero">
+      <div class="detail-number">${team.team_short}${bccFlag}</div>
+      <div class="detail-name">${team.team}</div>
+    </div>
+    <div class="content">
+      <div class="record-strip mb-3">
+        <div class="record-strip__row">
+          <span class="record-strip__label">Fall 2025</span>
+          <span class="record-strip__value">${team.fall_record}</span>
+        </div>
+        <div class="record-strip__divider"></div>
+        <div class="record-strip__row">
+          <span class="record-strip__label">Spring 2026</span>
+          <span class="record-strip__value">${team.spring_record}</span>
+        </div>
+        <div class="record-strip__divider"></div>
+        <div class="record-strip__row">
+          <span class="record-strip__label">RS / RA</span>
+          <span class="record-strip__value">
+            <span class="record-strip__rs">${totalRS}</span>
+            &nbsp;/&nbsp;
+            <span class="record-strip__ra">${totalRA}</span>
+            &nbsp;
+            <span style="font-size:var(--text-sm); color: var(--color-ink-muted)">(${rdStr})</span>
+          </span>
+        </div>
+      </div>
+      <button class="section-btn" onclick="navigate('batters', {teamKey:'${key}'})">
+        <div class="section-btn__label">Batters</div>
+        <div class="section-btn__sub">${team.batters.length} players · batting order</div>
+      </button>
+      <button class="section-btn" onclick="navigate('pitchers', {teamKey:'${key}'})">
+        <div class="section-btn__label">Pitchers</div>
+        <div class="section-btn__sub">${team.pitchers.length} pitchers · power ranked</div>
+      </button>
+      ${springHTML}
+    </div>
+  `;
+}
+
+// ── Render: Batters List ─────────────────────────────────────────────────────
+function renderBatters(key) {
+  currentTeam = key;
+  currentSection = 'batters';
+  const team = TEAMS[key];
+  document.getElementById('batters-back-label').textContent = team.team_short;
+  document.getElementById('batters-back-btn').onclick = () => navigate('team', {teamKey: key});
+
+  const list = document.getElementById('batters-list');
+  list.innerHTML = '';
+
+  team.batters.forEach((b, idx) => {
+    const hhVal  = b.HHpct !== null ? fmtPct(b.HHpct) : '—';
+    const hhClass = (b.HHpct !== null && b.HHpct >= 0.30) ? 'stat-chip__value--hot' : '';
+    const btn = document.createElement('button');
+    btn.className = 'player-row';
+    btn.innerHTML = `
+      <div class="player-row__top">
+        <span class="player-row__number">#${b.number}</span>
+        <span class="player-row__name">${b.name}</span>
+      </div>
+      <div class="stat-chips">
+        <div class="stat-chip">
+          <span class="stat-chip__label">AVG</span>
+          <span class="stat-chip__value">${fmtAvg(b.AVG)}</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-chip__label">OBP</span>
+          <span class="stat-chip__value">${fmtAvg(b.OBP)}</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-chip__label">OPS</span>
+          <span class="stat-chip__value">${fmtAvg(b.OPS)}</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-chip__label">HH%</span>
+          <span class="stat-chip__value ${hhClass}">${hhVal}</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-chip__label">K%</span>
+          <span class="stat-chip__value">${fmtPct(b.Kpct)}</span>
+        </div>
+      </div>
+    `;
+    btn.onclick = () => navigate('player', {teamKey: key, type: 'batter', idx});
+    list.appendChild(btn);
+  });
+}
+
+// ── Render: Pitchers List ────────────────────────────────────────────────────
+function renderPitchers(key) {
+  currentTeam = key;
+  currentSection = 'pitchers';
+  const team = TEAMS[key];
+  document.getElementById('pitchers-back-label').textContent = team.team_short;
+  document.getElementById('pitchers-back-btn').onclick = () => navigate('team', {teamKey: key});
+
+  const list = document.getElementById('pitchers-list');
+  list.innerHTML = '';
+
+  team.pitchers.forEach((p, idx) => {
+    const [rankTxt, rankClass] = rankLabel(p.power_rank);
+    const fps = p.FPSpct !== null ? fmtPct(p.FPSpct) : '—';
+    const btn = document.createElement('button');
+    btn.className = 'player-row';
+    btn.innerHTML = `
+      <div class="player-row__top">
+        <span class="player-row__number">#${p.number}</span>
+        <span class="player-row__name">${p.name}</span>
+        <span class="rank-badge rank-badge--${rankClass}">${rankTxt}</span>
+      </div>
+      <div class="stat-chips">
+        <div class="stat-chip">
+          <span class="stat-chip__label">ERA</span>
+          <span class="stat-chip__value">${p.ERA.toFixed(2)}</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-chip__label">WHIP</span>
+          <span class="stat-chip__value">${p.WHIP.toFixed(2)}</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-chip__label">K/9</span>
+          <span class="stat-chip__value">${p.K9.toFixed(1)}</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-chip__label">FPS%</span>
+          <span class="stat-chip__value">${fps}</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-chip__label">IP</span>
+          <span class="stat-chip__value">${p.IP}</span>
+        </div>
+      </div>
+    `;
+    btn.onclick = () => navigate('player', {teamKey: key, type: 'pitcher', idx});
+    list.appendChild(btn);
+  });
+}
+
+// ── Render: Player Detail ────────────────────────────────────────────────────
+function renderPlayer(key, type, idx) {
+  const team = TEAMS[key];
+  const backLabel = team.team_short;
+  const backSection = type === 'batter' ? 'batters' : 'pitchers';
+
+  document.getElementById('player-back-label').textContent = type === 'batter' ? 'Batters' : 'Pitchers';
+  document.getElementById('player-back-btn').onclick = () => navigate(backSection, {teamKey: key});
+
+  if (type === 'batter') {
+    const b = team.batters[idx];
+    document.getElementById('player-header-title').textContent = '#' + b.number;
+
+    // Spring trend
+    let trendHTML = '';
+    if (b.spr_AB >= 4 && b.spr_AVG !== null) {
+      trendHTML = `
+        <div class="trend-badge">
+          <span class="trend-badge__label">Spring '26 · ${b.spr_AB} AB</span>
+          &nbsp;
+          AVG ${fmtAvg(b.spr_AVG)} &nbsp; OPS ${b.spr_OPS ? fmtAvg(b.spr_OPS) : '—'}
+        </div>
+      `;
+    }
+
+    const hhCardClass = (b.HHpct !== null && b.HHpct >= 0.30) ? 'stat-card--danger' : 'stat-card--highlight';
+    const hhDisplay = b.HHpct !== null ? fmtPct(b.HHpct) : '—';
+    const hhSub = b.BIP ? `${b.HardHit}/${b.BIP} BIP` : 'n/a';
+
+    document.getElementById('player-content').innerHTML = `
+      <div class="detail-hero">
+        <div class="detail-number">#${b.number}</div>
+        <div class="detail-name">${b.name}</div>
+        <div class="detail-meta">${b.G} G &nbsp;·&nbsp; ${b.AB} AB</div>
+      </div>
+      <div class="content">
+        ${trendHTML}
+
+        <div class="slash-line">
+          <div class="slash-stat">
+            <div class="slash-stat__label">AVG</div>
+            <div class="slash-stat__value">${fmtAvg(b.AVG)}</div>
+          </div>
+          <div class="slash-divider">/</div>
+          <div class="slash-stat">
+            <div class="slash-stat__label">OBP</div>
+            <div class="slash-stat__value">${fmtAvg(b.OBP)}</div>
+          </div>
+          <div class="slash-divider">/</div>
+          <div class="slash-stat">
+            <div class="slash-stat__label">SLG</div>
+            <div class="slash-stat__value">${fmtAvg(b.SLG)}</div>
+          </div>
+        </div>
+
+        <div class="stat-card-grid">
+          <div class="stat-card stat-card--highlight">
+            <div class="stat-card__label">OPS</div>
+            <div class="stat-card__value">${fmtAvg(b.OPS)}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__label">K%</div>
+            <div class="stat-card__value">${fmtPct(b.Kpct)}</div>
+          </div>
+          <div class="stat-card ${hhCardClass}">
+            <div class="stat-card__label">Hard Hit %</div>
+            <div class="stat-card__value">${hhDisplay}</div>
+            <div class="stat-card__sub">${hhSub}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__label">BB</div>
+            <div class="stat-card__value">${b.BB}</div>
+            <div class="stat-card__sub">walks</div>
+          </div>
+        </div>
+
+        <hr class="gold-rule">
+        <div class="section-label mb-2">Counting Stats</div>
+        <table class="count-table mb-4">
+          <tr>
+            <th>G</th><th>AB</th><th>R</th><th>H</th>
+            <th>2B</th><th>3B</th><th>HR</th><th>RBI</th>
+          </tr>
+          <tr>
+            <td>${b.G}</td><td>${b.AB}</td><td>${b.R}</td><td>${b.H}</td>
+            <td>${b['2B']}</td><td>${b['3B']}</td><td>${b.HR}</td><td>${b.RBI}</td>
+          </tr>
+          <tr>
+            <th>BB</th><th>SO</th><th>SB</th><th>HBP</th>
+            <th colspan="4"></th>
+          </tr>
+          <tr>
+            <td>${b.BB}</td><td>${b.SO}</td><td>${b.SB}</td><td>${b.HBP}</td>
+            <td colspan="4"></td>
+          </tr>
+        </table>
+      </div>
+    `;
+
+  } else {
+    // Pitcher detail
+    const p = team.pitchers[idx];
+    document.getElementById('player-header-title').textContent = '#' + p.number;
+    const [rankTxt] = rankLabel(p.power_rank);
+
+    let trendHTML = '';
+    if (p.spr_IP && p.spr_ERA !== null) {
+      trendHTML = `
+        <div class="trend-badge">
+          <span class="trend-badge__label">Spring '26 · ${p.spr_IP} IP</span>
+          &nbsp;
+          ERA ${p.spr_ERA !== null ? p.spr_ERA.toFixed(2) : '—'}
+        </div>
+      `;
+    }
+
+    const fpsDisplay = p.FPSpct !== null ? fmtPct(p.FPSpct) : '—';
+    const fpsSub = p.FPS_tot ? `${p.FPS_str}/${p.FPS_tot} PA` : 'n/a';
+    const fpsCardClass = (p.FPSpct !== null && p.FPSpct >= 0.60) ? 'stat-card--highlight' : (p.FPSpct !== null && p.FPSpct < 0.45) ? 'stat-card--danger' : 'stat-card';
+
+    document.getElementById('player-content').innerHTML = `
+      <div class="detail-hero">
+        <div class="detail-number">#${p.number}</div>
+        <div class="detail-name">${p.name}</div>
+        <div class="detail-meta">${rankTxt} &nbsp;·&nbsp; ${p.G} appearances</div>
+      </div>
+      <div class="content">
+        ${trendHTML}
+
+        <div class="stat-card-grid">
+          <div class="stat-card stat-card--highlight">
+            <div class="stat-card__label">ERA</div>
+            <div class="stat-card__value">${p.ERA.toFixed(2)}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__label">WHIP</div>
+            <div class="stat-card__value">${p.WHIP.toFixed(2)}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__label">K/9</div>
+            <div class="stat-card__value">${p.K9.toFixed(1)}</div>
+          </div>
+          <div class="${fpsCardClass}">
+            <div class="stat-card__label">FPS%</div>
+            <div class="stat-card__value">${fpsDisplay}</div>
+            <div class="stat-card__sub">${fpsSub}</div>
+          </div>
+        </div>
+
+        <hr class="gold-rule">
+        <div class="section-label mb-2">Volume</div>
+        <table class="count-table mb-4">
+          <tr>
+            <th>IP</th><th>H</th><th>R</th><th>ER</th>
+            <th>BB</th><th>SO</th>
+          </tr>
+          <tr>
+            <td>${p.IP}</td><td>${p.H}</td><td>${p.R}</td><td>${p.ER}</td>
+            <td>${p.BB}</td><td>${p.SO}</td>
+          </tr>
+        </table>
+      </div>
+    `;
+  }
+}
+</script>
+</body>
+</html>
