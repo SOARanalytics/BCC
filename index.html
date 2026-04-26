@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCC Big Train 11U — Stats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── True HZRDUS Design System ─────────────────────── */
+:root {
+  --color-ground:        #F4F2EE;
+  --color-surface:       #ECEAE5;
+  --color-sunken:        #E2DFD8;
+  --color-border:        #C8C4BB;
+  --color-border-strong: #A09A90;
+  --color-ink:           #1A1714;
+  --color-ink-soft:      #3D3830;
+  --color-ink-muted:     #6B6157;
+  --color-ink-faint:     #9A9189;
+  --color-gold:          #8A6410;
+  --color-gold-mid:      #A67C1A;
+  --color-gold-bright:   #C9A84C;
+  --color-gold-tint:     #F5EDD6;
+  --color-gold-border:   #C9A84C;
+  --color-reversed-bg:   #1A1714;
+  --color-reversed-text: #F4F2EE;
+  --color-reversed-muted:#9A9189;
+  --color-success: #2E7D32;
+  --color-danger:  #B01E24;
+  --color-info:    #0076A3;
+  --font-display: 'Barlow Condensed', Impact, 'Arial Narrow', sans-serif;
+  --font-body: 'Barlow', 'Helvetica Neue', sans-serif;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --shadow-sm: 0 1px 3px rgba(26,23,20,.10);
+  --shadow-md: 0 3px 10px rgba(26,23,20,.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{background:var(--color-ground);color:var(--color-ink);font-family:var(--font-body);font-size:1.0625rem;line-height:1.6}
+
+/* ── Layout ─────── */
+.container{width:100%;max-width:1280px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:640px){.container{padding:0 2rem}}
+
+/* ── Header ─────── */
+.site-header{background:var(--color-reversed-bg);padding:1.5rem 0;border-bottom:2px solid var(--color-gold-border)}
+.header-inner{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.team-badge{display:flex;align-items:center;gap:1rem}
+.diamond-mark{display:inline-grid;grid-template-columns:1fr 1fr;gap:2px;width:40px;height:40px;flex-shrink:0}
+.diamond-mark span{clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
+.dm-yellow{background:#C8831A}.dm-carbon{background:#F4F2EE}.dm-red{background:#B01E24}.dm-blue{background:#0076A3}
+.team-name{font-family:var(--font-display);font-size:2.5rem;font-weight:900;letter-spacing:-.02em;line-height:.95;text-transform:uppercase;color:var(--color-reversed-text)}
+.team-sub{font-family:var(--font-display);font-size:.85rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--color-gold-bright);margin-top:.2rem}
+.header-spacer{flex:1}
+.record-badge{text-align:right}
+.record-num{font-family:var(--font-display);font-size:2.25rem;font-weight:900;color:var(--color-gold-bright);letter-spacing:-.02em}
+.record-label{font-family:var(--font-display);font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--color-reversed-muted)}
+
+/* ── Season Tabs ─── */
+.season-bar{background:var(--color-sunken);border-bottom:1px solid var(--color-border);padding:.75rem 0}
+.season-tabs{display:flex;gap:.5rem}
+.tab-btn{font-family:var(--font-display);font-size:.95rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:transparent;border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:.5rem 1.25rem;cursor:pointer;color:var(--color-ink-muted);transition:all 150ms}
+.tab-btn.active{background:var(--color-ink);color:var(--color-ground);border-color:transparent}
+.tab-btn:hover:not(.active){border-color:var(--color-gold-border);color:var(--color-gold)}
+
+/* ── Section Headers ─ */
+.section{padding:2rem 0 1rem}
+.section-title{font-family:var(--font-display);font-size:1.75rem;font-weight:900;letter-spacing:-.01em;text-transform:uppercase;color:var(--color-ink);display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
+.section-title::after{content:'';flex:1;height:1px;background:var(--color-border)}
+.accent-bar{display:block;width:3px;height:28px;background:var(--color-gold);border-radius:2px;flex-shrink:0}
+
+/* ── Overview Cards ─ */
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem;margin-bottom:1.5rem}
+.stat-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:1rem 1.25rem;box-shadow:var(--shadow-sm)}
+.stat-card-value{font-family:var(--font-display);font-size:2rem;font-weight:900;letter-spacing:-.02em;color:var(--color-ink);line-height:1}
+.stat-card-value.gold{color:var(--color-gold)}
+.stat-card-value.green{color:var(--color-success)}
+.stat-card-value.red{color:var(--color-danger)}
+.stat-card-label{font-family:var(--font-body);font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-ink-muted);margin-top:.35rem}
+
+/* ── Tables ─────── */
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);margin-bottom:2rem}
+table{width:100%;border-collapse:collapse;font-size:.875rem;white-space:nowrap}
+thead tr{background:var(--color-reversed-bg)}
+thead th{font-family:var(--font-display);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-reversed-muted);padding:.6rem .8rem;text-align:right;cursor:pointer;user-select:none;white-space:nowrap}
+thead th:first-child,thead th:nth-child(2){text-align:left}
+thead th.sorted{color:var(--color-gold-bright)}
+thead th:hover{color:var(--color-gold-bright)}
+tbody tr{border-top:1px solid var(--color-border);transition:background 120ms}
+tbody tr:hover{background:var(--color-gold-tint)}
+tbody tr:nth-child(even){background:var(--color-surface)}
+tbody tr:nth-child(even):hover{background:var(--color-gold-tint)}
+td{padding:.55rem .8rem;text-align:right;color:var(--color-ink-soft)}
+td:first-child{text-align:left;font-weight:600;color:var(--color-ink)}
+td:nth-child(2){text-align:left;color:var(--color-ink-muted);font-size:.8rem}
+.td-num{font-family:var(--font-display);font-weight:700;font-size:.95rem}
+.td-highlight{color:var(--color-gold);font-weight:700}
+.td-good{color:var(--color-success)}
+.td-bad{color:var(--color-danger)}
+.td-neutral{color:var(--color-ink-muted)}
+
+/* ── Leader Cards ─── */
+.leaders-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin-bottom:2rem}
+.leader-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:1rem 1.25rem;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.leader-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--color-gold)}
+.leader-card-cat{font-family:var(--font-display);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-ink-muted);margin-bottom:.4rem}
+.leader-card-name{font-family:var(--font-display);font-size:1.2rem;font-weight:900;color:var(--color-ink);line-height:1.1;text-transform:uppercase}
+.leader-card-val{font-family:var(--font-display);font-size:2rem;font-weight:900;color:var(--color-gold);letter-spacing:-.02em;line-height:1}
+.leader-card-num{font-size:.75rem;color:var(--color-ink-muted);margin-top:.25rem}
+
+/* ── Game Log ──────── */
+.game-log-table td:first-child{font-weight:400}
+.result-w{font-family:var(--font-display);font-weight:900;font-size:1rem;color:var(--color-success)}
+.result-l{font-family:var(--font-display);font-weight:900;font-size:1rem;color:var(--color-danger)}
+.result-t{font-family:var(--font-display);font-weight:900;font-size:1rem;color:var(--color-ink-muted)}
+.score-us{font-family:var(--font-display);font-weight:900;font-size:1.1rem;color:var(--color-ink)}
+.score-them{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--color-ink-muted)}
+
+/* ── Bracket ──────── */
+.bracket-section{background:var(--color-sunken);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:1.5rem;margin-bottom:2rem}
+.bracket-title{font-family:var(--font-display);font-size:1.1rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--color-ink);margin-bottom:1rem}
+.bracket-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem}
+.bracket-round{display:flex;flex-direction:column;gap:.5rem}
+.bracket-round-label{font-family:var(--font-display);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-gold);margin-bottom:.35rem}
+.bracket-matchup{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:.6rem .9rem;font-size:.85rem;font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--color-ink)}
+.bracket-matchup span{color:var(--color-ink-muted);font-weight:400;font-size:.75rem;display:block;margin-top:.1rem}
+.bracket-bye{background:var(--color-gold-tint);border-color:var(--color-gold-border)}
+
+/* ── Schedule ──────── */
+.schedule-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+@media(max-width:640px){.schedule-grid{grid-template-columns:1fr}}
+.schedule-day{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:1.25rem;box-shadow:var(--shadow-sm)}
+.schedule-day-title{font-family:var(--font-display);font-size:1rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--color-ink);border-bottom:1px solid var(--color-border);padding-bottom:.6rem;margin-bottom:.85rem}
+.schedule-game{display:flex;align-items:baseline;gap:.6rem;padding:.4rem 0;border-bottom:1px solid var(--color-border)}
+.schedule-game:last-child{border-bottom:none}
+.schedule-time{font-family:var(--font-display);font-weight:700;font-size:.85rem;color:var(--color-gold);min-width:52px;flex-shrink:0}
+.schedule-teams{font-size:.9rem;color:var(--color-ink)}
+.schedule-teams strong{color:var(--color-ink);font-weight:700}
+.schedule-teams .bcc{color:var(--color-gold);font-weight:700}
+
+/* ── Adv Stats Legend ─ */
+.legend-bar{display:flex;flex-wrap:wrap;gap:.5rem 1rem;margin-bottom:1.25rem}
+.legend-item{font-size:.75rem;color:var(--color-ink-muted)}
+.legend-item strong{color:var(--color-ink-soft)}
+
+/* ── Tooltip/note ──── */
+.tbl-note{font-size:.75rem;color:var(--color-ink-muted);margin-top:.5rem;margin-bottom:1rem}
+
+/* ── Footer ──── */
+.site-footer{background:var(--color-reversed-bg);color:var(--color-reversed-muted);padding:1.5rem 0;margin-top:3rem;font-size:.8rem;text-align:center}
+
+/* ── Responsive ──── */
+@media(max-width:768px){
+  .team-name{font-size:1.75rem}
+  .record-num{font-size:1.75rem}
+  .overview-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <div class="team-badge">
+        <div class="diamond-mark">
+          <span class="dm-yellow"></span><span class="dm-carbon"></span>
+          <span class="dm-red"></span><span class="dm-blue"></span>
+        </div>
+        <div>
+          <div class="team-name">BCC Big Train</div>
+          <div class="team-sub">11U · Bethesda, MD</div>
+        </div>
+      </div>
+      <div class="header-spacer"></div>
+      <div class="record-badge" id="header-record">
+        <div class="record-num">4-3</div>
+        <div class="record-label">2026 Spring</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="season-bar">
+  <div class="container">
+    <div class="season-tabs">
+      <button class="tab-btn active" data-season="spring">2026 Spring</button>
+      <button class="tab-btn" data-season="fall">2025 Fall</button>
+    </div>
+  </div>
+</div>
+
+<main class="container">
+
+  <!-- OVERVIEW -->
+  <div class="section">
+    <div class="section-title"><span class="accent-bar"></span>Season Overview</div>
+    <div class="overview-grid" id="overview-cards"></div>
+  </div>
+
+  <!-- BATTING LEADERS -->
+  <div class="section">
+    <div class="section-title"><span class="accent-bar"></span>Batting Leaders</div>
+    <div class="leaders-grid" id="batting-leaders"></div>
+  </div>
+
+  <!-- BATTING STATS -->
+  <div class="section">
+    <div class="section-title"><span class="accent-bar"></span>Batting</div>
+    <div class="legend-bar">
+      <span class="legend-item"><strong>ISO</strong> Isolated Power (SLG−AVG)</span>
+      <span class="legend-item"><strong>BABIP</strong> Batting Avg on Balls in Play</span>
+      <span class="legend-item"><strong>K%</strong> Strikeout Rate (SO/PA)</span>
+      <span class="legend-item"><strong>BB%</strong> Walk Rate (BB/PA)</span>
+      <span class="legend-item"><strong>SB%</strong> Stolen Base Success Rate</span>
+      <span class="legend-item"><strong>wRC+</strong> Weighted Runs Created (100 = avg)</span>
+    </div>
+    <div class="table-wrap">
+      <table id="batting-table">
+        <thead>
+          <tr>
+            <th>Player</th><th>#</th>
+            <th data-col="G">G</th>
+            <th data-col="AB">AB</th>
+            <th data-col="R">R</th>
+            <th data-col="H">H</th>
+            <th data-col="2B">2B</th>
+            <th data-col="3B">3B</th>
+            <th data-col="HR">HR</th>
+            <th data-col="RBI">RBI</th>
+            <th data-col="BB">BB</th>
+            <th data-col="SO">K</th>
+            <th data-col="SB">SB</th>
+            <th data-col="CS">CS</th>
+            <th data-col="HBP">HBP</th>
+            <th data-col="AVG">AVG</th>
+            <th data-col="OBP">OBP</th>
+            <th data-col="SLG">SLG</th>
+            <th data-col="OPS">OPS</th>
+            <th data-col="ISO">ISO</th>
+            <th data-col="BABIP">BABIP</th>
+            <th data-col="K_PCT">K%</th>
+            <th data-col="BB_PCT">BB%</th>
+            <th data-col="SB_PCT">SB%</th>
+          </tr>
+        </thead>
+        <tbody id="batting-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PITCHING LEADERS -->
+  <div class="section">
+    <div class="section-title"><span class="accent-bar"></span>Pitching Leaders</div>
+    <div class="leaders-grid" id="pitching-leaders"></div>
+  </div>
+
+  <!-- PITCHING STATS -->
+  <div class="section">
+    <div class="section-title"><span class="accent-bar"></span>Pitching</div>
+    <div class="legend-bar">
+      <span class="legend-item"><strong>K%</strong> Strikeout Rate (K/BF)</span>
+      <span class="legend-item"><strong>BB%</strong> Walk Rate (BB/BF)</span>
+      <span class="legend-item"><strong>K-BB%</strong> Strikeout minus Walk Rate</span>
+      <span class="legend-item"><strong>P/IP</strong> Pitches per Inning</span>
+      <span class="legend-item"><strong>H/9</strong> Hits per 9 Innings</span>
+      <span class="legend-item"><strong>FIP</strong> Fielding-Independent Pitching (approx)</span>
+    </div>
+    <div class="table-wrap">
+      <table id="pitching-table">
+        <thead>
+          <tr>
+            <th>Player</th><th>#</th>
+            <th data-col="IP">IP</th>
+            <th data-col="BF">BF</th>
+            <th data-col="H">H</th>
+            <th data-col="R">R</th>
+            <th data-col="ER">ER</th>
+            <th data-col="BB">BB</th>
+            <th data-col="SO">K</th>
+            <th data-col="HBP">HBP</th>
+            <th data-col="WP">WP</th>
+            <th data-col="#P">#P</th>
+            <th data-col="ERA">ERA</th>
+            <th data-col="WHIP">WHIP</th>
+            <th data-col="K9">K/9</th>
+            <th data-col="K_PCT">K%</th>
+            <th data-col="BB_PCT">BB%</th>
+            <th data-col="KBB_PCT">K−BB%</th>
+            <th data-col="PIP">P/IP</th>
+            <th data-col="H9">H/9</th>
+            <th data-col="FIP">FIP</th>
+          </tr>
+        </thead>
+        <tbody id="pitching-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- GAME LOG -->
+  <div class="section">
+    <div class="section-title"><span class="accent-bar"></span>Game Log</div>
+    <div class="table-wrap">
+      <table class="game-log-table">
+        <thead>
+          <tr>
+            <th style="text-align:left">Opponent</th>
+            <th>H/A</th>
+            <th>Result</th>
+            <th>Score</th>
+            <th>Run Diff</th>
+          </tr>
+        </thead>
+        <tbody id="game-log-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- WHO'S WHO SCHEDULE -->
+  <div class="section">
+    <div class="section-title"><span class="accent-bar"></span>Who's Who Tournament — Schedule</div>
+    <div class="schedule-grid">
+      <div class="schedule-day">
+        <div class="schedule-day-title">Saturday — Pool Play</div>
+        <div class="schedule-game"><span class="schedule-time">11:00am</span><span class="schedule-teams">Prospects at Graysox</span></div>
+        <div class="schedule-game"><span class="schedule-time">11:00am</span><span class="schedule-teams">Gambrills at Kent Island</span></div>
+        <div class="schedule-game"><span class="schedule-time">1:00pm</span><span class="schedule-teams">Prospects at Bagel Bombers</span></div>
+        <div class="schedule-game"><span class="schedule-time">1:00pm</span><span class="schedule-teams">Gambrills at <span class="bcc">BCC</span></span></div>
+        <div class="schedule-game"><span class="schedule-time">3:00pm</span><span class="schedule-teams">Kent Island at Bagel Bombers</span></div>
+        <div class="schedule-game"><span class="schedule-time">3:00pm</span><span class="schedule-teams">Graysox at Delmarva</span></div>
+        <div class="schedule-game"><span class="schedule-time">5:00pm</span><span class="schedule-teams"><span class="bcc">BCC</span> at Delmarva</span></div>
+      </div>
+      <div class="schedule-day">
+        <div class="schedule-day-title">Sunday — Bracket</div>
+        <div class="bracket-round">
+          <div class="bracket-round-label">Quarterfinals</div>
+          <div class="bracket-matchup bracket-bye">1st Place <span>BYE — advances directly to semis</span></div>
+          <div class="bracket-matchup">5th vs 4th <span>Game B1</span></div>
+          <div class="bracket-matchup">6th vs 3rd <span>Game B2</span></div>
+          <div class="bracket-matchup">7th vs 2nd <span>Game B3</span></div>
+          <div class="bracket-round-label" style="margin-top:.75rem">Semifinals</div>
+          <div class="bracket-matchup">1st vs B1 Winner <span>Game B4</span></div>
+          <div class="bracket-matchup">B2 Winner vs B3 Winner <span>Game B5</span></div>
+          <div class="bracket-round-label" style="margin-top:.75rem">Championship</div>
+          <div class="bracket-matchup" style="border-color:var(--color-gold-border);background:var(--color-gold-tint)">B4 Winner vs B5 Winner <span>No time limit · Mercy rule in effect</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="tbl-note">Seeding: (1) Record (2) Runs Allowed (3) Runs Scored (4) Head-to-Head (5) Coin flip · Teams: Prospects, Graysox, Gambrills, Kent Island, Bagel Bombers, BCC, Delmarva · 6 innings / 2-hr limit · 11U Mercy: 12 after 3 · 10 after 4 · 8 after 5</div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    BCC Big Train 11U · Data sourced from GameChanger · Built with True HZRDUS design system
+  </div>
+</footer>
+
+<script>
+// ── Data ─────────────────────────────────────────────
+const TEAM_DATA = {
+  spring: {
+    record: {"W":4,"L":3,"T":0,"R":66,"RA":53,"games":7},
+    batting: [
+      {"name":"Beckett Dickinson","number":"21","G":7,"AB":19,"R":10,"H":10,"2B":3,"3B":0,"HR":0,"RBI":7,"BB":3,"SO":3,"SB":6,"CS":0,"HBP":2,"E":0,"AVG":"0.526","OBP":"0.625","SLG":"0.684","OPS":"1.309"},
+      {"name":"Grant Richards","number":"22","G":7,"AB":19,"R":11,"H":6,"2B":1,"3B":0,"HR":0,"RBI":4,"BB":5,"SO":1,"SB":5,"CS":0,"HBP":0,"E":1,"AVG":"0.316","OBP":"0.458","SLG":"0.368","OPS":"0.826"},
+      {"name":"Will Kowalski","number":"98","G":7,"AB":18,"R":8,"H":6,"2B":1,"3B":0,"HR":1,"RBI":7,"BB":5,"SO":3,"SB":0,"CS":0,"HBP":0,"E":4,"AVG":"0.333","OBP":"0.478","SLG":"0.556","OPS":"1.034"},
+      {"name":"Adam Ingram","number":"3","G":7,"AB":16,"R":6,"H":6,"2B":2,"3B":0,"HR":1,"RBI":6,"BB":5,"SO":3,"SB":4,"CS":0,"HBP":1,"E":3,"AVG":"0.375","OBP":"0.545","SLG":"0.688","OPS":"1.233"},
+      {"name":"Joshua Lopez","number":"2","G":7,"AB":15,"R":2,"H":5,"2B":0,"3B":0,"HR":0,"RBI":7,"BB":4,"SO":3,"SB":5,"CS":1,"HBP":0,"E":4,"AVG":"0.333","OBP":"0.474","SLG":"0.333","OPS":"0.807"},
+      {"name":"Logan Pressberg","number":"12","G":7,"AB":15,"R":4,"H":4,"2B":0,"3B":0,"HR":0,"RBI":2,"BB":4,"SO":1,"SB":2,"CS":0,"HBP":1,"E":0,"AVG":"0.267","OBP":"0.450","SLG":"0.267","OPS":"0.717"},
+      {"name":"Ren Endo","number":"11","G":7,"AB":15,"R":3,"H":2,"2B":1,"3B":0,"HR":0,"RBI":3,"BB":2,"SO":4,"SB":1,"CS":0,"HBP":1,"E":0,"AVG":"0.133","OBP":"0.278","SLG":"0.200","OPS":"0.478"},
+      {"name":"Everett Harkins","number":"51","G":6,"AB":14,"R":6,"H":8,"2B":1,"3B":0,"HR":1,"RBI":11,"BB":1,"SO":5,"SB":0,"CS":0,"HBP":1,"E":0,"AVG":"0.571","OBP":"0.625","SLG":"0.857","OPS":"1.482"},
+      {"name":"Tommy DiPompeo","number":"24","G":6,"AB":13,"R":3,"H":1,"2B":0,"3B":0,"HR":0,"RBI":4,"BB":0,"SO":3,"SB":1,"CS":0,"HBP":1,"E":0,"AVG":"0.077","OBP":"0.143","SLG":"0.077","OPS":"0.220"},
+      {"name":"Darcy Mizejewski","number":"7","G":6,"AB":12,"R":1,"H":0,"2B":0,"3B":0,"HR":0,"RBI":0,"BB":1,"SO":2,"SB":1,"CS":0,"HBP":0,"E":0,"AVG":"0.000","OBP":"0.077","SLG":"0.000","OPS":"0.077"},
+      {"name":"Grant Wang","number":"17","G":6,"AB":12,"R":5,"H":6,"2B":0,"3B":0,"HR":0,"RBI":1,"BB":1,"SO":4,"SB":3,"CS":0,"HBP":1,"E":0,"AVG":"0.500","OBP":"0.571","SLG":"0.500","OPS":"1.071"},
+      {"name":"Oliver Wells","number":"14","G":5,"AB":7,"R":5,"H":0,"2B":0,"3B":0,"HR":0,"RBI":0,"BB":8,"SO":4,"SB":0,"CS":0,"HBP":0,"E":0,"AVG":"0.000","OBP":"0.533","SLG":"0.000","OPS":"0.533"},
+      {"name":"Guest 2","number":"","G":1,"AB":4,"R":1,"H":2,"2B":0,"3B":0,"HR":0,"RBI":0,"BB":0,"SO":1,"SB":1,"CS":0,"HBP":0,"E":0,"AVG":"0.500","OBP":"0.500","SLG":"0.500","OPS":"1.000"},
+      {"name":"Guest 1","number":"","G":1,"AB":3,"R":1,"H":1,"2B":1,"3B":0,"HR":0,"RBI":0,"BB":2,"SO":1,"SB":0,"CS":0,"HBP":0,"E":0,"AVG":"0.333","OBP":"0.500","SLG":"0.667","OPS":"1.167"}
+    ],
+    pitching: [
+      {"name":"Will Kowalski","number":"98","IP":"7.2","H":11,"R":7,"ER":5,"BB":4,"SO":8,"#P":134,"BF":38,"HBP":0,"WP":3,"ERA":"4.57","WHIP":"1.96","K/9":"9.4"},
+      {"name":"Ren Endo","number":"11","IP":"6.2","H":13,"R":12,"ER":9,"BB":5,"SO":4,"#P":134,"BF":41,"HBP":2,"WP":0,"ERA":"9.45","WHIP":"2.70","K/9":"5.4"},
+      {"name":"Logan Pressberg","number":"12","IP":"6.0","H":3,"R":5,"ER":4,"BB":8,"SO":5,"#P":99,"BF":29,"HBP":1,"WP":0,"ERA":"4.67","WHIP":"1.83","K/9":"7.5"},
+      {"name":"Oliver Wells","number":"14","IP":"5.1","H":6,"R":6,"ER":5,"BB":2,"SO":3,"#P":80,"BF":24,"HBP":0,"WP":2,"ERA":"6.56","WHIP":"1.50","K/9":"5.1"},
+      {"name":"Grant Wang","number":"17","IP":"5.0","H":5,"R":5,"ER":2,"BB":5,"SO":1,"#P":98,"BF":25,"HBP":0,"WP":1,"ERA":"2.80","WHIP":"2.00","K/9":"1.8"},
+      {"name":"Joshua Lopez","number":"2","IP":"3.2","H":6,"R":6,"ER":2,"BB":5,"SO":2,"#P":76,"BF":22,"HBP":1,"WP":2,"ERA":"3.82","WHIP":"3.00","K/9":"4.9"},
+      {"name":"Grant Richards","number":"22","IP":"3.1","H":11,"R":11,"ER":2,"BB":2,"SO":1,"#P":82,"BF":22,"HBP":1,"WP":0,"ERA":"4.20","WHIP":"3.90","K/9":"2.7"},
+      {"name":"Adam Ingram","number":"3","IP":"1.1","H":1,"R":1,"ER":1,"BB":1,"SO":3,"#P":30,"BF":7,"HBP":0,"WP":0,"ERA":"5.25","WHIP":"1.50","K/9":"20.2"},
+      {"name":"Beckett Dickinson","number":"21","IP":"0.2","H":0,"R":0,"ER":0,"BB":0,"SO":0,"#P":4,"BF":2,"HBP":0,"WP":0,"ERA":"0.00","WHIP":"0.00","K/9":"0.0"}
+    ],
+    games: [
+      {"opponent":"LBC Thunder 11U","result":"W","us":12,"them":10,"home_away":"away"},
+      {"opponent":"Gambrills Athletic Club 11U","result":"W","us":4,"them":1,"home_away":"home"},
+      {"opponent":"HCYP Raiders Blue 11U","result":"L","us":8,"them":9,"home_away":"away"},
+      {"opponent":"Ole Liners National 11U","result":"W","us":11,"them":2,"home_away":"home"},
+      {"opponent":"Gambrills Athletic Club 11U","result":"L","us":4,"them":9,"home_away":"away"},
+      {"opponent":"Delmarva Aces 11U East","result":"W","us":18,"them":8,"home_away":"away"},
+      {"opponent":"Delmarva Aces 11U East","result":"L","us":9,"them":14,"home_away":"home"}
+    ]
+  },
+  fall: {
+    record: {"W":25,"L":10,"T":0,"R":294,"RA":200,"games":35},
+    batting: [
+      {"name":"Grant Richards","number":"22","G":35,"AB":95,"R":38,"H":42,"2B":16,"3B":1,"HR":1,"RBI":31,"BB":11,"SO":9,"SB":21,"CS":0,"HBP":1,"E":0,"AVG":"0.442","OBP":"0.505","SLG":"0.663","OPS":"1.168"},
+      {"name":"Beckett Dickinson","number":"21","G":35,"AB":79,"R":39,"H":20,"2B":6,"3B":0,"HR":0,"RBI":18,"BB":23,"SO":16,"SB":31,"CS":0,"HBP":4,"E":0,"AVG":"0.253","OBP":"0.443","SLG":"0.329","OPS":"0.772"},
+      {"name":"Tommy DiPompeo","number":"24","G":31,"AB":78,"R":25,"H":24,"2B":7,"3B":3,"HR":0,"RBI":24,"BB":9,"SO":7,"SB":19,"CS":0,"HBP":0,"E":0,"AVG":"0.308","OBP":"0.379","SLG":"0.474","OPS":"0.853"},
+      {"name":"Will Kowalski","number":"98","G":29,"AB":74,"R":24,"H":27,"2B":9,"3B":2,"HR":5,"RBI":32,"BB":11,"SO":14,"SB":10,"CS":0,"HBP":0,"E":0,"AVG":"0.365","OBP":"0.447","SLG":"0.743","OPS":"1.190"},
+      {"name":"Oliver Wells","number":"14","G":35,"AB":70,"R":30,"H":22,"2B":5,"3B":0,"HR":0,"RBI":17,"BB":20,"SO":6,"SB":22,"CS":0,"HBP":1,"E":0,"AVG":"0.314","OBP":"0.473","SLG":"0.386","OPS":"0.859"},
+      {"name":"Logan Pressberg","number":"12","G":32,"AB":65,"R":23,"H":21,"2B":2,"3B":4,"HR":0,"RBI":15,"BB":18,"SO":11,"SB":24,"CS":0,"HBP":5,"E":0,"AVG":"0.323","OBP":"0.500","SLG":"0.477","OPS":"0.977"},
+      {"name":"Darcy Mizejewski","number":"7","G":33,"AB":63,"R":10,"H":13,"2B":6,"3B":0,"HR":0,"RBI":6,"BB":21,"SO":16,"SB":13,"CS":0,"HBP":1,"E":0,"AVG":"0.206","OBP":"0.412","SLG":"0.302","OPS":"0.714"},
+      {"name":"Everett Harkins","number":"51","G":28,"AB":60,"R":20,"H":26,"2B":9,"3B":2,"HR":1,"RBI":35,"BB":12,"SO":10,"SB":13,"CS":0,"HBP":7,"E":0,"AVG":"0.433","OBP":"0.570","SLG":"0.700","OPS":"1.270"},
+      {"name":"Ren Endo","number":"11","G":35,"AB":59,"R":22,"H":9,"2B":0,"3B":1,"HR":0,"RBI":10,"BB":21,"SO":20,"SB":9,"CS":0,"HBP":3,"E":0,"AVG":"0.153","OBP":"0.398","SLG":"0.186","OPS":"0.584"},
+      {"name":"Grant Wang","number":"17","G":31,"AB":56,"R":16,"H":10,"2B":1,"3B":1,"HR":0,"RBI":12,"BB":15,"SO":10,"SB":17,"CS":0,"HBP":1,"E":0,"AVG":"0.179","OBP":"0.361","SLG":"0.232","OPS":"0.593"},
+      {"name":"Joshua Lopez","number":"2","G":31,"AB":56,"R":31,"H":13,"2B":3,"3B":1,"HR":0,"RBI":9,"BB":23,"SO":13,"SB":23,"CS":0,"HBP":1,"E":0,"AVG":"0.232","OBP":"0.463","SLG":"0.321","OPS":"0.784"},
+      {"name":"Adam Ingram","number":"3","G":22,"AB":49,"R":16,"H":15,"2B":3,"3B":0,"HR":0,"RBI":11,"BB":10,"SO":6,"SB":18,"CS":0,"HBP":4,"E":0,"AVG":"0.306","OBP":"0.460","SLG":"0.367","OPS":"0.827"}
+    ],
+    pitching: [
+      {"name":"Will Kowalski","number":"98","IP":"35.2","H":36,"R":26,"ER":18,"BB":12,"SO":36,"#P":553,"BF":162,"HBP":3,"WP":9,"ERA":"3.53","WHIP":"1.35","K/9":"9.1"},
+      {"name":"Oliver Wells","number":"14","IP":"31.1","H":36,"R":31,"ER":25,"BB":9,"SO":23,"#P":469,"BF":140,"HBP":0,"WP":0,"ERA":"5.59","WHIP":"1.44","K/9":"6.6"},
+      {"name":"Logan Pressberg","number":"12","IP":"23.2","H":23,"R":21,"ER":16,"BB":12,"SO":19,"#P":363,"BF":106,"HBP":0,"WP":0,"ERA":"4.73","WHIP":"1.48","K/9":"7.2"},
+      {"name":"Darcy Mizejewski","number":"7","IP":"20.0","H":26,"R":21,"ER":12,"BB":9,"SO":13,"#P":353,"BF":95,"HBP":0,"WP":0,"ERA":"4.20","WHIP":"1.75","K/9":"5.8"},
+      {"name":"Grant Richards","number":"22","IP":"18.2","H":20,"R":22,"ER":15,"BB":15,"SO":17,"#P":311,"BF":90,"HBP":1,"WP":0,"ERA":"5.62","WHIP":"1.87","K/9":"8.2"},
+      {"name":"Ren Endo","number":"11","IP":"15.1","H":23,"R":15,"ER":11,"BB":11,"SO":7,"#P":263,"BF":75,"HBP":0,"WP":0,"ERA":"5.02","WHIP":"2.22","K/9":"4.1"},
+      {"name":"Adam Ingram","number":"3","IP":"12.1","H":22,"R":18,"ER":14,"BB":12,"SO":14,"#P":247,"BF":61,"HBP":1,"WP":0,"ERA":"7.95","WHIP":"2.76","K/9":"10.2"},
+      {"name":"Grant Wang","number":"17","IP":"12.1","H":20,"R":15,"ER":14,"BB":8,"SO":4,"#P":217,"BF":60,"HBP":0,"WP":0,"ERA":"7.95","WHIP":"2.27","K/9":"2.9"},
+      {"name":"Joshua Lopez","number":"2","IP":"8.2","H":12,"R":16,"ER":8,"BB":14,"SO":5,"#P":227,"BF":50,"HBP":0,"WP":0,"ERA":"6.46","WHIP":"3.00","K/9":"5.2"},
+      {"name":"Beckett Dickinson","number":"21","IP":"7.0","H":9,"R":8,"ER":7,"BB":4,"SO":3,"#P":127,"BF":36,"HBP":0,"WP":0,"ERA":"7.00","WHIP":"1.86","K/9":"3.9"},
+      {"name":"Everett Harkins","number":"51","IP":"2.2","H":4,"R":7,"ER":6,"BB":6,"SO":2,"#P":81,"BF":18,"HBP":0,"WP":0,"ERA":"15.75","WHIP":"3.75","K/9":"6.8"},
+      {"name":"Tommy DiPompeo","number":"24","IP":"0.1","H":0,"R":0,"ER":0,"BB":1,"SO":1,"#P":10,"BF":2,"HBP":0,"WP":0,"ERA":"0.00","WHIP":"3.00","K/9":"27.0"}
+    ],
+    games: [
+      {"opponent":"MVP Mustangs Red 11U","result":"W","us":11,"them":3},
+      {"opponent":"Colts 11u","result":"W","us":5,"them":3},
+      {"opponent":"Stonewall Tigers 12U","result":"W","us":7,"them":6},
+      {"opponent":"Vienna Chili Dogs 11U","result":"W","us":12,"them":3},
+      {"opponent":"Blue Ridge Titans 11U","result":"W","us":7,"them":1},
+      {"opponent":"Oppo Tacos","result":"W","us":17,"them":11},
+      {"opponent":"Stonewall Tigers 12U","result":"L","us":5,"them":10},
+      {"opponent":"Burtonsville Storm 12U","result":"W","us":18,"them":3},
+      {"opponent":"HCYP Raiders Blue 11U","result":"L","us":7,"them":11},
+      {"opponent":"HCYP Raiders Blue 11U","result":"L","us":5,"them":10},
+      {"opponent":"Mid-Atlantic Canes Gold 11U","result":"W","us":9,"them":5},
+      {"opponent":"Mid-Atlantic Canes Gold 11U","result":"L","us":4,"them":7},
+      {"opponent":"Dig In Inman 11U","result":"W","us":4,"them":3},
+      {"opponent":"Dig In Inman 11U","result":"L","us":5,"them":6},
+      {"opponent":"Maryland J Bats Orange","result":"W","us":11,"them":5},
+      {"opponent":"Calvert Cutters 11U","result":"L","us":4,"them":13},
+      {"opponent":"API Academy 11U","result":"W","us":11,"them":1},
+      {"opponent":"Lake Shore GraySox 11U","result":"W","us":15,"them":7},
+      {"opponent":"Calvert Cutters 11U","result":"L","us":4,"them":8},
+      {"opponent":"Maryland Jbats 11U","result":"W","us":8,"them":7},
+      {"opponent":"Stars 11U","result":"W","us":10,"them":2},
+      {"opponent":"MC Eagles 11U","result":"W","us":8,"them":7},
+      {"opponent":"Gambrills Athletic Club 11U","result":"L","us":6,"them":18},
+      {"opponent":"Burtonsville Storm 12U","result":"W","us":13,"them":10},
+      {"opponent":"Loudoun Aces - Ford 11U","result":"W","us":11,"them":0},
+      {"opponent":"Dig In Kaelin 11U","result":"W","us":11,"them":10},
+      {"opponent":"Loudoun Aces - Ford 11U","result":"W","us":6,"them":5},
+      {"opponent":"Dig In Kaelin 11U","result":"W","us":7,"them":6},
+      {"opponent":"Urbana Hawks- Navy 11U","result":"L","us":7,"them":8},
+      {"opponent":"Elkridge Hurricanes 11U Orange","result":"L","us":2,"them":5},
+      {"opponent":"Gambrills Athletic Club 11U","result":"W","us":2,"them":1},
+      {"opponent":"Cubs Blue 11U","result":"W","us":5,"them":0},
+      {"opponent":"API Academy 11U","result":"W","us":12,"them":1},
+      {"opponent":"HCYP Raiders 11u White","result":"W","us":7,"them":1},
+      {"opponent":"Ole Liners 11U","result":"W","us":18,"them":3}
+    ]
+  }
+};
+
+// ── Computed Stats ────────────────────────────────────
+function ipToOuts(ip) {
+  const parts = String(ip).split('.');
+  return parseInt(parts[0]) * 3 + (parseInt(parts[1]) || 0);
+}
+function outsToIp(outs) {
+  return (Math.floor(outs/3) + (outs%3)/10).toFixed(1);
+}
+
+function addBattingAdv(batters) {
+  return batters.map(b => {
+    const pa = b.AB + b.BB + b.HBP;
+    const tb = b.H + b['2B'] + 2*b['3B'] + 3*b.HR;
+    const iso = parseFloat(b.SLG) - parseFloat(b.AVG);
+    const babipDenom = b.AB - b.SO - b.HR;
+    const babip = babipDenom > 0 ? (b.H - b.HR) / babipDenom : null;
+    const k_pct = pa > 0 ? b.SO / pa : null;
+    const bb_pct = pa > 0 ? b.BB / pa : null;
+    const sb_att = b.SB + b.CS;
+    const sb_pct = sb_att > 0 ? b.SB / sb_att : null;
+    // Simple wRC+ approximation: use OPS scaled vs league avg (approx .750 for 11U)
+    const ops = parseFloat(b.OPS);
+    const wrc_plus = pa >= 5 ? Math.round((ops / 0.750) * 100) : null;
+    return { ...b, pa, tb, iso, babip, k_pct, bb_pct, sb_pct, wrc_plus };
+  });
+}
+
+function addPitchingAdv(pitchers) {
+  return pitchers.map(p => {
+    const outs = ipToOuts(p.IP);
+    const ip_dec = outs / 3;
+    const k_pct = p.BF > 0 ? p.SO / p.BF : null;
+    const bb_pct = p.BF > 0 ? p.BB / p.BF : null;
+    const kbb = (k_pct !== null && bb_pct !== null) ? k_pct - bb_pct : null;
+    const pip = outs > 0 ? p['#P'] / ip_dec : null;
+    const h9 = ip_dec > 0 ? (p.H / ip_dec) * 9 : null;
+    // FIP approx: (13*HR + 3*(BB+HBP) - 2*K) / IP + cFIP (use ~3.10 for 11U)
+    // No HR data in pitching, estimate HR from ER context; simplified:
+    const hr_est = Math.max(0, Math.round(p.ER * 0.08)); // rough estimate
+    const fip = ip_dec > 0 ? ((13*hr_est + 3*(p.BB + p.HBP) - 2*p.SO) / ip_dec + 3.10) : null;
+    return { ...p, k_pct, bb_pct, kbb, pip, h9, fip };
+  });
+}
+
+// ── State ─────────────────────────────────────────────
+let currentSeason = 'spring';
+let battingSort = { col: 'OPS', dir: -1 };
+let pitchingSort = { col: 'ERA', dir: 1 };
+
+// ── Format helpers ────────────────────────────────────
+const fmt3 = v => v !== null && !isNaN(v) ? v.toFixed(3).replace(/^0/, '') : '—';
+const fmt2 = v => v !== null && !isNaN(v) ? v.toFixed(2) : '—';
+const fmtPct = v => v !== null && !isNaN(v) ? (v*100).toFixed(1) + '%' : '—';
+const fmtInt = v => v !== null && !isNaN(v) ? Math.round(v).toString() : '—';
+
+// ── Render Overview ───────────────────────────────────
+function renderOverview() {
+  const d = TEAM_DATA[currentSeason];
+  const r = d.record;
+  const wpct = r.W / r.games;
+  const rdiff = r.R - r.RA;
+  const ppg_for = (r.R / r.games).toFixed(1);
+  const ppg_against = (r.RA / r.games).toFixed(1);
+  
+  // Batting totals
+  const bat = d.batting;
+  const totalH = bat.reduce((s,b)=>s+b.H,0);
+  const totalAB = bat.reduce((s,b)=>s+b.AB,0);
+  const teamAVG = totalAB > 0 ? (totalH/totalAB).toFixed(3).replace(/^0/,'') : '.000';
+  const totalSB = bat.reduce((s,b)=>s+b.SB,0);
+  const totalBB = bat.reduce((s,b)=>s+b.BB,0);
+  const totalSO = bat.reduce((s,b)=>s+b.SO,0);
+  
+  // Pitching totals
+  const pit = d.pitching;
+  const totalER = pit.reduce((s,p)=>s+p.ER,0);
+  const totalOuts = pit.reduce((s,p)=>s+ipToOuts(p.IP),0);
+  const teamERA = totalOuts > 0 ? ((totalER/(totalOuts/3))*9).toFixed(2) : '—';
+  const totalK = pit.reduce((s,p)=>s+p.SO,0);
+  const totalBF = pit.reduce((s,p)=>s+p.BF,0);
+
+  const cards = [
+    { label: 'Record', value: `${r.W}-${r.L}`, cls: '' },
+    { label: 'Win%', value: (wpct*100).toFixed(0)+'%', cls: wpct >= .600 ? 'green' : wpct < .400 ? 'red' : '' },
+    { label: 'Run Diff', value: (rdiff>0?'+':'')+rdiff, cls: rdiff>0?'green':rdiff<0?'red':'' },
+    { label: 'R/Game', value: ppg_for, cls: 'gold' },
+    { label: 'RA/Game', value: ppg_against, cls: '' },
+    { label: 'Team AVG', value: teamAVG, cls: '' },
+    { label: 'Team ERA', value: teamERA, cls: parseFloat(teamERA)<5.00?'green':parseFloat(teamERA)>7?'red':'' },
+    { label: 'Team K', value: totalK, cls: '' },
+    { label: 'SB', value: totalSB, cls: 'gold' },
+    { label: 'Team BB (off)', value: totalBB, cls: '' },
+  ];
+
+  document.getElementById('header-record').innerHTML = `
+    <div class="record-num">${r.W}-${r.L}</div>
+    <div class="record-label">${currentSeason === 'spring' ? '2026 Spring' : '2025 Fall'}</div>`;
+
+  document.getElementById('overview-cards').innerHTML = cards.map(c => `
+    <div class="stat-card">
+      <div class="stat-card-value ${c.cls}">${c.value}</div>
+      <div class="stat-card-label">${c.label}</div>
+    </div>`).join('');
+}
+
+// ── Render Leaders ─────────────────────────────────────
+function renderLeaders() {
+  const d = TEAM_DATA[currentSeason];
+  const bat = addBattingAdv(d.batting.filter(b => b.AB >= 5));
+  const pit = addPitchingAdv(d.pitching.filter(p => ipToOuts(p.IP) >= 3));
+
+  function top(arr, key, dir=1, fn=v=>v) {
+    return arr.slice().sort((a,b)=>dir*(fn(b[key])-fn(a[key])))[0];
+  }
+  
+  const leaders = [
+    { cat: 'Batting Average', key: bat, stat: 'AVG', fn: v=>parseFloat(v), fmt: v => parseFloat(v).toFixed(3).replace(/^0/,'') },
+    { cat: 'OPS', key: bat, stat: 'OPS', fn: v=>parseFloat(v), fmt: v => parseFloat(v).toFixed(3).replace(/^0/,'') },
+    { cat: 'RBI', key: bat, stat: 'RBI', fn: v=>v, fmt: v => v },
+    { cat: 'Home Runs', key: bat, stat: 'HR', fn: v=>v, fmt: v => v },
+    { cat: 'Stolen Bases', key: bat, stat: 'SB', fn: v=>v, fmt: v => v },
+    { cat: 'On-Base Pct', key: bat, stat: 'OBP', fn: v=>parseFloat(v), fmt: v => parseFloat(v).toFixed(3).replace(/^0/,'') },
+    { cat: 'ERA (min 3 IP)', key: pit, stat: 'ERA', fn: v=>-parseFloat(v), fmt: v => parseFloat(v).toFixed(2) },
+    { cat: 'Strikeouts', key: pit, stat: 'SO', fn: v=>v, fmt: v => v },
+  ];
+
+  document.getElementById('batting-leaders').innerHTML = leaders.slice(0,6).map(l => {
+    const p = top(l.key, l.stat, 1, l.fn);
+    if (!p) return '';
+    return `<div class="leader-card">
+      <div class="leader-card-cat">${l.cat}</div>
+      <div class="leader-card-name">${p.name.split(' ').pop()}</div>
+      <div class="leader-card-val">${l.fmt(p[l.stat])}</div>
+      <div class="leader-card-num">#${p.number} · ${p.name}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('pitching-leaders').innerHTML = leaders.slice(6).map(l => {
+    const p = top(l.key, l.stat, 1, l.fn);
+    if (!p) return '';
+    return `<div class="leader-card">
+      <div class="leader-card-cat">${l.cat}</div>
+      <div class="leader-card-name">${p.name.split(' ').pop()}</div>
+      <div class="leader-card-val">${l.fmt(p[l.stat])}</div>
+      <div class="leader-card-num">#${p.number} · ${p.name}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── Render Batting Table ───────────────────────────────
+function renderBatting() {
+  const d = TEAM_DATA[currentSeason];
+  let bat = addBattingAdv(d.batting);
+  
+  const colMap = {
+    'G':'G','AB':'AB','R':'R','H':'H','2B':'2B','3B':'3B','HR':'HR',
+    'RBI':'RBI','BB':'BB','SO':'SO','SB':'SB','CS':'CS','HBP':'HBP',
+    'AVG':'AVG','OBP':'OBP','SLG':'SLG','OPS':'OPS',
+    'ISO':'iso','BABIP':'babip','K_PCT':'k_pct','BB_PCT':'bb_pct','SB_PCT':'sb_pct'
+  };
+  
+  const col = battingSort.col;
+  const dir = battingSort.dir;
+  const sortKey = colMap[col] || col;
+  
+  bat.sort((a, b) => {
+    let av = a[sortKey]; let bv = b[sortKey];
+    if (av === null || av === undefined) return 1;
+    if (bv === null || bv === undefined) return -1;
+    if (typeof av === 'string') av = parseFloat(av);
+    if (typeof bv === 'string') bv = parseFloat(bv);
+    return dir * (bv - av);
+  });
+
+  const tbody = document.getElementById('batting-tbody');
+  tbody.innerHTML = bat.map(b => {
+    const ops = parseFloat(b.OPS);
+    const avg = parseFloat(b.AVG);
+    const opsClass = ops >= 1.000 ? 'td-highlight' : ops >= 0.900 ? 'td-good' : ops < 0.500 ? 'td-bad' : '';
+    const avgClass = avg >= .400 ? 'td-highlight' : avg >= .300 ? 'td-good' : avg < .150 ? 'td-bad' : '';
+    const eraColor = b.k_pct !== null && b.k_pct >= 0.25 ? 'td-bad' : '';
+    const bbColor = b.bb_pct !== null && b.bb_pct >= 0.20 ? 'td-good' : '';
+    return `<tr>
+      <td>${b.name}</td>
+      <td>${b.number || '—'}</td>
+      <td class="td-num">${b.G}</td>
+      <td class="td-num">${b.AB}</td>
+      <td class="td-num">${b.R}</td>
+      <td class="td-num">${b.H}</td>
+      <td class="td-num">${b['2B']}</td>
+      <td class="td-num">${b['3B']}</td>
+      <td class="td-num">${b.HR}</td>
+      <td class="td-num">${b.RBI}</td>
+      <td class="td-num">${b.BB}</td>
+      <td class="td-num ${eraColor}">${b.SO}</td>
+      <td class="td-num">${b.SB}</td>
+      <td class="td-num">${b.CS}</td>
+      <td class="td-num">${b.HBP}</td>
+      <td class="td-num ${avgClass}">${parseFloat(b.AVG).toFixed(3).replace(/^0/,'')}</td>
+      <td class="td-num">${parseFloat(b.OBP).toFixed(3).replace(/^0/,'')}</td>
+      <td class="td-num">${parseFloat(b.SLG).toFixed(3).replace(/^0/,'')}</td>
+      <td class="td-num ${opsClass}">${parseFloat(b.OPS).toFixed(3).replace(/^0/,'')}</td>
+      <td class="td-num">${b.iso !== null ? b.iso.toFixed(3).replace(/^0/,'') : '—'}</td>
+      <td class="td-num">${b.babip !== null ? b.babip.toFixed(3).replace(/^0/,'') : '—'}</td>
+      <td class="td-num ${eraColor}">${fmtPct(b.k_pct)}</td>
+      <td class="td-num ${bbColor}">${fmtPct(b.bb_pct)}</td>
+      <td class="td-num">${b.sb_pct !== null ? fmtPct(b.sb_pct) : '—'}</td>
+    </tr>`;
+  }).join('');
+
+  // Update sorted header
+  document.querySelectorAll('#batting-table thead th').forEach(th => {
+    th.classList.toggle('sorted', th.dataset.col === col);
+  });
+}
+
+// ── Render Pitching Table ─────────────────────────────
+function renderPitching() {
+  const d = TEAM_DATA[currentSeason];
+  let pit = addPitchingAdv(d.pitching);
+  
+  const colMap = {
+    'IP':'IP','BF':'BF','H':'H','R':'R','ER':'ER','BB':'BB','SO':'SO',
+    'HBP':'HBP','WP':'WP','#P':'#P','ERA':'ERA','WHIP':'WHIP','K9':'K/9',
+    'K_PCT':'k_pct','BB_PCT':'bb_pct','KBB_PCT':'kbb','PIP':'pip','H9':'h9','FIP':'fip'
+  };
+  
+  const col = pitchingSort.col;
+  const dir = pitchingSort.dir;
+  const sortKey = colMap[col] || col;
+  
+  pit.sort((a, b) => {
+    let av = a[sortKey]; let bv = b[sortKey];
+    if (av === null || av === undefined) return 1;
+    if (bv === null || bv === undefined) return -1;
+    if (typeof av === 'string') av = parseFloat(av);
+    if (typeof bv === 'string') bv = parseFloat(bv);
+    return dir * (bv - av);
+  });
+
+  const tbody = document.getElementById('pitching-tbody');
+  tbody.innerHTML = pit.map(p => {
+    const era = parseFloat(p.ERA);
+    const eraClass = era <= 3.50 ? 'td-good' : era >= 7.00 ? 'td-bad' : '';
+    const whip = parseFloat(p.WHIP);
+    const whipClass = whip <= 1.30 ? 'td-good' : whip >= 2.50 ? 'td-bad' : '';
+    const kPctClass = p.k_pct !== null && p.k_pct >= 0.25 ? 'td-good' : '';
+    const bbPctClass = p.bb_pct !== null && p.bb_pct >= 0.20 ? 'td-bad' : '';
+    return `<tr>
+      <td>${p.name}</td>
+      <td>${p.number}</td>
+      <td class="td-num">${p.IP}</td>
+      <td class="td-num">${p.BF}</td>
+      <td class="td-num">${p.H}</td>
+      <td class="td-num">${p.R}</td>
+      <td class="td-num">${p.ER}</td>
+      <td class="td-num ${bbPctClass}">${p.BB}</td>
+      <td class="td-num ${kPctClass}">${p.SO}</td>
+      <td class="td-num">${p.HBP}</td>
+      <td class="td-num">${p.WP}</td>
+      <td class="td-num">${p['#P']}</td>
+      <td class="td-num ${eraClass}">${p.ERA}</td>
+      <td class="td-num ${whipClass}">${p.WHIP}</td>
+      <td class="td-num">${p['K/9']}</td>
+      <td class="td-num ${kPctClass}">${fmtPct(p.k_pct)}</td>
+      <td class="td-num ${bbPctClass}">${fmtPct(p.bb_pct)}</td>
+      <td class="td-num ${p.kbb !== null && p.kbb > 0.10 ? 'td-good' : ''}">${fmtPct(p.kbb)}</td>
+      <td class="td-num">${p.pip !== null ? p.pip.toFixed(1) : '—'}</td>
+      <td class="td-num">${p.h9 !== null ? p.h9.toFixed(1) : '—'}</td>
+      <td class="td-num ${p.fip !== null && p.fip <= 3.50 ? 'td-good' : p.fip > 7 ? 'td-bad' : ''}">${p.fip !== null ? p.fip.toFixed(2) : '—'}</td>
+    </tr>`;
+  }).join('');
+
+  document.querySelectorAll('#pitching-table thead th').forEach(th => {
+    th.classList.toggle('sorted', th.dataset.col === col);
+  });
+}
+
+// ── Render Game Log ────────────────────────────────────
+function renderGameLog() {
+  const games = TEAM_DATA[currentSeason].games;
+  let W = 0, L = 0;
+  document.getElementById('game-log-tbody').innerHTML = games.map((g, i) => {
+    if (g.result === 'W') W++;
+    else if (g.result === 'L') L++;
+    const diff = g.us - g.them;
+    const diffStr = (diff > 0 ? '+' : '') + diff;
+    const diffClass = diff > 0 ? 'td-good' : diff < 0 ? 'td-bad' : '';
+    const ha = g.home_away ? (g.home_away === 'home' ? 'H' : 'A') : '';
+    return `<tr>
+      <td style="text-align:left;font-size:.9rem">${g.opponent}</td>
+      <td>${ha}</td>
+      <td class="result-${g.result.toLowerCase()}">${g.result}</td>
+      <td><span class="score-us">${g.us}</span> <span style="color:var(--color-ink-muted)">–</span> <span class="score-them">${g.them}</span></td>
+      <td class="${diffClass}" style="font-family:var(--font-display);font-weight:700">${diffStr}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── Init & Events ──────────────────────────────────────
+function renderAll() {
+  renderOverview();
+  renderLeaders();
+  renderBatting();
+  renderPitching();
+  renderGameLog();
+}
+
+// Season tabs
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentSeason = btn.dataset.season;
+    battingSort = { col: 'OPS', dir: -1 };
+    pitchingSort = { col: 'ERA', dir: 1 };
+    renderAll();
+  });
+});
+
+// Batting table sort
+document.querySelector('#batting-table thead').addEventListener('click', e => {
+  const th = e.target.closest('th[data-col]');
+  if (!th) return;
+  const col = th.dataset.col;
+  // ERA-like: lower is better (dir=1 means ascending = best first)
+  const lowerBetter = ['SO','K_PCT','CS'];
+  if (battingSort.col === col) {
+    battingSort.dir *= -1;
+  } else {
+    battingSort.col = col;
+    battingSort.dir = lowerBetter.includes(col) ? 1 : -1;
+  }
+  renderBatting();
+});
+
+// Pitching table sort
+document.querySelector('#pitching-table thead').addEventListener('click', e => {
+  const th = e.target.closest('th[data-col]');
+  if (!th) return;
+  const col = th.dataset.col;
+  const higherBetter = ['IP','SO','K9','K_PCT','KBB_PCT','BF'];
+  if (pitchingSort.col === col) {
+    pitchingSort.dir *= -1;
+  } else {
+    pitchingSort.col = col;
+    pitchingSort.dir = higherBetter.includes(col) ? -1 : 1;
+  }
+  renderPitching();
+});
+
+renderAll();
+</script>
+</body>
+</html>
