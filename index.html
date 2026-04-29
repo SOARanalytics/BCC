@@ -1,829 +1,1572 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BCC Big Train 11U — Stats</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1A1714">
+<title>BCC Big Train 11U — Team Profile</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-/* ── True HZRDUS Design System ─────────────────────── */
+/* ============================================================
+   TRUE HZRDUS — Design System  (per supplied style guide v2)
+   ============================================================ */
 :root {
   --color-ground:        #F4F2EE;
   --color-surface:       #ECEAE5;
   --color-sunken:        #E2DFD8;
   --color-border:        #C8C4BB;
   --color-border-strong: #A09A90;
+
   --color-ink:           #1A1714;
   --color-ink-soft:      #3D3830;
   --color-ink-muted:     #6B6157;
   --color-ink-faint:     #9A9189;
+
   --color-gold:          #8A6410;
   --color-gold-mid:      #A67C1A;
   --color-gold-bright:   #C9A84C;
   --color-gold-tint:     #F5EDD6;
   --color-gold-border:   #C9A84C;
-  --color-reversed-bg:   #1A1714;
-  --color-reversed-text: #F4F2EE;
-  --color-reversed-muted:#9A9189;
+
+  --color-diamond-red:    #B01E24;
+  --color-diamond-blue:   #0076A3;
+  --color-diamond-yellow: #C8831A;
+  --color-diamond-carbon: #1A1714;
+
+  --color-reversed-bg:    #1A1714;
+  --color-reversed-text:  #F4F2EE;
+  --color-reversed-muted: #9A9189;
+
   --color-success: #2E7D32;
+  --color-warning: #C8831A;
   --color-danger:  #B01E24;
   --color-info:    #0076A3;
+
   --font-display: 'Barlow Condensed', Impact, 'Arial Narrow', sans-serif;
-  --font-body: 'Barlow', 'Helvetica Neue', sans-serif;
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --shadow-sm: 0 1px 3px rgba(26,23,20,.10);
-  --shadow-md: 0 3px 10px rgba(26,23,20,.12);
+  --font-body:    'Barlow', 'Helvetica Neue', Helvetica, sans-serif;
+
+  --text-xs:   0.8125rem;
+  --text-sm:   0.9375rem;
+  --text-base: 1.0625rem;
+  --text-md:   1.1875rem;
+  --text-lg:   1.375rem;
+  --text-xl:   1.75rem;
+  --text-2xl:  2.25rem;
+  --text-3xl:  3rem;
+  --text-4xl:  4.5rem;
+  --text-hero: 6rem;
+
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    900;
+
+  --tracking-tight:   -0.02em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.06em;
+  --tracking-wider:    0.14em;
+  --tracking-widest:   0.26em;
+
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.5rem;
+  --space-6:  2rem;
+  --space-8:  3rem;
+  --space-10: 4rem;
+  --space-12: 6rem;
+
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   8px;
+  --radius-pill: 999px;
+
+  --shadow-sm:    0 1px 3px  rgba(26,23,20,.10);
+  --shadow-md:    0 3px 10px rgba(26,23,20,.12);
+  --shadow-lg:    0 8px 28px rgba(26,23,20,.16);
+  --shadow-inset: inset 0 1px 0 rgba(255,255,255,.6);
+
+  --ease-snap: cubic-bezier(.25,0,0,1);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --transition-base: var(--duration-base) var(--ease-snap);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px;-webkit-font-smoothing:antialiased}
-body{background:var(--color-ground);color:var(--color-ink);font-family:var(--font-body);font-size:1.0625rem;line-height:1.6}
 
-/* ── Layout ─────── */
-.container{width:100%;max-width:1280px;margin:0 auto;padding:0 1.5rem}
-@media(min-width:640px){.container{padding:0 2rem}}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── Header ─────── */
-.site-header{background:var(--color-reversed-bg);padding:1.5rem 0;border-bottom:2px solid var(--color-gold-border)}
-.header-inner{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
-.team-badge{display:flex;align-items:center;gap:1rem}
-.diamond-mark{display:inline-grid;grid-template-columns:1fr 1fr;gap:2px;width:40px;height:40px;flex-shrink:0}
-.diamond-mark span{clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
-.dm-yellow{background:#C8831A}.dm-carbon{background:#F4F2EE}.dm-red{background:#B01E24}.dm-blue{background:#0076A3}
-.team-name{font-family:var(--font-display);font-size:2.5rem;font-weight:900;letter-spacing:-.02em;line-height:.95;text-transform:uppercase;color:var(--color-reversed-text)}
-.team-sub{font-family:var(--font-display);font-size:.85rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--color-gold-bright);margin-top:.2rem}
-.header-spacer{flex:1}
-.record-badge{text-align:right}
-.record-num{font-family:var(--font-display);font-size:2.25rem;font-weight:900;color:var(--color-gold-bright);letter-spacing:-.02em}
-.record-label{font-family:var(--font-display);font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--color-reversed-muted)}
-
-/* ── Season Tabs ─── */
-.season-bar{background:var(--color-sunken);border-bottom:1px solid var(--color-border);padding:.75rem 0}
-.season-tabs{display:flex;gap:.5rem}
-.tab-btn{font-family:var(--font-display);font-size:.95rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:transparent;border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:.5rem 1.25rem;cursor:pointer;color:var(--color-ink-muted);transition:all 150ms}
-.tab-btn.active{background:var(--color-ink);color:var(--color-ground);border-color:transparent}
-.tab-btn:hover:not(.active){border-color:var(--color-gold-border);color:var(--color-gold)}
-
-/* ── Section Headers ─ */
-.section{padding:2rem 0 1rem}
-.section-title{font-family:var(--font-display);font-size:1.75rem;font-weight:900;letter-spacing:-.01em;text-transform:uppercase;color:var(--color-ink);display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
-.section-title::after{content:'';flex:1;height:1px;background:var(--color-border)}
-.accent-bar{display:block;width:3px;height:28px;background:var(--color-gold);border-radius:2px;flex-shrink:0}
-
-/* ── Overview Cards ─ */
-.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem;margin-bottom:1.5rem}
-.stat-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:1rem 1.25rem;box-shadow:var(--shadow-sm)}
-.stat-card-value{font-family:var(--font-display);font-size:2rem;font-weight:900;letter-spacing:-.02em;color:var(--color-ink);line-height:1}
-.stat-card-value.gold{color:var(--color-gold)}
-.stat-card-value.green{color:var(--color-success)}
-.stat-card-value.red{color:var(--color-danger)}
-.stat-card-label{font-family:var(--font-body);font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-ink-muted);margin-top:.35rem}
-
-/* ── Tables ─────── */
-.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);margin-bottom:2rem}
-table{width:100%;border-collapse:collapse;font-size:.875rem;white-space:nowrap}
-thead tr{background:var(--color-reversed-bg)}
-thead th{font-family:var(--font-display);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-reversed-muted);padding:.6rem .8rem;text-align:right;cursor:pointer;user-select:none;white-space:nowrap}
-thead th:first-child,thead th:nth-child(2){text-align:left}
-thead th.sorted{color:var(--color-gold-bright)}
-thead th:hover{color:var(--color-gold-bright)}
-tbody tr{border-top:1px solid var(--color-border);transition:background 120ms}
-tbody tr:hover{background:var(--color-gold-tint)}
-tbody tr:nth-child(even){background:var(--color-surface)}
-tbody tr:nth-child(even):hover{background:var(--color-gold-tint)}
-td{padding:.55rem .8rem;text-align:right;color:var(--color-ink-soft)}
-td:first-child{text-align:left;font-weight:600;color:var(--color-ink)}
-td:nth-child(2){text-align:left;color:var(--color-ink-muted);font-size:.8rem}
-.td-num{font-family:var(--font-display);font-weight:700;font-size:.95rem}
-.td-highlight{color:var(--color-gold);font-weight:700}
-.td-good{color:var(--color-success)}
-.td-bad{color:var(--color-danger)}
-.td-neutral{color:var(--color-ink-muted)}
-
-/* ── Leader Cards ─── */
-.leaders-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin-bottom:2rem}
-.leader-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:1rem 1.25rem;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
-.leader-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--color-gold)}
-.leader-card-cat{font-family:var(--font-display);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-ink-muted);margin-bottom:.4rem}
-.leader-card-name{font-family:var(--font-display);font-size:1.2rem;font-weight:900;color:var(--color-ink);line-height:1.1;text-transform:uppercase}
-.leader-card-val{font-family:var(--font-display);font-size:2rem;font-weight:900;color:var(--color-gold);letter-spacing:-.02em;line-height:1}
-.leader-card-num{font-size:.75rem;color:var(--color-ink-muted);margin-top:.25rem}
-
-/* ── Game Log ──────── */
-.game-log-table td:first-child{font-weight:400}
-.result-w{font-family:var(--font-display);font-weight:900;font-size:1rem;color:var(--color-success)}
-.result-l{font-family:var(--font-display);font-weight:900;font-size:1rem;color:var(--color-danger)}
-.result-t{font-family:var(--font-display);font-weight:900;font-size:1rem;color:var(--color-ink-muted)}
-.score-us{font-family:var(--font-display);font-weight:900;font-size:1.1rem;color:var(--color-ink)}
-.score-them{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--color-ink-muted)}
-
-/* ── Bracket ──────── */
-.bracket-section{background:var(--color-sunken);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:1.5rem;margin-bottom:2rem}
-.bracket-title{font-family:var(--font-display);font-size:1.1rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--color-ink);margin-bottom:1rem}
-.bracket-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem}
-.bracket-round{display:flex;flex-direction:column;gap:.5rem}
-.bracket-round-label{font-family:var(--font-display);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-gold);margin-bottom:.35rem}
-.bracket-matchup{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:.6rem .9rem;font-size:.85rem;font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--color-ink)}
-.bracket-matchup span{color:var(--color-ink-muted);font-weight:400;font-size:.75rem;display:block;margin-top:.1rem}
-.bracket-bye{background:var(--color-gold-tint);border-color:var(--color-gold-border)}
-
-/* ── Schedule ──────── */
-.schedule-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
-@media(max-width:640px){.schedule-grid{grid-template-columns:1fr}}
-.schedule-day{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:1.25rem;box-shadow:var(--shadow-sm)}
-.schedule-day-title{font-family:var(--font-display);font-size:1rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--color-ink);border-bottom:1px solid var(--color-border);padding-bottom:.6rem;margin-bottom:.85rem}
-.schedule-game{display:flex;align-items:baseline;gap:.6rem;padding:.4rem 0;border-bottom:1px solid var(--color-border)}
-.schedule-game:last-child{border-bottom:none}
-.schedule-time{font-family:var(--font-display);font-weight:700;font-size:.85rem;color:var(--color-gold);min-width:52px;flex-shrink:0}
-.schedule-teams{font-size:.9rem;color:var(--color-ink)}
-.schedule-teams strong{color:var(--color-ink);font-weight:700}
-.schedule-teams .bcc{color:var(--color-gold);font-weight:700}
-
-/* ── Adv Stats Legend ─ */
-.legend-bar{display:flex;flex-wrap:wrap;gap:.5rem 1rem;margin-bottom:1.25rem}
-.legend-item{font-size:.75rem;color:var(--color-ink-muted)}
-.legend-item strong{color:var(--color-ink-soft)}
-
-/* ── Tooltip/note ──── */
-.tbl-note{font-size:.75rem;color:var(--color-ink-muted);margin-top:.5rem;margin-bottom:1rem}
-
-/* ── Footer ──── */
-.site-footer{background:var(--color-reversed-bg);color:var(--color-reversed-muted);padding:1.5rem 0;margin-top:3rem;font-size:.8rem;text-align:center}
-
-/* ── Responsive ──── */
-@media(max-width:768px){
-  .team-name{font-size:1.75rem}
-  .record-num{font-size:1.75rem}
-  .overview-grid{grid-template-columns:repeat(3,1fr)}
+html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+body {
+  background-color: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  background-image:
+    repeating-linear-gradient(
+      0deg, transparent, transparent 3px,
+      rgba(26,23,20,.018) 3px, rgba(26,23,20,.018) 4px
+    );
 }
+
+/* ── Typography utilities ─────────────────────────────── */
+.t-display {
+  font-family: var(--font-display); font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tight); line-height: 1;
+  text-transform: uppercase; color: var(--color-ink);
+}
+.t-h1 { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: var(--weight-bold); letter-spacing: var(--tracking-tight); line-height: 1.05; text-transform: uppercase; }
+.t-h2 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: var(--weight-bold); letter-spacing: var(--tracking-normal); line-height: 1.1; text-transform: uppercase; }
+.t-h3 { font-family: var(--font-display); font-size: var(--text-xl); font-weight: var(--weight-bold); letter-spacing: var(--tracking-wide); line-height: 1.2; text-transform: uppercase; }
+.t-label {
+  font-family: var(--font-body); font-size: var(--text-xs);
+  font-weight: var(--weight-semibold); letter-spacing: var(--tracking-widest);
+  text-transform: uppercase; color: var(--color-ink-muted);
+}
+.t-mono-num { font-variant-numeric: tabular-nums; }
+.t-gold { color: var(--color-gold); }
+.t-muted { color: var(--color-ink-muted); }
+
+.accent-bar {
+  display: block; width: 40px; height: 3px;
+  background: var(--color-gold); margin: var(--space-3) 0 var(--space-5);
+}
+.accent-bar--reversed { background: var(--color-gold-bright); }
+
+/* ── Layout ───────────────────────────────────────────── */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--space-5); }
+@media (min-width: 640px) { .container { padding: 0 var(--space-8); } }
+
+/* ── Header / brand bar ───────────────────────────────── */
+.brand {
+  background: var(--color-reversed-bg); color: var(--color-reversed-text);
+  border-bottom: 3px solid var(--color-gold-bright);
+  padding: var(--space-4) 0;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: var(--shadow-md);
+}
+.brand-row { display: flex; align-items: center; gap: var(--space-4); }
+.brand-mark {
+  display: inline-grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  width: 36px; height: 36px; flex-shrink: 0;
+}
+.brand-mark__quad { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+.brand-mark__quad--yellow { background: var(--color-diamond-yellow); }
+.brand-mark__quad--carbon { background: #4A4540; }
+.brand-mark__quad--red    { background: var(--color-diamond-red); }
+.brand-mark__quad--blue   { background: var(--color-diamond-blue); }
+.brand-name {
+  font-family: var(--font-display); font-weight: var(--weight-black);
+  font-size: var(--text-md); letter-spacing: var(--tracking-wider);
+  text-transform: uppercase; line-height: 1; color: var(--color-reversed-text);
+}
+.brand-sub {
+  font-family: var(--font-body); font-size: 0.75rem;
+  letter-spacing: var(--tracking-widest); text-transform: uppercase;
+  color: var(--color-gold-bright); margin-top: 2px;
+}
+
+/* ── Tab navigation ───────────────────────────────────── */
+.tabs {
+  background: var(--color-reversed-bg);
+  border-bottom: 1px solid #2D2825;
+  position: sticky; top: 64px; z-index: 99;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tabs-row { display: flex; min-width: max-content; }
+.tab {
+  flex: 0 0 auto;
+  background: transparent; border: none; cursor: pointer;
+  font-family: var(--font-display); font-size: var(--text-sm);
+  font-weight: var(--weight-bold); letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-reversed-muted);
+  padding: var(--space-4) var(--space-5);
+  min-height: 56px;
+  border-bottom: 3px solid transparent;
+  transition: all var(--transition-base);
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+.tab:hover { color: var(--color-reversed-text); }
+.tab.is-active {
+  color: var(--color-reversed-text);
+  border-bottom-color: var(--color-gold-bright);
+}
+.tab .tab-num {
+  display: inline-block; margin-right: var(--space-2);
+  color: var(--color-gold-bright); font-weight: var(--weight-black);
+}
+
+/* ── Section wrappers ─────────────────────────────────── */
+.page { padding: var(--space-6) 0 var(--space-10); display: none; }
+.page.is-active { display: block; }
+.section-reversed {
+  background: var(--color-reversed-bg); color: var(--color-reversed-text);
+  padding: var(--space-8) 0 var(--space-10);
+  margin-bottom: var(--space-8);
+}
+.section-reversed .t-display,
+.section-reversed .t-h1, .section-reversed .t-h2, .section-reversed .t-h3 { color: var(--color-reversed-text); }
+.section-reversed .t-label { color: var(--color-gold-bright); }
+
+.section-head {
+  display: flex; flex-wrap: wrap;
+  align-items: baseline; justify-content: space-between;
+  gap: var(--space-4); margin-bottom: var(--space-3);
+}
+.section-rule { height: 1px; background: var(--color-border); margin: var(--space-2) 0 var(--space-6); }
+.section-rule--gold { height: 2px; background: var(--color-gold-border); }
+
+/* ── Cards ────────────────────────────────────────────── */
+.card {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); padding: var(--space-5);
+  box-shadow: var(--shadow-sm), var(--shadow-inset);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+}
+.card--sunken { background: var(--color-sunken); border-color: var(--color-border-strong); }
+.card--reversed { background: #2A2521; border-color: #4A4540; color: var(--color-reversed-text); }
+
+/* ── KPI tiles ────────────────────────────────────────── */
+.kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); margin-bottom: var(--space-6); }
+@media (min-width: 720px) { .kpi-grid { grid-template-columns: repeat(4, 1fr); } }
+.kpi {
+  background: #2A2521;
+  border: 1px solid #4A4540;
+  border-left: 3px solid var(--color-gold-bright);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  position: relative;
+  overflow: hidden;
+}
+.kpi-label { font-family: var(--font-body); font-size: 0.75rem; font-weight: var(--weight-semibold); letter-spacing: var(--tracking-widest); text-transform: uppercase; color: var(--color-gold-bright); margin-bottom: var(--space-2); }
+.kpi-value { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: var(--weight-black); letter-spacing: var(--tracking-tight); line-height: 1; color: var(--color-reversed-text); margin-bottom: var(--space-1); }
+.kpi-detail { font-size: var(--text-xs); color: var(--color-reversed-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+
+/* ── Buttons ──────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-display); font-size: var(--text-sm);
+  font-weight: var(--weight-bold); letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  border: none; border-radius: var(--radius-sm);
+  min-height: 48px; padding: var(--space-3) var(--space-5);
+  cursor: pointer; transition: all var(--transition-base);
+  text-decoration: none; -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.btn--primary { background: var(--color-ink); color: var(--color-ground); }
+.btn--primary:hover { background: var(--color-ink-soft); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn--ghost { background: transparent; color: var(--color-ink); border: 1px solid var(--color-border-strong); }
+.btn--ghost:hover { background: var(--color-sunken); border-color: var(--color-ink); }
+.btn--ghost-gold { background: transparent; color: var(--color-gold); border: 2px solid var(--color-gold-border); }
+.btn--ghost-gold:hover { background: var(--color-gold-tint); }
+.btn--sm { font-size: var(--text-xs); min-height: 36px; padding: var(--space-2) var(--space-3); letter-spacing: var(--tracking-wider); }
+.btn.is-active { background: var(--color-ink); color: var(--color-ground); border-color: var(--color-ink); }
+.btn-group { display: inline-flex; flex-wrap: wrap; gap: var(--space-2); }
+
+/* ── Badges & pills ───────────────────────────────────── */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-display); font-size: var(--text-xs);
+  font-weight: var(--weight-bold); letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  padding: 3px 8px; border-radius: var(--radius-sm);
+  background: var(--color-sunken); color: var(--color-ink-muted);
+  border: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+.badge--gold { background: var(--color-gold-tint); color: var(--color-gold); border-color: var(--color-gold-border); }
+.badge--ink  { background: var(--color-ink); color: var(--color-ground); border-color: transparent; }
+.badge--green{ background: #E5F2E5; color: var(--color-success); border-color: var(--color-success); }
+.badge--yellow{ background: #FBF1D9; color: #806010; border-color: var(--color-warning); }
+.badge--red  { background: #FDECEA; color: var(--color-danger); border-color: var(--color-danger); }
+.badge--blue { background: #E3F3FA; color: var(--color-info); border-color: var(--color-info); }
+
+.pill-stab {
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: var(--radius-pill); flex-shrink: 0;
+  vertical-align: middle; margin-right: 4px;
+}
+.pill-stab--green  { background: var(--color-success); }
+.pill-stab--yellow { background: var(--color-warning); }
+.pill-stab--red    { background: var(--color-danger); }
+
+/* ── Stat tables ──────────────────────────────────────── */
+.tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: #fff; }
+.tbl { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.tbl th, .tbl td { padding: var(--space-3) var(--space-4); text-align: right; font-size: var(--text-sm); white-space: nowrap; }
+.tbl th:first-child, .tbl td:first-child { text-align: left; }
+.tbl thead th {
+  background: var(--color-ink); color: var(--color-ground);
+  font-family: var(--font-display); font-weight: var(--weight-bold);
+  font-size: var(--text-xs); letter-spacing: var(--tracking-wider);
+  text-transform: uppercase; padding: var(--space-3) var(--space-4);
+  position: sticky; top: 0;
+  border-bottom: 2px solid var(--color-gold-bright);
+}
+.tbl tbody tr {
+  cursor: pointer;
+  border-top: 1px solid var(--color-border);
+  transition: background var(--transition-base);
+}
+.tbl tbody tr:nth-child(even) { background: #FAF8F4; }
+.tbl tbody tr:hover { background: var(--color-gold-tint); }
+.tbl tbody tr.is-open { background: var(--color-gold-tint); border-left: 3px solid var(--color-gold); }
+.tbl tbody tr.no-hover { cursor: default; }
+.tbl tbody tr.no-hover:hover { background: inherit; }
+.tbl tbody tr:nth-child(even).no-hover:hover { background: #FAF8F4; }
+.tbl .player-cell { font-weight: var(--weight-semibold); display: flex; align-items: center; gap: var(--space-2); }
+.tbl .player-num {
+  display: inline-block; min-width: 24px;
+  font-family: var(--font-display); font-weight: var(--weight-bold);
+  color: var(--color-gold); font-size: var(--text-xs);
+}
+.tbl .player-hand {
+  font-family: var(--font-display); font-size: 0.7rem;
+  color: var(--color-ink-muted); padding: 1px 4px;
+  border: 1px solid var(--color-border-strong); border-radius: 2px;
+  letter-spacing: 0;
+}
+.tbl .num-strong { color: var(--color-ink); font-weight: var(--weight-semibold); }
+.tbl .num-elite { color: var(--color-gold); font-weight: var(--weight-bold); }
+.tbl .num-warn  { color: var(--color-danger); font-weight: var(--weight-semibold); }
+
+.detail-row { background: var(--color-sunken) !important; cursor: default !important; }
+.detail-row:hover { background: var(--color-sunken) !important; }
+.detail-cell { padding: 0 !important; text-align: left !important; white-space: normal !important; }
+.detail-inner { padding: var(--space-5) var(--space-5) var(--space-6); border-top: 1px solid var(--color-border-strong); }
+
+/* ── Caption / annotation ─────────────────────────────── */
+.section-caption {
+  display: flex; align-items: flex-start; gap: var(--space-3);
+  background: var(--color-gold-tint);
+  border-left: 3px solid var(--color-gold);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-5);
+  font-size: var(--text-sm); line-height: 1.5; color: var(--color-ink-soft);
+}
+.section-caption strong { color: var(--color-gold); font-family: var(--font-display); letter-spacing: var(--tracking-wide); text-transform: uppercase; font-weight: var(--weight-bold); }
+
+.alert-strong {
+  background: #FDECEA; border-left: 3px solid var(--color-danger);
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm);
+  margin-bottom: var(--space-5); font-size: var(--text-sm); line-height: 1.5;
+}
+.alert-strong strong { color: var(--color-danger); font-family: var(--font-display); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+
+/* ── Definition card ──────────────────────────────────── */
+.def-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-bottom: var(--space-5); }
+@media (min-width: 720px) { .def-grid { grid-template-columns: repeat(2, 1fr); } }
+.def-card {
+  background: #fff; border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-gold);
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm);
+}
+.def-card strong { font-family: var(--font-display); font-weight: var(--weight-bold); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-ink); }
+.def-card span { display: block; font-size: var(--text-sm); color: var(--color-ink-soft); margin-top: 2px; }
+
+/* ── Bucket bars (60-pitch wall viz) ──────────────────── */
+.bucket-grid { display: grid; grid-template-columns: 60px 1fr 60px; gap: var(--space-2) var(--space-3); align-items: center; }
+.bucket-label { font-family: var(--font-display); font-weight: var(--weight-bold); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-ink-muted); }
+.bucket-bar { background: var(--color-sunken); border-radius: var(--radius-sm); height: 24px; position: relative; overflow: hidden; }
+.bucket-bar__fill { height: 100%; background: var(--color-ink); border-right: 2px solid var(--color-gold); transition: width var(--transition-base); }
+.bucket-bar__fill--warn { background: var(--color-danger); border-right-color: #800000; }
+.bucket-num { font-family: var(--font-display); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-ink); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── Appearance log row ───────────────────────────────── */
+.appearance-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 60px 80px 80px;
+  gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+.appearance-row:nth-child(even) { background: #FAF8F4; }
+.appearance-row--violation { background: #FDECEA !important; border-left: 3px solid var(--color-danger); }
+.app-date { font-variant-numeric: tabular-nums; color: var(--color-ink-soft); }
+.app-bar { background: var(--color-sunken); height: 14px; border-radius: 2px; position: relative; overflow: hidden; }
+.app-bar__fill { height: 100%; background: var(--color-ink); }
+.app-bar__fill--warn { background: var(--color-warning); }
+.app-bar__fill--danger { background: var(--color-danger); }
+.app-pitches { font-variant-numeric: tabular-nums; font-weight: var(--weight-semibold); text-align: right; }
+.app-rest { font-size: 0.75rem; text-align: center; }
+
+/* ── Game log strip ───────────────────────────────────── */
+.gamelog { display: flex; flex-wrap: wrap; gap: 4px; }
+.gamelog-pip {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 3px;
+  font-family: var(--font-display); font-weight: var(--weight-bold);
+  font-size: 0.75rem; color: #fff;
+  cursor: pointer;
+  transition: transform var(--transition-base);
+  position: relative;
+}
+.gamelog-pip:hover { transform: scale(1.15); z-index: 5; }
+.gamelog-pip--w { background: var(--color-success); }
+.gamelog-pip--l { background: var(--color-danger); }
+.gamelog-pip--t { background: var(--color-ink-muted); }
+
+/* ── Detail panels ─────────────────────────────────────── */
+.detail-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
+@media (min-width: 720px) { .detail-grid { grid-template-columns: 1fr 1fr; } }
+
+.stat-list { display: grid; grid-template-columns: 1fr auto; gap: var(--space-2) var(--space-4); margin-bottom: var(--space-3); }
+.stat-list dt { font-size: var(--text-sm); color: var(--color-ink-muted); display: flex; align-items: center; gap: var(--space-2); }
+.stat-list dd { font-family: var(--font-display); font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; font-size: var(--text-base); color: var(--color-ink); text-align: right; }
+.stat-list dd .raw { font-family: var(--font-body); font-weight: var(--weight-regular); color: var(--color-ink-faint); font-size: var(--text-xs); margin-left: var(--space-2); }
+
+.subhead {
+  font-family: var(--font-display); font-weight: var(--weight-bold);
+  font-size: var(--text-sm); letter-spacing: var(--tracking-wider);
+  text-transform: uppercase; color: var(--color-gold);
+  border-bottom: 1px solid var(--color-gold-border);
+  padding-bottom: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+
+/* ── Footer / disclaimer ──────────────────────────────── */
+.disclaimer {
+  background: var(--color-sunken); border-top: 1px solid var(--color-border);
+  padding: var(--space-6) 0; font-size: var(--text-xs); color: var(--color-ink-muted);
+  text-align: center; line-height: 1.6; margin-top: var(--space-10);
+}
+.disclaimer code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--color-ground); padding: 1px 4px; border-radius: 2px; color: var(--color-ink-soft); }
+
+/* ── Misc utilities ────────────────────────────────────── */
+.flex { display: flex; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-5 { margin-top: var(--space-5); }
+.mt-6 { margin-top: var(--space-6); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-5 { margin-bottom: var(--space-5); }
+.mb-6 { margin-bottom: var(--space-6); }
+
+/* ── Hidden ──────────────────────────────────────────── */
+[hidden] { display: none !important; }
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container">
-    <div class="header-inner">
-      <div class="team-badge">
-        <div class="diamond-mark">
-          <span class="dm-yellow"></span><span class="dm-carbon"></span>
-          <span class="dm-red"></span><span class="dm-blue"></span>
-        </div>
-        <div>
-          <div class="team-name">BCC Big Train</div>
-          <div class="team-sub">11U · Bethesda, MD</div>
-        </div>
-      </div>
-      <div class="header-spacer"></div>
-      <div class="record-badge" id="header-record">
-        <div class="record-num">4-3</div>
-        <div class="record-label">2026 Spring</div>
-      </div>
+<!-- ───── BRAND BAR ───────────────────────────────────── -->
+<header class="brand">
+  <div class="container brand-row">
+    <div class="brand-mark" aria-hidden="true">
+      <div class="brand-mark__quad brand-mark__quad--yellow"></div>
+      <div class="brand-mark__quad brand-mark__quad--carbon"></div>
+      <div class="brand-mark__quad brand-mark__quad--red"></div>
+      <div class="brand-mark__quad brand-mark__quad--blue"></div>
+    </div>
+    <div>
+      <div class="brand-name">BCC Big Train 11U</div>
+      <div class="brand-sub">Team Profile · Player Development · 2025–26</div>
     </div>
   </div>
 </header>
 
-<div class="season-bar">
-  <div class="container">
-    <div class="season-tabs">
-      <button class="tab-btn active" data-season="spring">2026 Spring</button>
-      <button class="tab-btn" data-season="fall">2025 Fall</button>
-    </div>
+<!-- ───── TAB NAV ─────────────────────────────────────── -->
+<nav class="tabs" role="tablist">
+  <div class="container tabs-row">
+    <button class="tab is-active" role="tab" data-page="overview"><span class="tab-num">01</span>Overview</button>
+    <button class="tab" role="tab" data-page="hitting"><span class="tab-num">02</span>Hitting</button>
+    <button class="tab" role="tab" data-page="pitching"><span class="tab-num">03</span>Pitching</button>
+    <button class="tab" role="tab" data-page="workload"><span class="tab-num">04</span>Pitch Smart</button>
   </div>
-</div>
+</nav>
 
-<main class="container">
-
-  <!-- OVERVIEW -->
-  <div class="section">
-    <div class="section-title"><span class="accent-bar"></span>Season Overview</div>
-    <div class="overview-grid" id="overview-cards"></div>
-  </div>
-
-  <!-- BATTING LEADERS -->
-  <div class="section">
-    <div class="section-title"><span class="accent-bar"></span>Batting Leaders</div>
-    <div class="leaders-grid" id="batting-leaders"></div>
-  </div>
-
-  <!-- BATTING STATS -->
-  <div class="section">
-    <div class="section-title"><span class="accent-bar"></span>Batting</div>
-    <div class="legend-bar">
-      <span class="legend-item"><strong>ISO</strong> Isolated Power (SLG−AVG)</span>
-      <span class="legend-item"><strong>BABIP</strong> Batting Avg on Balls in Play</span>
-      <span class="legend-item"><strong>K%</strong> Strikeout Rate (SO/PA)</span>
-      <span class="legend-item"><strong>BB%</strong> Walk Rate (BB/PA)</span>
-      <span class="legend-item"><strong>SB%</strong> Stolen Base Success Rate</span>
-      <span class="legend-item"><strong>wRC+</strong> Weighted Runs Created (100 = avg)</span>
-    </div>
-    <div class="table-wrap">
-      <table id="batting-table">
-        <thead>
-          <tr>
-            <th>Player</th><th>#</th>
-            <th data-col="G">G</th>
-            <th data-col="AB">AB</th>
-            <th data-col="R">R</th>
-            <th data-col="H">H</th>
-            <th data-col="2B">2B</th>
-            <th data-col="3B">3B</th>
-            <th data-col="HR">HR</th>
-            <th data-col="RBI">RBI</th>
-            <th data-col="BB">BB</th>
-            <th data-col="SO">K</th>
-            <th data-col="SB">SB</th>
-            <th data-col="CS">CS</th>
-            <th data-col="HBP">HBP</th>
-            <th data-col="AVG">AVG</th>
-            <th data-col="OBP">OBP</th>
-            <th data-col="SLG">SLG</th>
-            <th data-col="OPS">OPS</th>
-            <th data-col="ISO">ISO</th>
-            <th data-col="BABIP">BABIP</th>
-            <th data-col="K_PCT">K%</th>
-            <th data-col="BB_PCT">BB%</th>
-            <th data-col="SB_PCT">SB%</th>
-          </tr>
-        </thead>
-        <tbody id="batting-tbody"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- PITCHING LEADERS -->
-  <div class="section">
-    <div class="section-title"><span class="accent-bar"></span>Pitching Leaders</div>
-    <div class="leaders-grid" id="pitching-leaders"></div>
-  </div>
-
-  <!-- PITCHING STATS -->
-  <div class="section">
-    <div class="section-title"><span class="accent-bar"></span>Pitching</div>
-    <div class="legend-bar">
-      <span class="legend-item"><strong>K%</strong> Strikeout Rate (K/BF)</span>
-      <span class="legend-item"><strong>BB%</strong> Walk Rate (BB/BF)</span>
-      <span class="legend-item"><strong>K-BB%</strong> Strikeout minus Walk Rate</span>
-      <span class="legend-item"><strong>P/IP</strong> Pitches per Inning</span>
-      <span class="legend-item"><strong>H/9</strong> Hits per 9 Innings</span>
-      <span class="legend-item"><strong>FIP</strong> Fielding-Independent Pitching (approx)</span>
-    </div>
-    <div class="table-wrap">
-      <table id="pitching-table">
-        <thead>
-          <tr>
-            <th>Player</th><th>#</th>
-            <th data-col="IP">IP</th>
-            <th data-col="BF">BF</th>
-            <th data-col="H">H</th>
-            <th data-col="R">R</th>
-            <th data-col="ER">ER</th>
-            <th data-col="BB">BB</th>
-            <th data-col="SO">K</th>
-            <th data-col="HBP">HBP</th>
-            <th data-col="WP">WP</th>
-            <th data-col="#P">#P</th>
-            <th data-col="ERA">ERA</th>
-            <th data-col="WHIP">WHIP</th>
-            <th data-col="K9">K/9</th>
-            <th data-col="K_PCT">K%</th>
-            <th data-col="BB_PCT">BB%</th>
-            <th data-col="KBB_PCT">K−BB%</th>
-            <th data-col="PIP">P/IP</th>
-            <th data-col="H9">H/9</th>
-            <th data-col="FIP">FIP</th>
-          </tr>
-        </thead>
-        <tbody id="pitching-tbody"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- GAME LOG -->
-  <div class="section">
-    <div class="section-title"><span class="accent-bar"></span>Game Log</div>
-    <div class="table-wrap">
-      <table class="game-log-table">
-        <thead>
-          <tr>
-            <th style="text-align:left">Opponent</th>
-            <th>H/A</th>
-            <th>Result</th>
-            <th>Score</th>
-            <th>Run Diff</th>
-          </tr>
-        </thead>
-        <tbody id="game-log-tbody"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- WHO'S WHO SCHEDULE -->
-  <div class="section">
-    <div class="section-title"><span class="accent-bar"></span>Who's Who Tournament — Schedule</div>
-    <div class="schedule-grid">
-      <div class="schedule-day">
-        <div class="schedule-day-title">Saturday — Pool Play</div>
-        <div class="schedule-game"><span class="schedule-time">11:00am</span><span class="schedule-teams">Prospects at Graysox</span></div>
-        <div class="schedule-game"><span class="schedule-time">11:00am</span><span class="schedule-teams">Gambrills at Kent Island</span></div>
-        <div class="schedule-game"><span class="schedule-time">1:00pm</span><span class="schedule-teams">Prospects at Bagel Bombers</span></div>
-        <div class="schedule-game"><span class="schedule-time">1:00pm</span><span class="schedule-teams">Gambrills at <span class="bcc">BCC</span></span></div>
-        <div class="schedule-game"><span class="schedule-time">3:00pm</span><span class="schedule-teams">Kent Island at Bagel Bombers</span></div>
-        <div class="schedule-game"><span class="schedule-time">3:00pm</span><span class="schedule-teams">Graysox at Delmarva</span></div>
-        <div class="schedule-game"><span class="schedule-time">5:00pm</span><span class="schedule-teams"><span class="bcc">BCC</span> at Delmarva</span></div>
-      </div>
-      <div class="schedule-day">
-        <div class="schedule-day-title">Sunday — Bracket</div>
-        <div class="bracket-round">
-          <div class="bracket-round-label">Quarterfinals</div>
-          <div class="bracket-matchup bracket-bye">1st Place <span>BYE — advances directly to semis</span></div>
-          <div class="bracket-matchup">5th vs 4th <span>Game B1</span></div>
-          <div class="bracket-matchup">6th vs 3rd <span>Game B2</span></div>
-          <div class="bracket-matchup">7th vs 2nd <span>Game B3</span></div>
-          <div class="bracket-round-label" style="margin-top:.75rem">Semifinals</div>
-          <div class="bracket-matchup">1st vs B1 Winner <span>Game B4</span></div>
-          <div class="bracket-matchup">B2 Winner vs B3 Winner <span>Game B5</span></div>
-          <div class="bracket-round-label" style="margin-top:.75rem">Championship</div>
-          <div class="bracket-matchup" style="border-color:var(--color-gold-border);background:var(--color-gold-tint)">B4 Winner vs B5 Winner <span>No time limit · Mercy rule in effect</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="tbl-note">Seeding: (1) Record (2) Runs Allowed (3) Runs Scored (4) Head-to-Head (5) Coin flip · Teams: Prospects, Graysox, Gambrills, Kent Island, Bagel Bombers, BCC, Delmarva · 6 innings / 2-hr limit · 11U Mercy: 12 after 3 · 10 after 4 · 8 after 5</div>
-  </div>
-
+<!-- ───── PAGES ───────────────────────────────────────── -->
+<main id="app">
+  <!-- pages rendered by JS -->
+  <section id="page-overview" class="page is-active"></section>
+  <section id="page-hitting"  class="page"></section>
+  <section id="page-pitching" class="page"></section>
+  <section id="page-workload" class="page"></section>
 </main>
 
-<footer class="site-footer">
+<footer class="disclaimer">
   <div class="container">
-    BCC Big Train 11U · Data sourced from GameChanger · Built with True HZRDUS design system
+    Source: GameChanger play-by-play, 42 games · 2,492 PA · 9,001 logged pitches.<br>
+    Process metrics (<code>K%</code>, <code>BB%</code>, <code>Contact%</code>, <code>SwStr%</code>, <code>F-Strike%</code>) are weighted above outcome stats per Russell Carleton's stabilization research.<br>
+    Pitch Smart (MLB / USA Baseball) thresholds: 11–12U max 85 pitches/day, rest curve 0/1/2/3/4 days, 80 IP/year cap.
   </div>
 </footer>
 
+<!-- ───── DATA PAYLOAD ───────────────────────────────── -->
+<script id="bcc-data" type="application/json">{"team":{"name":"BCC Big Train 11U","season_current":"2026-spring","seasons":["2025-fall","2026-spring"],"total_games":42,"total_pas":2492,"total_pitches":9001,"record_by_season":{"2025-fall":{"W":25,"L":10,"T":0,"R":294,"RA":200,"games":35},"2026-spring":{"W":4,"L":3,"T":0,"R":66,"RA":53,"games":7}},"career_record":{"W":29,"L":13,"R":360,"RA":253,"games":42,"RPG":14.5952},"pythagenpat":{"expected_wins":28.6286,"actual_wins":29,"delta_wins":0.3714,"_interpretation":"Positive delta = winning more than runs predict (cluster luck or close-game wins). Negative delta = underperforming."},"fip_constant":9.0726,"team_priors":{"K%":0.141,"BB%":0.1532,"Swing%":0.4018,"Contact%":0.7891,"SwStr%":0.0848,"AVG":0.2966,"p_K%":0.141,"p_BB%":0.1532,"p_FStr%":0.5381,"CSW%":0.2389,"p_GB%":0.4764},"stabilization":{"K%":60,"BB%":120,"Swing%":50,"Contact%":100,"SwStr%":55,"ISO":160,"OBP":460,"SLG":320,"AVG":910,"BABIP":820,"GB%":80,"FB%":80,"LD%":600,"p_K%":70,"p_BB%":170,"p_GB%":70,"p_FStr%":150,"CSW%":250},"pitch_smart":{"max_per_day":85,"rest_thresholds":[[20,0],[35,1],[50,2],[65,3],[10000,4]],"annual_innings_cap":80,"min_months_off_per_year":4},"sb_break_even":0.7,"defense":{"by_position":{"SS":{"unknown":{"balls_fielded":66,"errors":19}},"RF":{"unknown":{"balls_fielded":96,"errors":2}},"1B":{"unknown":{"balls_fielded":213,"errors":3}},"3B":{"unknown":{"balls_fielded":33,"errors":17}},"P":{"unknown":{"balls_fielded":36,"errors":4}},"CF":{"unknown":{"balls_fielded":148,"errors":2}},"LF":{"unknown":{"balls_fielded":93,"errors":0}},"2B":{"unknown":{"balls_fielded":54,"errors":14}},"C":{"unknown":{"balls_fielded":17,"errors":0}}},"catcher_team":{"SB_allowed_total":215,"CS_total":26,"CS%_team":0.1079,"_note":"Team-level CS%; per-catcher attribution requires inning-by-inning catcher tracking from boxscore positions."}}},"batting":{"Joshua Lopez":{"number":"2","bat":"R","throw":"R","G_played":38,"counts":{"PA":99,"AB":71,"R":0,"H":18,"1B":14,"2B":3,"3B":1,"HR":0,"TB":23,"RBI":0,"BB":27,"HBP":1,"K":16,"GIDP":1,"SB":0,"CS":0,"PO":0},"process":{"P_per_PA":3.9495,"Swing%":0.3095,"Contact%":0.7107,"SwStr%":0.0895,"Whiff%":0.2893,"F_PStrike%_against":0.4848,"K%":0.1616,"BB%":0.2727,"BB_K":1.6875},"outcome":{"AVG":0.2535,"OBP":0.4646,"SLG":0.3239,"OPS":0.7886,"ISO":0.0704,"BABIP":0.3273,"wOBA_basic":0.3793},"batted_ball":{"GB%":0.5091,"FB%":0.2,"LD%":0.2364,"PU%":0.0545,"HardHit%_proxy":0.2182,"BIP":55},"splits":{"two_strike":{"PA":38,"K%":0.4211,"AVG":0.0789},"ahead_in_count_PAs":55,"behind_in_count_PAs":27,"RISP":{"PA":40,"AB":28,"H":5,"AVG":0.1786}},"stab":{"K%":"GREEN","BB%":"YELLOW","Swing%":"GREEN","Contact%":"GREEN","SwStr%":"GREEN","AVG":"RED","OBP":"RED","SLG":"RED","BABIP":"RED","GB%":"YELLOW","FB%":"YELLOW"},"regressed":{"K%_regressed":0.1538,"BB%_regressed":0.2072,"Swing%_regressed":0.3199,"SwStr%_regressed":0.0889,"Contact%_regressed":0.7462,"AVG_regressed":0.2934},"positions":{"2B":38,"LF":14,"P":10,"RF":25,"CF":2},"by_season":{"2025-fall":{"G":31,"PA":80,"AB":56,"BB":23,"K":13,"H":13,"process":{"P_per_PA":3.9375,"Swing%":0.3111,"Contact%":0.7041,"SwStr%":0.0921,"Whiff%":0.2959,"F_PStrike%_against":0.475,"K%":0.1625,"BB%":0.2875,"BB_K":1.7692},"outcome":{"AVG":0.2321,"OBP":0.4625,"SLG":0.3214,"OPS":0.7839,"ISO":0.0893,"BABIP":0.3023,"wOBA_basic":0.3781}},"2026-spring":{"G":7,"PA":19,"AB":15,"BB":4,"K":3,"H":5,"process":{"P_per_PA":4.0,"Swing%":0.3026,"Contact%":0.7391,"SwStr%":0.0789,"Whiff%":0.2609,"F_PStrike%_against":0.5263,"K%":0.1579,"BB%":0.2105,"BB_K":1.3333},"outcome":{"AVG":0.3333,"OBP":0.4737,"SLG":0.3333,"OPS":0.807,"ISO":0.0,"BABIP":0.4167,"wOBA_basic":0.3842}}}},"Adam Ingram":{"number":"3","bat":"R","throw":"R","G_played":29,"counts":{"PA":85,"AB":64,"R":0,"H":21,"1B":15,"2B":5,"3B":0,"HR":1,"TB":29,"RBI":0,"BB":15,"HBP":5,"K":9,"GIDP":0,"SB":0,"CS":0,"PO":0},"process":{"P_per_PA":3.5294,"Swing%":0.41,"Contact%":0.7967,"SwStr%":0.0833,"Whiff%":0.2033,"F_PStrike%_against":0.5059,"K%":0.1059,"BB%":0.1765,"BB_K":1.6667},"outcome":{"AVG":0.3281,"OBP":0.4824,"SLG":0.4531,"OPS":0.9355,"ISO":0.125,"BABIP":0.3704,"wOBA_basic":0.4206},"batted_ball":{"GB%":0.4364,"FB%":0.2182,"LD%":0.2909,"PU%":0.0545,"HardHit%_proxy":0.2364,"BIP":55},"splits":{"two_strike":{"PA":32,"K%":0.2812,"AVG":0.1562},"ahead_in_count_PAs":38,"behind_in_count_PAs":27,"RISP":{"PA":45,"AB":38,"H":13,"AVG":0.3421}},"stab":{"K%":"GREEN","BB%":"YELLOW","Swing%":"GREEN","Contact%":"GREEN","SwStr%":"GREEN","AVG":"RED","OBP":"RED","SLG":"RED","BABIP":"RED","GB%":"YELLOW","FB%":"YELLOW"},"regressed":{"K%_regressed":0.1204,"BB%_regressed":0.1628,"Swing%_regressed":0.4088,"SwStr%_regressed":0.0836,"Contact%_regressed":0.7933,"AVG_regressed":0.2986},"positions":{"SS":23,"RF":1,"P":7,"3B":6,"2B":13},"by_season":{"2025-fall":{"G":22,"PA":63,"AB":49,"BB":10,"K":6,"H":15,"process":{"P_per_PA":3.4127,"Swing%":0.4512,"Contact%":0.7938,"SwStr%":0.093,"Whiff%":0.2062,"F_PStrike%_against":0.5397,"K%":0.0952,"BB%":0.1587,"BB_K":1.6667},"outcome":{"AVG":0.3061,"OBP":0.4603,"SLG":0.3673,"OPS":0.8277,"ISO":0.0612,"BABIP":0.3488,"wOBA_basic":0.3865}},"2026-spring":{"G":7,"PA":22,"AB":15,"BB":5,"K":3,"H":6,"process":{"P_per_PA":3.8636,"Swing%":0.3059,"Contact%":0.8077,"SwStr%":0.0588,"Whiff%":0.1923,"F_PStrike%_against":0.4091,"K%":0.1364,"BB%":0.2273,"BB_K":1.6667},"outcome":{"AVG":0.4,"OBP":0.5455,"SLG":0.7333,"OPS":1.2788,"ISO":0.3333,"BABIP":0.4545,"wOBA_basic":0.5182}}}},"Darcy Mizejewski":{"number":"7","bat":"L","throw":"R","G_played":39,"counts":{"PA":98,"AB":75,"R":0,"H":13,"1B":7,"2B":6,"3B":0,"HR":0,"TB":19,"RBI":0,"BB":22,"HBP":1,"K":18,"GIDP":0,"SB":0,"CS":0,"PO":0},"process":{"P_per_PA":4.1122,"Swing%":0.3375,"Contact%":0.6838,"SwStr%":0.1067,"Whiff%":0.3162,"F_PStrike%_against":0.4898,"K%":0.1837,"BB%":0.2245,"BB_K":1.2222},"outcome":{"AVG":0.1733,"OBP":0.3673,"SLG":0.2533,"OPS":0.6207,"ISO":0.08,"BABIP":0.2281,"wOBA_basic":0.3051},"batted_ball":{"GB%":0.3509,"FB%":0.386,"LD%":0.1754,"PU%":0.0877,"HardHit%_proxy":0.1053,"BIP":57},"splits":{"two_strike":{"PA":49,"K%":0.3673,"AVG":0.1429},"ahead_in_count_PAs":55,"behind_in_count_PAs":33,"RISP":{"PA":47,"AB":35,"H":5,"AVG":0.1429}},"stab":{"K%":"GREEN","BB%":"YELLOW","Swing%":"GREEN","Contact%":"GREEN","SwStr%":"GREEN","AVG":"RED","OBP":"RED","SLG":"RED","BABIP":"RED","GB%":"YELLOW","FB%":"YELLOW"},"regressed":{"K%_regressed":0.1675,"BB%_regressed":0.1852,"Swing%_regressed":0.3446,"SwStr%_regressed":0.1041,"Contact%_regressed":0.7284,"AVG_regressed":0.2872},"positions":{"P":11,"2B":16,"SS":33,"CF":2,"3B":1,"RF":5,"LF":6},"by_season":{"2025-fall":{"G":33,"PA":85,"AB":63,"BB":21,"K":16,"H":13,"process":{"P_per_PA":4.2,"Swing%":0.3249,"Contact%":0.6724,"SwStr%":0.1064,"Whiff%":0.3276,"F_PStrike%_against":0.4706,"K%":0.1882,"BB%":0.2471,"BB_K":1.3125},"outcome":{"AVG":0.2063,"OBP":0.4118,"SLG":0.3016,"OPS":0.7134,"ISO":0.0952,"BABIP":0.2766,"wOBA_basic":0.3435}},"2026-spring":{"G":6,"PA":13,"AB":12,"BB":1,"K":2,"H":0,"process":{"P_per_PA":3.5385,"Swing%":0.4348,"Contact%":0.75,"SwStr%":0.1087,"Whiff%":0.25,"F_PStrike%_against":0.6154,"K%":0.1538,"BB%":0.0769,"BB_K":0.5},"outcome":{"AVG":0.0,"OBP":0.0769,"SLG":0.0,"OPS":0.0769,"ISO":0.0,"BABIP":0.0,"wOBA_basic":0.0538}}}},"Ren Endo":{"number":"11","bat":"R","throw":"R","G_played":42,"counts":{"PA":101,"AB":74,"R":0,"H":11,"1B":9,"2B":1,"3B":1,"HR":0,"TB":14,"RBI":0,"BB":23,"HBP":4,"K":24,"GIDP":0,"SB":0,"CS":0,"PO":0},"process":{"P_per_PA":4.099,"Swing%":0.3623,"Contact%":0.6733,"SwStr%":0.1184,"Whiff%":0.3267,"F_PStrike%_against":0.4059,"K%":0.2376,"BB%":0.2277,"BB_K":0.9583},"outcome":{"AVG":0.1486,"OBP":0.3762,"SLG":0.1892,"OPS":0.5654,"ISO":0.0405,"BABIP":0.22,"wOBA_basic":0.2955},"batted_ball":{"GB%":0.56,"FB%":0.18,"LD%":0.22,"PU%":0.04,"HardHit%_proxy":0.1,"BIP":50},"splits":{"two_strike":{"PA":53,"K%":0.434,"AVG":0.0566},"ahead_in_count_PAs":56,"behind_in_count_PAs":31,"RISP":{"PA":46,"AB":33,"H":5,"AVG":0.1515}},"stab":{"K%":"GREEN","BB%":"YELLOW","Swing%":"GREEN","Contact%":"GREEN","SwStr%":"GREEN","AVG":"RED","OBP":"RED","SLG":"RED","BABIP":"RED","GB%":"YELLOW","FB%":"YELLOW"},"regressed":{"K%_regressed":0.2016,"BB%_regressed":0.1872,"Swing%_regressed":0.3666,"SwStr%_regressed":0.1144,"Contact%_regressed":0.7196,"AVG_regressed":0.2854},"positions":{"LF":6,"2B":42,"RF":34,"P":13},"by_season":{"2025-fall":{"G":35,"PA":83,"AB":59,"BB":21,"K":20,"H":9,"process":{"P_per_PA":4.1807,"Swing%":0.3516,"Contact%":0.6475,"SwStr%":0.1239,"Whiff%":0.3525,"F_PStrike%_against":0.3614,"K%":0.241,"BB%":0.253,"BB_K":1.05},"outcome":{"AVG":0.1525,"OBP":0.3976,"SLG":0.1864,"OPS":0.584,"ISO":0.0339,"BABIP":0.2308,"wOBA_basic":0.3084}},"2026-spring":{"G":7,"PA":18,"AB":15,"BB":2,"K":4,"H":2,"process":{"P_per_PA":3.7222,"Swing%":0.4179,"Contact%":0.7857,"SwStr%":0.0896,"Whiff%":0.2143,"F_PStrike%_against":0.6111,"K%":0.2222,"BB%":0.1111,"BB_K":0.5},"outcome":{"AVG":0.1333,"OBP":0.2778,"SLG":0.2,"OPS":0.4778,"ISO":0.0667,"BABIP":0.1818,"wOBA_basic":0.2361}}}},"Logan Pressberg":{"number":"12","bat":"R","throw":"R","G_played":39,"counts":{"PA":108,"AB":79,"R":0,"H":25,"1B":19,"2B":2,"3B":4,"HR":0,"TB":35,"RBI":0,"BB":22,"HBP":6,"K":12,"GIDP":2,"SB":0,"CS":0,"PO":0},"process":{"P_per_PA":3.787,"Swing%":0.3839,"Contact%":0.8662,"SwStr%":0.0513,"Whiff%":0.1338,"F_PStrike%_against":0.5093,"K%":0.1111,"BB%":0.2037,"BB_K":1.8333},"outcome":{"AVG":0.3165,"OBP":0.4907,"SLG":0.443,"OPS":0.9338,"ISO":0.1266,"BABIP":0.3731,"wOBA_basic":0.4222},"batted_ball":{"GB%":0.4627,"FB%":0.2239,"LD%":0.2239,"PU%":0.0896,"HardHit%_proxy":0.1343,"BIP":67},"splits":{"two_strike":{"PA":36,"K%":0.3333,"AVG":0.1944},"ahead_in_count_PAs":53,"behind_in_count_PAs":27,"RISP":{"PA":51,"AB":35,"H":11,"AVG":0.3143}},"stab":{"K%":"GREEN","BB%":"YELLOW","Swing%":"GREEN","Contact%":"GREEN","SwStr%":"GREEN","AVG":"RED","OBP":"RED","SLG":"RED","BABIP":"RED","GB%":"YELLOW","FB%":"YELLOW"},"regressed":{"K%_regressed":0.1218,"BB%_regressed":0.1771,"Swing%_regressed":0.3858,"SwStr%_regressed":0.0553,"Contact%_regressed":0.8362,"AVG_regressed":0.2981},"positions":{"RF":14,"SS":24,"P":14,"2B":6,"CF":19,"C":24,"LF":5,"3B":7},"by_season":{"2025-fall":{"G":32,"PA":88,"AB":65,"BB":18,"K":11,"H":21,"process":{"P_per_PA":3.9318,"Swing%":0.3786,"Contact%":0.8473,"SwStr%":0.0578,"Whiff%":0.1527,"F_PStrike%_against":0.4886,"K%":0.125,"BB%":0.2045,"BB_K":1.6364},"outcome":{"AVG":0.3231,"OBP":0.5,"SLG":0.4769,"OPS":0.9769,"ISO":0.1538,"BABIP":0.3889,"wOBA_basic":0.4375}},"2026-spring":{"G":7,"PA":20,"AB":14,"BB":4,"K":1,"H":4,"process":{"P_per_PA":3.15,"Swing%":0.4127,"Contact%":0.9615,"SwStr%":0.0159,"Whiff%":0.0385,"F_PStrike%_against":0.6,"K%":0.05,"BB%":0.2,"BB_K":4.0},"outcome":{"AVG":0.2857,"OBP":0.45,"SLG":0.2857,"OPS":0.7357,"ISO":0.0,"BABIP":0.3077,"wOBA_basic":0.355}}}},"Oliver Wells":{"number":"14","bat":"L","throw":"R","G_played":40,"counts":{"PA":108,"AB":77,"R":0,"H":22,"1B":17,"2B":5,"3B":0,"HR":0,"TB":27,"RBI":0,"BB":27,"HBP":1,"K":10,"GIDP":0,"SB":0,"CS":0,"PO":0},"process":{"P_per_PA":3.8056,"Swing%":0.3674,"Contact%":0.8146,"SwStr%":0.0681,"Whiff%":0.1854,"F_PStrike%_against":0.537,"K%":0.0926,"BB%":0.25,"BB_K":2.7},"outcome":{"AVG":0.2857,"OBP":0.463,"SLG":0.3506,"OPS":0.8136,"ISO":0.0649,"BABIP":0.3284,"wOBA_basic":0.381},"batted_ball":{"GB%":0.6119,"FB%":0.2239,"LD%":0.1045,"PU%":0.0597,"HardHit%_proxy":0.1045,"BIP":67},"splits":{"two_strike":{"PA":41,"K%":0.2439,"AVG":0.1463},"ahead_in_count_PAs":54,"behind_in_count_PAs":33,"RISP":{"PA":48,"AB":34,"H":6,"AVG":0.1765}},"stab":{"K%":"GREEN","BB%":"YELLOW","Swing%":"GREEN","Contact%":"GREEN","SwStr%":"GREEN","AVG":"RED","OBP":"RED","SLG":"RED","BABIP":"RED","GB%":"YELLOW","FB%":"YELLOW"},"regressed":{"K%_regressed":0.1099,"BB%_regressed":0.199,"Swing%_regressed":0.3711,"SwStr%_regressed":0.0701,"Contact%_regressed":0.8044,"AVG_regressed":0.2957},"positions":{"3B":28,"LF":17,"SS":20,"2B":1,"P":20,"RF":11},"by_season":{"2025-fall":{"G":35,"PA":92,"AB":70,"BB":19,"K":6,"H":22,"process":{"P_per_PA":3.663,"Swing%":0.3917,"Contact%":0.8712,"SwStr%":0.0504,"Whiff%":0.1288,"F_PStrike%_against":0.5435,"K%":0.0652,"BB%":0.2065,"BB_K":3.1667},"outcome":{"AVG":0.3143,"OBP":0.4565,"SLG":0.3857,"OPS":0.8422,"ISO":0.0714,"BABIP":0.3438,"wOBA_basic":0.3864}},"2026-spring":{"G":5,"PA":16,"AB":7,"BB":8,"K":4,"H":0,"process":{"P_per_PA":4.625,"Swing%":0.2568,"Contact%":0.4211,"SwStr%":0.1486,"Whiff%":0.5789,"F_PStrike%_against":0.5,"K%":0.25,"BB%":0.5,"BB_K":2.0},"outcome":{"AVG":0.0,"OBP":0.5,"SLG":0.0,"OPS":0.5,"ISO":0.0,"BABIP":0.0,"wOBA_basic":0.35}}}},"Grant Wang":{"number":"17","bat":"R","throw":"L","G_played":37,"counts":{"PA":86,"AB":68,"R":0,"H":16,"1B":14,"2B":1,"3B":1,"HR":0,"TB":19,"RBI":0,"BB":16,"HBP":2,"K":14,"GIDP":2,"SB":0,"CS":0,"PO":0},"process":{"P_per_PA":3.8837,"Swing%":0.3952,"Contact%":0.6818,"SwStr%":0.1257,"Whiff%":0.3182,"F_PStrike%_against":0.5116,"K%":0.1628,"BB%":0.186,"BB_K":1.1429},"outcome":{"AVG":0.2353,"OBP":0.3953,"SLG":0.2794,"OPS":0.6748,"ISO":0.0441,"BABIP":0.2963,"wOBA_basic":0.3262},"batted_ball":{"GB%":0.6481,"FB%":0.1481,"LD%":0.1852,"PU%":0.0185,"HardHit%_proxy":0.1852,"BIP":54},"splits":{"two_strike":{"PA":44,"K%":0.2955,"AVG":0.1591},"ahead_in_count_PAs":41,"behind_in_count_PAs":31,"RISP":{"PA":34,"AB":26,"H":5,"AVG":0.1923}},"stab":{"K%":"GREEN","BB%":"YELLOW","Swing%":"GREEN","Contact%":"GREEN","SwStr%":"GREEN","AVG":"RED","OBP":"RED","SLG":"RED","BABIP":"RED","GB%":"YELLOW","FB%":"YELLOW"},"regressed":{"K%_regressed":0.1538,"BB%_regressed":0.1669,"Swing%_regressed":0.3961,"SwStr%_regressed":0.12,"Contact%_regressed":0.7281,"AVG_regressed":0.2923},"positions":{"1B":41,"P":10,"RF":1},"by_season":{"2025-fall":{"G":31,"PA":72,"AB":56,"BB":15,"K":10,"H":10,"process":{"P_per_PA":3.9722,"Swing%":0.3916,"Contact%":0.6696,"SwStr%":0.1294,"Whiff%":0.3304,"F_PStrike%_against":0.5,"K%":0.1389,"BB%":0.2083,"BB_K":1.5},"outcome":{"AVG":0.1786,"OBP":0.3611,"SLG":0.2321,"OPS":0.5933,"ISO":0.0536,"BABIP":0.2174,"wOBA_basic":0.2951}},"2026-spring":{"G":6,"PA":14,"AB":12,"BB":1,"K":4,"H":6,"process":{"P_per_PA":3.4286,"Swing%":0.4167,"Contact%":0.75,"SwStr%":0.1042,"Whiff%":0.25,"F_PStrike%_against":0.5714,"K%":0.2857,"BB%":0.0714,"BB_K":0.25},"outcome":{"AVG":0.5,"OBP":0.5714,"SLG":0.5,"OPS":1.0714,"ISO":0.0,"BABIP":0.75,"wOBA_basic":0.4857}}}},"Beckett Dickinson":{"number":"21","bat":"L","throw":"L","G_played":42,"counts":{"PA":130,"AB":98,"R":0,"H":30,"1B":21,"2B":9,"3B":0,"HR":0,"TB":39,"RBI":0,"BB":26,"HBP":6,"K":19,"GIDP":1,"SB":0,"CS":0,"PO":0},"process":{"P_per_PA":3.8846,"Swing%":0.3446,"Contact%":0.7989,"SwStr%":0.0693,"Whiff%":0.2011,"F_PStrike%_against":0.5077,"K%":0.1462,"BB%":0.2,"BB_K":1.3684},"outcome":{"AVG":0.3061,"OBP":0.4769,"SLG":0.398,"OPS":0.8749,"ISO":0.0918,"BABIP":0.3797,"wOBA_basic":0.4042},"batted_ball":{"GB%":0.481,"FB%":0.2025,"LD%":0.2911,"PU%":0.0253,"HardHit%_proxy":0.2025,"BIP":79},"splits":{"two_strike":{"PA":61,"K%":0.3115,"AVG":0.2131},"ahead_in_count_PAs":57,"behind_in_count_PAs":39,"RISP":{"PA":52,"AB":39,"H":13,"AVG":0.3333}},"stab":{"K%":"GREEN","BB%":"GREEN","Swing%":"GREEN","Contact%":"GREEN","SwStr%":"GREEN","AVG":"RED","OBP":"RED","SLG":"RED","BABIP":"RED","GB%":"YELLOW","FB%":"YELLOW"},"regressed":{"K%_regressed":0.1445,"BB%_regressed":0.1775,"Swing%_regressed":0.3497,"SwStr%_regressed":0.0708,"Contact%_regressed":0.7953,"AVG_regressed":0.2975},"positions":{"CF":29,"P":5,"1B":3,"RF":10,"LF":22},"by_season":{"2025-fall":{"G":35,"PA":106,"AB":79,"BB":23,"K":16,"H":20,"process":{"P_per_PA":3.8113,"Swing%":0.3416,"Contact%":0.7971,"SwStr%":0.0693,"Whiff%":0.2029,"F_PStrike%_against":0.4906,"K%":0.1509,"BB%":0.217,"BB_K":1.4375},"outcome":{"AVG":0.2532,"OBP":0.4434,"SLG":0.3291,"OPS":0.7725,"ISO":0.0759,"BABIP":0.3175,"wOBA_basic":0.3679}},"2026-spring":{"G":7,"PA":24,"AB":19,"BB":3,"K":3,"H":10,"process":{"P_per_PA":4.2083,"Swing%":0.3564,"Contact%":0.8056,"SwStr%":0.0693,"Whiff%":0.1944,"F_PStrike%_against":0.5833,"K%":0.125,"BB%":0.125,"BB_K":1.0},"outcome":{"AVG":0.5263,"OBP":0.625,"SLG":0.6842,"OPS":1.3092,"ISO":0.1579,"BABIP":0.625,"wOBA_basic":0.5646}}}},"Grant Richards":{"number":"22","bat":"R","throw":"R","G_played":42,"counts":{"PA":131,"AB":114,"R":0,"H":48,"1B":29,"2B":17,"3B":1,"HR":1,"TB":70,"RBI":0,"BB":16,"HBP":1,"K":10,"GIDP":0,"SB":0,"CS":0,"PO":0},"process":{"P_per_PA":3.1069,"Swing%":0.4349,"Contact%":0.8418,"SwStr%":0.0688,"Whiff%":0.1582,"F_PStrike%_against":0.5725,"K%":0.0763,"BB%":0.1221,"BB_K":1.6},"outcome":{"AVG":0.4211,"OBP":0.4962,"SLG":0.614,"OPS":1.1102,"ISO":0.193,"BABIP":0.4563,"wOBA_basic":0.4798},"batted_ball":{"GB%":0.3269,"FB%":0.3365,"LD%":0.2885,"PU%":0.0481,"HardHit%_proxy":0.2788,"BIP":104},"splits":{"two_strike":{"PA":33,"K%":0.2727,"AVG":0.303},"ahead_in_count_PAs":57,"behind_in_count_PAs":37,"RISP":{"PA":49,"AB":45,"H":24,"AVG":0.5333}},"stab":{"K%":"GREEN","BB%":"GREEN","Swing%":"GREEN","Contact%":"GREEN","SwStr%":"GREEN","AVG":"RED","OBP":"RED","SLG":"RED","BABIP":"RED","GB%":"GREEN","FB%":"GREEN"},"regressed":{"K%_regressed":0.0967,"BB%_regressed":0.137,"Swing%_regressed":0.4313,"SwStr%_regressed":0.0707,"Contact%_regressed":0.8228,"AVG_regressed":0.3104},"positions":{"P":11,"LF":8,"C":35,"2B":7,"3B":8,"RF":16,"CF":1},"by_season":{"2025-fall":{"G":35,"PA":107,"AB":95,"BB":11,"K":9,"H":42,"process":{"P_per_PA":3.028,"Swing%":0.4599,"Contact%":0.8456,"SwStr%":0.071,"Whiff%":0.1544,"F_PStrike%_against":0.5794,"K%":0.0841,"BB%":0.1028,"BB_K":1.2222},"outcome":{"AVG":0.4421,"OBP":0.5047,"SLG":0.6632,"OPS":1.1678,"ISO":0.2211,"BABIP":0.4824,"wOBA_basic":0.5009}},"2026-spring":{"G":7,"PA":24,"AB":19,"BB":5,"K":1,"H":6,"process":{"P_per_PA":3.4583,"Swing%":0.3373,"Contact%":0.8214,"SwStr%":0.0602,"Whiff%":0.1786,"F_PStrike%_against":0.5417,"K%":0.0417,"BB%":0.2083,"BB_K":5.0},"outcome":{"AVG":0.3158,"OBP":0.4583,"SLG":0.3684,"OPS":0.8268,"ISO":0.0526,"BABIP":0.3333,"wOBA_basic":0.3854}}}},"Tommy DiPompeo":{"number":"24","bat":"R","throw":"R","G_played":36,"counts":{"PA":101,"AB":90,"R":0,"H":25,"1B":15,"2B":7,"3B":3,"HR":0,"TB":38,"RBI":0,"BB":9,"HBP":1,"K":10,"GIDP":2,"SB":0,"CS":0,"PO":0},"process":{"P_per_PA":3.3564,"Swing%":0.413,"Contact%":0.8857,"SwStr%":0.0472,"Whiff%":0.1143,"F_PStrike%_against":0.5743,"K%":0.099,"BB%":0.0891,"BB_K":0.9},"outcome":{"AVG":0.2778,"OBP":0.3465,"SLG":0.4222,"OPS":0.7688,"ISO":0.1444,"BABIP":0.3125,"wOBA_basic":0.3371},"batted_ball":{"GB%":0.6375,"FB%":0.1,"LD%":0.2375,"PU%":0.025,"HardHit%_proxy":0.2,"BIP":80},"splits":{"two_strike":{"PA":31,"K%":0.3226,"AVG":0.2258},"ahead_in_count_PAs":46,"behind_in_count_PAs":33,"RISP":{"PA":48,"AB":43,"H":14,"AVG":0.3256}},"stab":{"K%":"GREEN","BB%":"YELLOW","Swing%":"GREEN","Contact%":"GREEN","SwStr%":"GREEN","AVG":"RED","OBP":"RED","SLG":"RED","BABIP":"RED","GB%":"GREEN","FB%":"GREEN"},"regressed":{"K%_regressed":0.1147,"BB%_regressed":0.1239,"Swing%_regressed":0.4115,"SwStr%_regressed":0.0524,"Contact%_regressed":0.8454,"AVG_regressed":0.2949},"positions":{"RF":7,"LF":19,"1B":13,"CF":28,"SS":1,"C":5,"P":1},"by_season":{"2025-fall":{"G":31,"PA":87,"AB":77,"BB":9,"K":7,"H":24,"process":{"P_per_PA":3.3563,"Swing%":0.3973,"Contact%":0.9052,"SwStr%":0.0377,"Whiff%":0.0948,"F_PStrike%_against":0.5287,"K%":0.0805,"BB%":0.1034,"BB_K":1.2857},"outcome":{"AVG":0.3117,"OBP":0.3793,"SLG":0.4805,"OPS":0.8598,"ISO":0.1688,"BABIP":0.3429,"wOBA_basic":0.373}},"2026-spring":{"G":5,"PA":14,"AB":13,"BB":0,"K":3,"H":1,"process":{"P_per_PA":3.3571,"Swing%":0.5106,"Contact%":0.7917,"SwStr%":0.1064,"Whiff%":0.2083,"F_PStrike%_against":0.8571,"K%":0.2143,"BB%":0.0,"BB_K":0.0},"outcome":{"AVG":0.0769,"OBP":0.1429,"SLG":0.0769,"OPS":0.2198,"ISO":0.0,"BABIP":0.1,"wOBA_basic":0.1143}}}},"Everett Harkins":{"number":"51","bat":"R","throw":"R","G_played":34,"counts":{"PA":95,"AB":74,"R":0,"H":34,"1B":20,"2B":10,"3B":2,"HR":2,"TB":54,"RBI":0,"BB":13,"HBP":8,"K":15,"GIDP":0,"SB":0,"CS":0,"PO":0},"process":{"P_per_PA":3.3789,"Swing%":0.4486,"Contact%":0.7431,"SwStr%":0.1153,"Whiff%":0.2569,"F_PStrike%_against":0.6105,"K%":0.1579,"BB%":0.1368,"BB_K":0.8667},"outcome":{"AVG":0.4595,"OBP":0.5789,"SLG":0.7297,"OPS":1.3087,"ISO":0.2703,"BABIP":0.5614,"wOBA_basic":0.5516},"batted_ball":{"GB%":0.5593,"FB%":0.1186,"LD%":0.322,"PU%":0.0,"HardHit%_proxy":0.3729,"BIP":59},"splits":{"two_strike":{"PA":37,"K%":0.4054,"AVG":0.1892},"ahead_in_count_PAs":35,"behind_in_count_PAs":35,"RISP":{"PA":60,"AB":45,"H":22,"AVG":0.4889}},"stab":{"K%":"GREEN","BB%":"YELLOW","Swing%":"GREEN","Contact%":"GREEN","SwStr%":"GREEN","AVG":"RED","OBP":"RED","SLG":"RED","BABIP":"RED","GB%":"YELLOW","FB%":"YELLOW"},"regressed":{"K%_regressed":0.1514,"BB%_regressed":0.146,"Swing%_regressed":0.4423,"SwStr%_regressed":0.1108,"Contact%_regressed":0.7619,"AVG_regressed":0.3088},"positions":{"C":15,"3B":15,"P":3,"SS":2,"LF":2,"RF":1,"1B":4},"by_season":{"2025-fall":{"G":28,"PA":79,"AB":60,"BB":12,"K":10,"H":26,"process":{"P_per_PA":3.3165,"Swing%":0.4389,"Contact%":0.7826,"SwStr%":0.0954,"Whiff%":0.2174,"F_PStrike%_against":0.5823,"K%":0.1266,"BB%":0.1519,"BB_K":1.2},"outcome":{"AVG":0.4333,"OBP":0.5696,"SLG":0.7,"OPS":1.2696,"ISO":0.2667,"BABIP":0.5102,"wOBA_basic":0.5361}},"2026-spring":{"G":6,"PA":16,"AB":14,"BB":1,"K":5,"H":8,"process":{"P_per_PA":3.6875,"Swing%":0.4915,"Contact%":0.5862,"SwStr%":0.2034,"Whiff%":0.4138,"F_PStrike%_against":0.75,"K%":0.3125,"BB%":0.0625,"BB_K":0.2},"outcome":{"AVG":0.5714,"OBP":0.625,"SLG":0.8571,"OPS":1.4821,"ISO":0.2857,"BABIP":0.875,"wOBA_basic":0.6281}}}},"Will Kowalski":{"number":"98","bat":"R","throw":"R","G_played":36,"counts":{"PA":108,"AB":92,"R":0,"H":33,"1B":15,"2B":10,"3B":2,"HR":6,"TB":65,"RBI":0,"BB":16,"HBP":0,"K":17,"GIDP":2,"SB":0,"CS":0,"PO":0},"process":{"P_per_PA":3.713,"Swing%":0.3965,"Contact%":0.7421,"SwStr%":0.1022,"Whiff%":0.2579,"F_PStrike%_against":0.537,"K%":0.1574,"BB%":0.1481,"BB_K":0.9412},"outcome":{"AVG":0.3587,"OBP":0.4537,"SLG":0.7065,"OPS":1.1602,"ISO":0.3478,"BABIP":0.3913,"wOBA_basic":0.4852},"batted_ball":{"GB%":0.2667,"FB%":0.3467,"LD%":0.3333,"PU%":0.0533,"HardHit%_proxy":0.2933,"BIP":75},"splits":{"two_strike":{"PA":46,"K%":0.3696,"AVG":0.2391},"ahead_in_count_PAs":53,"behind_in_count_PAs":33,"RISP":{"PA":52,"AB":48,"H":21,"AVG":0.4375}},"stab":{"K%":"GREEN","BB%":"YELLOW","Swing%":"GREEN","Contact%":"GREEN","SwStr%":"GREEN","AVG":"RED","OBP":"RED","SLG":"RED","BABIP":"RED","GB%":"YELLOW","FB%":"YELLOW"},"regressed":{"K%_regressed":0.1515,"BB%_regressed":0.1508,"Swing%_regressed":0.3971,"SwStr%_regressed":0.1001,"Contact%_regressed":0.7603,"AVG_regressed":0.3023},"positions":{"3B":36,"P":18,"1B":15,"RF":2,"LF":1},"by_season":{"2025-fall":{"G":29,"PA":85,"AB":74,"BB":11,"K":14,"H":27,"process":{"P_per_PA":3.7176,"Swing%":0.3987,"Contact%":0.7619,"SwStr%":0.0949,"Whiff%":0.2381,"F_PStrike%_against":0.5412,"K%":0.1647,"BB%":0.1294,"BB_K":0.7857},"outcome":{"AVG":0.3649,"OBP":0.4471,"SLG":0.7432,"OPS":1.1903,"ISO":0.3784,"BABIP":0.4,"wOBA_basic":0.4947}},"2026-spring":{"G":7,"PA":23,"AB":18,"BB":5,"K":3,"H":6,"process":{"P_per_PA":3.6957,"Swing%":0.3882,"Contact%":0.6667,"SwStr%":0.1294,"Whiff%":0.3333,"F_PStrike%_against":0.5217,"K%":0.1304,"BB%":0.2174,"BB_K":1.6667},"outcome":{"AVG":0.3333,"OBP":0.4783,"SLG":0.5556,"OPS":1.0338,"ISO":0.2222,"BABIP":0.3571,"wOBA_basic":0.45}}}}},"pitching":{"Joshua Lopez":{"number":"2","throw":"R","G_apps":10,"counts":{"BF":78,"IP":"13.1","H":17,"R":22,"ER":10,"BB":19,"HBP":0,"K":7,"HR":2,"WP":7,"1B_allowed":13,"2B_allowed":2,"3B_allowed":0},"workload":{"total_pitches":311,"P_per_BF":3.9872,"P_per_IP":23.325},"command":{"Strike%":0.4727,"F_Strike%":0.4359,"CSW%":0.2026,"called_strikes":40,"swinging_strikes":23,"fouls":32,"in_play":52,"balls":164},"results":{"K%":0.0897,"BB%":0.2436,"K-BB%":-0.1538,"WHIP":2.7,"BAA":0.2881,"FIP_11U":14.2476,"FIP_constant_used":9.0726},"batted_ball":{"GB%":0.4808,"FB%":0.2885,"LD%":0.2115,"PU%":0.0192,"BIP":52},"buckets":{"1-15":{"PA":38,"K%":0.1053,"BB%":0.2105,"BAA":0.2333,"pitches":154},"16-30":{"PA":24,"K%":0.125,"BB%":0.3333,"BAA":0.3125,"pitches":92},"31-45":{"PA":10,"K%":0.0,"BB%":0.2,"BAA":0.5,"pitches":39},"46-60":{"PA":5,"K%":0.0,"BB%":0.0,"BAA":0.2,"pitches":19},"61+":{"PA":1,"K%":0.0,"BB%":1.0,"BAA":null,"pitches":7}},"stab":{"K%":"GREEN","BB%":"RED","FStr%":"YELLOW","CSW%":"GREEN","GB%":"YELLOW"},"regressed":{"K%_regressed":0.114,"BB%_regressed":0.1816,"FStr%_regressed":0.5031,"CSW%_regressed":0.2188},"appearances":[{"game_id":"f8c4aa7f-8ec1-4280-bd0d-65b9d0bdde87","date":"2025-08-24","pitches":43,"required_rest_after":2,"days_off_since_prev_apparance":"NA","rest_compliance":"NA","over_daily_max":false},{"game_id":"81874658-be0e-4ae7-8c13-3254e3590cc9","date":"2025-08-31","pitches":70,"required_rest_after":4,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"4c9d9c16-f382-4f0b-816b-69c6c26a7363","date":"2025-09-20","pitches":8,"required_rest_after":0,"days_off_since_prev_apparance":19,"rest_compliance":true,"over_daily_max":false},{"game_id":"5ed4ed8e-7e88-43a0-870a-d876f1b5afac","date":"2025-09-20","pitches":24,"required_rest_after":1,"days_off_since_prev_apparance":-1,"rest_compliance":false,"over_daily_max":false},{"game_id":"e070e04c-1be2-4646-bb03-ed69338acf6c","date":"2025-09-27","pitches":15,"required_rest_after":0,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"7aeeb040-95b4-4c8b-8d16-b1169af2596f","date":"2025-10-08","pitches":28,"required_rest_after":1,"days_off_since_prev_apparance":10,"rest_compliance":true,"over_daily_max":false},{"game_id":"3635e8d1-0ee4-4194-acb4-17b785c4e7bc","date":"2025-11-01","pitches":29,"required_rest_after":1,"days_off_since_prev_apparance":23,"rest_compliance":true,"over_daily_max":false},{"game_id":"1ad7ea35-f3c5-4e9a-97f7-016c765be153","date":"2026-03-29","pitches":25,"required_rest_after":1,"days_off_since_prev_apparance":147,"rest_compliance":true,"over_daily_max":false},{"game_id":"8d03235d-e125-490c-814f-29c30f35dbf0","date":"2026-04-14","pitches":22,"required_rest_after":1,"days_off_since_prev_apparance":15,"rest_compliance":true,"over_daily_max":false},{"game_id":"ebad68c5-05be-4ff9-be7e-7d0309647cfb","date":"2026-04-19","pitches":47,"required_rest_after":2,"days_off_since_prev_apparance":4,"rest_compliance":true,"over_daily_max":false}]},"Adam Ingram":{"number":"3","throw":"R","G_apps":7,"counts":{"BF":83,"IP":"13.1","H":23,"R":19,"ER":15,"BB":12,"HBP":5,"K":17,"HR":1,"WP":9,"1B_allowed":16,"2B_allowed":6,"3B_allowed":0},"workload":{"total_pitches":269,"P_per_BF":3.241,"P_per_IP":20.175},"command":{"Strike%":0.5502,"F_Strike%":0.5,"CSW%":0.2454,"called_strikes":38,"swinging_strikes":28,"fouls":35,"in_play":47,"balls":121},"results":{"K%":0.2048,"BB%":0.1446,"K-BB%":0.0602,"WHIP":2.625,"BAA":0.3485,"FIP_11U":11.3226,"FIP_constant_used":9.0726},"batted_ball":{"GB%":0.4043,"FB%":0.2553,"LD%":0.234,"PU%":0.1064,"BIP":47},"buckets":{"1-15":{"PA":30,"K%":0.2,"BB%":0.1,"BAA":0.2963,"pitches":95},"16-30":{"PA":26,"K%":0.0385,"BB%":0.1923,"BAA":0.4286,"pitches":70},"31-45":{"PA":14,"K%":0.2857,"BB%":0.1429,"BAA":0.3333,"pitches":57},"46-60":{"PA":10,"K%":0.4,"BB%":0.1,"BAA":0.2222,"pitches":31},"61+":{"PA":3,"K%":0.6667,"BB%":0.3333,"BAA":0.0,"pitches":16}},"stab":{"K%":"GREEN","BB%":"RED","FStr%":"YELLOW","CSW%":"GREEN","GB%":"YELLOW"},"regressed":{"K%_regressed":0.1756,"BB%_regressed":0.1503,"FStr%_regressed":0.5246,"CSW%_regressed":0.2423},"appearances":[{"game_id":"f8c4aa7f-8ec1-4280-bd0d-65b9d0bdde87","date":"2025-08-24","pitches":6,"required_rest_after":0,"days_off_since_prev_apparance":"NA","rest_compliance":"NA","over_daily_max":false},{"game_id":"bd13010f-957c-48ab-8f57-23c195ab1785","date":"2025-08-31","pitches":76,"required_rest_after":4,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"27a9ed8d-f09b-4869-8375-f21269a084a5","date":"2025-09-07","pitches":52,"required_rest_after":3,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"957b4932-b22f-4076-99fe-56ad822cc23b","date":"2025-09-14","pitches":54,"required_rest_after":3,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"a0978908-6899-454c-9edb-bef566fb4ef4","date":"2025-09-28","pitches":52,"required_rest_after":3,"days_off_since_prev_apparance":13,"rest_compliance":true,"over_daily_max":false},{"game_id":"d5a64b18-9d0d-4045-be7a-5b8dc04121af","date":"2026-04-12","pitches":7,"required_rest_after":0,"days_off_since_prev_apparance":195,"rest_compliance":true,"over_daily_max":false},{"game_id":"3b573912-4d8f-4b96-a2c4-349f37a5ec3d","date":"2026-04-12","pitches":23,"required_rest_after":1,"days_off_since_prev_apparance":-1,"rest_compliance":false,"over_daily_max":false}]},"Darcy Mizejewski":{"number":"7","throw":"R","G_apps":10,"counts":{"BF":101,"IP":"20.0","H":28,"R":21,"ER":12,"BB":10,"HBP":2,"K":13,"HR":0,"WP":7,"1B_allowed":20,"2B_allowed":8,"3B_allowed":0},"workload":{"total_pitches":351,"P_per_BF":3.4752,"P_per_IP":17.55},"command":{"Strike%":0.5812,"F_Strike%":0.5842,"CSW%":0.2308,"called_strikes":56,"swinging_strikes":25,"fouls":47,"in_play":76,"balls":147},"results":{"K%":0.1287,"BB%":0.099,"K-BB%":0.0297,"WHIP":1.9,"BAA":0.3146,"FIP_11U":9.5726,"FIP_constant_used":9.0726},"batted_ball":{"GB%":0.5263,"FB%":0.1974,"LD%":0.1974,"PU%":0.0789,"BIP":76},"buckets":{"1-15":{"PA":45,"K%":0.1333,"BB%":0.1556,"BAA":0.2368,"pitches":162},"16-30":{"PA":39,"K%":0.1795,"BB%":0.0769,"BAA":0.3056,"pitches":143},"31-45":{"PA":16,"K%":0.0,"BB%":0.0,"BAA":0.4375,"pitches":44},"46-60":{"PA":1,"K%":0.0,"BB%":0.0,"BAA":1.0,"pitches":2},"61+":{"PA":0,"K%":null,"BB%":null,"BAA":null,"pitches":0}},"stab":{"K%":"GREEN","BB%":"YELLOW","FStr%":"YELLOW","CSW%":"GREEN","GB%":"GREEN"},"regressed":{"K%_regressed":0.1337,"BB%_regressed":0.133,"FStr%_regressed":0.5566,"CSW%_regressed":0.2342},"appearances":[{"game_id":"f8c4aa7f-8ec1-4280-bd0d-65b9d0bdde87","date":"2025-08-24","pitches":33,"required_rest_after":1,"days_off_since_prev_apparance":"NA","rest_compliance":"NA","over_daily_max":false},{"game_id":"5f75fbf9-2002-44a8-bd40-735a20d299c5","date":"2025-08-30","pitches":26,"required_rest_after":1,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"5241c841-5c9c-4a37-a1be-c686d562da61","date":"2025-08-31","pitches":38,"required_rest_after":2,"days_off_since_prev_apparance":0,"rest_compliance":false,"over_daily_max":false},{"game_id":"6bafad45-6cdb-4d61-9f84-09e6f396a51e","date":"2025-09-07","pitches":41,"required_rest_after":2,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"223fc5a1-c24c-40a8-b796-a6a1f549aa01","date":"2025-09-14","pitches":34,"required_rest_after":1,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"b37b8c81-ae45-4fc7-86c1-e0631b05f576","date":"2025-09-24","pitches":24,"required_rest_after":1,"days_off_since_prev_apparance":9,"rest_compliance":true,"over_daily_max":false},{"game_id":"20ea8331-a9c3-4b2c-a08d-464fb0e81aa4","date":"2025-09-28","pitches":49,"required_rest_after":2,"days_off_since_prev_apparance":3,"rest_compliance":true,"over_daily_max":false},{"game_id":"42f57aa7-16d7-4864-83c0-c0c0c286a90d","date":"2025-10-04","pitches":39,"required_rest_after":2,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"1fb12200-bca2-4923-921d-bcb2d27c57d2","date":"2025-10-11","pitches":34,"required_rest_after":1,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"3698cf05-0ad3-4d03-b4f7-b1d30558af26","date":"2025-11-01","pitches":34,"required_rest_after":1,"days_off_since_prev_apparance":20,"rest_compliance":true,"over_daily_max":false}]},"Ren Endo":{"number":"11","throw":"R","G_apps":12,"counts":{"BF":121,"IP":"21.0","H":32,"R":27,"ER":20,"BB":16,"HBP":4,"K":11,"HR":2,"WP":4,"1B_allowed":24,"2B_allowed":5,"3B_allowed":1},"workload":{"total_pitches":366,"P_per_BF":3.0248,"P_per_IP":17.4286},"command":{"Strike%":0.5874,"F_Strike%":0.5948,"CSW%":0.2186,"called_strikes":48,"swinging_strikes":32,"fouls":50,"in_play":85,"balls":151},"results":{"K%":0.0909,"BB%":0.1322,"K-BB%":-0.0413,"WHIP":2.2857,"BAA":0.3168,"FIP_11U":12.1202,"FIP_constant_used":9.0726},"batted_ball":{"GB%":0.4353,"FB%":0.3294,"LD%":0.2,"PU%":0.0353,"BIP":85},"buckets":{"1-15":{"PA":60,"K%":0.1,"BB%":0.1667,"BAA":0.3,"pitches":202},"16-30":{"PA":37,"K%":0.0811,"BB%":0.1081,"BAA":0.2727,"pitches":91},"31-45":{"PA":20,"K%":0.1,"BB%":0.1,"BAA":0.3889,"pitches":65},"46-60":{"PA":4,"K%":0.0,"BB%":0.0,"BAA":0.25,"pitches":8},"61+":{"PA":0,"K%":null,"BB%":null,"BAA":null,"pitches":0}},"stab":{"K%":"GREEN","BB%":"YELLOW","FStr%":"YELLOW","CSW%":"GREEN","GB%":"GREEN"},"regressed":{"K%_regressed":0.1093,"BB%_regressed":0.1445,"FStr%_regressed":0.5628,"CSW%_regressed":0.2268},"appearances":[{"game_id":"8918f276-c017-412d-8ce4-92a4fdc41438","date":"2025-08-24","pitches":16,"required_rest_after":0,"days_off_since_prev_apparance":"NA","rest_compliance":"NA","over_daily_max":false},{"game_id":"81874658-be0e-4ae7-8c13-3254e3590cc9","date":"2025-08-31","pitches":18,"required_rest_after":0,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"27a9ed8d-f09b-4869-8375-f21269a084a5","date":"2025-09-07","pitches":25,"required_rest_after":1,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"5ed4ed8e-7e88-43a0-870a-d876f1b5afac","date":"2025-09-20","pitches":19,"required_rest_after":0,"days_off_since_prev_apparance":12,"rest_compliance":true,"over_daily_max":false},{"game_id":"e070e04c-1be2-4646-bb03-ed69338acf6c","date":"2025-09-27","pitches":27,"required_rest_after":1,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"62ad91dd-66b8-4a14-a5dd-29fccc576350","date":"2025-10-05","pitches":17,"required_rest_after":0,"days_off_since_prev_apparance":7,"rest_compliance":true,"over_daily_max":false},{"game_id":"7aeeb040-95b4-4c8b-8d16-b1169af2596f","date":"2025-10-08","pitches":43,"required_rest_after":2,"days_off_since_prev_apparance":2,"rest_compliance":true,"over_daily_max":false},{"game_id":"e7eddda5-0b79-4385-a57c-7b8f04979818","date":"2025-10-18","pitches":53,"required_rest_after":3,"days_off_since_prev_apparance":9,"rest_compliance":true,"over_daily_max":false},{"game_id":"3698cf05-0ad3-4d03-b4f7-b1d30558af26","date":"2025-11-01","pitches":18,"required_rest_after":0,"days_off_since_prev_apparance":13,"rest_compliance":true,"over_daily_max":false},{"game_id":"1ad7ea35-f3c5-4e9a-97f7-016c765be153","date":"2026-03-29","pitches":34,"required_rest_after":1,"days_off_since_prev_apparance":147,"rest_compliance":true,"over_daily_max":false},{"game_id":"8d03235d-e125-490c-814f-29c30f35dbf0","date":"2026-04-14","pitches":53,"required_rest_after":3,"days_off_since_prev_apparance":15,"rest_compliance":true,"over_daily_max":false},{"game_id":"e6699c30-9a51-45b8-8ef6-4b3f48c04890","date":"2026-04-18","pitches":47,"required_rest_after":2,"days_off_since_prev_apparance":3,"rest_compliance":true,"over_daily_max":false}]},"Logan Pressberg":{"number":"12","throw":"R","G_apps":13,"counts":{"BF":138,"IP":"28.2","H":28,"R":26,"ER":20,"BB":20,"HBP":2,"K":24,"HR":0,"WP":10,"1B_allowed":22,"2B_allowed":6,"3B_allowed":0},"workload":{"total_pitches":477,"P_per_BF":3.4565,"P_per_IP":16.6395},"command":{"Strike%":0.5618,"F_Strike%":0.5217,"CSW%":0.2537,"called_strikes":82,"swinging_strikes":39,"fouls":55,"in_play":92,"balls":209},"results":{"K%":0.1739,"BB%":0.1449,"K-BB%":0.029,"WHIP":1.6744,"BAA":0.2414,"FIP_11U":9.7005,"FIP_constant_used":9.0726},"batted_ball":{"GB%":0.5109,"FB%":0.3043,"LD%":0.163,"PU%":0.0217,"BIP":92},"buckets":{"1-15":{"PA":58,"K%":0.2414,"BB%":0.1724,"BAA":0.1458,"pitches":193},"16-30":{"PA":41,"K%":0.1951,"BB%":0.1951,"BAA":0.2424,"pitches":161},"31-45":{"PA":20,"K%":0.1,"BB%":0.05,"BAA":0.2632,"pitches":65},"46-60":{"PA":8,"K%":0.0,"BB%":0.125,"BAA":0.2857,"pitches":31},"61+":{"PA":11,"K%":0.0,"BB%":0.0,"BAA":0.5455,"pitches":27}},"stab":{"K%":"GREEN","BB%":"YELLOW","FStr%":"YELLOW","CSW%":"GREEN","GB%":"GREEN"},"regressed":{"K%_regressed":0.1628,"BB%_regressed":0.1495,"FStr%_regressed":0.5303,"CSW%_regressed":0.2486},"appearances":[{"game_id":"8918f276-c017-412d-8ce4-92a4fdc41438","date":"2025-08-24","pitches":31,"required_rest_after":1,"days_off_since_prev_apparance":"NA","rest_compliance":"NA","over_daily_max":false},{"game_id":"6ee3870b-0296-4897-820a-fbead98c6994","date":"2025-08-30","pitches":44,"required_rest_after":2,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"6bafad45-6cdb-4d61-9f84-09e6f396a51e","date":"2025-09-07","pitches":32,"required_rest_after":1,"days_off_since_prev_apparance":7,"rest_compliance":true,"over_daily_max":false},{"game_id":"4c9d9c16-f382-4f0b-816b-69c6c26a7363","date":"2025-09-20","pitches":40,"required_rest_after":2,"days_off_since_prev_apparance":12,"rest_compliance":true,"over_daily_max":false},{"game_id":"5ed4ed8e-7e88-43a0-870a-d876f1b5afac","date":"2025-09-20","pitches":3,"required_rest_after":0,"days_off_since_prev_apparance":-1,"rest_compliance":false,"over_daily_max":false},{"game_id":"e070e04c-1be2-4646-bb03-ed69338acf6c","date":"2025-09-27","pitches":25,"required_rest_after":1,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"62ad91dd-66b8-4a14-a5dd-29fccc576350","date":"2025-10-05","pitches":76,"required_rest_after":4,"days_off_since_prev_apparance":7,"rest_compliance":true,"over_daily_max":false},{"game_id":"60e73fcf-6646-4899-8105-5de17bb5f4c0","date":"2025-10-11","pitches":29,"required_rest_after":1,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"fffccf93-edc3-475d-a44e-f22401ceaacd","date":"2025-10-12","pitches":28,"required_rest_after":1,"days_off_since_prev_apparance":0,"rest_compliance":false,"over_daily_max":false},{"game_id":"65f0ff7e-d197-4dd4-9944-77e801aec061","date":"2025-11-02","pitches":73,"required_rest_after":4,"days_off_since_prev_apparance":20,"rest_compliance":true,"over_daily_max":false},{"game_id":"1ad7ea35-f3c5-4e9a-97f7-016c765be153","date":"2026-03-29","pitches":14,"required_rest_after":0,"days_off_since_prev_apparance":146,"rest_compliance":true,"over_daily_max":false},{"game_id":"3b573912-4d8f-4b96-a2c4-349f37a5ec3d","date":"2026-04-12","pitches":27,"required_rest_after":1,"days_off_since_prev_apparance":13,"rest_compliance":true,"over_daily_max":false},{"game_id":"e6699c30-9a51-45b8-8ef6-4b3f48c04890","date":"2026-04-18","pitches":55,"required_rest_after":3,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false}]},"Oliver Wells":{"number":"14","throw":"R","G_apps":20,"counts":{"BF":167,"IP":"34.2","H":36,"R":37,"ER":30,"BB":12,"HBP":5,"K":26,"HR":1,"WP":8,"1B_allowed":26,"2B_allowed":7,"3B_allowed":2},"workload":{"total_pitches":515,"P_per_BF":3.0838,"P_per_IP":14.8558},"command":{"Strike%":0.633,"F_Strike%":0.5732,"CSW%":0.2447,"called_strikes":84,"swinging_strikes":42,"fouls":79,"in_play":121,"balls":189},"results":{"K%":0.1557,"BB%":0.0719,"K-BB%":0.0838,"WHIP":1.3846,"BAA":0.24,"FIP_11U":9.4188,"FIP_constant_used":9.0726},"batted_ball":{"GB%":0.4333,"FB%":0.3,"LD%":0.2167,"PU%":0.05,"BIP":120},"buckets":{"1-15":{"PA":82,"K%":0.1829,"BB%":0.1098,"BAA":0.274,"pitches":285},"16-30":{"PA":46,"K%":0.1739,"BB%":0.0435,"BAA":0.0909,"pitches":135},"31-45":{"PA":30,"K%":0.1,"BB%":0.0333,"BAA":0.3103,"pitches":71},"46-60":{"PA":8,"K%":0.0,"BB%":0.0,"BAA":0.375,"pitches":23},"61+":{"PA":1,"K%":0.0,"BB%":0.0,"BAA":0.0,"pitches":1}},"stab":{"K%":"GREEN","BB%":"YELLOW","FStr%":"GREEN","CSW%":"GREEN","GB%":"GREEN"},"regressed":{"K%_regressed":0.1514,"BB%_regressed":0.1129,"FStr%_regressed":0.5564,"CSW%_regressed":0.2428},"appearances":[{"game_id":"8918f276-c017-412d-8ce4-92a4fdc41438","date":"2025-08-24","pitches":16,"required_rest_after":0,"days_off_since_prev_apparance":"NA","rest_compliance":"NA","over_daily_max":false},{"game_id":"6ee3870b-0296-4897-820a-fbead98c6994","date":"2025-08-30","pitches":26,"required_rest_after":1,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"5241c841-5c9c-4a37-a1be-c686d562da61","date":"2025-08-31","pitches":9,"required_rest_after":0,"days_off_since_prev_apparance":0,"rest_compliance":false,"over_daily_max":false},{"game_id":"81874658-be0e-4ae7-8c13-3254e3590cc9","date":"2025-08-31","pitches":54,"required_rest_after":3,"days_off_since_prev_apparance":-1,"rest_compliance":false,"over_daily_max":false},{"game_id":"6bafad45-6cdb-4d61-9f84-09e6f396a51e","date":"2025-09-07","pitches":39,"required_rest_after":2,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"957b4932-b22f-4076-99fe-56ad822cc23b","date":"2025-09-14","pitches":35,"required_rest_after":1,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"b37b8c81-ae45-4fc7-86c1-e0631b05f576","date":"2025-09-24","pitches":33,"required_rest_after":1,"days_off_since_prev_apparance":9,"rest_compliance":true,"over_daily_max":false},{"game_id":"a0978908-6899-454c-9edb-bef566fb4ef4","date":"2025-09-28","pitches":34,"required_rest_after":1,"days_off_since_prev_apparance":3,"rest_compliance":true,"over_daily_max":false},{"game_id":"42f57aa7-16d7-4864-83c0-c0c0c286a90d","date":"2025-10-04","pitches":14,"required_rest_after":0,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"f3cee839-4e8a-402a-981e-5431c41cbba1","date":"2025-10-05","pitches":14,"required_rest_after":0,"days_off_since_prev_apparance":0,"rest_compliance":true,"over_daily_max":false},{"game_id":"62ad91dd-66b8-4a14-a5dd-29fccc576350","date":"2025-10-05","pitches":19,"required_rest_after":0,"days_off_since_prev_apparance":-1,"rest_compliance":false,"over_daily_max":false},{"game_id":"60e73fcf-6646-4899-8105-5de17bb5f4c0","date":"2025-10-11","pitches":2,"required_rest_after":0,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"1fb12200-bca2-4923-921d-bcb2d27c57d2","date":"2025-10-11","pitches":13,"required_rest_after":0,"days_off_since_prev_apparance":-1,"rest_compliance":false,"over_daily_max":false},{"game_id":"fffccf93-edc3-475d-a44e-f22401ceaacd","date":"2025-10-12","pitches":44,"required_rest_after":2,"days_off_since_prev_apparance":0,"rest_compliance":true,"over_daily_max":false},{"game_id":"afb53774-37e5-41bf-8a62-34a5d2d31f29","date":"2025-10-26","pitches":62,"required_rest_after":3,"days_off_since_prev_apparance":13,"rest_compliance":true,"over_daily_max":false},{"game_id":"3635e8d1-0ee4-4194-acb4-17b785c4e7bc","date":"2025-11-01","pitches":18,"required_rest_after":0,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"07c91eab-56d8-4379-8e45-9f44d8537cd9","date":"2025-11-02","pitches":3,"required_rest_after":0,"days_off_since_prev_apparance":0,"rest_compliance":true,"over_daily_max":false},{"game_id":"1ad7ea35-f3c5-4e9a-97f7-016c765be153","date":"2026-03-29","pitches":12,"required_rest_after":0,"days_off_since_prev_apparance":146,"rest_compliance":true,"over_daily_max":false},{"game_id":"3b573912-4d8f-4b96-a2c4-349f37a5ec3d","date":"2026-04-12","pitches":48,"required_rest_after":2,"days_off_since_prev_apparance":13,"rest_compliance":true,"over_daily_max":false},{"game_id":"ebad68c5-05be-4ff9-be7e-7d0309647cfb","date":"2026-04-19","pitches":20,"required_rest_after":0,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false}]},"Grant Wang":{"number":"17","throw":"L","G_apps":10,"counts":{"BF":91,"IP":"16.1","H":24,"R":20,"ER":16,"BB":13,"HBP":1,"K":5,"HR":1,"WP":7,"1B_allowed":16,"2B_allowed":7,"3B_allowed":0},"workload":{"total_pitches":302,"P_per_BF":3.3187,"P_per_IP":18.4898},"command":{"Strike%":0.5629,"F_Strike%":0.5495,"CSW%":0.1954,"called_strikes":34,"swinging_strikes":25,"fouls":39,"in_play":72,"balls":132},"results":{"K%":0.0549,"BB%":0.1429,"K-BB%":-0.0879,"WHIP":2.2653,"BAA":0.3117,"FIP_11U":11.8277,"FIP_constant_used":9.0726},"batted_ball":{"GB%":0.3889,"FB%":0.2639,"LD%":0.2361,"PU%":0.1111,"BIP":72},"buckets":{"1-15":{"PA":42,"K%":0.0,"BB%":0.1905,"BAA":0.3235,"pitches":146},"16-30":{"PA":31,"K%":0.0968,"BB%":0.129,"BAA":0.2963,"pitches":104},"31-45":{"PA":16,"K%":0.125,"BB%":0.0625,"BAA":0.2667,"pitches":49},"46-60":{"PA":2,"K%":0.0,"BB%":0.0,"BAA":0.5,"pitches":3},"61+":{"PA":0,"K%":null,"BB%":null,"BAA":null,"pitches":0}},"stab":{"K%":"GREEN","BB%":"YELLOW","FStr%":"YELLOW","CSW%":"GREEN","GB%":"GREEN"},"regressed":{"K%_regressed":0.0924,"BB%_regressed":0.1496,"FStr%_regressed":0.5424,"CSW%_regressed":0.2151},"appearances":[{"game_id":"5f75fbf9-2002-44a8-bd40-735a20d299c5","date":"2025-08-30","pitches":44,"required_rest_after":2,"days_off_since_prev_apparance":"NA","rest_compliance":"NA","over_daily_max":false},{"game_id":"4c9d9c16-f382-4f0b-816b-69c6c26a7363","date":"2025-09-20","pitches":29,"required_rest_after":1,"days_off_since_prev_apparance":20,"rest_compliance":true,"over_daily_max":false},{"game_id":"e070e04c-1be2-4646-bb03-ed69338acf6c","date":"2025-09-27","pitches":26,"required_rest_after":1,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"a70db4d0-8344-485a-9777-9183ab6bd041","date":"2025-10-04","pitches":25,"required_rest_after":1,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"1fb12200-bca2-4923-921d-bcb2d27c57d2","date":"2025-10-11","pitches":7,"required_rest_after":0,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"5d4abee9-a4e7-41da-bd08-910cd6948aa6","date":"2025-10-12","pitches":37,"required_rest_after":2,"days_off_since_prev_apparance":0,"rest_compliance":true,"over_daily_max":false},{"game_id":"e7eddda5-0b79-4385-a57c-7b8f04979818","date":"2025-10-18","pitches":50,"required_rest_after":2,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"8d03235d-e125-490c-814f-29c30f35dbf0","date":"2026-04-14","pitches":41,"required_rest_after":2,"days_off_since_prev_apparance":177,"rest_compliance":true,"over_daily_max":false},{"game_id":"88023d40-3b51-4df4-a133-7c4a88bb2a0a","date":"2026-04-18","pitches":37,"required_rest_after":2,"days_off_since_prev_apparance":3,"rest_compliance":true,"over_daily_max":false},{"game_id":"ebad68c5-05be-4ff9-be7e-7d0309647cfb","date":"2026-04-19","pitches":6,"required_rest_after":0,"days_off_since_prev_apparance":0,"rest_compliance":false,"over_daily_max":false}]},"Beckett Dickinson":{"number":"21","throw":"L","G_apps":4,"counts":{"BF":32,"IP":"6.0","H":7,"R":8,"ER":7,"BB":4,"HBP":0,"K":3,"HR":0,"WP":2,"1B_allowed":3,"2B_allowed":2,"3B_allowed":2},"workload":{"total_pitches":112,"P_per_BF":3.5,"P_per_IP":18.6667},"command":{"Strike%":0.5893,"F_Strike%":0.5938,"CSW%":0.2321,"called_strikes":20,"swinging_strikes":6,"fouls":15,"in_play":25,"balls":46},"results":{"K%":0.0938,"BB%":0.125,"K-BB%":-0.0312,"WHIP":1.8333,"BAA":0.25,"FIP_11U":10.0726,"FIP_constant_used":9.0726},"batted_ball":{"GB%":0.48,"FB%":0.12,"LD%":0.32,"PU%":0.08,"BIP":25},"buckets":{"1-15":{"PA":13,"K%":0.1538,"BB%":0.3077,"BAA":0.3333,"pitches":55},"16-30":{"PA":14,"K%":0.0714,"BB%":0.0,"BAA":0.1429,"pitches":36},"31-45":{"PA":2,"K%":0.0,"BB%":0.0,"BAA":0.5,"pitches":13},"46-60":{"PA":3,"K%":0.0,"BB%":0.0,"BAA":0.3333,"pitches":8},"61+":{"PA":0,"K%":null,"BB%":null,"BAA":null,"pitches":0}},"stab":{"K%":"RED","BB%":"RED","FStr%":"RED","CSW%":"RED","GB%":"RED"},"regressed":{"K%_regressed":0.1262,"BB%_regressed":0.1487,"FStr%_regressed":0.5479,"CSW%_regressed":0.2368},"appearances":[{"game_id":"c2000882-2b07-41e6-abd1-b9fb407e3e00","date":"2025-09-04","pitches":30,"required_rest_after":1,"days_off_since_prev_apparance":"NA","rest_compliance":"NA","over_daily_max":false},{"game_id":"b37b8c81-ae45-4fc7-86c1-e0631b05f576","date":"2025-09-24","pitches":24,"required_rest_after":1,"days_off_since_prev_apparance":19,"rest_compliance":true,"over_daily_max":false},{"game_id":"bcd1b246-7a2d-4866-aa02-a86b8077893d","date":"2025-09-27","pitches":4,"required_rest_after":0,"days_off_since_prev_apparance":2,"rest_compliance":true,"over_daily_max":false},{"game_id":"7aeeb040-95b4-4c8b-8d16-b1169af2596f","date":"2025-10-08","pitches":55,"required_rest_after":3,"days_off_since_prev_apparance":10,"rest_compliance":true,"over_daily_max":false}]},"Grant Richards":{"number":"22","throw":"R","G_apps":11,"counts":{"BF":119,"IP":"21.0","H":28,"R":33,"ER":17,"BB":16,"HBP":5,"K":18,"HR":0,"WP":5,"1B_allowed":23,"2B_allowed":5,"3B_allowed":0},"workload":{"total_pitches":364,"P_per_BF":3.0588,"P_per_IP":17.3333},"command":{"Strike%":0.5879,"F_Strike%":0.5385,"CSW%":0.2445,"called_strikes":55,"swinging_strikes":34,"fouls":47,"in_play":78,"balls":150},"results":{"K%":0.1513,"BB%":0.1345,"K-BB%":0.0168,"WHIP":2.0952,"BAA":0.2857,"FIP_11U":10.3583,"FIP_constant_used":9.0726},"batted_ball":{"GB%":0.5513,"FB%":0.1538,"LD%":0.2436,"PU%":0.0513,"BIP":78},"buckets":{"1-15":{"PA":54,"K%":0.2037,"BB%":0.1667,"BAA":0.2,"pitches":177},"16-30":{"PA":36,"K%":0.1389,"BB%":0.1389,"BAA":0.2258,"pitches":99},"31-45":{"PA":17,"K%":0.1176,"BB%":0.0,"BAA":0.5294,"pitches":57},"46-60":{"PA":12,"K%":0.0,"BB%":0.1667,"BAA":0.3,"pitches":31},"61+":{"PA":0,"K%":null,"BB%":null,"BAA":null,"pitches":0}},"stab":{"K%":"GREEN","BB%":"YELLOW","FStr%":"YELLOW","CSW%":"GREEN","GB%":"GREEN"},"regressed":{"K%_regressed":0.1475,"BB%_regressed":0.1455,"FStr%_regressed":0.5383,"CSW%_regressed":0.2422},"appearances":[{"game_id":"f8c4aa7f-8ec1-4280-bd0d-65b9d0bdde87","date":"2025-08-24","pitches":21,"required_rest_after":1,"days_off_since_prev_apparance":"NA","rest_compliance":"NA","over_daily_max":false},{"game_id":"bd13010f-957c-48ab-8f57-23c195ab1785","date":"2025-08-31","pitches":5,"required_rest_after":0,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"5241c841-5c9c-4a37-a1be-c686d562da61","date":"2025-08-31","pitches":60,"required_rest_after":3,"days_off_since_prev_apparance":-1,"rest_compliance":false,"over_daily_max":false},{"game_id":"5ed4ed8e-7e88-43a0-870a-d876f1b5afac","date":"2025-09-20","pitches":31,"required_rest_after":1,"days_off_since_prev_apparance":19,"rest_compliance":true,"over_daily_max":false},{"game_id":"a70db4d0-8344-485a-9777-9183ab6bd041","date":"2025-10-04","pitches":62,"required_rest_after":3,"days_off_since_prev_apparance":13,"rest_compliance":true,"over_daily_max":false},{"game_id":"1fb12200-bca2-4923-921d-bcb2d27c57d2","date":"2025-10-11","pitches":29,"required_rest_after":1,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"e7eddda5-0b79-4385-a57c-7b8f04979818","date":"2025-10-18","pitches":24,"required_rest_after":1,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false},{"game_id":"252a0221-372c-4df0-b293-7034839a1a31","date":"2025-10-26","pitches":47,"required_rest_after":2,"days_off_since_prev_apparance":7,"rest_compliance":true,"over_daily_max":false},{"game_id":"3698cf05-0ad3-4d03-b4f7-b1d30558af26","date":"2025-11-01","pitches":27,"required_rest_after":1,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"1ad7ea35-f3c5-4e9a-97f7-016c765be153","date":"2026-03-29","pitches":39,"required_rest_after":2,"days_off_since_prev_apparance":147,"rest_compliance":true,"over_daily_max":false},{"game_id":"88023d40-3b51-4df4-a133-7c4a88bb2a0a","date":"2026-04-18","pitches":19,"required_rest_after":0,"days_off_since_prev_apparance":19,"rest_compliance":true,"over_daily_max":false}]},"Tommy DiPompeo":{"number":"24","throw":"R","G_apps":1,"counts":{"BF":2,"IP":"0.1","H":0,"R":0,"ER":0,"BB":1,"HBP":0,"K":1,"HR":0,"WP":0,"1B_allowed":0,"2B_allowed":0,"3B_allowed":0},"workload":{"total_pitches":10,"P_per_BF":5.0,"P_per_IP":30.0},"command":{"Strike%":0.5,"F_Strike%":0.5,"CSW%":0.5,"called_strikes":4,"swinging_strikes":1,"fouls":0,"in_play":0,"balls":5},"results":{"K%":0.5,"BB%":0.5,"K-BB%":0.0,"WHIP":3.0,"BAA":0.0,"FIP_11U":12.0726,"FIP_constant_used":9.0726},"batted_ball":{"GB%":null,"FB%":null,"LD%":null,"PU%":null,"BIP":0},"buckets":{"1-15":{"PA":2,"K%":0.5,"BB%":0.5,"BAA":0.0,"pitches":10},"16-30":{"PA":0,"K%":null,"BB%":null,"BAA":null,"pitches":0},"31-45":{"PA":0,"K%":null,"BB%":null,"BAA":null,"pitches":0},"46-60":{"PA":0,"K%":null,"BB%":null,"BAA":null,"pitches":0},"61+":{"PA":0,"K%":null,"BB%":null,"BAA":null,"pitches":0}},"stab":{"K%":"RED","BB%":"RED","FStr%":"RED","CSW%":"RED","GB%":"RED"},"regressed":{"K%_regressed":0.151,"BB%_regressed":0.1572,"FStr%_regressed":0.5376,"CSW%_regressed":0.249},"appearances":[{"game_id":"7aeeb040-95b4-4c8b-8d16-b1169af2596f","date":"2025-10-08","pitches":10,"required_rest_after":0,"days_off_since_prev_apparance":"NA","rest_compliance":"NA","over_daily_max":false}]},"Everett Harkins":{"number":"51","throw":"R","G_apps":3,"counts":{"BF":18,"IP":"2.2","H":4,"R":7,"ER":6,"BB":6,"HBP":0,"K":2,"HR":0,"WP":6,"1B_allowed":3,"2B_allowed":1,"3B_allowed":0},"workload":{"total_pitches":78,"P_per_BF":4.3333,"P_per_IP":29.25},"command":{"Strike%":0.3974,"F_Strike%":0.3333,"CSW%":0.1923,"called_strikes":11,"swinging_strikes":4,"fouls":6,"in_play":10,"balls":47},"results":{"K%":0.1111,"BB%":0.3333,"K-BB%":-0.2222,"WHIP":3.75,"BAA":0.3333,"FIP_11U":14.3226,"FIP_constant_used":9.0726},"batted_ball":{"GB%":0.6,"FB%":0.3,"LD%":0.1,"PU%":0.0,"BIP":10},"buckets":{"1-15":{"PA":11,"K%":0.0909,"BB%":0.2727,"BAA":0.375,"pitches":48},"16-30":{"PA":4,"K%":0.0,"BB%":0.5,"BAA":0.5,"pitches":17},"31-45":{"PA":3,"K%":0.3333,"BB%":0.3333,"BAA":0.0,"pitches":13},"46-60":{"PA":0,"K%":null,"BB%":null,"BAA":null,"pitches":0},"61+":{"PA":0,"K%":null,"BB%":null,"BAA":null,"pitches":0}},"stab":{"K%":"RED","BB%":"RED","FStr%":"RED","CSW%":"RED","GB%":"RED"},"regressed":{"K%_regressed":0.1349,"BB%_regressed":0.1704,"FStr%_regressed":0.5162,"CSW%_regressed":0.2279},"appearances":[{"game_id":"5f75fbf9-2002-44a8-bd40-735a20d299c5","date":"2025-08-30","pitches":45,"required_rest_after":2,"days_off_since_prev_apparance":"NA","rest_compliance":"NA","over_daily_max":false},{"game_id":"27a9ed8d-f09b-4869-8375-f21269a084a5","date":"2025-09-07","pitches":19,"required_rest_after":0,"days_off_since_prev_apparance":7,"rest_compliance":true,"over_daily_max":false},{"game_id":"b37b8c81-ae45-4fc7-86c1-e0631b05f576","date":"2025-09-24","pitches":14,"required_rest_after":0,"days_off_since_prev_apparance":16,"rest_compliance":true,"over_daily_max":false}]},"Will Kowalski":{"number":"98","throw":"R","G_apps":18,"counts":{"BF":207,"IP":"43.0","H":49,"R":33,"ER":23,"BB":16,"HBP":3,"K":44,"HR":1,"WP":12,"1B_allowed":34,"2B_allowed":12,"3B_allowed":2},"workload":{"total_pitches":715,"P_per_BF":3.4541,"P_per_IP":16.6279},"command":{"Strike%":0.6322,"F_Strike%":0.6207,"CSW%":0.2713,"called_strikes":131,"swinging_strikes":63,"fouls":118,"in_play":140,"balls":263},"results":{"K%":0.2126,"BB%":0.0773,"K-BB%":0.1353,"WHIP":1.5116,"BAA":0.2606,"FIP_11U":8.654,"FIP_constant_used":9.0726},"batted_ball":{"GB%":0.482,"FB%":0.2518,"LD%":0.223,"PU%":0.0432,"BIP":139},"buckets":{"1-15":{"PA":83,"K%":0.2651,"BB%":0.0964,"BAA":0.32,"pitches":302},"16-30":{"PA":63,"K%":0.2063,"BB%":0.0794,"BAA":0.1724,"pitches":211},"31-45":{"PA":36,"K%":0.1667,"BB%":0.0278,"BAA":0.2286,"pitches":106},"46-60":{"PA":16,"K%":0.1875,"BB%":0.0625,"BAA":0.3333,"pitches":60},"61+":{"PA":9,"K%":0.0,"BB%":0.1111,"BAA":0.25,"pitches":36}},"stab":{"K%":"GREEN","BB%":"GREEN","FStr%":"GREEN","CSW%":"GREEN","GB%":"GREEN"},"regressed":{"K%_regressed":0.1945,"BB%_regressed":0.1115,"FStr%_regressed":0.5856,"CSW%_regressed":0.2629},"appearances":[{"game_id":"8918f276-c017-412d-8ce4-92a4fdc41438","date":"2025-08-24","pitches":28,"required_rest_after":1,"days_off_since_prev_apparance":"NA","rest_compliance":"NA","over_daily_max":false},{"game_id":"c2000882-2b07-41e6-abd1-b9fb407e3e00","date":"2025-09-04","pitches":43,"required_rest_after":2,"days_off_since_prev_apparance":10,"rest_compliance":true,"over_daily_max":false},{"game_id":"223fc5a1-c24c-40a8-b796-a6a1f549aa01","date":"2025-09-14","pitches":55,"required_rest_after":3,"days_off_since_prev_apparance":9,"rest_compliance":true,"over_daily_max":false},{"game_id":"5ed4ed8e-7e88-43a0-870a-d876f1b5afac","date":"2025-09-20","pitches":25,"required_rest_after":1,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"b37b8c81-ae45-4fc7-86c1-e0631b05f576","date":"2025-09-24","pitches":30,"required_rest_after":1,"days_off_since_prev_apparance":3,"rest_compliance":true,"over_daily_max":false},{"game_id":"bcd1b246-7a2d-4866-aa02-a86b8077893d","date":"2025-09-27","pitches":55,"required_rest_after":3,"days_off_since_prev_apparance":2,"rest_compliance":true,"over_daily_max":false},{"game_id":"20ea8331-a9c3-4b2c-a08d-464fb0e81aa4","date":"2025-09-28","pitches":30,"required_rest_after":1,"days_off_since_prev_apparance":0,"rest_compliance":false,"over_daily_max":false},{"game_id":"42f57aa7-16d7-4864-83c0-c0c0c286a90d","date":"2025-10-04","pitches":18,"required_rest_after":0,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"f3cee839-4e8a-402a-981e-5431c41cbba1","date":"2025-10-05","pitches":76,"required_rest_after":4,"days_off_since_prev_apparance":0,"rest_compliance":true,"over_daily_max":false},{"game_id":"60e73fcf-6646-4899-8105-5de17bb5f4c0","date":"2025-10-11","pitches":32,"required_rest_after":1,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"5d4abee9-a4e7-41da-bd08-910cd6948aa6","date":"2025-10-12","pitches":61,"required_rest_after":3,"days_off_since_prev_apparance":0,"rest_compliance":false,"over_daily_max":false},{"game_id":"e7eddda5-0b79-4385-a57c-7b8f04979818","date":"2025-10-18","pitches":23,"required_rest_after":1,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"252a0221-372c-4df0-b293-7034839a1a31","date":"2025-10-26","pitches":26,"required_rest_after":1,"days_off_since_prev_apparance":7,"rest_compliance":true,"over_daily_max":false},{"game_id":"3635e8d1-0ee4-4194-acb4-17b785c4e7bc","date":"2025-11-01","pitches":32,"required_rest_after":1,"days_off_since_prev_apparance":5,"rest_compliance":true,"over_daily_max":false},{"game_id":"07c91eab-56d8-4379-8e45-9f44d8537cd9","date":"2025-11-02","pitches":47,"required_rest_after":2,"days_off_since_prev_apparance":0,"rest_compliance":false,"over_daily_max":false},{"game_id":"1ad7ea35-f3c5-4e9a-97f7-016c765be153","date":"2026-03-29","pitches":14,"required_rest_after":0,"days_off_since_prev_apparance":146,"rest_compliance":true,"over_daily_max":false},{"game_id":"d5a64b18-9d0d-4045-be7a-5b8dc04121af","date":"2026-04-12","pitches":81,"required_rest_after":4,"days_off_since_prev_apparance":13,"rest_compliance":true,"over_daily_max":false},{"game_id":"ebad68c5-05be-4ff9-be7e-7d0309647cfb","date":"2026-04-19","pitches":39,"required_rest_after":2,"days_off_since_prev_apparance":6,"rest_compliance":true,"over_daily_max":false}]}},"baserunning":{"Joshua Lopez":{"SB":28,"CS":2,"PO":0,"SB%":0.9333,"above_break_even":true,"wSB":4.686,"first_to_third_singles":0,"score_from_2nd_singles":0},"Adam Ingram":{"SB":22,"CS":2,"PO":0,"SB%":0.9167,"above_break_even":true,"wSB":3.5088,"first_to_third_singles":0,"score_from_2nd_singles":0},"Darcy Mizejewski":{"SB":14,"CS":2,"PO":0,"SB%":0.875,"above_break_even":true,"wSB":1.9392,"first_to_third_singles":0,"score_from_2nd_singles":0},"Ren Endo":{"SB":10,"CS":1,"PO":1,"SB%":0.9091,"above_break_even":true,"wSB":1.5582,"first_to_third_singles":0,"score_from_2nd_singles":0},"Logan Pressberg":{"SB":26,"CS":2,"PO":2,"SB%":0.9286,"above_break_even":true,"wSB":4.2936,"first_to_third_singles":0,"score_from_2nd_singles":0},"Oliver Wells":{"SB":22,"CS":1,"PO":1,"SB%":0.9565,"above_break_even":true,"wSB":3.9126,"first_to_third_singles":0,"score_from_2nd_singles":0},"Grant Wang":{"SB":20,"CS":0,"PO":1,"SB%":1.0,"above_break_even":true,"wSB":3.924,"first_to_third_singles":0,"score_from_2nd_singles":0},"Beckett Dickinson":{"SB":37,"CS":0,"PO":0,"SB%":1.0,"above_break_even":true,"wSB":7.2594,"first_to_third_singles":0,"score_from_2nd_singles":0},"Grant Richards":{"SB":26,"CS":1,"PO":0,"SB%":0.963,"above_break_even":true,"wSB":4.6974,"first_to_third_singles":0,"score_from_2nd_singles":0},"Tommy DiPompeo":{"SB":20,"CS":1,"PO":2,"SB%":0.9524,"above_break_even":true,"wSB":3.5202,"first_to_third_singles":0,"score_from_2nd_singles":0},"Everett Harkins":{"SB":13,"CS":1,"PO":1,"SB%":0.9286,"above_break_even":true,"wSB":2.1468,"first_to_third_singles":0,"score_from_2nd_singles":0},"Will Kowalski":{"SB":10,"CS":3,"PO":0,"SB%":0.7692,"above_break_even":true,"wSB":0.7506,"first_to_third_singles":0,"score_from_2nd_singles":0}},"game_log":[{"season_key":"2025-fall","game_id":"f8c4aa7f-8ec1-4280-bd0d-65b9d0bdde87","opponent_raw":"MVP Mustangs Red 11U","opponent":"MVP Mustangs Red 11U","home_away":"home","date":"2025-08-24","result":"W 11-3","season_game_index":0},{"season_key":"2025-fall","game_id":"8918f276-c017-412d-8ce4-92a4fdc41438","opponent_raw":"Colts 11u","opponent":"Colts 11u","home_away":"away","date":"2025-08-24","result":"W 5-3","season_game_index":1},{"season_key":"2025-fall","game_id":"5f75fbf9-2002-44a8-bd40-735a20d299c5","opponent_raw":"Stonewall Tigers 12U","opponent":"Stonewall Tigers 12U","home_away":"home","date":"2025-08-30","result":"W 7-6","season_game_index":2},{"season_key":"2025-fall","game_id":"6ee3870b-0296-4897-820a-fbead98c6994","opponent_raw":"Vienna Chili Dogs 11U","opponent":"Vienna Chili Dogs 11U","home_away":"home","date":"2025-08-30","result":"W 12-3","season_game_index":3},{"season_key":"2025-fall","game_id":"bd13010f-957c-48ab-8f57-23c195ab1785","opponent_raw":"Blue Ridge Titans 11U","opponent":"Blue Ridge Titans 11U","home_away":"home","date":"2025-08-31","result":"W 7-1","season_game_index":4},{"season_key":"2025-fall","game_id":"5241c841-5c9c-4a37-a1be-c686d562da61","opponent_raw":"Oppo Tacos","opponent":"Oppo Tacos","home_away":"away","date":"2025-08-31","result":"W 17-11","season_game_index":5},{"season_key":"2025-fall","game_id":"81874658-be0e-4ae7-8c13-3254e3590cc9","opponent_raw":"Stonewall Tigers 12U","opponent":"Stonewall Tigers 12U","home_away":"home","date":"2025-08-31","result":"L 5-10","season_game_index":6},{"season_key":"2025-fall","game_id":"c2000882-2b07-41e6-abd1-b9fb407e3e00","opponent_raw":"Burtonsville Storm 12U","opponent":"Burtonsville Storm 12U","home_away":"away","date":"2025-09-04","result":"W 18-3","season_game_index":7},{"season_key":"2025-fall","game_id":"6bafad45-6cdb-4d61-9f84-09e6f396a51e","opponent_raw":"HCYP Raiders Blue 11U","opponent":"HCYP Raiders Blue 11U","home_away":"home","date":"2025-09-07","result":"L 7-11","season_game_index":8},{"season_key":"2025-fall","game_id":"27a9ed8d-f09b-4869-8375-f21269a084a5","opponent_raw":"HCYP Raiders Blue 11U","opponent":"HCYP Raiders Blue 11U","home_away":"away","date":"2025-09-07","result":"L 5-10","season_game_index":9},{"season_key":"2025-fall","game_id":"223fc5a1-c24c-40a8-b796-a6a1f549aa01","opponent_raw":"Mid-Atlantic Canes Gold 11U","opponent":"Mid-Atlantic Canes Gold 11U","home_away":"away","date":"2025-09-14","result":"W 9-5","season_game_index":10},{"season_key":"2025-fall","game_id":"957b4932-b22f-4076-99fe-56ad822cc23b","opponent_raw":"Mid-Atlantic Canes Gold 11U","opponent":"Mid-Atlantic Canes Gold 11U","home_away":"home","date":"2025-09-14","result":"L 4-7","season_game_index":11},{"season_key":"2025-fall","game_id":"4c9d9c16-f382-4f0b-816b-69c6c26a7363","opponent_raw":"Dig In Inman 11U","opponent":"Dig In Inman 11U","home_away":"home","date":"2025-09-20","result":"W 4-3","season_game_index":12},{"season_key":"2025-fall","game_id":"5ed4ed8e-7e88-43a0-870a-d876f1b5afac","opponent_raw":"Dig In Inman 11U","opponent":"Dig In Inman 11U","home_away":"home","date":"2025-09-20","result":"L 5-6","season_game_index":13},{"season_key":"2025-fall","game_id":"b37b8c81-ae45-4fc7-86c1-e0631b05f576","opponent_raw":"Maryland J Bats Orange 2032","opponent":"Maryland J Bats Orange 2032","home_away":"away","date":"2025-09-24","result":"W 11-5","season_game_index":14},{"season_key":"2025-fall","game_id":"e070e04c-1be2-4646-bb03-ed69338acf6c","opponent_raw":"Calvert Cutters 11U Hinton","opponent":"Calvert Cutters 11U Hinton","home_away":"away","date":"2025-09-27","result":"L 4-13","season_game_index":15},{"season_key":"2025-fall","game_id":"bcd1b246-7a2d-4866-aa02-a86b8077893d","opponent_raw":"API Academy 11U","opponent":"API Academy 11U","home_away":"home","date":"2025-09-27","result":"W 11-1","season_game_index":16},{"season_key":"2025-fall","game_id":"a0978908-6899-454c-9edb-bef566fb4ef4","opponent_raw":"Lake Shore GraySox 11U","opponent":"Lake Shore GraySox 11U","home_away":"away","date":"2025-09-28","result":"W 15-7","season_game_index":17},{"season_key":"2025-fall","game_id":"20ea8331-a9c3-4b2c-a08d-464fb0e81aa4","opponent_raw":"Calvert Cutters 11U Hinton","opponent":"Calvert Cutters 11U Hinton","home_away":"away","date":"2025-09-28","result":"L 4-8","season_game_index":18},{"season_key":"2025-fall","game_id":"a70db4d0-8344-485a-9777-9183ab6bd041","opponent_raw":"Maryland Jbats 11U","opponent":"Maryland Jbats 11U","home_away":"home","date":"2025-10-04","result":"W 8-7","season_game_index":19},{"season_key":"2025-fall","game_id":"42f57aa7-16d7-4864-83c0-c0c0c286a90d","opponent_raw":"Stars 11U Matthias","opponent":"Stars 11U Matthias","home_away":"away","date":"2025-10-04","result":"W 10-2","season_game_index":20},{"season_key":"2025-fall","game_id":"f3cee839-4e8a-402a-981e-5431c41cbba1","opponent_raw":"MC Eagles \u00f0\u0178\u00a6\u2026 11U","opponent":"MC Eagles \u00f0\u0178\u00a6\u2026 11U","home_away":"away","date":"2025-10-05","result":"W 8-7","season_game_index":21},{"season_key":"2025-fall","game_id":"62ad91dd-66b8-4a14-a5dd-29fccc576350","opponent_raw":"Gambrills Athletic Club 11U","opponent":"Gambrills Athletic Club 11U","home_away":"home","date":"2025-10-05","result":"L 6-18","season_game_index":22},{"season_key":"2025-fall","game_id":"7aeeb040-95b4-4c8b-8d16-b1169af2596f","opponent_raw":"Burtonsville Storm 12U","opponent":"Burtonsville Storm 12U","home_away":"home","date":"2025-10-08","result":"W 13-10","season_game_index":23},{"season_key":"2025-fall","game_id":"60e73fcf-6646-4899-8105-5de17bb5f4c0","opponent_raw":"Loudoun Aces - Ford 11U","opponent":"Loudoun Aces - Ford 11U","home_away":"away","date":"2025-10-11","result":"W 11-0","season_game_index":24},{"season_key":"2025-fall","game_id":"1fb12200-bca2-4923-921d-bcb2d27c57d2","opponent_raw":"Dig In Kaelin 11U","opponent":"Dig In Kaelin 11U","home_away":"away","date":"2025-10-11","result":"W 11-10","season_game_index":25},{"season_key":"2025-fall","game_id":"fffccf93-edc3-475d-a44e-f22401ceaacd","opponent_raw":"Loudoun Aces - Ford 11U","opponent":"Loudoun Aces - Ford 11U","home_away":"home","date":"2025-10-12","result":"W 6-5","season_game_index":26},{"season_key":"2025-fall","game_id":"5d4abee9-a4e7-41da-bd08-910cd6948aa6","opponent_raw":"Dig In Kaelin 11U","opponent":"Dig In Kaelin 11U","home_away":"home","date":"2025-10-12","result":"W 7-6","season_game_index":27},{"season_key":"2025-fall","game_id":"e7eddda5-0b79-4385-a57c-7b8f04979818","opponent_raw":"Urbana Hawks- Navy 11U","opponent":"Urbana Hawks- Navy 11U","home_away":"home","date":"2025-10-18","result":"L 7-8","season_game_index":28},{"season_key":"2025-fall","game_id":"252a0221-372c-4df0-b293-7034839a1a31","opponent_raw":"Elkridge Hurricanes 11U Orange - Weather","opponent":"Elkridge Hurricanes 11U Orange - Weather","home_away":"away","date":"2025-10-26","result":"L 2-5","season_game_index":29},{"season_key":"2025-fall","game_id":"afb53774-37e5-41bf-8a62-34a5d2d31f29","opponent_raw":"Gambrills Athletic Club 11U","opponent":"Gambrills Athletic Club 11U","home_away":"home","date":"2025-10-26","result":"W 2-1","season_game_index":30},{"season_key":"2025-fall","game_id":"3698cf05-0ad3-4d03-b4f7-b1d30558af26","opponent_raw":"Cubs Blue 11U","opponent":"Cubs Blue 11U","home_away":"home","date":"2025-11-01","result":"W 5-0","season_game_index":31},{"season_key":"2025-fall","game_id":"3635e8d1-0ee4-4194-acb4-17b785c4e7bc","opponent_raw":"API Academy 11U","opponent":"API Academy 11U","home_away":"away","date":"2025-11-01","result":"W 12-1","season_game_index":32},{"season_key":"2025-fall","game_id":"65f0ff7e-d197-4dd4-9944-77e801aec061","opponent_raw":"HCYP Raiders 11u White","opponent":"HCYP Raiders 11u White","home_away":"home","date":"2025-11-02","result":"W 7-1","season_game_index":33},{"season_key":"2025-fall","game_id":"07c91eab-56d8-4379-8e45-9f44d8537cd9","opponent_raw":"Ole Liners 11U","opponent":"Ole Liners 11U","home_away":"home","date":"2025-11-02","result":"W 18-3","season_game_index":34},{"season_key":"2026-spring","game_id":"1ad7ea35-f3c5-4e9a-97f7-016c765be153","opponent_raw":"LBC Thunder 11U","opponent":"LBC Thunder 11U","home_away":"away","date":"2026-03-29","result":"W 12-10","season_game_index":0},{"season_key":"2026-spring","game_id":"d5a64b18-9d0d-4045-be7a-5b8dc04121af","opponent_raw":"Gambrills Athletic Club 11U","opponent":"Gambrills Athletic Club 11U","home_away":"home","date":"2026-04-12","result":"W 4-1","season_game_index":1},{"season_key":"2026-spring","game_id":"3b573912-4d8f-4b96-a2c4-349f37a5ec3d","opponent_raw":"HCYP Raiders Blue 11U","opponent":"HCYP Raiders Blue 11U","home_away":"away","date":"2026-04-12","result":"L 8-9","season_game_index":2},{"season_key":"2026-spring","game_id":"8d03235d-e125-490c-814f-29c30f35dbf0","opponent_raw":"Ole Liners National 11U","opponent":"Ole Liners National 11U","home_away":"home","date":"2026-04-14","result":"W 11-2","season_game_index":3},{"season_key":"2026-spring","game_id":"e6699c30-9a51-45b8-8ef6-4b3f48c04890","opponent_raw":"Gambrills Athletic Club 11U","opponent":"Gambrills Athletic Club 11U","home_away":"away","date":"2026-04-18","result":"L 4-9","season_game_index":4},{"season_key":"2026-spring","game_id":"88023d40-3b51-4df4-a133-7c4a88bb2a0a","opponent_raw":"Delmarva Aces 11U East","opponent":"Delmarva Aces 11U East","home_away":"away","date":"2026-04-18","result":"W 18-8","season_game_index":5},{"season_key":"2026-spring","game_id":"ebad68c5-05be-4ff9-be7e-7d0309647cfb","opponent_raw":"Delmarva Aces 11U East","opponent":"Delmarva Aces 11U East","home_away":"home","date":"2026-04-19","result":"L 9-14","season_game_index":6}],"roster":[{"name":"Joshua Lopez","number":"2","bat":"R","throw":"R"},{"name":"Adam Ingram","number":"3","bat":"R","throw":"R"},{"name":"Darcy Mizejewski","number":"7","bat":"L","throw":"R"},{"name":"Ren Endo","number":"11","bat":"R","throw":"R"},{"name":"Logan Pressberg","number":"12","bat":"R","throw":"R"},{"name":"Oliver Wells","number":"14","bat":"L","throw":"R"},{"name":"Grant Wang","number":"17","bat":"R","throw":"L"},{"name":"Beckett Dickinson","number":"21","bat":"L","throw":"L"},{"name":"Grant Richards","number":"22","bat":"R","throw":"R"},{"name":"Tommy DiPompeo","number":"24","bat":"R","throw":"R"},{"name":"Everett Harkins","number":"51","bat":"R","throw":"R"},{"name":"Will Kowalski","number":"98","bat":"R","throw":"R"}]}</script>
+
 <script>
-// ── Data ─────────────────────────────────────────────
-const TEAM_DATA = {
-  spring: {
-    record: {"W":4,"L":3,"T":0,"R":66,"RA":53,"games":7},
-    batting: [
-      {"name":"Beckett Dickinson","number":"21","G":7,"AB":19,"R":10,"H":10,"2B":3,"3B":0,"HR":0,"RBI":7,"BB":3,"SO":3,"SB":6,"CS":0,"HBP":2,"E":0,"AVG":"0.526","OBP":"0.625","SLG":"0.684","OPS":"1.309"},
-      {"name":"Grant Richards","number":"22","G":7,"AB":19,"R":11,"H":6,"2B":1,"3B":0,"HR":0,"RBI":4,"BB":5,"SO":1,"SB":5,"CS":0,"HBP":0,"E":1,"AVG":"0.316","OBP":"0.458","SLG":"0.368","OPS":"0.826"},
-      {"name":"Will Kowalski","number":"98","G":7,"AB":18,"R":8,"H":6,"2B":1,"3B":0,"HR":1,"RBI":7,"BB":5,"SO":3,"SB":0,"CS":0,"HBP":0,"E":4,"AVG":"0.333","OBP":"0.478","SLG":"0.556","OPS":"1.034"},
-      {"name":"Adam Ingram","number":"3","G":7,"AB":16,"R":6,"H":6,"2B":2,"3B":0,"HR":1,"RBI":6,"BB":5,"SO":3,"SB":4,"CS":0,"HBP":1,"E":3,"AVG":"0.375","OBP":"0.545","SLG":"0.688","OPS":"1.233"},
-      {"name":"Joshua Lopez","number":"2","G":7,"AB":15,"R":2,"H":5,"2B":0,"3B":0,"HR":0,"RBI":7,"BB":4,"SO":3,"SB":5,"CS":1,"HBP":0,"E":4,"AVG":"0.333","OBP":"0.474","SLG":"0.333","OPS":"0.807"},
-      {"name":"Logan Pressberg","number":"12","G":7,"AB":15,"R":4,"H":4,"2B":0,"3B":0,"HR":0,"RBI":2,"BB":4,"SO":1,"SB":2,"CS":0,"HBP":1,"E":0,"AVG":"0.267","OBP":"0.450","SLG":"0.267","OPS":"0.717"},
-      {"name":"Ren Endo","number":"11","G":7,"AB":15,"R":3,"H":2,"2B":1,"3B":0,"HR":0,"RBI":3,"BB":2,"SO":4,"SB":1,"CS":0,"HBP":1,"E":0,"AVG":"0.133","OBP":"0.278","SLG":"0.200","OPS":"0.478"},
-      {"name":"Everett Harkins","number":"51","G":6,"AB":14,"R":6,"H":8,"2B":1,"3B":0,"HR":1,"RBI":11,"BB":1,"SO":5,"SB":0,"CS":0,"HBP":1,"E":0,"AVG":"0.571","OBP":"0.625","SLG":"0.857","OPS":"1.482"},
-      {"name":"Tommy DiPompeo","number":"24","G":6,"AB":13,"R":3,"H":1,"2B":0,"3B":0,"HR":0,"RBI":4,"BB":0,"SO":3,"SB":1,"CS":0,"HBP":1,"E":0,"AVG":"0.077","OBP":"0.143","SLG":"0.077","OPS":"0.220"},
-      {"name":"Darcy Mizejewski","number":"7","G":6,"AB":12,"R":1,"H":0,"2B":0,"3B":0,"HR":0,"RBI":0,"BB":1,"SO":2,"SB":1,"CS":0,"HBP":0,"E":0,"AVG":"0.000","OBP":"0.077","SLG":"0.000","OPS":"0.077"},
-      {"name":"Grant Wang","number":"17","G":6,"AB":12,"R":5,"H":6,"2B":0,"3B":0,"HR":0,"RBI":1,"BB":1,"SO":4,"SB":3,"CS":0,"HBP":1,"E":0,"AVG":"0.500","OBP":"0.571","SLG":"0.500","OPS":"1.071"},
-      {"name":"Oliver Wells","number":"14","G":5,"AB":7,"R":5,"H":0,"2B":0,"3B":0,"HR":0,"RBI":0,"BB":8,"SO":4,"SB":0,"CS":0,"HBP":0,"E":0,"AVG":"0.000","OBP":"0.533","SLG":"0.000","OPS":"0.533"},
-      {"name":"Guest 2","number":"","G":1,"AB":4,"R":1,"H":2,"2B":0,"3B":0,"HR":0,"RBI":0,"BB":0,"SO":1,"SB":1,"CS":0,"HBP":0,"E":0,"AVG":"0.500","OBP":"0.500","SLG":"0.500","OPS":"1.000"},
-      {"name":"Guest 1","number":"","G":1,"AB":3,"R":1,"H":1,"2B":1,"3B":0,"HR":0,"RBI":0,"BB":2,"SO":1,"SB":0,"CS":0,"HBP":0,"E":0,"AVG":"0.333","OBP":"0.500","SLG":"0.667","OPS":"1.167"}
-    ],
-    pitching: [
-      {"name":"Will Kowalski","number":"98","IP":"7.2","H":11,"R":7,"ER":5,"BB":4,"SO":8,"#P":134,"BF":38,"HBP":0,"WP":3,"ERA":"4.57","WHIP":"1.96","K/9":"9.4"},
-      {"name":"Ren Endo","number":"11","IP":"6.2","H":13,"R":12,"ER":9,"BB":5,"SO":4,"#P":134,"BF":41,"HBP":2,"WP":0,"ERA":"9.45","WHIP":"2.70","K/9":"5.4"},
-      {"name":"Logan Pressberg","number":"12","IP":"6.0","H":3,"R":5,"ER":4,"BB":8,"SO":5,"#P":99,"BF":29,"HBP":1,"WP":0,"ERA":"4.67","WHIP":"1.83","K/9":"7.5"},
-      {"name":"Oliver Wells","number":"14","IP":"5.1","H":6,"R":6,"ER":5,"BB":2,"SO":3,"#P":80,"BF":24,"HBP":0,"WP":2,"ERA":"6.56","WHIP":"1.50","K/9":"5.1"},
-      {"name":"Grant Wang","number":"17","IP":"5.0","H":5,"R":5,"ER":2,"BB":5,"SO":1,"#P":98,"BF":25,"HBP":0,"WP":1,"ERA":"2.80","WHIP":"2.00","K/9":"1.8"},
-      {"name":"Joshua Lopez","number":"2","IP":"3.2","H":6,"R":6,"ER":2,"BB":5,"SO":2,"#P":76,"BF":22,"HBP":1,"WP":2,"ERA":"3.82","WHIP":"3.00","K/9":"4.9"},
-      {"name":"Grant Richards","number":"22","IP":"3.1","H":11,"R":11,"ER":2,"BB":2,"SO":1,"#P":82,"BF":22,"HBP":1,"WP":0,"ERA":"4.20","WHIP":"3.90","K/9":"2.7"},
-      {"name":"Adam Ingram","number":"3","IP":"1.1","H":1,"R":1,"ER":1,"BB":1,"SO":3,"#P":30,"BF":7,"HBP":0,"WP":0,"ERA":"5.25","WHIP":"1.50","K/9":"20.2"},
-      {"name":"Beckett Dickinson","number":"21","IP":"0.2","H":0,"R":0,"ER":0,"BB":0,"SO":0,"#P":4,"BF":2,"HBP":0,"WP":0,"ERA":"0.00","WHIP":"0.00","K/9":"0.0"}
-    ],
-    games: [
-      {"opponent":"LBC Thunder 11U","result":"W","us":12,"them":10,"home_away":"away"},
-      {"opponent":"Gambrills Athletic Club 11U","result":"W","us":4,"them":1,"home_away":"home"},
-      {"opponent":"HCYP Raiders Blue 11U","result":"L","us":8,"them":9,"home_away":"away"},
-      {"opponent":"Ole Liners National 11U","result":"W","us":11,"them":2,"home_away":"home"},
-      {"opponent":"Gambrills Athletic Club 11U","result":"L","us":4,"them":9,"home_away":"away"},
-      {"opponent":"Delmarva Aces 11U East","result":"W","us":18,"them":8,"home_away":"away"},
-      {"opponent":"Delmarva Aces 11U East","result":"L","us":9,"them":14,"home_away":"home"}
-    ]
-  },
-  fall: {
-    record: {"W":25,"L":10,"T":0,"R":294,"RA":200,"games":35},
-    batting: [
-      {"name":"Grant Richards","number":"22","G":35,"AB":95,"R":38,"H":42,"2B":16,"3B":1,"HR":1,"RBI":31,"BB":11,"SO":9,"SB":21,"CS":0,"HBP":1,"E":0,"AVG":"0.442","OBP":"0.505","SLG":"0.663","OPS":"1.168"},
-      {"name":"Beckett Dickinson","number":"21","G":35,"AB":79,"R":39,"H":20,"2B":6,"3B":0,"HR":0,"RBI":18,"BB":23,"SO":16,"SB":31,"CS":0,"HBP":4,"E":0,"AVG":"0.253","OBP":"0.443","SLG":"0.329","OPS":"0.772"},
-      {"name":"Tommy DiPompeo","number":"24","G":31,"AB":78,"R":25,"H":24,"2B":7,"3B":3,"HR":0,"RBI":24,"BB":9,"SO":7,"SB":19,"CS":0,"HBP":0,"E":0,"AVG":"0.308","OBP":"0.379","SLG":"0.474","OPS":"0.853"},
-      {"name":"Will Kowalski","number":"98","G":29,"AB":74,"R":24,"H":27,"2B":9,"3B":2,"HR":5,"RBI":32,"BB":11,"SO":14,"SB":10,"CS":0,"HBP":0,"E":0,"AVG":"0.365","OBP":"0.447","SLG":"0.743","OPS":"1.190"},
-      {"name":"Oliver Wells","number":"14","G":35,"AB":70,"R":30,"H":22,"2B":5,"3B":0,"HR":0,"RBI":17,"BB":20,"SO":6,"SB":22,"CS":0,"HBP":1,"E":0,"AVG":"0.314","OBP":"0.473","SLG":"0.386","OPS":"0.859"},
-      {"name":"Logan Pressberg","number":"12","G":32,"AB":65,"R":23,"H":21,"2B":2,"3B":4,"HR":0,"RBI":15,"BB":18,"SO":11,"SB":24,"CS":0,"HBP":5,"E":0,"AVG":"0.323","OBP":"0.500","SLG":"0.477","OPS":"0.977"},
-      {"name":"Darcy Mizejewski","number":"7","G":33,"AB":63,"R":10,"H":13,"2B":6,"3B":0,"HR":0,"RBI":6,"BB":21,"SO":16,"SB":13,"CS":0,"HBP":1,"E":0,"AVG":"0.206","OBP":"0.412","SLG":"0.302","OPS":"0.714"},
-      {"name":"Everett Harkins","number":"51","G":28,"AB":60,"R":20,"H":26,"2B":9,"3B":2,"HR":1,"RBI":35,"BB":12,"SO":10,"SB":13,"CS":0,"HBP":7,"E":0,"AVG":"0.433","OBP":"0.570","SLG":"0.700","OPS":"1.270"},
-      {"name":"Ren Endo","number":"11","G":35,"AB":59,"R":22,"H":9,"2B":0,"3B":1,"HR":0,"RBI":10,"BB":21,"SO":20,"SB":9,"CS":0,"HBP":3,"E":0,"AVG":"0.153","OBP":"0.398","SLG":"0.186","OPS":"0.584"},
-      {"name":"Grant Wang","number":"17","G":31,"AB":56,"R":16,"H":10,"2B":1,"3B":1,"HR":0,"RBI":12,"BB":15,"SO":10,"SB":17,"CS":0,"HBP":1,"E":0,"AVG":"0.179","OBP":"0.361","SLG":"0.232","OPS":"0.593"},
-      {"name":"Joshua Lopez","number":"2","G":31,"AB":56,"R":31,"H":13,"2B":3,"3B":1,"HR":0,"RBI":9,"BB":23,"SO":13,"SB":23,"CS":0,"HBP":1,"E":0,"AVG":"0.232","OBP":"0.463","SLG":"0.321","OPS":"0.784"},
-      {"name":"Adam Ingram","number":"3","G":22,"AB":49,"R":16,"H":15,"2B":3,"3B":0,"HR":0,"RBI":11,"BB":10,"SO":6,"SB":18,"CS":0,"HBP":4,"E":0,"AVG":"0.306","OBP":"0.460","SLG":"0.367","OPS":"0.827"}
-    ],
-    pitching: [
-      {"name":"Will Kowalski","number":"98","IP":"35.2","H":36,"R":26,"ER":18,"BB":12,"SO":36,"#P":553,"BF":162,"HBP":3,"WP":9,"ERA":"3.53","WHIP":"1.35","K/9":"9.1"},
-      {"name":"Oliver Wells","number":"14","IP":"31.1","H":36,"R":31,"ER":25,"BB":9,"SO":23,"#P":469,"BF":140,"HBP":0,"WP":0,"ERA":"5.59","WHIP":"1.44","K/9":"6.6"},
-      {"name":"Logan Pressberg","number":"12","IP":"23.2","H":23,"R":21,"ER":16,"BB":12,"SO":19,"#P":363,"BF":106,"HBP":0,"WP":0,"ERA":"4.73","WHIP":"1.48","K/9":"7.2"},
-      {"name":"Darcy Mizejewski","number":"7","IP":"20.0","H":26,"R":21,"ER":12,"BB":9,"SO":13,"#P":353,"BF":95,"HBP":0,"WP":0,"ERA":"4.20","WHIP":"1.75","K/9":"5.8"},
-      {"name":"Grant Richards","number":"22","IP":"18.2","H":20,"R":22,"ER":15,"BB":15,"SO":17,"#P":311,"BF":90,"HBP":1,"WP":0,"ERA":"5.62","WHIP":"1.87","K/9":"8.2"},
-      {"name":"Ren Endo","number":"11","IP":"15.1","H":23,"R":15,"ER":11,"BB":11,"SO":7,"#P":263,"BF":75,"HBP":0,"WP":0,"ERA":"5.02","WHIP":"2.22","K/9":"4.1"},
-      {"name":"Adam Ingram","number":"3","IP":"12.1","H":22,"R":18,"ER":14,"BB":12,"SO":14,"#P":247,"BF":61,"HBP":1,"WP":0,"ERA":"7.95","WHIP":"2.76","K/9":"10.2"},
-      {"name":"Grant Wang","number":"17","IP":"12.1","H":20,"R":15,"ER":14,"BB":8,"SO":4,"#P":217,"BF":60,"HBP":0,"WP":0,"ERA":"7.95","WHIP":"2.27","K/9":"2.9"},
-      {"name":"Joshua Lopez","number":"2","IP":"8.2","H":12,"R":16,"ER":8,"BB":14,"SO":5,"#P":227,"BF":50,"HBP":0,"WP":0,"ERA":"6.46","WHIP":"3.00","K/9":"5.2"},
-      {"name":"Beckett Dickinson","number":"21","IP":"7.0","H":9,"R":8,"ER":7,"BB":4,"SO":3,"#P":127,"BF":36,"HBP":0,"WP":0,"ERA":"7.00","WHIP":"1.86","K/9":"3.9"},
-      {"name":"Everett Harkins","number":"51","IP":"2.2","H":4,"R":7,"ER":6,"BB":6,"SO":2,"#P":81,"BF":18,"HBP":0,"WP":0,"ERA":"15.75","WHIP":"3.75","K/9":"6.8"},
-      {"name":"Tommy DiPompeo","number":"24","IP":"0.1","H":0,"R":0,"ER":0,"BB":1,"SO":1,"#P":10,"BF":2,"HBP":0,"WP":0,"ERA":"0.00","WHIP":"3.00","K/9":"27.0"}
-    ],
-    games: [
-      {"opponent":"MVP Mustangs Red 11U","result":"W","us":11,"them":3},
-      {"opponent":"Colts 11u","result":"W","us":5,"them":3},
-      {"opponent":"Stonewall Tigers 12U","result":"W","us":7,"them":6},
-      {"opponent":"Vienna Chili Dogs 11U","result":"W","us":12,"them":3},
-      {"opponent":"Blue Ridge Titans 11U","result":"W","us":7,"them":1},
-      {"opponent":"Oppo Tacos","result":"W","us":17,"them":11},
-      {"opponent":"Stonewall Tigers 12U","result":"L","us":5,"them":10},
-      {"opponent":"Burtonsville Storm 12U","result":"W","us":18,"them":3},
-      {"opponent":"HCYP Raiders Blue 11U","result":"L","us":7,"them":11},
-      {"opponent":"HCYP Raiders Blue 11U","result":"L","us":5,"them":10},
-      {"opponent":"Mid-Atlantic Canes Gold 11U","result":"W","us":9,"them":5},
-      {"opponent":"Mid-Atlantic Canes Gold 11U","result":"L","us":4,"them":7},
-      {"opponent":"Dig In Inman 11U","result":"W","us":4,"them":3},
-      {"opponent":"Dig In Inman 11U","result":"L","us":5,"them":6},
-      {"opponent":"Maryland J Bats Orange","result":"W","us":11,"them":5},
-      {"opponent":"Calvert Cutters 11U","result":"L","us":4,"them":13},
-      {"opponent":"API Academy 11U","result":"W","us":11,"them":1},
-      {"opponent":"Lake Shore GraySox 11U","result":"W","us":15,"them":7},
-      {"opponent":"Calvert Cutters 11U","result":"L","us":4,"them":8},
-      {"opponent":"Maryland Jbats 11U","result":"W","us":8,"them":7},
-      {"opponent":"Stars 11U","result":"W","us":10,"them":2},
-      {"opponent":"MC Eagles 11U","result":"W","us":8,"them":7},
-      {"opponent":"Gambrills Athletic Club 11U","result":"L","us":6,"them":18},
-      {"opponent":"Burtonsville Storm 12U","result":"W","us":13,"them":10},
-      {"opponent":"Loudoun Aces - Ford 11U","result":"W","us":11,"them":0},
-      {"opponent":"Dig In Kaelin 11U","result":"W","us":11,"them":10},
-      {"opponent":"Loudoun Aces - Ford 11U","result":"W","us":6,"them":5},
-      {"opponent":"Dig In Kaelin 11U","result":"W","us":7,"them":6},
-      {"opponent":"Urbana Hawks- Navy 11U","result":"L","us":7,"them":8},
-      {"opponent":"Elkridge Hurricanes 11U Orange","result":"L","us":2,"them":5},
-      {"opponent":"Gambrills Athletic Club 11U","result":"W","us":2,"them":1},
-      {"opponent":"Cubs Blue 11U","result":"W","us":5,"them":0},
-      {"opponent":"API Academy 11U","result":"W","us":12,"them":1},
-      {"opponent":"HCYP Raiders 11u White","result":"W","us":7,"them":1},
-      {"opponent":"Ole Liners 11U","result":"W","us":18,"them":3}
-    ]
-  }
+/* ============================================================
+   APP — vanilla JS, no framework
+   ============================================================ */
+const DATA = JSON.parse(document.getElementById('bcc-data').textContent);
+const T = DATA.team;
+
+/* ── helpers ────────────────────────────────────────── */
+const fmtPct  = (x, dp=1) => (x == null) ? '—' : (x*100).toFixed(dp)+'%';
+const fmtNum  = (x, dp=3) => (x == null) ? '—' : Number(x).toFixed(dp);
+const fmtInt  = (x)       => (x == null) ? '—' : String(x);
+const fmtRate = (x, dp=2) => (x == null) ? '—' : Number(x).toFixed(dp);
+
+const stabPill = (flag) => {
+  if (!flag) return '';
+  const cls = flag === 'GREEN' ? 'green' : flag === 'YELLOW' ? 'yellow' : 'red';
+  return `<span class="pill-stab pill-stab--${cls}" title="Sample size — ${flag}"></span>`;
 };
 
-// ── Computed Stats ────────────────────────────────────
-function ipToOuts(ip) {
-  const parts = String(ip).split('.');
-  return parseInt(parts[0]) * 3 + (parseInt(parts[1]) || 0);
-}
-function outsToIp(outs) {
-  return (Math.floor(outs/3) + (outs%3)/10).toFixed(1);
-}
+const roleEl = (text, cls='') => `<span class="badge ${cls}">${text}</span>`;
 
-function addBattingAdv(batters) {
-  return batters.map(b => {
-    const pa = b.AB + b.BB + b.HBP;
-    const tb = b.H + b['2B'] + 2*b['3B'] + 3*b.HR;
-    const iso = parseFloat(b.SLG) - parseFloat(b.AVG);
-    const babipDenom = b.AB - b.SO - b.HR;
-    const babip = babipDenom > 0 ? (b.H - b.HR) / babipDenom : null;
-    const k_pct = pa > 0 ? b.SO / pa : null;
-    const bb_pct = pa > 0 ? b.BB / pa : null;
-    const sb_att = b.SB + b.CS;
-    const sb_pct = sb_att > 0 ? b.SB / sb_att : null;
-    // Simple wRC+ approximation: use OPS scaled vs league avg (approx .750 for 11U)
-    const ops = parseFloat(b.OPS);
-    const wrc_plus = pa >= 5 ? Math.round((ops / 0.750) * 100) : null;
-    return { ...b, pa, tb, iso, babip, k_pct, bb_pct, sb_pct, wrc_plus };
-  });
+/* Color a numeric cell based on benchmark */
+function cellClass(value, good, elite, lower_is_better=false) {
+  if (value == null) return '';
+  if (lower_is_better) {
+    if (value <= elite) return 'num-elite';
+    if (value <= good)  return 'num-strong';
+    return '';
+  }
+  if (value >= elite) return 'num-elite';
+  if (value >= good)  return 'num-strong';
+  return '';
 }
 
-function addPitchingAdv(pitchers) {
-  return pitchers.map(p => {
-    const outs = ipToOuts(p.IP);
-    const ip_dec = outs / 3;
-    const k_pct = p.BF > 0 ? p.SO / p.BF : null;
-    const bb_pct = p.BF > 0 ? p.BB / p.BF : null;
-    const kbb = (k_pct !== null && bb_pct !== null) ? k_pct - bb_pct : null;
-    const pip = outs > 0 ? p['#P'] / ip_dec : null;
-    const h9 = ip_dec > 0 ? (p.H / ip_dec) * 9 : null;
-    // FIP approx: (13*HR + 3*(BB+HBP) - 2*K) / IP + cFIP (use ~3.10 for 11U)
-    // No HR data in pitching, estimate HR from ER context; simplified:
-    const hr_est = Math.max(0, Math.round(p.ER * 0.08)); // rough estimate
-    const fip = ip_dec > 0 ? ((13*hr_est + 3*(p.BB + p.HBP) - 2*p.SO) / ip_dec + 3.10) : null;
-    return { ...p, k_pct, bb_pct, kbb, pip, h9, fip };
-  });
-}
+function htmlEscape(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-// ── State ─────────────────────────────────────────────
-let currentSeason = 'spring';
-let battingSort = { col: 'OPS', dir: -1 };
-let pitchingSort = { col: 'ERA', dir: 1 };
-
-// ── Format helpers ────────────────────────────────────
-const fmt3 = v => v !== null && !isNaN(v) ? v.toFixed(3).replace(/^0/, '') : '—';
-const fmt2 = v => v !== null && !isNaN(v) ? v.toFixed(2) : '—';
-const fmtPct = v => v !== null && !isNaN(v) ? (v*100).toFixed(1) + '%' : '—';
-const fmtInt = v => v !== null && !isNaN(v) ? Math.round(v).toString() : '—';
-
-// ── Render Overview ───────────────────────────────────
+/* ============================================================
+   OVERVIEW
+   ============================================================ */
 function renderOverview() {
-  const d = TEAM_DATA[currentSeason];
-  const r = d.record;
-  const wpct = r.W / r.games;
-  const rdiff = r.R - r.RA;
-  const ppg_for = (r.R / r.games).toFixed(1);
-  const ppg_against = (r.RA / r.games).toFixed(1);
-  
-  // Batting totals
-  const bat = d.batting;
-  const totalH = bat.reduce((s,b)=>s+b.H,0);
-  const totalAB = bat.reduce((s,b)=>s+b.AB,0);
-  const teamAVG = totalAB > 0 ? (totalH/totalAB).toFixed(3).replace(/^0/,'') : '.000';
-  const totalSB = bat.reduce((s,b)=>s+b.SB,0);
-  const totalBB = bat.reduce((s,b)=>s+b.BB,0);
-  const totalSO = bat.reduce((s,b)=>s+b.SO,0);
-  
-  // Pitching totals
-  const pit = d.pitching;
-  const totalER = pit.reduce((s,p)=>s+p.ER,0);
-  const totalOuts = pit.reduce((s,p)=>s+ipToOuts(p.IP),0);
-  const teamERA = totalOuts > 0 ? ((totalER/(totalOuts/3))*9).toFixed(2) : '—';
-  const totalK = pit.reduce((s,p)=>s+p.SO,0);
-  const totalBF = pit.reduce((s,p)=>s+p.BF,0);
+  const r = T.career_record;
+  const fall = T.record_by_season['2025-fall'];
+  const spring = T.record_by_season['2026-spring'];
+  const py = T.pythagenpat;
 
-  const cards = [
-    { label: 'Record', value: `${r.W}-${r.L}`, cls: '' },
-    { label: 'Win%', value: (wpct*100).toFixed(0)+'%', cls: wpct >= .600 ? 'green' : wpct < .400 ? 'red' : '' },
-    { label: 'Run Diff', value: (rdiff>0?'+':'')+rdiff, cls: rdiff>0?'green':rdiff<0?'red':'' },
-    { label: 'R/Game', value: ppg_for, cls: 'gold' },
-    { label: 'RA/Game', value: ppg_against, cls: '' },
-    { label: 'Team AVG', value: teamAVG, cls: '' },
-    { label: 'Team ERA', value: teamERA, cls: parseFloat(teamERA)<5.00?'green':parseFloat(teamERA)>7?'red':'' },
-    { label: 'Team K', value: totalK, cls: '' },
-    { label: 'SB', value: totalSB, cls: 'gold' },
-    { label: 'Team BB (off)', value: totalBB, cls: '' },
-  ];
+  // Top performers
+  const topHitter = Object.entries(DATA.batting)
+    .filter(([n,p]) => p.counts.PA >= 50)
+    .sort((a,b) => b[1].outcome.wOBA_basic - a[1].outcome.wOBA_basic)[0];
+  const topPitcher = Object.entries(DATA.pitching)
+    .filter(([n,p]) => p.counts.BF >= 50)
+    .sort((a,b) => b[1].results['K-BB%'] - a[1].results['K-BB%'])[0];
 
-  document.getElementById('header-record').innerHTML = `
-    <div class="record-num">${r.W}-${r.L}</div>
-    <div class="record-label">${currentSeason === 'spring' ? '2026 Spring' : '2025 Fall'}</div>`;
+  // Pitch Smart violation count
+  let restViolations = 0;
+  let dailyMaxViolations = 0;
+  Object.values(DATA.pitching).forEach(p => {
+    p.appearances.forEach(app => {
+      if (app.rest_compliance === false) restViolations++;
+      if (app.over_daily_max) dailyMaxViolations++;
+    });
+  });
 
-  document.getElementById('overview-cards').innerHTML = cards.map(c => `
-    <div class="stat-card">
-      <div class="stat-card-value ${c.cls}">${c.value}</div>
-      <div class="stat-card-label">${c.label}</div>
-    </div>`).join('');
-}
+  const html = `
+    <!-- Hero / scoreboard -->
+    <div class="section-reversed" style="margin: calc(-1 * var(--space-6)) 0 var(--space-8);">
+      <div class="container">
+        <div class="t-label">Career Record · ${T.seasons.length} Seasons</div>
+        <div class="accent-bar accent-bar--reversed"></div>
+        <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-5); align-items: end;" id="hero-grid">
+          <div>
+            <div class="t-display" style="font-size: clamp(3.5rem, 12vw, var(--text-hero));">
+              ${r.W}<span style="color: var(--color-gold-bright)">–</span>${r.L}
+            </div>
+            <div class="t-label" style="margin-top: var(--space-2); color: var(--color-reversed-muted);">
+              ${r.R} runs scored · ${r.RA} allowed · ${r.RPG.toFixed(1)} RPG combined
+            </div>
+          </div>
+          <div class="kpi-grid" style="margin: 0;">
+            <div class="kpi">
+              <div class="kpi-label">Pythag wins (expected)</div>
+              <div class="kpi-value">${py.expected_wins.toFixed(1)}</div>
+              <div class="kpi-detail">${py.delta_wins >= 0 ? '+' : ''}${py.delta_wins.toFixed(1)} vs actual</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Run Diff</div>
+              <div class="kpi-value">+${r.R - r.RA}</div>
+              <div class="kpi-detail">${(r.R/r.games).toFixed(1)} – ${(r.RA/r.games).toFixed(1)}/g</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">2025 Fall</div>
+              <div class="kpi-value">${fall.W}–${fall.L}</div>
+              <div class="kpi-detail">${fall.games} games</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">2026 Spring</div>
+              <div class="kpi-value">${spring.W}–${spring.L}</div>
+              <div class="kpi-detail">${spring.games} games · in progress</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-// ── Render Leaders ─────────────────────────────────────
-function renderLeaders() {
-  const d = TEAM_DATA[currentSeason];
-  const bat = addBattingAdv(d.batting.filter(b => b.AB >= 5));
-  const pit = addPitchingAdv(d.pitching.filter(p => ipToOuts(p.IP) >= 3));
+    <div class="container">
 
-  function top(arr, key, dir=1, fn=v=>v) {
-    return arr.slice().sort((a,b)=>dir*(fn(b[key])-fn(a[key])))[0];
-  }
-  
-  const leaders = [
-    { cat: 'Batting Average', key: bat, stat: 'AVG', fn: v=>parseFloat(v), fmt: v => parseFloat(v).toFixed(3).replace(/^0/,'') },
-    { cat: 'OPS', key: bat, stat: 'OPS', fn: v=>parseFloat(v), fmt: v => parseFloat(v).toFixed(3).replace(/^0/,'') },
-    { cat: 'RBI', key: bat, stat: 'RBI', fn: v=>v, fmt: v => v },
-    { cat: 'Home Runs', key: bat, stat: 'HR', fn: v=>v, fmt: v => v },
-    { cat: 'Stolen Bases', key: bat, stat: 'SB', fn: v=>v, fmt: v => v },
-    { cat: 'On-Base Pct', key: bat, stat: 'OBP', fn: v=>parseFloat(v), fmt: v => parseFloat(v).toFixed(3).replace(/^0/,'') },
-    { cat: 'ERA (min 3 IP)', key: pit, stat: 'ERA', fn: v=>-parseFloat(v), fmt: v => parseFloat(v).toFixed(2) },
-    { cat: 'Strikeouts', key: pit, stat: 'SO', fn: v=>v, fmt: v => v },
-  ];
+      <!-- Headline insight -->
+      <div class="section-caption">
+        <div>
+          <strong>Read this first.</strong> Process metrics — strike-throwing rate,
+          contact rate, swing decisions — are statistically reliable at this sample
+          size and predict skill. <em>Outcome metrics</em> (AVG, ERA, RBI) are mostly
+          noise at 11U. Every page below leads with the predictive numbers and
+          buries the scoreboard stats. Click any player row to expand details.
+        </div>
+      </div>
 
-  document.getElementById('batting-leaders').innerHTML = leaders.slice(0,6).map(l => {
-    const p = top(l.key, l.stat, 1, l.fn);
-    if (!p) return '';
-    return `<div class="leader-card">
-      <div class="leader-card-cat">${l.cat}</div>
-      <div class="leader-card-name">${p.name.split(' ').pop()}</div>
-      <div class="leader-card-val">${l.fmt(p[l.stat])}</div>
-      <div class="leader-card-num">#${p.number} · ${p.name}</div>
-    </div>`;
-  }).join('');
+      ${restViolations > 0 ? `
+      <div class="alert-strong">
+        <strong>Workload flag:</strong> ${restViolations} Pitch Smart rest-day
+        violation${restViolations !== 1 ? 's' : ''}
+        ${dailyMaxViolations > 0 ? `and ${dailyMaxViolations} over the 85-pitch daily max` : ''}
+        across the season. The 2021 youth compliance study found 94% of teams
+        violate; this team is doing better than most but the gaps are reviewable.
+        See <button class="btn btn--ghost-gold btn--sm" data-jump="workload" style="margin-left:8px">Pitch Smart →</button>
+      </div>
+      ` : ''}
 
-  document.getElementById('pitching-leaders').innerHTML = leaders.slice(6).map(l => {
-    const p = top(l.key, l.stat, 1, l.fn);
-    if (!p) return '';
-    return `<div class="leader-card">
-      <div class="leader-card-cat">${l.cat}</div>
-      <div class="leader-card-name">${p.name.split(' ').pop()}</div>
-      <div class="leader-card-val">${l.fmt(p[l.stat])}</div>
-      <div class="leader-card-num">#${p.number} · ${p.name}</div>
-    </div>`;
-  }).join('');
-}
+      <!-- Top performers -->
+      <div class="section-head">
+        <h2 class="t-h2">Top Performers</h2>
+      </div>
+      <div class="section-rule section-rule--gold"></div>
 
-// ── Render Batting Table ───────────────────────────────
-function renderBatting() {
-  const d = TEAM_DATA[currentSeason];
-  let bat = addBattingAdv(d.batting);
-  
-  const colMap = {
-    'G':'G','AB':'AB','R':'R','H':'H','2B':'2B','3B':'3B','HR':'HR',
-    'RBI':'RBI','BB':'BB','SO':'SO','SB':'SB','CS':'CS','HBP':'HBP',
-    'AVG':'AVG','OBP':'OBP','SLG':'SLG','OPS':'OPS',
-    'ISO':'iso','BABIP':'babip','K_PCT':'k_pct','BB_PCT':'bb_pct','SB_PCT':'sb_pct'
+      <div class="def-grid">
+        ${topHitter ? `
+        <div class="def-card" style="border-left-color: var(--color-gold-bright); background: var(--color-gold-tint);">
+          <div class="t-label">Top hitter (by basic wOBA)</div>
+          <strong style="font-size: var(--text-lg)">${topHitter[0]}</strong>
+          <span class="t-mono-num">
+            wOBA <strong class="t-gold">${topHitter[1].outcome.wOBA_basic.toFixed(3)}</strong>
+            · Contact ${fmtPct(topHitter[1].process['Contact%'])}
+            · BB/K ${topHitter[1].process.BB_K ? topHitter[1].process.BB_K.toFixed(2) : '—'}
+            · ${topHitter[1].counts.PA} PA
+          </span>
+        </div>
+        ` : ''}
+        ${topPitcher ? `
+        <div class="def-card" style="border-left-color: var(--color-gold-bright); background: var(--color-gold-tint);">
+          <div class="t-label">Top pitcher (by K-BB%)</div>
+          <strong style="font-size: var(--text-lg)">${topPitcher[0]}</strong>
+          <span class="t-mono-num">
+            K-BB% <strong class="t-gold">${fmtPct(topPitcher[1].results['K-BB%'])}</strong>
+            · F-Strike ${fmtPct(topPitcher[1].command.F_Strike)}
+            · CSW ${fmtPct(topPitcher[1].command.CSW_)}
+            · ${topPitcher[1].counts.BF} BF
+          </span>
+        </div>
+        ` : ''}
+      </div>
+
+      <!-- Team-level process metrics (priors) -->
+      <div class="section-head mt-6">
+        <h2 class="t-h2">Team Baseline · Process Metrics</h2>
+        <div class="t-label">Team avg = the prior used for regression to mean</div>
+      </div>
+      <div class="section-rule section-rule--gold"></div>
+      <div class="tbl-wrap mb-6">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Team rate</th>
+              <th>League / target</th>
+              <th>Stabilizes at</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="no-hover"><td>Hitter K%</td><td class="num-strong">${fmtPct(T.team_priors['K%'])}</td><td>~16% youth norm</td><td>60 PA</td></tr>
+            <tr class="no-hover"><td>Hitter BB%</td><td class="num-strong">${fmtPct(T.team_priors['BB%'])}</td><td>~10% youth norm</td><td>120 PA</td></tr>
+            <tr class="no-hover"><td>Swing%</td><td class="num-strong">${fmtPct(T.team_priors['Swing%'])}</td><td>~45% MLB</td><td>50 PA</td></tr>
+            <tr class="no-hover"><td>Contact%</td><td class="num-strong">${fmtPct(T.team_priors['Contact%'])}</td><td>~78% MLB · 80%+ elite at 11U</td><td>100 PA</td></tr>
+            <tr class="no-hover"><td>SwStr%</td><td class="num-strong">${fmtPct(T.team_priors['SwStr%'])}</td><td>~10% MLB · &lt;9% elite</td><td>55 PA</td></tr>
+            <tr class="no-hover"><td>Pitcher F-Strike%</td><td class="num-strong">${fmtPct(T.team_priors.p_FStrike_ ?? T.team_priors['p_FStr%'])}</td><td>60% baseline · 70% elite</td><td>150 BF</td></tr>
+            <tr class="no-hover"><td>Pitcher CSW%</td><td class="num-strong">${fmtPct(T.team_priors['CSW%'])}</td><td>~30% MLB · 27%+ good at 11U</td><td>250 pitches</td></tr>
+            <tr class="no-hover"><td>Pitcher GB%</td><td class="num-strong">${fmtPct(T.team_priors['p_GB%'])}</td><td>~45% MLB</td><td>70 BIP</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Game log strip -->
+      <div class="section-head">
+        <h2 class="t-h2">Game Log</h2>
+        <div class="t-label">${DATA.game_log.length} games · click any pip for details</div>
+      </div>
+      <div class="section-rule"></div>
+      <div class="card mb-6">
+        <div class="gamelog">${renderGamelog()}</div>
+      </div>
+
+      <!-- Stabilization legend -->
+      <div class="section-head">
+        <h2 class="t-h2">How to Read the Pills</h2>
+      </div>
+      <div class="section-rule"></div>
+      <div class="def-grid">
+        <div class="def-card">
+          <strong>${stabPill('GREEN')}Green</strong>
+          <span>Sample size meets stabilization threshold. Trust the number.</span>
+        </div>
+        <div class="def-card" style="border-left-color: var(--color-warning)">
+          <strong>${stabPill('YELLOW')}Yellow</strong>
+          <span>Half of stabilization sample. Trust the direction, not the magnitude.</span>
+        </div>
+        <div class="def-card" style="border-left-color: var(--color-danger)">
+          <strong>${stabPill('RED')}Red</strong>
+          <span>Below half-sample. Treat as anecdote — use the regressed estimate.</span>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('page-overview').innerHTML = html;
+
+  // wire up jump buttons
+  document.querySelectorAll('[data-jump]').forEach(b => {
+    b.addEventListener('click', () => switchTab(b.dataset.jump));
+  });
+
+  // hero grid responsive layout
+  const hero = document.getElementById('hero-grid');
+  const adjustHero = () => {
+    if (window.matchMedia('(min-width: 720px)').matches) {
+      hero.style.gridTemplateColumns = '1fr 2fr';
+    } else {
+      hero.style.gridTemplateColumns = '1fr';
+    }
   };
-  
-  const col = battingSort.col;
-  const dir = battingSort.dir;
-  const sortKey = colMap[col] || col;
-  
-  bat.sort((a, b) => {
-    let av = a[sortKey]; let bv = b[sortKey];
-    if (av === null || av === undefined) return 1;
-    if (bv === null || bv === undefined) return -1;
-    if (typeof av === 'string') av = parseFloat(av);
-    if (typeof bv === 'string') bv = parseFloat(bv);
-    return dir * (bv - av);
-  });
+  adjustHero();
+  window.addEventListener('resize', adjustHero);
+}
 
-  const tbody = document.getElementById('batting-tbody');
-  tbody.innerHTML = bat.map(b => {
-    const ops = parseFloat(b.OPS);
-    const avg = parseFloat(b.AVG);
-    const opsClass = ops >= 1.000 ? 'td-highlight' : ops >= 0.900 ? 'td-good' : ops < 0.500 ? 'td-bad' : '';
-    const avgClass = avg >= .400 ? 'td-highlight' : avg >= .300 ? 'td-good' : avg < .150 ? 'td-bad' : '';
-    const eraColor = b.k_pct !== null && b.k_pct >= 0.25 ? 'td-bad' : '';
-    const bbColor = b.bb_pct !== null && b.bb_pct >= 0.20 ? 'td-good' : '';
-    return `<tr>
-      <td>${b.name}</td>
-      <td>${b.number || '—'}</td>
-      <td class="td-num">${b.G}</td>
-      <td class="td-num">${b.AB}</td>
-      <td class="td-num">${b.R}</td>
-      <td class="td-num">${b.H}</td>
-      <td class="td-num">${b['2B']}</td>
-      <td class="td-num">${b['3B']}</td>
-      <td class="td-num">${b.HR}</td>
-      <td class="td-num">${b.RBI}</td>
-      <td class="td-num">${b.BB}</td>
-      <td class="td-num ${eraColor}">${b.SO}</td>
-      <td class="td-num">${b.SB}</td>
-      <td class="td-num">${b.CS}</td>
-      <td class="td-num">${b.HBP}</td>
-      <td class="td-num ${avgClass}">${parseFloat(b.AVG).toFixed(3).replace(/^0/,'')}</td>
-      <td class="td-num">${parseFloat(b.OBP).toFixed(3).replace(/^0/,'')}</td>
-      <td class="td-num">${parseFloat(b.SLG).toFixed(3).replace(/^0/,'')}</td>
-      <td class="td-num ${opsClass}">${parseFloat(b.OPS).toFixed(3).replace(/^0/,'')}</td>
-      <td class="td-num">${b.iso !== null ? b.iso.toFixed(3).replace(/^0/,'') : '—'}</td>
-      <td class="td-num">${b.babip !== null ? b.babip.toFixed(3).replace(/^0/,'') : '—'}</td>
-      <td class="td-num ${eraColor}">${fmtPct(b.k_pct)}</td>
-      <td class="td-num ${bbColor}">${fmtPct(b.bb_pct)}</td>
-      <td class="td-num">${b.sb_pct !== null ? fmtPct(b.sb_pct) : '—'}</td>
-    </tr>`;
+function renderGamelog() {
+  return DATA.game_log.map((g, i) => {
+    const r = (g.result || '').trim();
+    const win = r.startsWith('W');
+    const tie = r.startsWith('T');
+    const cls = win ? 'gamelog-pip--w' : tie ? 'gamelog-pip--t' : 'gamelog-pip--l';
+    const ch = r.charAt(0) || '?';
+    const title = `${g.date} ${g.home_away === 'home' ? 'vs' : '@'} ${g.opponent} — ${r}`;
+    return `<span class="gamelog-pip ${cls}" title="${htmlEscape(title)}">${ch}</span>`;
   }).join('');
+}
 
-  // Update sorted header
-  document.querySelectorAll('#batting-table thead th').forEach(th => {
-    th.classList.toggle('sorted', th.dataset.col === col);
+/* ============================================================
+   HITTING
+   ============================================================ */
+const HITTING_SORTS = {
+  'wOBA':     { label: 'wOBA (basic)', f: p => p.outcome.wOBA_basic },
+  'Contact%': { label: 'Contact%',     f: p => p.process['Contact%'] },
+  'BB/K':     { label: 'BB/K',         f: p => p.process.BB_K ?? 0 },
+  'K%-low':   { label: 'Lowest K%',    f: p => -p.process['K%'] },
+  'PA':       { label: 'Sample (PA)',  f: p => p.counts.PA },
+};
+let hittingSort = 'wOBA';
+let hittingShowScoreboard = false;
+const hittingOpen = new Set();
+
+function renderHitting() {
+  const players = Object.entries(DATA.batting)
+    .filter(([n,p]) => p.counts.PA >= 1);
+
+  const sorter = HITTING_SORTS[hittingSort];
+  players.sort((a,b) => sorter.f(b[1]) - sorter.f(a[1]));
+
+  const sortBtns = Object.entries(HITTING_SORTS).map(([k,v]) =>
+    `<button class="btn btn--ghost btn--sm ${k === hittingSort ? 'is-active' : ''}" data-sort="${k}">Sort: ${v.label}</button>`
+  ).join('');
+
+  let html = `
+    <div class="container">
+      <div class="section-head">
+        <h1 class="t-h1">Hitting</h1>
+        <div class="t-label">12 batters · ${players.reduce((s,[n,p])=>s+p.counts.PA,0)} PA</div>
+      </div>
+      <div class="section-rule section-rule--gold"></div>
+
+      <div class="section-caption">
+        <div>
+          <strong>Predictive first.</strong> The table below leads with
+          plate-discipline and contact metrics — these stabilize fast at this
+          age and reflect skill. The pill (●) next to each header shows the
+          sample-size verdict for the team-leading player. Outcome stats
+          (AVG/OBP/SLG) are mostly BABIP noise at 100 AB; toggle them on
+          if you need scoreboard numbers.
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-5">
+        <span class="t-label" style="align-self:center;margin-right:var(--space-2)">Sort by</span>
+        ${sortBtns}
+      </div>
+
+      <h2 class="t-h3" style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Process · Predictive Metrics</h2>
+      <div class="tbl-wrap mb-6">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>PA</th>
+              <th>P/PA</th>
+              <th>Contact%</th>
+              <th>SwStr%</th>
+              <th>BB%</th>
+              <th>K%</th>
+              <th>BB/K</th>
+              <th>wOBA</th>
+            </tr>
+          </thead>
+          <tbody id="hitting-tbody">
+            ${players.map(([name, p]) => renderHittingRow(name, p)).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-head" style="margin-top: var(--space-6);">
+        <h2 class="t-h3" style="margin: 0;">Scoreboard Stats <span class="t-muted" style="font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-weight: var(--weight-regular); font-size: var(--text-sm);">— for box-score conversation, not evaluation</span></h2>
+        <button class="btn btn--ghost btn--sm" id="toggle-scoreboard">${hittingShowScoreboard ? 'Hide' : 'Show'} scoreboard table</button>
+      </div>
+      <div class="section-rule"></div>
+
+      <div ${hittingShowScoreboard ? '' : 'hidden'} id="scoreboard-block">
+        <div class="alert-strong" style="background: #FBF1D9; border-left-color: var(--color-warning); color: var(--color-ink-soft);">
+          <strong style="color: #806010">Caveat.</strong> Batting average stabilizes at ~910 AB. None of these players are close — every value here is driven mostly by BABIP luck and sequencing. The regressed estimate (in the detail panel) is the honest one.
+        </div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>AB</th>
+                <th>H</th>
+                <th>2B</th>
+                <th>3B</th>
+                <th>HR</th>
+                <th>AVG</th>
+                <th>OBP</th>
+                <th>SLG</th>
+                <th>OPS</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${players.map(([name, p]) => `
+                <tr class="no-hover">
+                  <td><div class="player-cell"><span class="player-num">#${p.number}</span>${name}</div></td>
+                  <td>${p.counts.AB}</td>
+                  <td>${p.counts.H}</td>
+                  <td>${p.counts['2B']}</td>
+                  <td>${p.counts['3B']}</td>
+                  <td>${p.counts.HR}</td>
+                  <td>${fmtNum(p.outcome.AVG)}</td>
+                  <td>${fmtNum(p.outcome.OBP)}</td>
+                  <td>${fmtNum(p.outcome.SLG)}</td>
+                  <td class="num-strong">${fmtNum(p.outcome.OPS)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('page-hitting').innerHTML = html;
+
+  // sort buttons
+  document.querySelectorAll('[data-sort]').forEach(b => {
+    b.addEventListener('click', () => { hittingSort = b.dataset.sort; renderHitting(); });
+  });
+  // toggle
+  document.getElementById('toggle-scoreboard').addEventListener('click', () => {
+    hittingShowScoreboard = !hittingShowScoreboard;
+    renderHitting();
+  });
+  // row clicks
+  document.querySelectorAll('#hitting-tbody tr.player-row').forEach(tr => {
+    tr.addEventListener('click', () => toggleHittingRow(tr.dataset.player));
   });
 }
 
-// ── Render Pitching Table ─────────────────────────────
+function renderHittingRow(name, p) {
+  const isOpen = hittingOpen.has(name);
+  const woba = p.outcome.wOBA_basic;
+  const wobaCls = cellClass(woba, 0.350, 0.420);
+  const contact = p.process['Contact%'];
+  const contactCls = cellClass(contact, 0.75, 0.85);
+  const swstr = p.process['SwStr%'];
+  const swstrCls = cellClass(swstr, 0.10, 0.07, true);
+  const bb = p.process['BB%'];
+  const bbCls = cellClass(bb, 0.13, 0.20);
+  const k = p.process['K%'];
+  const kCls = cellClass(k, 0.18, 0.13, true);
+  const bbk = p.process.BB_K;
+  const bbkCls = cellClass(bbk, 1.0, 1.5);
+
+  let html = `
+    <tr class="player-row ${isOpen ? 'is-open' : ''}" data-player="${htmlEscape(name)}">
+      <td>
+        <div class="player-cell">
+          <span class="player-num">#${p.number}</span>
+          ${htmlEscape(name)}
+          <span class="player-hand">${p.bat}/${p.throw}</span>
+        </div>
+      </td>
+      <td>${p.counts.PA}</td>
+      <td>${fmtRate(p.process.P_per_PA)}</td>
+      <td class="${contactCls}">${stabPill(p.stab['Contact%'])}${fmtPct(contact)}</td>
+      <td class="${swstrCls}">${stabPill(p.stab['SwStr%'])}${fmtPct(swstr)}</td>
+      <td class="${bbCls}">${stabPill(p.stab['BB%'])}${fmtPct(bb)}</td>
+      <td class="${kCls}">${stabPill(p.stab['K%'])}${fmtPct(k)}</td>
+      <td class="${bbkCls}">${bbk == null ? '—' : bbk.toFixed(2)}</td>
+      <td class="${wobaCls}">${fmtNum(woba)}</td>
+    </tr>
+  `;
+  if (isOpen) html += renderHittingDetail(name, p);
+  return html;
+}
+
+function renderHittingDetail(name, p) {
+  const reg = p.regressed || {};
+  const c = p.counts;
+  const bb_ball = p.batted_ball;
+  const splits = p.splits;
+  const positions = Object.entries(p.positions).sort((a,b)=>b[1]-a[1]);
+
+  return `
+    <tr class="detail-row">
+      <td colspan="9" class="detail-cell">
+        <div class="detail-inner">
+          <div class="detail-grid">
+            <div>
+              <div class="subhead">Regressed Estimates · pulled toward team mean</div>
+              <dl class="stat-list">
+                <dt>K% regressed</dt>            <dd>${fmtPct(reg['K%_regressed'])} <span class="raw">(raw ${fmtPct(p.process['K%'])})</span></dd>
+                <dt>BB% regressed</dt>           <dd>${fmtPct(reg['BB%_regressed'])} <span class="raw">(raw ${fmtPct(p.process['BB%'])})</span></dd>
+                <dt>Contact% regressed</dt>      <dd>${fmtPct(reg['Contact%_regressed'])} <span class="raw">(raw ${fmtPct(p.process['Contact%'])})</span></dd>
+                <dt>SwStr% regressed</dt>        <dd>${fmtPct(reg['SwStr%_regressed'])} <span class="raw">(raw ${fmtPct(p.process['SwStr%'])})</span></dd>
+                <dt>Swing% regressed</dt>        <dd>${fmtPct(reg['Swing%_regressed'])} <span class="raw">(raw ${fmtPct(p.process['Swing%'])})</span></dd>
+                <dt>AVG regressed</dt>           <dd>${fmtNum(reg['AVG_regressed'])} <span class="raw">(raw ${fmtNum(p.outcome.AVG)})</span></dd>
+              </dl>
+              <div class="subhead">Two-Strike Approach</div>
+              <dl class="stat-list">
+                <dt>Two-strike PA</dt><dd>${splits.two_strike.PA}</dd>
+                <dt>Two-strike K%</dt><dd>${fmtPct(splits.two_strike['K%'])}</dd>
+                <dt>Two-strike AVG</dt><dd>${fmtNum(splits.two_strike.AVG)}</dd>
+                <dt>Ahead-in-count PA</dt><dd>${splits.ahead_in_count_PAs}</dd>
+                <dt>Behind-in-count PA</dt><dd>${splits.behind_in_count_PAs}</dd>
+              </dl>
+            </div>
+            <div>
+              <div class="subhead">Batted Ball</div>
+              <dl class="stat-list">
+                <dt>BIP</dt><dd>${bb_ball.BIP}</dd>
+                <dt>GB%</dt><dd>${fmtPct(bb_ball['GB%'])}</dd>
+                <dt>FB%</dt><dd>${fmtPct(bb_ball['FB%'])}</dd>
+                <dt>LD%</dt><dd>${fmtPct(bb_ball['LD%'])}</dd>
+                <dt>PU%</dt><dd>${fmtPct(bb_ball['PU%'])}</dd>
+                <dt>Hard-hit% (text proxy)</dt><dd>${fmtPct(bb_ball['HardHit%_proxy'])}</dd>
+              </dl>
+              <div class="subhead">RISP</div>
+              <dl class="stat-list">
+                <dt>RISP PA</dt><dd>${splits.RISP.PA}</dd>
+                <dt>RISP AVG</dt><dd>${fmtNum(splits.RISP.AVG)}</dd>
+              </dl>
+              <div class="subhead">Defensive Innings (counts)</div>
+              <div class="flex flex-wrap gap-2">
+                ${positions.map(([pos,n]) => `<span class="badge">${pos} · ${n}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+
+          <div class="subhead" style="margin-top: var(--space-5);">Counting Stats · entire career on this team</div>
+          <div class="tbl-wrap" style="background: transparent; border: 1px solid var(--color-border-strong);">
+            <table class="tbl" style="font-size: var(--text-xs);">
+              <thead>
+                <tr><th>G</th><th>PA</th><th>AB</th><th>H</th><th>1B</th><th>2B</th><th>3B</th><th>HR</th><th>BB</th><th>HBP</th><th>K</th><th>SB</th><th>CS</th></tr>
+              </thead>
+              <tbody>
+                <tr class="no-hover">
+                  <td>${p.G_played}</td><td>${c.PA}</td><td>${c.AB}</td><td>${c.H}</td>
+                  <td>${c['1B']}</td><td>${c['2B']}</td><td>${c['3B']}</td><td>${c.HR}</td>
+                  <td>${c.BB}</td><td>${c.HBP}</td><td>${c.K}</td>
+                  <td>${c.SB}</td><td>${c.CS}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </td>
+    </tr>
+  `;
+}
+
+function toggleHittingRow(name) {
+  if (hittingOpen.has(name)) hittingOpen.delete(name);
+  else hittingOpen.add(name);
+  renderHitting();
+}
+
+/* ============================================================
+   PITCHING
+   ============================================================ */
+const PITCHING_SORTS = {
+  'F-Strike%': { label: 'F-Strike% (most predictive)', f: p => p.command.F_Strike_ ?? p.command['F_Strike%'] },
+  'K-BB%':     { label: 'K-BB%',                       f: p => p.results['K-BB%'] },
+  'CSW%':      { label: 'CSW%',                        f: p => p.command['CSW%'] },
+  'Strike%':   { label: 'Strike%',                     f: p => p.command['Strike%'] },
+  'BF':        { label: 'Sample (BF)',                 f: p => p.counts.BF },
+};
+let pitchingSort = 'F-Strike%';
+let pitchingShowScoreboard = false;
+const pitchingOpen = new Set();
+
 function renderPitching() {
-  const d = TEAM_DATA[currentSeason];
-  let pit = addPitchingAdv(d.pitching);
-  
-  const colMap = {
-    'IP':'IP','BF':'BF','H':'H','R':'R','ER':'ER','BB':'BB','SO':'SO',
-    'HBP':'HBP','WP':'WP','#P':'#P','ERA':'ERA','WHIP':'WHIP','K9':'K/9',
-    'K_PCT':'k_pct','BB_PCT':'bb_pct','KBB_PCT':'kbb','PIP':'pip','H9':'h9','FIP':'fip'
-  };
-  
-  const col = pitchingSort.col;
-  const dir = pitchingSort.dir;
-  const sortKey = colMap[col] || col;
-  
-  pit.sort((a, b) => {
-    let av = a[sortKey]; let bv = b[sortKey];
-    if (av === null || av === undefined) return 1;
-    if (bv === null || bv === undefined) return -1;
-    if (typeof av === 'string') av = parseFloat(av);
-    if (typeof bv === 'string') bv = parseFloat(bv);
-    return dir * (bv - av);
+  // Filter pitchers with non-trivial samples (>=10 BF)
+  const all = Object.entries(DATA.pitching).filter(([n,p]) => p.counts.BF >= 10);
+  const sorter = PITCHING_SORTS[pitchingSort];
+  all.sort((a,b) => sorter.f(b[1]) - sorter.f(a[1]));
+
+  const sortBtns = Object.entries(PITCHING_SORTS).map(([k,v]) =>
+    `<button class="btn btn--ghost btn--sm ${k === pitchingSort ? 'is-active' : ''}" data-psort="${k}">Sort: ${v.label}</button>`
+  ).join('');
+
+  // Identify primary pitchers for the 60-pitch wall section
+  const primary = Object.entries(DATA.pitching)
+    .filter(([n,p]) => p.counts.BF >= 100)
+    .sort((a,b) => b[1].counts.BF - a[1].counts.BF);
+
+  let html = `
+    <div class="container">
+      <div class="section-head">
+        <h1 class="t-h1">Pitching</h1>
+        <div class="t-label">${all.length} pitchers · ${all.reduce((s,[n,p])=>s+p.counts.BF,0)} BF · ${all.reduce((s,[n,p])=>s+p.workload.total_pitches,0)} pitches</div>
+      </div>
+      <div class="section-rule section-rule--gold"></div>
+
+      <div class="section-caption">
+        <div>
+          <strong>F-Strike% rules everything.</strong> First-pitch strike rate is
+          the single most predictive pitcher metric at every level. After a
+          first-pitch strike, expected runs collapse by &gt;2×. <em>Target: 60% baseline,
+          70% elite.</em> The team prior is
+          <strong>${fmtPct(T.team_priors['p_FStrike_'] ?? T.team_priors['p_FStr%'])}</strong>
+          — a real coachable lever.
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-5">
+        <span class="t-label" style="align-self:center;margin-right:var(--space-2)">Sort by</span>
+        ${sortBtns}
+      </div>
+
+      <h2 class="t-h3" style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Process · Predictive Metrics</h2>
+      <div class="tbl-wrap mb-6">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Pitcher</th>
+              <th>BF</th>
+              <th>P/BF</th>
+              <th>F-Strike%</th>
+              <th>Strike%</th>
+              <th>CSW%</th>
+              <th>K%</th>
+              <th>BB%</th>
+              <th>K-BB%</th>
+            </tr>
+          </thead>
+          <tbody id="pitching-tbody">
+            ${all.map(([name, p]) => renderPitchingRow(name, p)).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="t-h3" style="margin-top: var(--space-8); margin-bottom: var(--space-3);">The 60-Pitch Wall · Performance by Pitch Count Bucket</h2>
+      <div class="section-rule"></div>
+      <div class="section-caption">
+        <div>
+          <strong>Fatigue cliff.</strong> Across ASMI / Andrews research, pitching
+          with fatigue carries ~36× the injury risk. For these primary pitchers,
+          BAA and K% by pitch-count bucket show whether they're holding command
+          or breaking down. Compare K% by bucket — a sharp drop is a fatigue
+          signature. Cards below also show BAA — note where it spikes.
+        </div>
+      </div>
+      <div class="def-grid mb-6">
+        ${primary.map(([name, p]) => renderBucketCard(name, p)).join('')}
+      </div>
+
+      <div class="section-head" style="margin-top: var(--space-8);">
+        <h2 class="t-h3" style="margin: 0;">Scoreboard Stats <span class="t-muted" style="font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-weight: var(--weight-regular); font-size: var(--text-sm);">— ERA / WHIP / BAA, defense-and-luck-driven</span></h2>
+        <button class="btn btn--ghost btn--sm" id="toggle-pscoreboard">${pitchingShowScoreboard ? 'Hide' : 'Show'} scoreboard table</button>
+      </div>
+      <div class="section-rule"></div>
+
+      <div ${pitchingShowScoreboard ? '' : 'hidden'} id="pscoreboard-block">
+        <div class="alert-strong" style="background: #FBF1D9; border-left-color: var(--color-warning); color: var(--color-ink-soft);">
+          <strong style="color: #806010">Caveat.</strong> ERA at 11U is dominated by defense (47 errors at SS+3B+2B alone) and cluster luck. Judge pitchers by F-Strike%, K%, BB%, and FIP — not runs allowed. Calibrated FIP constant for this league: <strong>${T.fip_constant.toFixed(2)}</strong>.
+        </div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Pitcher</th>
+                <th>G</th>
+                <th>IP</th>
+                <th>H</th>
+                <th>R</th>
+                <th>ER</th>
+                <th>BB</th>
+                <th>K</th>
+                <th>WHIP</th>
+                <th>BAA</th>
+                <th>FIP</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${all.map(([name, p]) => `
+                <tr class="no-hover">
+                  <td><div class="player-cell"><span class="player-num">#${p.number}</span>${htmlEscape(name)}</div></td>
+                  <td>${p.G_apps}</td>
+                  <td>${p.counts.IP}</td>
+                  <td>${p.counts.H}</td>
+                  <td>${p.counts.R}</td>
+                  <td>${p.counts.ER}</td>
+                  <td>${p.counts.BB}</td>
+                  <td>${p.counts.K}</td>
+                  <td>${fmtNum(p.results.WHIP, 2)}</td>
+                  <td>${fmtNum(p.results.BAA)}</td>
+                  <td>${fmtNum(p.results.FIP_11U, 2)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('page-pitching').innerHTML = html;
+
+  // wire up
+  document.querySelectorAll('[data-psort]').forEach(b => {
+    b.addEventListener('click', () => { pitchingSort = b.dataset.psort; renderPitching(); });
   });
-
-  const tbody = document.getElementById('pitching-tbody');
-  tbody.innerHTML = pit.map(p => {
-    const era = parseFloat(p.ERA);
-    const eraClass = era <= 3.50 ? 'td-good' : era >= 7.00 ? 'td-bad' : '';
-    const whip = parseFloat(p.WHIP);
-    const whipClass = whip <= 1.30 ? 'td-good' : whip >= 2.50 ? 'td-bad' : '';
-    const kPctClass = p.k_pct !== null && p.k_pct >= 0.25 ? 'td-good' : '';
-    const bbPctClass = p.bb_pct !== null && p.bb_pct >= 0.20 ? 'td-bad' : '';
-    return `<tr>
-      <td>${p.name}</td>
-      <td>${p.number}</td>
-      <td class="td-num">${p.IP}</td>
-      <td class="td-num">${p.BF}</td>
-      <td class="td-num">${p.H}</td>
-      <td class="td-num">${p.R}</td>
-      <td class="td-num">${p.ER}</td>
-      <td class="td-num ${bbPctClass}">${p.BB}</td>
-      <td class="td-num ${kPctClass}">${p.SO}</td>
-      <td class="td-num">${p.HBP}</td>
-      <td class="td-num">${p.WP}</td>
-      <td class="td-num">${p['#P']}</td>
-      <td class="td-num ${eraClass}">${p.ERA}</td>
-      <td class="td-num ${whipClass}">${p.WHIP}</td>
-      <td class="td-num">${p['K/9']}</td>
-      <td class="td-num ${kPctClass}">${fmtPct(p.k_pct)}</td>
-      <td class="td-num ${bbPctClass}">${fmtPct(p.bb_pct)}</td>
-      <td class="td-num ${p.kbb !== null && p.kbb > 0.10 ? 'td-good' : ''}">${fmtPct(p.kbb)}</td>
-      <td class="td-num">${p.pip !== null ? p.pip.toFixed(1) : '—'}</td>
-      <td class="td-num">${p.h9 !== null ? p.h9.toFixed(1) : '—'}</td>
-      <td class="td-num ${p.fip !== null && p.fip <= 3.50 ? 'td-good' : p.fip > 7 ? 'td-bad' : ''}">${p.fip !== null ? p.fip.toFixed(2) : '—'}</td>
-    </tr>`;
-  }).join('');
-
-  document.querySelectorAll('#pitching-table thead th').forEach(th => {
-    th.classList.toggle('sorted', th.dataset.col === col);
+  document.getElementById('toggle-pscoreboard').addEventListener('click', () => {
+    pitchingShowScoreboard = !pitchingShowScoreboard;
+    renderPitching();
+  });
+  document.querySelectorAll('#pitching-tbody tr.pitcher-row').forEach(tr => {
+    tr.addEventListener('click', () => togglePitchingRow(tr.dataset.player));
   });
 }
 
-// ── Render Game Log ────────────────────────────────────
-function renderGameLog() {
-  const games = TEAM_DATA[currentSeason].games;
-  let W = 0, L = 0;
-  document.getElementById('game-log-tbody').innerHTML = games.map((g, i) => {
-    if (g.result === 'W') W++;
-    else if (g.result === 'L') L++;
-    const diff = g.us - g.them;
-    const diffStr = (diff > 0 ? '+' : '') + diff;
-    const diffClass = diff > 0 ? 'td-good' : diff < 0 ? 'td-bad' : '';
-    const ha = g.home_away ? (g.home_away === 'home' ? 'H' : 'A') : '';
-    return `<tr>
-      <td style="text-align:left;font-size:.9rem">${g.opponent}</td>
-      <td>${ha}</td>
-      <td class="result-${g.result.toLowerCase()}">${g.result}</td>
-      <td><span class="score-us">${g.us}</span> <span style="color:var(--color-ink-muted)">–</span> <span class="score-them">${g.them}</span></td>
-      <td class="${diffClass}" style="font-family:var(--font-display);font-weight:700">${diffStr}</td>
-    </tr>`;
-  }).join('');
+function renderPitchingRow(name, p) {
+  const isOpen = pitchingOpen.has(name);
+  const fStrike = p.command.F_Strike_ ?? p.command['F_Strike%'];
+  const strike  = p.command['Strike%'];
+  const csw     = p.command['CSW%'];
+  const k       = p.results['K%'];
+  const bb      = p.results['BB%'];
+  const kbb     = p.results['K-BB%'];
+
+  return `
+    <tr class="pitcher-row ${isOpen ? 'is-open' : ''}" data-player="${htmlEscape(name)}">
+      <td>
+        <div class="player-cell">
+          <span class="player-num">#${p.number}</span>
+          ${htmlEscape(name)}
+          <span class="player-hand">${p.throw}HP</span>
+        </div>
+      </td>
+      <td>${p.counts.BF}</td>
+      <td>${fmtRate(p.workload.P_per_BF)}</td>
+      <td class="${cellClass(fStrike, 0.55, 0.65)}">${stabPill(p.stab['FStr%'])}${fmtPct(fStrike)}</td>
+      <td class="${cellClass(strike, 0.60, 0.65)}">${fmtPct(strike)}</td>
+      <td class="${cellClass(csw, 0.24, 0.27)}">${stabPill(p.stab['CSW%'])}${fmtPct(csw)}</td>
+      <td class="${cellClass(k, 0.16, 0.22)}">${stabPill(p.stab['K%'])}${fmtPct(k)}</td>
+      <td class="${cellClass(bb, 0.13, 0.08, true)}">${stabPill(p.stab['BB%'])}${fmtPct(bb)}</td>
+      <td class="${cellClass(kbb, 0.05, 0.12)}">${fmtPct(kbb)}</td>
+    </tr>
+    ${isOpen ? renderPitchingDetail(name, p) : ''}
+  `;
 }
 
-// ── Init & Events ──────────────────────────────────────
-function renderAll() {
-  renderOverview();
-  renderLeaders();
-  renderBatting();
+function renderPitchingDetail(name, p) {
+  const reg = p.regressed || {};
+  const c = p.counts;
+  const bb = p.batted_ball;
+
+  return `
+    <tr class="detail-row">
+      <td colspan="9" class="detail-cell">
+        <div class="detail-inner">
+          <div class="detail-grid">
+            <div>
+              <div class="subhead">Regressed Estimates</div>
+              <dl class="stat-list">
+                <dt>K% regressed</dt>      <dd>${fmtPct(reg['K%_regressed'])} <span class="raw">(raw ${fmtPct(p.results['K%'])})</span></dd>
+                <dt>BB% regressed</dt>     <dd>${fmtPct(reg['BB%_regressed'])} <span class="raw">(raw ${fmtPct(p.results['BB%'])})</span></dd>
+                <dt>F-Strike% regressed</dt><dd>${fmtPct(reg['FStr%_regressed'])} <span class="raw">(raw ${fmtPct(p.command.F_Strike_ ?? p.command['F_Strike%'])})</span></dd>
+                <dt>CSW% regressed</dt>    <dd>${fmtPct(reg['CSW%_regressed'])} <span class="raw">(raw ${fmtPct(p.command['CSW%'])})</span></dd>
+              </dl>
+              <div class="subhead">Pitch Mix Outcomes</div>
+              <dl class="stat-list">
+                <dt>Called strikes</dt>   <dd>${p.command.called_strikes}</dd>
+                <dt>Swinging strikes</dt> <dd>${p.command.swinging_strikes}</dd>
+                <dt>Fouls</dt>            <dd>${p.command.fouls}</dd>
+                <dt>In-play</dt>          <dd>${p.command.in_play}</dd>
+                <dt>Balls</dt>            <dd>${p.command.balls}</dd>
+              </dl>
+            </div>
+            <div>
+              <div class="subhead">Batted Ball Against</div>
+              <dl class="stat-list">
+                <dt>BIP</dt><dd>${bb.BIP}</dd>
+                <dt>GB% allowed</dt><dd>${fmtPct(bb['GB%'])}</dd>
+                <dt>FB% allowed</dt><dd>${fmtPct(bb['FB%'])}</dd>
+                <dt>LD% allowed</dt><dd>${fmtPct(bb['LD%'])}</dd>
+                <dt>PU% allowed</dt><dd>${fmtPct(bb['PU%'])}</dd>
+              </dl>
+              <div class="subhead">Workload Snapshot</div>
+              <dl class="stat-list">
+                <dt>Total pitches</dt> <dd>${p.workload.total_pitches}</dd>
+                <dt>Pitches/IP</dt>    <dd>${fmtRate(p.workload.P_per_IP)}</dd>
+                <dt>Pitches/BF</dt>    <dd>${fmtRate(p.workload.P_per_BF)}</dd>
+                <dt>Career WP</dt>     <dd>${c.WP}</dd>
+                <dt>Career HBP</dt>    <dd>${c.HBP}</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="subhead" style="margin-top: var(--space-5);">Pitch-Count Bucket Performance</div>
+          ${renderBucketTableInline(p.buckets)}
+
+          <div class="flex justify-between items-center mt-5">
+            <div class="t-label">Workload detail</div>
+            <button class="btn btn--ghost-gold btn--sm" data-jump="workload">Pitch Smart for ${htmlEscape(name)} →</button>
+          </div>
+        </div>
+      </td>
+    </tr>
+  `;
+}
+
+function renderBucketTableInline(buckets) {
+  return `
+    <div class="tbl-wrap">
+      <table class="tbl" style="font-size: var(--text-xs);">
+        <thead>
+          <tr><th>Pitches</th><th>PA</th><th>K%</th><th>BB%</th><th>BAA</th></tr>
+        </thead>
+        <tbody>
+          ${Object.entries(buckets).map(([b, v]) => `
+            <tr class="no-hover">
+              <td>${b}</td>
+              <td>${v.PA}</td>
+              <td>${v['K%'] == null ? '—' : fmtPct(v['K%'])}</td>
+              <td>${v['BB%'] == null ? '—' : fmtPct(v['BB%'])}</td>
+              <td>${v.BAA == null ? '—' : fmtNum(v.BAA)}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderBucketCard(name, p) {
+  const buckets = p.buckets;
+  const order = ['1-15', '16-30', '31-45', '46-60', '61+'];
+  const maxBaa = Math.max(...order.map(b => buckets[b].BAA || 0));
+  const fp = (b) => buckets[b];
+
+  return `
+    <div class="def-card" style="border-left-color: var(--color-gold-bright); padding: var(--space-4) var(--space-5);">
+      <div class="t-label">${p.counts.BF} BF · ${p.workload.total_pitches} pitches · ${p.G_apps} apps</div>
+      <strong style="font-size: var(--text-md); display: block; margin-bottom: var(--space-3);">${htmlEscape(name)}</strong>
+      <div class="bucket-grid">
+        <div class="bucket-label">Bucket</div>
+        <div class="bucket-label" style="text-align:center">BAA</div>
+        <div class="bucket-label" style="text-align:right">K%</div>
+        ${order.map(b => {
+          const v = fp(b);
+          if (v.PA === 0) return `
+            <div class="bucket-label" style="opacity:.5">${b}</div>
+            <div style="opacity:.5; font-size: var(--text-xs); text-align:center">no data</div>
+            <div style="opacity:.5"></div>
+          `;
+          const pct = maxBaa > 0 ? (v.BAA / maxBaa) * 100 : 0;
+          const warn = b === '46-60' || b === '61+';
+          return `
+            <div class="bucket-label">${b}</div>
+            <div class="bucket-bar">
+              <div class="bucket-bar__fill ${warn ? 'bucket-bar__fill--warn' : ''}" style="width: ${pct}%"></div>
+            </div>
+            <div class="bucket-num">${v['K%'] == null ? '—' : fmtPct(v['K%'], 0)}</div>
+          `;
+        }).join('')}
+      </div>
+      <div style="margin-top: var(--space-3); font-size: var(--text-xs); color: var(--color-ink-muted);">
+        BAA bars scaled to this pitcher's max bucket. Warning color = beyond 45 pitches — coach decision zone.
+      </div>
+    </div>
+  `;
+}
+
+function togglePitchingRow(name) {
+  if (pitchingOpen.has(name)) pitchingOpen.delete(name);
+  else pitchingOpen.add(name);
   renderPitching();
-  renderGameLog();
 }
 
-// Season tabs
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentSeason = btn.dataset.season;
-    battingSort = { col: 'OPS', dir: -1 };
-    pitchingSort = { col: 'ERA', dir: 1 };
-    renderAll();
+/* ============================================================
+   PITCH SMART · WORKLOAD
+   ============================================================ */
+let workloadFilter = 'all'; // all | violations | primaries
+
+function renderWorkload() {
+  const ps = T.pitch_smart;
+  const restCurve = ps.rest_thresholds;
+
+  // Compute aggregate violations
+  let totalApps = 0, restViol = 0, dayMaxViol = 0, totalIP = 0;
+  Object.values(DATA.pitching).forEach(p => {
+    totalIP += parseFloat(p.counts.IP);
+    p.appearances.forEach(a => {
+      totalApps++;
+      if (a.rest_compliance === false) restViol++;
+      if (a.over_daily_max) dayMaxViol++;
+    });
   });
-});
 
-// Batting table sort
-document.querySelector('#batting-table thead').addEventListener('click', e => {
-  const th = e.target.closest('th[data-col]');
-  if (!th) return;
-  const col = th.dataset.col;
-  // ERA-like: lower is better (dir=1 means ascending = best first)
-  const lowerBetter = ['SO','K_PCT','CS'];
-  if (battingSort.col === col) {
-    battingSort.dir *= -1;
-  } else {
-    battingSort.col = col;
-    battingSort.dir = lowerBetter.includes(col) ? 1 : -1;
+  const annualCapPct = (totalIP / ps.annual_innings_cap) * 100;
+
+  // Filter pitchers
+  let pitchers = Object.entries(DATA.pitching).sort((a,b) => b[1].workload.total_pitches - a[1].workload.total_pitches);
+  if (workloadFilter === 'primaries') pitchers = pitchers.filter(([n,p]) => p.counts.BF >= 80);
+  if (workloadFilter === 'violations') {
+    pitchers = pitchers.filter(([n,p]) =>
+      p.appearances.some(a => a.rest_compliance === false || a.over_daily_max)
+    );
   }
-  renderBatting();
+
+  let html = `
+    <div class="container">
+      <div class="section-head">
+        <h1 class="t-h1">Pitch Smart · Workload</h1>
+        <div class="t-label">${totalApps} appearances · ${totalIP.toFixed(1)} IP team total</div>
+      </div>
+      <div class="section-rule section-rule--gold"></div>
+
+      <div class="section-caption">
+        <div>
+          <strong>The only metric that affects health.</strong>
+          MLB / USA Baseball Pitch Smart for 11–12U: max
+          <strong>${ps.max_per_day} pitches/day</strong>,
+          required rest curve below, annual cap
+          <strong>${ps.annual_innings_cap} IP</strong>, and at least
+          <strong>${ps.min_months_off_per_year} months off per year</strong>.
+          The 2021 youth compliance study found 94% of teams violate at least
+          one rule — most often inadequate rest. Andrews / ASMI: pitching with
+          arm fatigue carries <strong>~36× injury risk</strong>.
+        </div>
+      </div>
+
+      <!-- Top KPIs -->
+      <div class="kpi-grid" style="margin-bottom: var(--space-6);">
+        <div class="kpi" style="background: ${restViol > 0 ? '#3D1B1E' : '#2A2521'}; border-left-color: ${restViol > 0 ? 'var(--color-danger)' : 'var(--color-gold-bright)'};">
+          <div class="kpi-label" style="color: ${restViol > 0 ? '#FF8888' : 'var(--color-gold-bright)'}">Rest violations</div>
+          <div class="kpi-value">${restViol}</div>
+          <div class="kpi-detail">of ${totalApps} appearances</div>
+        </div>
+        <div class="kpi" style="background: ${dayMaxViol > 0 ? '#3D1B1E' : '#2A2521'}; border-left-color: ${dayMaxViol > 0 ? 'var(--color-danger)' : 'var(--color-gold-bright)'};">
+          <div class="kpi-label" style="color: ${dayMaxViol > 0 ? '#FF8888' : 'var(--color-gold-bright)'}">Daily-max breaches</div>
+          <div class="kpi-value">${dayMaxViol}</div>
+          <div class="kpi-detail">over ${ps.max_per_day} pitches in a day</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Team IP / cap</div>
+          <div class="kpi-value">${totalIP.toFixed(1)}</div>
+          <div class="kpi-detail">team total · ${ps.annual_innings_cap} cap is per-pitcher</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Total appearances</div>
+          <div class="kpi-value">${totalApps}</div>
+          <div class="kpi-detail">across ${Object.keys(DATA.pitching).length} pitchers</div>
+        </div>
+      </div>
+
+      <!-- Pitch Smart rest curve reference -->
+      <h2 class="t-h3" style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Rest Curve Reference · 11–12U</h2>
+      <div class="section-rule"></div>
+      <div class="tbl-wrap mb-6">
+        <table class="tbl">
+          <thead>
+            <tr><th>Pitches in a day</th><th>Required calendar-day rest after</th></tr>
+          </thead>
+          <tbody>
+            ${restCurve.map(([thr, days], i) => {
+              const lower = i === 0 ? 1 : restCurve[i-1][0] + 1;
+              const range = thr >= 1000 ? `${lower}+` : `${lower}–${thr}`;
+              return `<tr class="no-hover"><td>${range}</td><td>${days} day${days !== 1 ? 's' : ''}</td></tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Filters -->
+      <h2 class="t-h3" style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Per-Pitcher Workload Log</h2>
+      <div class="section-rule"></div>
+      <div class="flex flex-wrap gap-2 mb-5">
+        <span class="t-label" style="align-self:center;margin-right:var(--space-2)">Filter</span>
+        <button class="btn btn--ghost btn--sm ${workloadFilter==='all' ? 'is-active':''}" data-wfilter="all">All pitchers</button>
+        <button class="btn btn--ghost btn--sm ${workloadFilter==='primaries' ? 'is-active':''}" data-wfilter="primaries">Primaries (80+ BF)</button>
+        <button class="btn btn--ghost btn--sm ${workloadFilter==='violations' ? 'is-active':''}" data-wfilter="violations">Has violations</button>
+      </div>
+
+      <div id="workload-list">
+        ${pitchers.map(([name, p]) => renderPitcherWorkloadCard(name, p, ps)).join('')}
+      </div>
+
+      <h2 class="t-h3" style="margin-top: var(--space-8); margin-bottom: var(--space-3);">Per-Pitcher Annual IP vs Cap</h2>
+      <div class="section-rule"></div>
+      <div class="card mb-6" style="background: #fff;">
+        ${Object.entries(DATA.pitching).filter(([n,p]) => parseFloat(p.counts.IP) > 0).sort((a,b) => parseFloat(b[1].counts.IP) - parseFloat(a[1].counts.IP)).map(([name, p]) => {
+          const ip = parseFloat(p.counts.IP);
+          const pct = (ip / ps.annual_innings_cap) * 100;
+          const warn = pct > 80;
+          const danger = pct > 100;
+          return `
+            <div style="display: grid; grid-template-columns: 160px 1fr 80px; gap: var(--space-3); align-items: center; padding: var(--space-2) 0; border-bottom: 1px solid var(--color-border);">
+              <div style="font-weight: var(--weight-semibold); font-size: var(--text-sm);">
+                <span class="player-num">#${p.number}</span>${htmlEscape(name)}
+              </div>
+              <div class="bucket-bar" style="height: 18px;">
+                <div class="bucket-bar__fill ${danger ? 'bucket-bar__fill--warn' : warn ? '' : ''}" style="width: ${Math.min(pct, 100)}%; ${warn ? 'background: var(--color-warning); border-right-color: #806010;' : ''}"></div>
+              </div>
+              <div class="bucket-num">${ip} IP</div>
+            </div>
+          `;
+        }).join('')}
+        <div style="margin-top: var(--space-3); font-size: var(--text-xs); color: var(--color-ink-muted);">
+          Bars are % of the ${ps.annual_innings_cap}-IP annual cap. Yellow at 80%+, red over 100%.
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('page-workload').innerHTML = html;
+
+  document.querySelectorAll('[data-wfilter]').forEach(b => {
+    b.addEventListener('click', () => { workloadFilter = b.dataset.wfilter; renderWorkload(); });
+  });
+}
+
+function renderPitcherWorkloadCard(name, p, ps) {
+  const apps = p.appearances;
+  if (apps.length === 0) return '';
+
+  const restViol = apps.filter(a => a.rest_compliance === false).length;
+  const overMax  = apps.filter(a => a.over_daily_max).length;
+  const ip = parseFloat(p.counts.IP);
+  const ipPct = (ip / ps.annual_innings_cap) * 100;
+
+  const headerCls = restViol > 0 || overMax > 0 ? 'badge--red' : 'badge--green';
+  const headerTxt = restViol > 0 || overMax > 0 ? `${restViol + overMax} flag${restViol+overMax !== 1 ? 's' : ''}` : 'compliant';
+
+  return `
+    <div class="card mb-3" style="background: #fff;">
+      <div class="flex justify-between items-center" style="margin-bottom: var(--space-3); flex-wrap: wrap; gap: var(--space-2);">
+        <div class="player-cell" style="font-size: var(--text-md);">
+          <span class="player-num">#${p.number}</span>
+          <strong>${htmlEscape(name)}</strong>
+          <span class="player-hand">${p.throw}HP</span>
+        </div>
+        <div class="flex gap-2 items-center flex-wrap">
+          <span class="badge ${headerCls}">${headerTxt}</span>
+          <span class="badge">${ip} IP · ${(ipPct).toFixed(0)}% of cap</span>
+          <span class="badge">${p.workload.total_pitches} pitches</span>
+          <span class="badge">${apps.length} apps</span>
+        </div>
+      </div>
+
+      <div class="appearance-row" style="background: var(--color-ink); color: var(--color-ground); border-radius: 2px 2px 0 0; border-bottom: 0;">
+        <div class="t-label" style="color: var(--color-gold-bright)">Date</div>
+        <div class="t-label" style="color: var(--color-gold-bright)">Pitches (vs ${ps.max_per_day} cap)</div>
+        <div class="t-label" style="color: var(--color-gold-bright); text-align: right;"></div>
+        <div class="t-label" style="color: var(--color-gold-bright); text-align: center;">Rest req</div>
+        <div class="t-label" style="color: var(--color-gold-bright); text-align: center;">Days off</div>
+      </div>
+
+      ${apps.map(a => {
+        const violation = a.rest_compliance === false || a.over_daily_max;
+        const pct = Math.min((a.pitches / ps.max_per_day) * 100, 100);
+        let barCls = '';
+        if (a.pitches > ps.max_per_day) barCls = 'app-bar__fill--danger';
+        else if (a.pitches > 65) barCls = 'app-bar__fill--warn';
+        const daysOff = a.days_off_since_prev_apparance;
+        const daysCellTxt = daysOff === 'NA' ? '—' : daysOff;
+        return `
+          <div class="appearance-row ${violation ? 'appearance-row--violation' : ''}">
+            <div class="app-date">${a.date}</div>
+            <div class="app-bar"><div class="app-bar__fill ${barCls}" style="width: ${pct}%"></div></div>
+            <div class="app-pitches">${a.pitches}</div>
+            <div class="app-rest">${a.required_rest_after}d</div>
+            <div class="app-rest">
+              ${daysCellTxt}${a.rest_compliance === false ? ' <span class="badge badge--red" style="padding: 1px 4px; font-size: 0.65rem">!</span>' : ''}
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+/* ============================================================
+   TAB SWITCH
+   ============================================================ */
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('is-active', t.dataset.page === name));
+  document.querySelectorAll('.page').forEach(p => p.classList.toggle('is-active', p.id === `page-${name}`));
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  // re-render destination tab in case state changed
+  if (name === 'overview')      renderOverview();
+  else if (name === 'hitting')  renderHitting();
+  else if (name === 'pitching') renderPitching();
+  else if (name === 'workload') renderWorkload();
+}
+
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => switchTab(t.dataset.page));
 });
 
-// Pitching table sort
-document.querySelector('#pitching-table thead').addEventListener('click', e => {
-  const th = e.target.closest('th[data-col]');
-  if (!th) return;
-  const col = th.dataset.col;
-  const higherBetter = ['IP','SO','K9','K_PCT','KBB_PCT','BF'];
-  if (pitchingSort.col === col) {
-    pitchingSort.dir *= -1;
-  } else {
-    pitchingSort.col = col;
-    pitchingSort.dir = higherBetter.includes(col) ? -1 : 1;
-  }
-  renderPitching();
-});
-
-renderAll();
+/* ============================================================
+   BOOT
+   ============================================================ */
+renderOverview();
+renderHitting();
+renderPitching();
+renderWorkload();
 </script>
 </body>
 </html>
