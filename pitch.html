@@ -1,243 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BCC Big Train 11U — Sunday Dugout Card</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BCC Big Train — Tournament Pitching Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #2e5e8e;
-    --navy-light: #d6e4f2;
-    --everett: #fff4c9;
-    --good: #d6ead3;
-    --warn: #f4cfcc;
-    --warn-dark: #a2362e;
-    --good-dark: #2e7e3a;
-    --muted: #666;
-    --border: #bbb;
-  }
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0; padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    color: #222;
-    background: #f3f4f6;
-  }
-  .page {
-    max-width: 820px;
-    margin: 12px auto;
-    background: #fff;
-    padding: 18px 22px 22px;
-    border-radius: 6px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-  }
-  h1 {
-    color: var(--navy);
-    text-align: center;
-    margin: 0 0 4px;
-    font-size: 22px;
-  }
-  .subtitle {
-    text-align: center;
-    color: var(--muted);
-    font-style: italic;
-    font-size: 13px;
-    margin-bottom: 14px;
-  }
-  h2 {
-    color: var(--navy);
-    font-size: 15px;
-    margin: 18px 0 6px;
-    border-bottom: 2px solid var(--navy-light);
-    padding-bottom: 2px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 4px;
-    font-size: 13px;
-  }
-  th, td {
-    border: 1px solid var(--border);
-    padding: 5px 8px;
-    text-align: left;
-    vertical-align: middle;
-  }
-  th {
-    background: var(--navy);
-    color: #fff;
-    font-weight: bold;
-    text-align: center;
-    font-size: 12px;
-  }
-  td.c, th.c { text-align: center; }
-  tr.everett td { background: var(--everett); font-weight: 600; }
-  tr.good td { background: var(--good); }
-  tr.warn td { background: var(--warn); }
-  .game-block { margin-top: 12px; }
-  .game-block h3 {
-    color: var(--navy);
-    font-size: 14px;
-    margin: 0 0 4px;
-  }
-  .note {
-    font-style: italic;
-    font-size: 12px;
-    color: #444;
-    margin: 4px 0 0;
-  }
-  ul.reminders {
-    padding-left: 22px;
-    margin: 4px 0 0;
-  }
-  ul.reminders li {
-    margin-bottom: 4px;
-    font-size: 13px;
-  }
-  .pillrow { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0 10px; font-size: 12px; }
-  .pill {
-    padding: 3px 10px;
-    border-radius: 999px;
-    background: var(--navy-light);
-    color: #1d4970;
-    font-weight: 600;
-  }
-  .pill.warn { background: var(--warn); color: var(--warn-dark); }
-  .pill.good { background: var(--good); color: var(--good-dark); }
+/* ===== TRUE HZRDUS — Light / Sunlight Mode (subset) ===== */
+:root{
+  --color-ground:#F4F2EE; --color-surface:#ECEAE5; --color-sunken:#E2DFD8;
+  --color-border:#C8C4BB; --color-border-strong:#A09A90;
+  --color-ink:#1A1714; --color-ink-soft:#3D3830; --color-ink-muted:#6B6157; --color-ink-faint:#9A9189;
+  --color-gold:#8A6410; --color-gold-mid:#A67C1A; --color-gold-bright:#C9A84C; --color-gold-tint:#F5EDD6; --color-gold-border:#C9A84C;
+  --color-diamond-red:#B01E24; --color-diamond-blue:#0076A3; --color-diamond-yellow:#C8831A;
+  --color-reversed-bg:#1A1714; --color-reversed-text:#F4F2EE; --color-reversed-muted:#9A9189;
+  --color-success:#2E7D32; --color-warning:#C8831A; --color-danger:#B01E24; --color-info:#0076A3;
+  --font-display:'Barlow Condensed',Impact,'Arial Narrow',sans-serif;
+  --font-body:'Barlow','Helvetica Neue',Helvetica,sans-serif;
+  --r-sm:2px; --r-md:4px; --r-lg:8px; --r-pill:999px;
+  --shadow-sm:0 1px 3px rgba(26,23,20,.10); --shadow-md:0 3px 10px rgba(26,23,20,.12);
+  --shadow-inset:inset 0 1px 0 rgba(255,255,255,.6);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+body{background:var(--color-ground);color:var(--color-ink);font-family:var(--font-body);font-weight:400;font-size:1.0625rem;line-height:1.55;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(26,23,20,.018) 3px,rgba(26,23,20,.018) 4px);}
+.wrap{max-width:460px;margin:0 auto;padding:0 16px 56px;}
 
-  /* print */
-  @media print {
-    body { background: #fff; }
-    .page { box-shadow: none; margin: 0; padding: 12px 16px; max-width: none; }
-    h1 { font-size: 18px; }
-    h2 { font-size: 13px; margin-top: 12px; }
-    table { font-size: 11px; }
-    th, td { padding: 3px 6px; }
-    ul.reminders li { font-size: 11px; }
-    .game-block h3 { font-size: 12px; }
-    .note { font-size: 10px; }
-  }
+/* HERO */
+.hero{background:var(--color-reversed-bg);color:var(--color-reversed-text);margin:0 -16px;padding:26px 20px 22px;position:relative;overflow:hidden;}
+.hero::after{content:"";position:absolute;right:-30px;top:-30px;width:150px;height:150px;
+  background:radial-gradient(circle,rgba(201,168,76,.18),transparent 70%);}
+.diamond{display:inline-grid;grid-template-columns:1fr 1fr;gap:2px;width:30px;height:30px;vertical-align:middle;}
+.diamond span{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);}
+.dq-y{background:var(--color-diamond-yellow);} .dq-c{background:#F4F2EE;}
+.dq-r{background:var(--color-diamond-red);} .dq-b{background:var(--color-diamond-blue);}
+.kicker{font-family:var(--font-body);font-size:.75rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-gold-bright);}
+.hero h1{font-family:var(--font-display);font-weight:900;font-size:2.7rem;line-height:.92;letter-spacing:-.02em;text-transform:uppercase;margin:8px 0 2px;}
+.hero h2{font-family:var(--font-display);font-weight:700;font-size:1.2rem;letter-spacing:.04em;text-transform:uppercase;color:var(--color-reversed-text);}
+.hero p{color:var(--color-reversed-muted);font-size:.92rem;margin-top:10px;line-height:1.5;}
+.hero .cap-pill{display:inline-block;margin-top:14px;background:var(--color-gold);color:#fff;font-family:var(--font-display);font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;padding:6px 14px;border-radius:var(--r-sm);}
+
+/* SECTION LABELS */
+.sec{margin-top:30px;}
+.sec-label{font-family:var(--font-display);font-weight:700;font-size:1.5rem;letter-spacing:.02em;text-transform:uppercase;line-height:1;display:flex;align-items:center;gap:10px;}
+.sec-num{font-family:var(--font-display);font-weight:900;font-size:1rem;color:#fff;background:var(--color-ink);width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:var(--r-sm);}
+.accent{display:block;width:42px;height:3px;background:var(--color-gold);margin:10px 0 16px;}
+.sub{color:var(--color-ink-muted);font-size:.9rem;margin:-6px 0 16px;}
+
+/* CARDS */
+.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--r-md);padding:16px;box-shadow:var(--shadow-sm),var(--shadow-inset);margin-bottom:12px;}
+.card.sunken{background:var(--color-sunken);border-color:var(--color-border-strong);}
+
+/* GROUND RULES */
+.rules li{list-style:none;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--color-border);font-size:.96rem;}
+.rules li:last-child{border-bottom:none;}
+.rules .tick{flex:0 0 auto;width:18px;height:18px;border-radius:var(--r-pill);background:var(--color-gold-tint);border:1px solid var(--color-gold-border);
+  color:var(--color-gold);font-weight:700;font-size:.7rem;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+.rules .x{background:#FDECEA;border-color:var(--color-danger);color:var(--color-danger);}
+
+/* STAFF ROWS */
+.p-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--color-border);}
+.p-row:last-child{border-bottom:none;}
+.p-num{flex:0 0 auto;width:34px;height:34px;border-radius:var(--r-sm);background:var(--color-ink);color:var(--color-ground);
+  font-family:var(--font-display);font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center;}
+.p-main{flex:1 1 auto;min-width:0;}
+.p-name{font-family:var(--font-display);font-weight:700;font-size:1.18rem;letter-spacing:.01em;text-transform:uppercase;line-height:1;}
+.p-stat{font-size:.78rem;color:var(--color-ink-muted);margin-top:3px;font-variant-numeric:tabular-nums;}
+.p-tag{flex:0 0 auto;font-family:var(--font-display);font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 9px;border-radius:var(--r-sm);text-align:center;white-space:nowrap;}
+.t-ace{background:var(--color-gold);color:#fff;}
+.t-anchor{background:var(--color-gold-tint);color:var(--color-gold);border:1px solid var(--color-gold-border);}
+.t-bridge{background:#E3F3FA;color:var(--color-info);border:1px solid var(--color-info);}
+.t-mop{background:var(--color-sunken);color:var(--color-ink-muted);border:1px solid var(--color-border-strong);}
+.t-out{background:#FDECEA;color:var(--color-danger);border:1px solid var(--color-danger);}
+
+/* GAME CARDS */
+.game{border:1px solid var(--color-border);border-radius:var(--r-md);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+.game-head{background:var(--color-reversed-bg);color:var(--color-reversed-text);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;}
+.game-head .g-when{font-family:var(--font-body);font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--color-gold-bright);}
+.game-head .g-title{font-family:var(--font-display);font-weight:900;font-size:1.35rem;letter-spacing:.01em;text-transform:uppercase;line-height:1;margin-top:3px;}
+.game-head .g-total{font-family:var(--font-display);font-weight:700;font-size:.9rem;color:var(--color-reversed-text);text-align:right;line-height:1.15;}
+.game-head .g-total b{display:block;font-size:1.5rem;color:var(--color-gold-bright);}
+.game-body{background:var(--color-surface);padding:6px 16px 14px;}
+.stint{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--color-border);}
+.stint:last-of-type{border-bottom:none;}
+.stint .slot{flex:0 0 auto;width:60px;font-family:var(--font-display);font-weight:700;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-ink-muted);}
+.stint .who{flex:1 1 auto;font-family:var(--font-display);font-weight:700;font-size:1.15rem;text-transform:uppercase;line-height:1;}
+.stint .who small{display:block;font-family:var(--font-body);font-weight:500;font-size:.74rem;letter-spacing:0;text-transform:none;color:var(--color-ink-muted);margin-top:3px;}
+.stint .budget{flex:0 0 auto;text-align:right;font-variant-numeric:tabular-nums;}
+.stint .budget .ip{font-family:var(--font-display);font-weight:900;font-size:1.25rem;line-height:1;}
+.stint .budget .pc{font-size:.74rem;color:var(--color-gold);font-weight:700;letter-spacing:.04em;}
+.why{margin-top:10px;background:var(--color-gold-tint);border-left:3px solid var(--color-gold);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:9px 12px;font-size:.86rem;color:var(--color-ink-soft);}
+.why b{color:var(--color-gold);font-family:var(--font-display);letter-spacing:.04em;text-transform:uppercase;font-size:.78rem;}
+.reserve{margin-top:8px;font-size:.8rem;color:var(--color-ink-muted);}
+.reserve b{color:var(--color-ink-soft);text-transform:uppercase;font-family:var(--font-display);letter-spacing:.06em;font-size:.74rem;}
+
+/* LEDGER */
+.ledger{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;}
+.ledger th,.ledger td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--color-border);font-size:.86rem;}
+.ledger th{font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.74rem;color:var(--color-ink-muted);}
+.ledger td.n{font-family:var(--font-display);font-weight:700;text-transform:uppercase;}
+.ledger td.r{text-align:right;}
+.bar{height:7px;border-radius:var(--r-pill);background:var(--color-sunken);overflow:hidden;margin-top:4px;}
+.bar i{display:block;height:100%;background:var(--color-gold);}
+.bar i.full{background:var(--color-danger);}
+.cap-note{font-size:.74rem;color:var(--color-ink-muted);margin-top:2px;}
+
+/* CONTINGENCY */
+.flag{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--color-border);align-items:flex-start;}
+.flag:last-child{border-bottom:none;}
+.flag .ic{flex:0 0 auto;font-family:var(--font-display);font-weight:900;font-size:.72rem;letter-spacing:.04em;color:#fff;padding:3px 7px;border-radius:var(--r-sm);margin-top:1px;white-space:nowrap;}
+.ic-up{background:var(--color-success);} .ic-dn{background:var(--color-danger);} .ic-x{background:var(--color-ink);}
+.flag div{font-size:.9rem;}
+.flag b{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.03em;}
+
+.foot{margin-top:28px;text-align:center;color:var(--color-ink-faint);font-size:.74rem;line-height:1.5;}
+.foot b{color:var(--color-gold);}
 </style>
 </head>
 <body>
-<div class="page">
-  <h1>BCC Big Train 11U — Sunday Bracket Card</h1>
-  <div class="subtitle">Bracket Game 1 vs Shockers · up to 3 games today</div>
+<div class="wrap">
 
-  <div class="pillrow">
-    <span class="pill">12-man continuous</span>
-    <span class="pill">Mercy: 12 / 10 / 8 after 3 / 4 / 5</span>
-    <span class="pill warn">No pitch: Will, Grant W, Darcy</span>
-    <span class="pill warn">Adam: emergency only</span>
-    <span class="pill good">Taxi pitcher: fresh</span>
-  </div>
+  <!-- HERO -->
+  <header class="hero">
+    <span class="diamond"><span class="dq-y"></span><span class="dq-c"></span><span class="dq-b"></span><span class="dq-r"></span></span>
+    <div class="kicker" style="display:inline-block;margin-left:8px;vertical-align:middle;">BCC Big Train · 11U</div>
+    <h1>Pitching<br>Battle Plan</h1>
+    <h2>2-Day · 16-Team Tournament</h2>
+    <p>Built to go the distance — 5 games, 3 in pool + bracket semi &amp; final. Aces held for elimination. Championship pieced together from leftover bullets.</p>
+    <span class="cap-pill">85 Pitches / Arm · Whole Weekend</span>
+  </header>
 
-  <h2>Batting Order (12-man continuous)</h2>
-  <table>
-    <thead>
-      <tr><th style="width:50px" class="c">Slot</th>
-          <th style="width:50px" class="c">#</th>
-          <th style="width:180px">Player</th>
-          <th>Notes</th></tr>
-    </thead>
-    <tbody>
-      <tr><td class="c">1</td><td class="c">6</td><td>Joshua Lopez</td><td>Disciplined leadoff; high BB% / strong fresh-bat wOBA</td></tr>
-      <tr><td class="c">2</td><td class="c">21</td><td>Beckett Dickinson</td><td>Get on for the heart; aggressive baserunner</td></tr>
-      <tr class="everett"><td class="c">3</td><td class="c">51</td><td>Everett Harkins</td><td>RBI bat — .537 wOBA in #4 last fall</td></tr>
-      <tr><td class="c">4</td><td class="c">8</td><td>Oliver Wells</td><td>Highest OBP; steady contact</td></tr>
-      <tr><td class="c">5</td><td class="c">22</td><td>Grant Richards</td><td>Biggest run producer of the group</td></tr>
-      <tr><td class="c">6</td><td class="c">15</td><td>Will Kowalski</td><td>Power follow-up to protect 3–5</td></tr>
-      <tr><td class="c">7</td><td class="c">7</td><td>Logan Pressberg</td><td>Reset the order, extend rallies</td></tr>
-      <tr><td class="c">8</td><td class="c">3</td><td>Ren Endo</td><td>RBI lift with runners on (+.18 wOBA)</td></tr>
-      <tr><td class="c">9</td><td class="c">4</td><td>Adam Ingram</td><td>Contact + glove</td></tr>
-      <tr><td class="c">10</td><td class="c">2</td><td>Tommy DiPompeo</td><td>Depth — extra-base threat</td></tr>
-      <tr><td class="c">11</td><td class="c">9</td><td>Grant Wang</td><td>Depth</td></tr>
-      <tr><td class="c">12</td><td class="c">5</td><td>Darcy Mizejewski</td><td>Depth</td></tr>
-    </tbody>
-  </table>
+  <!-- GROUND RULES -->
+  <section class="sec">
+    <div class="sec-label"><span class="sec-num">1</span> Ground Rules</div>
+    <span class="accent"></span>
+    <div class="card">
+      <ul class="rules">
+        <li><span class="tick">85</span><div><b>Hard cap: 85 total pitches per arm</b> across both days combined — not per day. Every budget below ladders up to that ceiling.</div></li>
+        <li><span class="tick">5</span><div><b>Full-go arms (no daily limit):</b> Logan, Ollie, Grant R, Ren, Josh — only bound by the 85 weekend cap.</div></li>
+        <li><span class="tick">30</span><div><b>Limited arms ≈ 2 IP / 30 pitches per day:</b> Darcy, Beckett, Adam, Everett, Tommy. Resets each day.</div></li>
+        <li><span class="x">✕</span><div><b>Unavailable:</b> Will Kowalski (#98) &amp; Grant Wang (#17) — do not pitch.</div></li>
+        <li><span class="tick">✓</span><div>No day-to-day rest gating applied — manage purely to pitch budgets.</div></li>
+      </ul>
+    </div>
+  </section>
 
-  <h2>Pitching Availability (weekend cap 85)</h2>
-  <table>
-    <thead>
-      <tr><th>Pitcher</th>
-          <th class="c">Sat</th>
-          <th class="c">Sun max<br/>(to 85 wknd)</th>
-          <th class="c">Soft cap<br/>(to 65)</th>
-          <th>Status</th></tr>
-    </thead>
-    <tbody>
-      <tr class="good"><td><b>Taxi pitcher</b></td><td class="c">0</td><td class="c"><b>85</b></td><td class="c">65</td><td>Fresh — full Sunday capacity</td></tr>
-      <tr class="good"><td><b>Tommy DiPompeo</b></td><td class="c">0</td><td class="c"><b>85</b></td><td class="c">65</td><td>Fresh — full Sunday capacity</td></tr>
-      <tr class="good"><td><b>Logan Pressberg</b></td><td class="c">5</td><td class="c"><b>80</b></td><td class="c">60</td><td>Fresh; lead candidate</td></tr>
-      <tr class="good"><td><b>Joshua Lopez</b></td><td class="c">8</td><td class="c"><b>77</b></td><td class="c">57</td><td>Fresh; lead candidate</td></tr>
-      <tr><td><b>Beckett Dickinson</b></td><td class="c">25</td><td class="c"><b>60</b></td><td class="c">40</td><td>Good — full inning role available</td></tr>
-      <tr><td><b>Oliver Wells</b></td><td class="c">28</td><td class="c"><b>57</b></td><td class="c">37</td><td>Good — full inning role available</td></tr>
-      <tr><td><b>Everett Harkins</b></td><td class="c">35</td><td class="c"><b>50</b></td><td class="c">30</td><td>Good — full inning role available</td></tr>
-      <tr><td><b>Ren Endo</b></td><td class="c">38</td><td class="c"><b>47</b></td><td class="c">27</td><td>Limited inning — middle relief</td></tr>
-      <tr class="warn"><td><b>Grant Richards</b></td><td class="c">56</td><td class="c"><b>29</b></td><td class="c">9</td><td>Short burst only — 1 inning max</td></tr>
-      <tr class="warn"><td><b>Adam Ingram</b></td><td class="c">—</td><td class="c">—</td><td class="c">—</td><td>LIMITED — emergency only</td></tr>
-      <tr class="warn"><td><b>Will Kowalski</b></td><td class="c">—</td><td class="c">—</td><td class="c">—</td><td>NOT AVAILABLE today</td></tr>
-      <tr class="warn"><td><b>Grant Wang</b></td><td class="c">—</td><td class="c">—</td><td class="c">—</td><td>NOT AVAILABLE today</td></tr>
-      <tr class="warn"><td><b>Darcy Mizejewski</b></td><td class="c">—</td><td class="c">—</td><td class="c">—</td><td>NOT AVAILABLE today</td></tr>
-    </tbody>
-  </table>
+  <!-- STAFF BOARD -->
+  <section class="sec">
+    <div class="sec-label"><span class="sec-num">2</span> The Staff</div>
+    <span class="accent"></span>
+    <p class="sub">Ranked by your ACE logic — K-BB% first, F-Strike% gate. Role drives where each arm lands.</p>
+    <div class="card">
+      <div class="p-row">
+        <div class="p-num">14</div>
+        <div class="p-main"><div class="p-name">Ollie Wells</div><div class="p-stat">K-BB% +9.6 · F-Str 59% · Str 63% · 3.14 P/BF</div></div>
+        <div class="p-tag t-ace">Ace</div>
+      </div>
+      <div class="p-row">
+        <div class="p-num">12</div>
+        <div class="p-main"><div class="p-name">Logan Pressberg</div><div class="p-stat">K-BB% +3.6 · F-Str 51% · Str 57% · BAA .255</div></div>
+        <div class="p-tag t-ace">Ace 2</div>
+      </div>
+      <div class="p-row">
+        <div class="p-num">22</div>
+        <div class="p-main"><div class="p-name">Grant Richards</div><div class="p-stat">F-Str 54% · Str 59% · 3.19 P/BF · pounds zone</div></div>
+        <div class="p-tag t-anchor">Pool Anchor</div>
+      </div>
+      <div class="p-row">
+        <div class="p-num">11</div>
+        <div class="p-main"><div class="p-name">Ren Endo</div><div class="p-stat">F-Str 58% · 3.11 P/BF · pitch-to-contact, lean D</div></div>
+        <div class="p-tag t-anchor">Pool Anchor</div>
+      </div>
+      <div class="p-row">
+        <div class="p-num">7</div>
+        <div class="p-main"><div class="p-name">Darcy Mizejewski</div><div class="p-stat">CSW 27% (team-best) · F-Str 54% · limited</div></div>
+        <div class="p-tag t-bridge">Bridge</div>
+      </div>
+      <div class="p-row">
+        <div class="p-num">21</div>
+        <div class="p-main"><div class="p-name">Beckett Dickinson</div><div class="p-stat">Str 58% · low walks · 3.07 P/BF · limited</div></div>
+        <div class="p-tag t-bridge">Bridge</div>
+      </div>
+      <div class="p-row">
+        <div class="p-num">3</div>
+        <div class="p-main"><div class="p-name">Adam Ingram</div><div class="p-stat">K% 20% but F-Str 44% · walks · limited</div></div>
+        <div class="p-tag t-bridge">Bridge</div>
+      </div>
+      <div class="p-row">
+        <div class="p-num">51</div>
+        <div class="p-main"><div class="p-name">Everett Harkins</div><div class="p-stat">BB% 24% · short leash · limited</div></div>
+        <div class="p-tag t-mop">Spot / Mop</div>
+      </div>
+      <div class="p-row">
+        <div class="p-num">2</div>
+        <div class="p-main"><div class="p-name">Josh Lopez</div><div class="p-stat">Str 44% · 3.91 P/BF · K-BB% −21.6 · burns counts</div></div>
+        <div class="p-tag t-mop">Mop / Eat IP</div>
+      </div>
+      <div class="p-row">
+        <div class="p-num">24</div>
+        <div class="p-main"><div class="p-name">Tommy DiPompeo</div><div class="p-stat">11 BF sample · emergency only</div></div>
+        <div class="p-tag t-mop">Break-glass</div>
+      </div>
+      <div class="p-row">
+        <div class="p-num">98</div>
+        <div class="p-main"><div class="p-name">Will Kowalski</div><div class="p-stat">Best arm on paper — unavailable this weekend</div></div>
+        <div class="p-tag t-out">Out</div>
+      </div>
+      <div class="p-row">
+        <div class="p-num">17</div>
+        <div class="p-main"><div class="p-name">Grant Wang</div><div class="p-stat">Unavailable this weekend</div></div>
+        <div class="p-tag t-out">Out</div>
+      </div>
+    </div>
+  </section>
 
-  <h2>Game-by-Game Pitching Plan</h2>
+  <!-- GAME PLAN -->
+  <section class="sec">
+    <div class="sec-label"><span class="sec-num">3</span> Game Plan</div>
+    <span class="accent"></span>
+    <p class="sub">Pitch counts are ceilings — pull early on a mercy lead and bank the bullets. Logan &amp; Ollie stay in the holster all of Day 1.</p>
 
-  <div class="game-block">
-    <h3>Game 1 — vs Shockers</h3>
-    <table>
-      <thead>
-        <tr><th>Pitcher</th><th>Role</th><th class="c">Plan</th><th class="c">Target pitches</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><b>Logan Pressberg</b> (Sat: 5)</td><td>Starter</td><td class="c">~4 IP</td><td class="c">60</td></tr>
-        <tr><td><b>Joshua Lopez</b> (Sat: 8)</td><td>Relief</td><td class="c">~2 IP</td><td class="c">30</td></tr>
-        <tr><td><b>Tommy DiPompeo</b> (Sat: 0)</td><td>Backup</td><td class="c">as needed</td><td class="c">30</td></tr>
-      </tbody>
-    </table>
-    <p class="note">Open with fresh arms. Logan &amp; Josh combined Saturday work was 13 pitches — they're who you want carrying this game.</p>
-  </div>
+    <!-- G1 -->
+    <div class="game">
+      <div class="game-head">
+        <div><div class="g-when">Day 1 · Pool</div><div class="g-title">Game 1</div></div>
+        <div class="g-total">PITCHES<b>≈87</b></div>
+      </div>
+      <div class="game-body">
+        <div class="stint"><div class="slot">Start</div><div class="who">Grant R <small>Pound the zone, efficient, set the tone</small></div><div class="budget"><div class="ip">3</div><div class="pc">≤45 P</div></div></div>
+        <div class="stint"><div class="slot">Bridge</div><div class="who">Beckett <small>Limited · strike-thrower, 3.07 P/BF</small></div><div class="budget"><div class="ip">2</div><div class="pc">≤26 P</div></div></div>
+        <div class="stint"><div class="slot">Close</div><div class="who">Darcy <small>Limited · best swing-and-miss</small></div><div class="budget"><div class="ip">1</div><div class="pc">≤16 P</div></div></div>
+        <div class="why"><b>Why</b> &nbsp;Open with your two most efficient strike-throwers so you bank pitches early. Aces untouched.</div>
+        <div class="reserve"><b>If it slips:</b> Ren (1 IP) before ever warming an ace.</div>
+      </div>
+    </div>
 
-  <div class="game-block">
-    <h3>Game 2 — (if we win G1)</h3>
-    <table>
-      <thead>
-        <tr><th>Pitcher</th><th>Role</th><th class="c">Plan</th><th class="c">Target pitches</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><b>Taxi pitcher</b> (Sat: 0)</td><td>Starter</td><td class="c">~4 IP</td><td class="c">60</td></tr>
-        <tr><td><b>Beckett Dickinson</b> (Sat: 25)</td><td>Relief</td><td class="c">~2 IP</td><td class="c">30</td></tr>
-        <tr><td><b>Oliver Wells</b> (Sat: 28)</td><td>Backup</td><td class="c">as needed</td><td class="c">20</td></tr>
-      </tbody>
-    </table>
-    <p class="note">Taxi pitcher's freshness is the lever. Beckett still has ~60 weekend pitches in the tank.</p>
-  </div>
+    <!-- G2 -->
+    <div class="game">
+      <div class="game-head">
+        <div><div class="g-when">Day 1 · Pool</div><div class="g-title">Game 2</div></div>
+        <div class="g-total">PITCHES<b>≈88</b></div>
+      </div>
+      <div class="game-body">
+        <div class="stint"><div class="slot">Start</div><div class="who">Ren <small>58% first-pitch strikes, 3.11 P/BF</small></div><div class="budget"><div class="ip">3</div><div class="pc">≤42 P</div></div></div>
+        <div class="stint"><div class="slot">Bridge</div><div class="who">Adam <small>Limited · misses bats when ahead</small></div><div class="budget"><div class="ip">2</div><div class="pc">≤28 P</div></div></div>
+        <div class="stint"><div class="slot">Close</div><div class="who">Everett <small>Limited · short leash, 1 inning max</small></div><div class="budget"><div class="ip">1</div><div class="pc">≤18 P</div></div></div>
+        <div class="why"><b>Why</b> &nbsp;Rotate to your second wave of limited arms so Darcy/Beckett keep day-1 budget for Game 3.</div>
+        <div class="reserve"><b>If it slips:</b> Grant R has ~40 left — 1–2 IP fireman.</div>
+      </div>
+    </div>
 
-  <div class="game-block">
-    <h3>Game 3 — Championship</h3>
-    <table>
-      <thead>
-        <tr><th>Pitcher</th><th>Role</th><th class="c">Plan</th><th class="c">Target pitches</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><b>Ren Endo</b> (Sat: 38)</td><td>Starter</td><td class="c">~3 IP</td><td class="c">45</td></tr>
-        <tr><td><b>Everett Harkins</b> (Sat: 35)</td><td>Middle</td><td class="c">~2 IP</td><td class="c">30</td></tr>
-        <tr><td><b>Grant Richards</b> (Sat: 56)</td><td>Closer</td><td class="c">~1 IP</td><td class="c">25</td></tr>
-      </tbody>
-    </table>
-    <p class="note">Grant R is short-burst only (29 weekend pitches remaining). Use him for a high-leverage out.</p>
-  </div>
+    <!-- G3 -->
+    <div class="game">
+      <div class="game-head">
+        <div><div class="g-when">Day 1 · Pool</div><div class="g-title">Game 3</div></div>
+        <div class="g-total">PITCHES<b>≈90</b></div>
+      </div>
+      <div class="game-body">
+        <div class="stint"><div class="slot">Start</div><div class="who">Josh <small>Eat innings in your lowest-leverage pool game</small></div><div class="budget"><div class="ip">3</div><div class="pc">≤48 P</div></div></div>
+        <div class="stint"><div class="slot">Bridge</div><div class="who">Grant R <small>2nd outing — has ~40 left in the tank</small></div><div class="budget"><div class="ip">2</div><div class="pc">≤28 P</div></div></div>
+        <div class="stint"><div class="slot">Close</div><div class="who">Darcy <small>Limited · remaining day-1 budget</small></div><div class="budget"><div class="ip">1</div><div class="pc">≤14 P</div></div></div>
+        <div class="why"><b>Why</b> &nbsp;Spend Josh's innings here where they're cheapest. Back him with defense and a quick hook if walks pile up — go to Grant R. <b>Logan &amp; Ollie finish Day 1 at zero pitches.</b></div>
+        <div class="reserve"><b>If being mercied:</b> let Josh/Everett soak it — never chase a lost pool game with bullets.</div>
+      </div>
+    </div>
 
-  <h2>Sunday Reminders</h2>
-  <ul class="reminders">
-    <li><b>Mercy rule (tournament):</b> 12 after 3, 10 after 4, 8 after 5. If we're home and hit the gap, game over.</li>
-    <li><b>Pitch ceiling:</b> per-day Smart Pitch max is 85; self-cap to keep weekend total at 85 per arm for next-week availability.</li>
-    <li><b>No pitch:</b> Will Kowalski, Grant Wang, Darcy Mizejewski cannot pitch today.</li>
-    <li><b>Adam Ingram = emergency only.</b></li>
-    <li><b>Leadoff/clean-bases hitters</b> (Josh, Beckett, Darcy): they have hit notably better when leading off innings.</li>
-    <li><b>Runners-on lift</b> (Tommy +.19, Ren +.18, Everett +.15 wOBA): trust them in big spots even if the at-bat starts ugly.</li>
-  </ul>
+    <!-- SEMI -->
+    <div class="game">
+      <div class="game-head">
+        <div><div class="g-when">Day 2 · Bracket</div><div class="g-title">Semifinal</div></div>
+        <div class="g-total">PITCHES<b>≈86</b></div>
+      </div>
+      <div class="game-body">
+        <div class="stint"><div class="slot">Start</div><div class="who">Logan <small>Ace · fresh, ride him deep — must-win</small></div><div class="budget"><div class="ip">4</div><div class="pc">≤58 P</div></div></div>
+        <div class="stint"><div class="slot">Close</div><div class="who">Ollie <small>Ace · slam the door, 2 efficient innings</small></div><div class="budget"><div class="ip">2</div><div class="pc">≤28 P</div></div></div>
+        <div class="why"><b>Why</b> &nbsp;Win-or-go-home: your two best, both fresh. Logan goes ≤58 (27 left for the final); Ollie ≤28 (57 left). Both still have bullets for the championship.</div>
+        <div class="reserve"><b>Reserve:</b> Ren (~43 left), fresh limited arms reset to 30 each.</div>
+      </div>
+    </div>
+
+    <!-- FINAL -->
+    <div class="game">
+      <div class="game-head">
+        <div><div class="g-when">Day 2 · Bracket</div><div class="g-title">Championship</div></div>
+        <div class="g-total">PITCHES<b>≈82</b></div>
+      </div>
+      <div class="game-body">
+        <div class="stint"><div class="slot">Start</div><div class="who">Ollie <small>57 left — your deepest fresh-ish ace</small></div><div class="budget"><div class="ip">3</div><div class="pc">≤40 P</div></div></div>
+        <div class="stint"><div class="slot">Middle</div><div class="who">Logan <small>27 left — empties the tank to the cap</small></div><div class="budget"><div class="ip">2</div><div class="pc">≤27 P</div></div></div>
+        <div class="stint"><div class="slot">Close</div><div class="who">Darcy / Beckett <small>Fresh day-2 limited arm</small></div><div class="budget"><div class="ip">1</div><div class="pc">≤15 P</div></div></div>
+        <div class="why"><b>The ensemble</b> &nbsp;No one goes the distance — you stitch it from leftover ace bullets + a fresh limited arm. Ollie leads with the most gas, Logan dumps his last 27 to the cap, a rested limited arm finishes.</div>
+        <div class="reserve"><b>Extra innings / blowout-proofing:</b> Ren (~43), Josh (~37), Grant R (~12) all still have weekend budget.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEDGER -->
+  <section class="sec">
+    <div class="sec-label"><span class="sec-num">4</span> Weekend Ledger</div>
+    <span class="accent"></span>
+    <p class="sub">Where every arm lands against its budget if all 5 games go the full 6.</p>
+    <div class="card">
+      <table class="ledger">
+        <thead><tr><th>Arm</th><th>Used</th><th class="r">Cap / Reserve</th></tr></thead>
+        <tbody>
+          <tr><td class="n">Logan</td><td>58 + 27 = <b>85</b><div class="bar"><i class="full" style="width:100%"></i></div><div class="cap-note">Semi + Final · at the cap</div></td><td class="r">85<br><span class="cap-note">0 left</span></td></tr>
+          <tr><td class="n">Ollie</td><td>28 + 40 = <b>68</b><div class="bar"><i style="width:80%"></i></div><div class="cap-note">Semi + Final</div></td><td class="r">85<br><span class="cap-note">17 left</span></td></tr>
+          <tr><td class="n">Grant R</td><td>45 + 28 = <b>73</b><div class="bar"><i style="width:86%"></i></div><div class="cap-note">Pool G1 + G3</div></td><td class="r">85<br><span class="cap-note">12 left</span></td></tr>
+          <tr><td class="n">Ren</td><td><b>42</b><div class="bar"><i style="width:49%"></i></div><div class="cap-note">Pool G2 (+ reserve)</div></td><td class="r">85<br><span class="cap-note">43 left</span></td></tr>
+          <tr><td class="n">Josh</td><td><b>48</b><div class="bar"><i style="width:56%"></i></div><div class="cap-note">Pool G3 (+ reserve)</div></td><td class="r">85<br><span class="cap-note">37 left</span></td></tr>
+          <tr><td class="n">Darcy</td><td>30 D1 · 15 D2<div class="bar"><i style="width:100%"></i></div><div class="cap-note">Bridge G1+G3, close Final</div></td><td class="r">30/day<br><span class="cap-note">in budget</span></td></tr>
+          <tr><td class="n">Beckett</td><td>26 D1<div class="bar"><i style="width:87%"></i></div><div class="cap-note">Bridge G1 · D2 fresh</div></td><td class="r">30/day<br><span class="cap-note">in budget</span></td></tr>
+          <tr><td class="n">Adam</td><td>28 D1<div class="bar"><i style="width:93%"></i></div><div class="cap-note">Bridge G2 · D2 fresh</div></td><td class="r">30/day<br><span class="cap-note">in budget</span></td></tr>
+          <tr><td class="n">Everett</td><td>18 D1<div class="bar"><i style="width:60%"></i></div><div class="cap-note">Spot G2 · D2 fresh</div></td><td class="r">30/day<br><span class="cap-note">in budget</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CONTINGENCY -->
+  <section class="sec">
+    <div class="sec-label"><span class="sec-num">5</span> In-Game Rules</div>
+    <span class="accent"></span>
+    <div class="card sunken">
+      <div class="flag"><span class="ic ic-up">UP BIG</span><div><b>Mercy lead?</b> Pull the primary immediately, finish with a limited/mop-up arm. Every banked pitch is a Day-2 bullet.</div></div>
+      <div class="flag"><span class="ic ic-dn">DOWN BIG</span><div><b>Getting mercied?</b> Punt it — Josh, Everett or Tommy soak the innings. Never burn an ace or your 30-budget limited arms in a lost game.</div></div>
+      <div class="flag"><span class="ic ic-x">WALKS</span><div><b>Quick hook on the wild arms.</b> Josh, Adam &amp; Everett at 44–52% strikes — if free passes stack, go to your zone-pounders (Grant R, Ren, Beckett) before the count budget evaporates.</div></div>
+      <div class="flag"><span class="ic ic-x">SEEDING</span><div><b>Only dip into Logan/Ollie in pool</b> if a win meaningfully improves your bracket seed — otherwise they stay at zero until the semifinal.</div></div>
+    </div>
+  </section>
+
+  <p class="foot">BCC Big Train 11U · pitching plan built on Fall '25 + Spring '26 data.<br>Budgets are ceilings — adjust live. <b>Aces for elimination. Bank every pitch you can.</b></p>
+
 </div>
 </body>
 </html>
