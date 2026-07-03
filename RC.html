@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Season Report Card — BCC Big Train 11U</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Oswald:wght@500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF8EF;
+    --ink:#20291F;
+    --green:#2E5B43;
+    --pencil:#8A8578;
+    --red:#B33A2E;
+    --rule:#D8D2C2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#E9E4D6;
+    color:var(--ink);
+    font-family:'Lora',Georgia,serif;
+    font-size:17px;
+    line-height:1.65;
+    padding:32px 16px;
+  }
+  .sheet{
+    max-width:780px;margin:0 auto;background:var(--paper);
+    border:1px solid var(--rule);
+    box-shadow:0 2px 14px rgba(32,41,31,.12);
+    padding:56px 60px 48px;
+  }
+  @media (max-width:640px){ .sheet{padding:32px 22px} body{padding:12px 6px} }
+
+  /* Letterhead */
+  .letterhead{border-bottom:3px double var(--green);padding-bottom:18px;margin-bottom:6px}
+  .eyebrow{font-family:'Special Elite',monospace;font-size:13px;letter-spacing:.12em;color:var(--green);text-transform:uppercase}
+  h1{font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(28px,5vw,40px);
+     text-transform:uppercase;letter-spacing:.02em;line-height:1.1;margin:6px 0 4px}
+  .sub{font-family:'Special Elite',monospace;font-size:14px;color:var(--pencil)}
+
+  /* Record strip */
+  .record{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--rule);margin-bottom:34px}
+  .record div{flex:1 1 120px;padding:12px 8px;text-align:center;border-right:1px dotted var(--rule)}
+  .record div:last-child{border-right:none}
+  .record b{display:block;font-family:'Oswald',sans-serif;font-size:24px;font-weight:600;color:var(--green)}
+  .record span{font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pencil)}
+
+  .salutation{font-style:italic;margin-bottom:26px}
+
+  /* Sections with grade chips */
+  section{margin:34px 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--rule);padding-bottom:6px;margin-bottom:14px}
+  h2{font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;text-transform:uppercase;letter-spacing:.04em;flex:1}
+  h3{font-family:'Oswald',sans-serif;font-weight:500;font-size:16.5px;letter-spacing:.03em;margin:20px 0 6px;color:var(--green);text-transform:uppercase}
+  p{margin:0 0 13px}
+  em{font-style:italic}
+  strong{font-weight:600}
+  .stat{font-family:'Special Elite',monospace;font-size:.92em;color:var(--green);white-space:nowrap}
+  .neg{color:var(--red)}
+
+  /* Line score — the signature */
+  .linescore-wrap{margin:18px 0 8px}
+  .linescore-cap{font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--pencil);margin-bottom:6px}
+  table.linescore{border-collapse:collapse;width:100%;font-family:'Special Elite',monospace}
+  .linescore th,.linescore td{border:1px solid var(--green);padding:7px 4px;text-align:center;font-size:14px}
+  .linescore th{background:var(--green);color:var(--paper);font-weight:400;letter-spacing:.06em;font-size:12px}
+  .linescore td.rowlab{text-align:left;padding-left:10px;font-size:12px;letter-spacing:.05em;color:var(--green)}
+  .linescore td.minus{color:var(--red);font-weight:bold;background:#F6E9E4}
+  .linescore td.plus{color:var(--ink)}
+
+  /* Pull quote */
+  .pull{
+    border-left:4px solid var(--green);padding:6px 0 6px 18px;margin:22px 0;
+    font-size:18.5px;font-style:italic;color:var(--green);
+  }
+
+  /* One thing box */
+  .onething{
+    border:2px solid var(--red);padding:18px 22px;margin:26px 0;background:#FDF6F0;
+    position:relative;
+  }
+  .onething .tag{
+    position:absolute;top:-13px;left:16px;background:var(--red);color:var(--paper);
+    font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    padding:2px 10px;transform:rotate(-1.5deg);
+  }
+  .onething p:last-child{margin-bottom:0}
+
+  /* Sign-off */
+  .signoff{margin-top:38px;border-top:3px double var(--green);padding-top:22px}
+  .signature{font-family:'Special Elite',monospace;font-size:22px;color:var(--green);margin-top:10px}
+  .fineprint{margin-top:26px;font-size:13px;color:var(--pencil);border-top:1px dotted var(--rule);padding-top:12px;font-style:italic}
+
+  @media print{
+    body{background:none;padding:0}
+    .sheet{box-shadow:none;border:none;max-width:none;padding:24px 10px}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="letterhead">
+    <div class="eyebrow">Scouting &amp; Program Report · From one dugout to another</div>
+    <h1>Season Report Card — Coach Noah</h1>
+    <div class="sub">BCC Big Train 11U &nbsp;·&nbsp; Fall 2025 + Spring 2026 &nbsp;·&nbsp; 72 games played</div>
+  </div>
+
+  <div class="record">
+    <div><b>50–20–2</b><span>Combined record</span></div>
+    <div><b>+94 → +123</b><span>Run diff, fall → spring</span></div>
+    <div><b>8.4 → 9.1</b><span>Runs scored / game</span></div>
+    <div><b>5.71 → 5.73</b><span>Runs allowed / game</span></div>
+  </div>
+
+  <p class="salutation">Noah — Seth asked me to look at the whole year and tell you what the numbers see that the dugout might not. I'll give it to you straight, the way I'd want it given to me. First things first, though: fifty wins across two seasons, and the run differential got <em>better</em> in the spring while you were folding guest players into the lineup and bringing a kid back from an elbow. That's not a hot streak — that's the sustainability of the program showing up in the numbers. Your kids are bought in; the data says so as loudly as it says anything.</p>
+
+  <section>
+    <div class="sec-head"><h2>Run prevention — the glove side</h2></div>
+    <p><strong>You took away the running game, and it's the quietest big thing in this whole dataset.</strong> Opponents stole <span class="stat">5.0 bases a game</span> off you in the fall. In the spring: <span class="stat">2.5</span>. Cut in half. At 11U, where the steal is half the offense, that's worth a run or more a game — and it doesn't come free. That's catchers receiving and throwing, pitchers varying their looks, infielders covering. That's <em>taught</em>. Whatever you did behind the plate between November and March, keep doing it.</p>
+    <p><strong>Your defense stopped giving away bases the other way too.</strong> Reached-on-error dropped about 30% season over season (<span class="stat">1.4/g → 1.0/g</span>). Add it up and here's the picture: the spring's run-prevention gains came almost entirely from the glove side and the catching position. Boring stuff, done fundamentally sound. That wins games you weren't supposed to win.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Offense</h2></div>
+    <p><strong>The offense got more dangerous without changing its approach.</strong> Here's the part I find genuinely interesting: your team's swing rate, whiff rate, strikeout rate, and walk rate are nearly <em>identical</em> fall to spring — the process didn't move an inch. But runs per game climbed from 8.4 to 9.1. Where'd it come from? Damage. <span class="stat">7 home runs</span> in the fall, <span class="stat">21</span> in the spring. Same at-bats, harder contact. That's kids growing into their bodies <em>and</em> a hitting program that didn't panic and rebuild anybody's swing over the winter. If it ain't broke, don't fix it — and you didn't.</p>
+    <p>One thing to keep half an eye on: the lumber got a little more concentrated. Your top two bats carried <span class="stat">33%</span> of total bases in the fall, <span class="stat">37%</span> in the spring.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>The soft middle</h2></div>
+    <p><strong>Your season has a soft middle.</strong> In the spring, innings 1 through 3 you outscored opponents by <span class="stat">+124</span>. Innings 4 and 6? You got <em>outscored</em>. The team that shows up in the first inning is a monster; the team that plays the fourth is beatable. My read: that's when your second and third arms come in and the first-time-through-the-order advantage runs out.</p>
+
+    <div class="linescore-wrap">
+      <div class="linescore-cap">Spring 2026 — run differential by inning (37 games)</div>
+      <table class="linescore">
+        <tr><th style="text-align:left;padding-left:10px">INN</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
+        <tr><td class="rowlab">US</td><td>65</td><td>80</td><td>83</td><td>34</td><td>50</td><td>18</td></tr>
+        <tr><td class="rowlab">OPP</td><td>48</td><td>32</td><td>24</td><td>44</td><td>33</td><td>26</td></tr>
+        <tr><td class="rowlab">DIFF</td><td class="plus">+17</td><td class="plus">+48</td><td class="plus">+59</td><td class="minus">−10</td><td class="plus">+17</td><td class="minus">−8</td></tr>
+      </table>
+    </div>
+
+    <p><strong>And the close games flipped.</strong> Fall: <span class="stat">8–2</span> in one-run games. Spring: <span class="stat">2–3–2</span>. Now, I'll be honest with you — one-run records at this level are mostly coin flips, and 8–2 was never going to repeat. Don't lose sleep over it. But here's the encouraging part buried inside it: every close loss and tie came in April and May. In June you went <span class="stat">2–0</span> in one-run games. Your kids learned to close as the season went on. That's the trend that matters, not the record.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Pitching command</h2></div>
+    <p><strong>The staff's command went the wrong way while everything else went right.</strong> Walks allowed rose from about <span class="stat">12%</span> of batters to <span class="stat">14%</span>, strikeouts dipped, and first-pitch strike rate sat flat at <span class="stat">56%</span> both seasons. So the defense got better, the catching got better — and the pitching gave the gains right back. Runs allowed per game: 5.71 fall, 5.73 spring. Dead even. Seth tells me first-pitch strike is the number that predicts everything at this age, and I believe him. That's your lever. Fifty-six percent is the number to move.</p>
+    <p><strong>A usage note — just data, you make the call.</strong> Your most effective arm this spring (<span class="stat">2.14 ERA, 12.1 K/9</span>) threw the sixth-most innings on the staff at 16.1, while your most-used arms combined for ERAs north of 7 across nearly 600 pitches each. I know there are reasons the box score can't see — catching duties, arm care, Pitch Smart math, who's available on Sundays. Pitchers gave me a headache too, so I'm not telling you what to do. I'm telling you what the ledger says, and the ledger says the innings and the effectiveness aren't lined up right now.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Player development</h2></div>
+    <p><strong>Development at the bottom of the order is real.</strong> Wang went <span class="stat">.179 → .306</span>. Endo <span class="stat">.153 → .278</span>. Dickinson turned into a <span class="stat">.500 / .635</span> leadoff terror who scored 43 runs in 30 games. You're building athletes, and the numbers on the kids who weren't stars yet is where a program proves it.</p>
+    <p><strong>Two kids went backward, and they'll need arms around shoulders.</strong> DiPompeo went from 10 extra-base hits to 1, and Pressberg's bat dropped 80 points while his games played dipped — even as his <em>pitching</em> became the best on the staff (<span class="stat">1.24 ERA</span>, are you kidding me?). Both are usually a swing detail or a confidence detail, not a talent detail. Your eyes will know which.</p>
+  </section>
+
+  <div class="onething">
+    <div class="tag">If you only fix one thing</div>
+    <p>Simpler is better. If the dashboard surfaces three things, you pick one — so here's mine: <strong>build a real plan for innings 4 through 6.</strong> Who's the bridge arm, what's his first-pitch-strike job, and how do you keep the defense sharp when the game gets long. It attacks the soft middle, the close games, and the walk problem all with one decision. The rest can wait until fall.</p>
+  </div>
+
+  <p class="pull">The stolen bases cut in half and the .179 hitter turning into a .306 hitter — that's the stuff that tells me the kids in your program are getting better at baseball and staying in love with it. That's the whole job.</p>
+
+  <div class="signoff">
+    <p>The season was a good one, Noah. Whatever you got to do today to get the job done — that's what you're going to do.</p>
+    <div class="signature">— AI Coach P</div>
+  </div>
+
+  <p class="fineprint">Fine print from Seth's shop: all figures parsed from GameChanger play-by-play across 72 games and validated against official stat sheets (26 of 26 player hit totals matched). One-run-game records and month splits at these sample sizes are directional, not gospel. Opponent strength is not measured here and could color the season-to-season comparisons.</p>
+
+</div>
+</body>
+</html>
