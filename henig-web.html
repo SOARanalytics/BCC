@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SOAR Analytics scouting card — Olney Pirates 12U (Henig)">
+<title>Olney Pirates 12U (Henig) — SOAR Analytics</title>
+<style>
+:root{
+  --bg:#ffffff; --fg:#14171a; --muted:#5b6570; --line:#e3e7ea; --rule:#14171a;
+  --chip:#f6f7f8; --key:#eef1f4; --band:#14171a; --bandfg:#ffffff; --accent:#1c4f8b;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#14171a; --fg:#e9edf0; --muted:#9aa5b0; --line:#2a3037; --rule:#4a545e;
+         --chip:#1c2126; --key:#222930; --band:#0b0e10; --bandfg:#ffffff; --accent:#79aeea; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-text-size-adjust:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px 56px}
+
+.band{background:var(--band);color:var(--bandfg);margin:0 -18px 0;padding:11px 18px;
+  display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;align-items:baseline}
+.band .a{font-size:14px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+.band .b{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.72}
+
+.head{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:flex-start;
+  border-bottom:3px solid var(--rule);padding:20px 0 16px}
+.head>div:first-child{flex:1 1 380px;min-width:0}
+h1{font-size:clamp(28px,5vw,42px);line-height:1.05;margin:0 0 8px;letter-spacing:-.02em}
+.prov{font-size:14px;color:var(--muted);margin:0;max-width:64ch}
+.wp{flex:0 0 auto;text-align:right;min-width:170px}
+.wp .e{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.wp .n{font-size:clamp(44px,9vw,64px);font-weight:800;line-height:1;letter-spacing:-.04em}
+.wp .s{font-size:12px;color:var(--muted);line-height:1.45}
+
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin-top:20px}
+.chip{background:var(--chip);padding:12px 14px}
+.chip .l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.chip .v{font-size:26px;font-weight:700;margin:2px 0}
+.chip .s{font-size:12px;color:var(--muted)}
+
+.alert{border:2px solid var(--rule);padding:14px 16px;margin-top:20px;border-radius:2px}
+.alert .l{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700}
+.alert p{margin:6px 0 0;font-size:15px;line-height:1.55}
+
+.bl{background:var(--chip);padding:14px 16px;margin-top:16px;border-radius:2px}
+.bl .l{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700}
+.bl p{margin:6px 0 10px;line-height:1.55}
+.brow{display:flex;flex-wrap:wrap;gap:4px 14px;padding:9px 0;border-top:1px solid var(--line)}
+.brow .t{flex:0 0 96px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;
+  color:var(--muted);padding-top:3px}
+.brow .x{flex:1 1 260px;line-height:1.5}
+
+h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin:34px 0 0;
+  border-bottom:2px solid var(--rule);padding-bottom:6px;font-weight:700}
+h2 span{font-weight:400;letter-spacing:0;text-transform:none;color:var(--muted);font-size:13px;font-style:italic}
+
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
+th{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:right;
+  padding:9px 7px;border-bottom:1px solid var(--rule);font-weight:700;white-space:nowrap}
+th.l,td.l{text-align:left}
+th.sep,td.sep{border-left:1px solid var(--line)}
+td{padding:7px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+td.l{font-weight:700}
+td.read{font-style:italic;font-size:13px;text-align:left;color:var(--muted);white-space:normal;min-width:240px}
+tr.key td{background:var(--key)}
+tr.dim td{color:var(--muted);font-weight:400}
+tr.dim td.l{font-weight:700}
+.note{font-size:13px;color:var(--muted);font-style:italic;margin:10px 0 0;line-height:1.5}
+
+.foot{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;
+  display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted);line-height:1.5}
+.foot>div:first-child{flex:1 1 420px}
+.foot .r{flex:1 1 260px;text-align:right}
+@media (max-width:620px){ .foot .r{text-align:left} .wp{text-align:left;min-width:0} }
+</style></head><body>
+<div class="wrap">
+<div class="band">
+  <div class="a">SOAR Analytics &middot; Scouting Card</div>
+  <div class="b">Weekend of Sep 26&ndash;27, 2026 &middot; BCC Big Train 12U</div>
+</div>
+
+<div class="head">
+  <div>
+    <h1>Olney Pirates 12U (Henig)</h1>
+    <p class="prov">Same club as <b>Sandy Spring Falcons Elite 11U</b> &mdash; they rebranded for 2026 spring, and 8 of the 12 fall players trace back to that roster; 11 of 12 carried over from spring. 60 games on file. One prior meeting: a <b>3&ndash;3 tie</b> on May 2. Scraped Sep 22.</p>
+  </div>
+  <div class="wp">
+    <div class="e">BCC win prob.</div>
+    <div class="n">56%</div>
+    <div class="s">80% range 48&ndash;62%</div>
+  </div>
+</div>
+
+<div class="chips">
+  <div class="chip"><div class="l">Adjusted rating</div><div class="v">+3.1</div><div class="s">runs/gm vs avg &middot; #15 of 100</div></div>
+  <div class="chip"><div class="l">Record on file</div><div class="v">43&ndash;16</div><div class="s">60 games &middot; 9.6 RF / 6.5 RA</div></div>
+  <div class="chip"><div class="l">Career steals</div><div class="v">445</div><div class="s">at 95% &middot; 7.4 per game</div></div>
+  <div class="chip"><div class="l">Expected score</div><div class="v">8.0 &ndash; 7.1</div><div class="s">BCC &ndash; Henig</div></div>
+</div>
+
+<div class="alert">
+  <div class="l">They steal more than any team we have scouted, and we are the worst team at stopping it</div>
+  <p><b>445 steals in 60 games at 95%</b> &mdash; roughly <b>seven and a half a game</b>, with five players over 40: Jonah M (72), Jack T (56), Ben K (51), Hunter C (50), Ty J (43). A 20% team walk rate keeps feeding the machine. Set against that, BCC gave up <b>195 steals in 35 games</b> last fall and 12 in four games at the Labor Day tournament, with four different catchers rotating. <b>This is the matchup that decides the game</b>, and it is the one where we are weakest. Everything else on this card is secondary.</p>
+</div>
+
+<div class="bl">
+  <div class="l">Bottom line</div>
+  <p>The second-best team on our schedule after Gambrills &mdash; #15, 43&ndash;16, and a <b>1.079 team OPS</b> built on contact rather than power (13 homers in 60 games). We tied them 3&ndash;3 in May. What keeps this at 56% rather than worse is their staff: a <b>5.73 ERA and a 2.06 WHIP</b>, with exactly one arm that misses bats. Their fall record (4&ndash;2) is honest &mdash; they beat a #66 team and an unrated one twice each, and lost twice to Rawlings Prospects Hicks, #7 in the pool.</p>
+  <div class="brow"><div class="t">At the plate</div><div class="x"><b>Two of them throw strikes; the rest do not.</b> Kaden T is the real arm (3.47 ERA, 1.50 WHIP, 30% K, 62% strikes &mdash; and no earned runs in 5 fall innings) and Ben K throws 69% strikes with a 5% walk rate. Against those two, hit early. Against Jonah M (27% walks, 53% strikes) or Ty J (28%, 51%), take until they prove it.</div></div>
+  <div class="brow"><div class="t">Run</div><div class="x"><b>Green light.</b> Opponents are 339 for 361 &mdash; <b>94%</b> &mdash; against them. We should be running too.</div></div>
+  <div class="brow"><div class="t">Defense</div><div class="x">The whole card. <b>Slide-step everyone</b>, hold Ty J and Ben K at the top, and expect them to go on first movement. Jonah M hits third with a <b>1.580 career OPS</b> and 72 steals &mdash; if he is on, he is running.</div></div>
+</div>
+
+<h2>Their staff <span>&mdash; three seasons, then the fall-26 split (6 g) &middot; ▶ the arms that decide a game</span></h2>
+<div class="tw"><table>
+<tr><th class="l">Pitcher</th><th>IP</th><th>ERA</th><th>WHIP</th><th>K%</th><th>BB%</th><th>Str%</th><th class="sep">F26 IP</th><th>F26 K%</th><th>F26 BB%</th><th>F26 Str%</th><th class="l">Read</th></tr>
+<tr class="key"><td class="l">▶Kaden T</td><td>38.0</td><td><b>3.47</b></td><td><b>1.50</b></td><td><b>30%</b></td><td>15%</td><td>62%</td><td class="sep">5.0</td><td>26%</td><td><b>4%</b></td><td>67%</td><td class="read">The ace, and the only one who misses bats. No earned runs in 5 fall innings. Be ready early.</td></tr>
+<tr class="key"><td class="l">▶Ben K</td><td>28.0</td><td>6.43</td><td>2.18</td><td>15%</td><td><b>5%</b></td><td><b>69%</b></td><td class="sep">1.0</td><td>20%</td><td><b>0%</b></td><td><b>75%</b></td><td class="read">Best command on the staff by far &mdash; 69% strikes, walks one in twenty. Nothing free.</td></tr>
+<tr><td class="l">Hunter C</td><td>52.3</td><td>5.27</td><td>1.87</td><td>10%</td><td>13%</td><td>62%</td><td class="sep">2.7</td><td>23%</td><td>23%</td><td>65%</td><td class="read">Most innings on the staff. Throws strikes, gets hit. Put it in play.</td></tr>
+<tr><td class="l">Shane B</td><td>44.0</td><td>5.05</td><td>2.07</td><td>10%</td><td>13%</td><td>58%</td><td class="sep">4.3</td><td>7%</td><td><b>4%</b></td><td><b>71%</b></td><td class="read">71% strikes in the fall with almost no walks. Nearly zero strikeouts &mdash; make contact.</td></tr>
+<tr><td class="l">Jack T</td><td>51.7</td><td>6.62</td><td>2.23</td><td>10%</td><td>12%</td><td>59%</td><td class="sep">2.0</td><td>15%</td><td>8%</td><td>64%</td><td class="read">6.62 career ERA on a 2.23 WHIP. Everything finds a bat.</td></tr>
+<tr><td class="l">Jonah M</td><td>49.3</td><td>7.54</td><td>2.47</td><td>26%</td><td><b>27%</b></td><td>53%</td><td class="sep">5.0</td><td>33%</td><td>23%</td><td>57%</td><td class="read">Big strikeout rate, bigger walk rate, 53% strikes. <b>Take until he proves it.</b></td></tr>
+<tr><td class="l">Jack B</td><td>6.0</td><td>2.00</td><td>1.67</td><td>13%</td><td>17%</td><td>58%</td><td class="sep">6.0</td><td>13%</td><td>17%</td><td>58%</td><td class="read">All six of his career innings are this fall &mdash; a new piece of the staff.</td></tr>
+<tr><td class="l">Brett G</td><td>3.0</td><td>8.00</td><td>2.00</td><td>7%</td><td><b>0%</b></td><td>70%</td><td class="sep">3.0</td><td>7%</td><td>0%</td><td>70%</td><td class="read">Newcomer. 70% strikes, zero walks, zero strikeouts. Swing.</td></tr>
+<tr class="dim"><td class="l">Ty J</td><td>12.0</td><td>8.00</td><td>2.42</td><td>9%</td><td><b>28%</b></td><td>51%</td><td class="sep">&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="read">51% strikes. No fall innings &mdash; he is their leadoff hitter now.</td></tr>
+<tr class="dim"><td class="l">Conor L</td><td>6.0</td><td><b>0.00</b></td><td>0.50</td><td>38%</td><td>0%</td><td>73%</td><td class="sep">&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="read">Six perfect-looking innings in the spring and no fall work. Watch for him.</td></tr>
+</table></div>
+<p class="note">Stephen R (8.3 IP) and Shreyas A (6.0) fill out the staff. They used <b>eight different arms in six fall games</b> &mdash; expect three or four in a game, not a starter going deep.</p>
+
+<h2>Their bats <span>&mdash; three seasons, then the fall-26 split &middot; spot = order used in both Sep 13 games</span></h2>
+<div class="tw"><table>
+<tr><th class="l">Hitter</th><th>Spot</th><th>PA</th><th>AVG</th><th>OBP</th><th>SLG</th><th>OPS</th><th>HR</th><th>K%</th><th>BB%</th><th>SB</th><th class="sep">F26 PA</th><th>F26 OPS</th><th class="l">Read</th></tr>
+<tr class="key"><td class="l">▶Jonah M</td><td>3</td><td>197</td><td><b>.572</b></td><td><b>.655</b></td><td>.925</td><td><b>1.580</b></td><td>5</td><td>15%</td><td>19%</td><td><b>72</b></td><td class="sep">18</td><td>1.111</td><td class="read">The best hitter we have scouted all fall. Hits .572 and steals at will. Pitch around him.</td></tr>
+<tr class="key"><td class="l">▶Hunter C</td><td>4</td><td>191</td><td>.481</td><td>.565</td><td><b>.806</b></td><td>1.371</td><td><b>6</b></td><td>15%</td><td>16%</td><td>50</td><td class="sep">16</td><td>1.000</td><td class="read">Their power, such as it is &mdash; 6 homers. Also 50 steals. Cleanup for a reason.</td></tr>
+<tr class="key"><td class="l">▶Ty J</td><td>1</td><td>192</td><td>.432</td><td>.568</td><td>.575</td><td>1.143</td><td>0</td><td>12%</td><td><b>24%</b></td><td>43</td><td class="sep">17</td><td>1.302</td><td class="read">Leads off, walks a quarter of the time, and is hot. The table-setter &mdash; do not walk him.</td></tr>
+<tr class="key"><td class="l">▶Ben K</td><td>2</td><td>188</td><td>.377</td><td>.516</td><td>.438</td><td>.954</td><td>0</td><td><b>6%</b></td><td>22%</td><td>51</td><td class="sep">18</td><td>1.305</td><td class="read">6% strikeout rate, 51 steals, and hitting 1.305 this fall. Nearly impossible to retire cheaply.</td></tr>
+<tr><td class="l">Jack T</td><td>7</td><td>182</td><td>.444</td><td>.505</td><td>.556</td><td>1.061</td><td>0</td><td>10%</td><td>11%</td><td>56</td><td class="sep">15</td><td>1.247</td><td class="read">56 steals from the seven hole. Lowest walk rate of the regulars &mdash; attack the zone.</td></tr>
+<tr><td class="l">Kaden T</td><td>8</td><td>181</td><td>.357</td><td>.552</td><td>.437</td><td>.989</td><td>0</td><td>12%</td><td><b>30%</b></td><td>28</td><td class="sep">16</td><td>.823</td><td class="read">Their ace, and a 30% walk rate at the plate. Coldest of the top eight this fall.</td></tr>
+<tr><td class="l">Shane B</td><td>9</td><td>153</td><td>.243</td><td>.451</td><td>.369</td><td>.820</td><td>2</td><td><b>30%</b></td><td>27%</td><td>27</td><td class="sep">15</td><td>.933</td><td class="read">Strikes out 30% of the time. The most gettable out in the lineup &mdash; challenge him.</td></tr>
+<tr><td class="l">Jack B</td><td>5</td><td>25</td><td>.368</td><td>.520</td><td>.474</td><td>.994</td><td>0</td><td>8%</td><td>24%</td><td>8</td><td class="sep">18</td><td>.645</td><td class="read">Barely played before this fall and now hits fifth. Struggling in the new role.</td></tr>
+<tr><td class="l">Brett G</td><td>6</td><td>16</td><td>.417</td><td>.562</td><td>.583</td><td>1.145</td><td>0</td><td><b>0%</b></td><td>25%</td><td>2</td><td class="sep">16</td><td>1.145</td><td class="read">Newcomer hitting sixth. No strikeouts in 16 plate appearances. Unknown.</td></tr>
+<tr><td class="l">Shreyas A</td><td>10</td><td>87</td><td>.270</td><td>.379</td><td>.297</td><td>.676</td><td>0</td><td><b>34%</b></td><td>15%</td><td>12</td><td class="sep">9</td><td>.666</td><td class="read">Weakest bat in the order, 34% strikeouts. Where the innings end.</td></tr>
+<tr class="dim"><td class="l">Conor L</td><td>&mdash;</td><td>44</td><td>.500</td><td>.591</td><td>.806</td><td><b>1.397</b></td><td>0</td><td>5%</td><td>18%</td><td>14</td><td class="sep">9</td><td>1.667</td><td class="read">1.397 in 44 PA and 1.667 this fall, but sat both Sep 13 games. If he plays, he is a top-four bat.</td></tr>
+<tr class="dim"><td class="l">Stephen R</td><td>&mdash;</td><td>143</td><td>.317</td><td>.413</td><td>.390</td><td>.803</td><td>0</td><td>15%</td><td>14%</td><td>33</td><td class="sep">10</td><td>1.056</td><td class="read">33 steals. Also out of the last two lineups. Departed: Noah J, 121 PA and 37 steals.</td></tr>
+</table></div>
+
+<div class="foot">
+  <div>Opponent-adjusted ratings over 2,496 deduped games in soar.duckdb (ridge, season-weighted 2026-fall 1.0 / spring 0.55 / 2025-fall 0.28), win probability from a 250-rep bootstrap &times; Gamma-Poisson sim. ERA is per six innings; K% and BB% are per batter faced. Steal advice checked against caught-stealing. Identity verified through the 2026 rebrand: Sandy Spring Falcons Elite and Olney Pirates (Henig) share one GameChanger team id.</div>
+  <div class="r">HCYP Blue +5.8 (#1) &middot; Loudoun Aces +5.3 (#3) &middot; Gambrills +4.9 (#4) &middot; BCC +4.0 (#9) &middot; <b>Olney Henig +3.1 (#15)</b> &middot; Wild Bill +2.9 (#16) &middot; Jbats +2.1 (#22) &middot; Arsenal Blue +1.7 (#27) &middot; Storm Red +0.6 (#40) &mdash; of 100 teams with 8+ games</div>
+</div>
+</div>
+</body></html>

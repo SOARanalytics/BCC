@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SOAR Analytics scouting card — Arlington Arsenal Blue 12U">
+<title>Arlington Arsenal Blue 12U — SOAR Analytics</title>
+<style>
+:root{
+  --bg:#ffffff; --fg:#14171a; --muted:#5b6570; --line:#e3e7ea; --rule:#14171a;
+  --chip:#f6f7f8; --key:#eef1f4; --band:#14171a; --bandfg:#ffffff; --accent:#1c4f8b;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#14171a; --fg:#e9edf0; --muted:#9aa5b0; --line:#2a3037; --rule:#4a545e;
+         --chip:#1c2126; --key:#222930; --band:#0b0e10; --bandfg:#ffffff; --accent:#79aeea; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-text-size-adjust:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px 56px}
+
+.band{background:var(--band);color:var(--bandfg);margin:0 -18px 0;padding:11px 18px;
+  display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;align-items:baseline}
+.band .a{font-size:14px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+.band .b{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.72}
+
+.head{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:flex-start;
+  border-bottom:3px solid var(--rule);padding:20px 0 16px}
+.head>div:first-child{flex:1 1 380px;min-width:0}
+h1{font-size:clamp(28px,5vw,42px);line-height:1.05;margin:0 0 8px;letter-spacing:-.02em}
+.prov{font-size:14px;color:var(--muted);margin:0;max-width:64ch}
+.wp{flex:0 0 auto;text-align:right;min-width:170px}
+.wp .e{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.wp .n{font-size:clamp(44px,9vw,64px);font-weight:800;line-height:1;letter-spacing:-.04em}
+.wp .s{font-size:12px;color:var(--muted);line-height:1.45}
+
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin-top:20px}
+.chip{background:var(--chip);padding:12px 14px}
+.chip .l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.chip .v{font-size:26px;font-weight:700;margin:2px 0}
+.chip .s{font-size:12px;color:var(--muted)}
+
+.alert{border:2px solid var(--rule);padding:14px 16px;margin-top:20px;border-radius:2px}
+.alert .l{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700}
+.alert p{margin:6px 0 0;font-size:15px;line-height:1.55}
+
+.bl{background:var(--chip);padding:14px 16px;margin-top:16px;border-radius:2px}
+.bl .l{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700}
+.bl p{margin:6px 0 10px;line-height:1.55}
+.brow{display:flex;flex-wrap:wrap;gap:4px 14px;padding:9px 0;border-top:1px solid var(--line)}
+.brow .t{flex:0 0 96px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;
+  color:var(--muted);padding-top:3px}
+.brow .x{flex:1 1 260px;line-height:1.5}
+
+h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin:34px 0 0;
+  border-bottom:2px solid var(--rule);padding-bottom:6px;font-weight:700}
+h2 span{font-weight:400;letter-spacing:0;text-transform:none;color:var(--muted);font-size:13px;font-style:italic}
+
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
+th{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:right;
+  padding:9px 7px;border-bottom:1px solid var(--rule);font-weight:700;white-space:nowrap}
+th.l,td.l{text-align:left}
+th.sep,td.sep{border-left:1px solid var(--line)}
+td{padding:7px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+td.l{font-weight:700}
+td.read{font-style:italic;font-size:13px;text-align:left;color:var(--muted);white-space:normal;min-width:240px}
+tr.key td{background:var(--key)}
+tr.dim td{color:var(--muted);font-weight:400}
+tr.dim td.l{font-weight:700}
+.note{font-size:13px;color:var(--muted);font-style:italic;margin:10px 0 0;line-height:1.5}
+
+.foot{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;
+  display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted);line-height:1.5}
+.foot>div:first-child{flex:1 1 420px}
+.foot .r{flex:1 1 260px;text-align:right}
+@media (max-width:620px){ .foot .r{text-align:left} .wp{text-align:left;min-width:0} }
+</style></head><body>
+<div class="wrap">
+<div class="band">
+  <div class="a">SOAR Analytics &middot; Scouting Card</div>
+  <div class="b">Weekend of Sep 26&ndash;27, 2026 &middot; BCC Big Train 12U</div>
+</div>
+
+<div class="head">
+  <div>
+    <h1>Arlington Arsenal Blue 12U</h1>
+    <p class="prov">48 games on file, three seasons, one stable roster &mdash; 12 of 13 fall players carried over from the 11U team; Erik M is the only newcomer. No prior meeting with BCC on file. Scraped Sep 22.</p>
+  </div>
+  <div class="wp">
+    <div class="e">BCC win prob.</div>
+    <div class="n">66%</div>
+    <div class="s">80% range 59&ndash;73%</div>
+  </div>
+</div>
+
+<div class="chips">
+  <div class="chip"><div class="l">Adjusted rating</div><div class="v">+1.7</div><div class="s">runs/gm vs avg &middot; #27 of 100</div></div>
+  <div class="chip"><div class="l">Record on file</div><div class="v">26&ndash;19</div><div class="s">48 games &middot; 8.5 RF / 6.6 RA</div></div>
+  <div class="chip"><div class="l">This fall</div><div class="v">1&ndash;4</div><div class="s">17 RF / 39 RA in 5 games</div></div>
+  <div class="chip"><div class="l">Expected score</div><div class="v">8.2 &ndash; 5.9</div><div class="s">BCC &ndash; Arsenal</div></div>
+</div>
+
+<div class="alert">
+  <div class="l">The spring team and the fall team are not the same team</div>
+  <p>In the spring they went <b>16&ndash;4</b> and outscored people 219&ndash;105. This fall they are <b>1&ndash;4</b> and have been outscored 17&ndash;39 &mdash; scoring has fallen from <b>9.5 runs a game to 3.4</b>. Two of those losses came against Loudoun Aces&ndash;Ritchie, <b>#3 in the pool</b>, so the schedule explains part of it. The other two were 0&ndash;6 and 4&ndash;7 to an unrated Arlington Storm Black, and that part is the bats: <b>Jackson D</b> (1.184 career OPS, 7 HR) is 0 for 6 this fall with a <b>71% strikeout rate</b>, <b>Matthew C</b> (.992) is 0 for 9, and Topher B and Ethan G are hitless. Five games is small &mdash; but it is four different regulars all at once.</p>
+</div>
+
+<div class="bl">
+  <div class="l">Bottom line</div>
+  <p>A patient, fast team having a bad month. They walk in <b>20%</b> of their plate appearances and have stolen <b>321 bases at 94%</b>; their staff hands back walks in <b>17%</b>. The career line (.330/.464/.467) says this is a real offense that will wake up. The reason we are favored is the pitching, not the slump.</p>
+  <div class="brow"><div class="t">At the plate</div><div class="x"><b>Only one of them challenges you.</b> Peter W throws 65% strikes and walks 6% &mdash; 75% strikes and zero walks in the fall. Hit him early. Everyone else is a take: Topher B walks 29%, William E 25%, Charlie C 20%, Matthew C and Jackson D 17&ndash;18%.</div></div>
+  <div class="brow"><div class="t">Run</div><div class="x"><b>Green light.</b> Opponents are 223 for 237 &mdash; <b>94%</b> &mdash; against them, comfortably above break-even.</div></div>
+  <div class="brow"><div class="t">Defense</div><div class="x">Nine of their thirteen have double-digit steals. <b>William E</b> (68) hits at the top, and <b>Topher B</b> (45) and <b>Charlie C</b> (43) run from the bottom third, where you are least likely to be expecting it.</div></div>
+</div>
+
+<h2>Their staff <span>&mdash; three seasons, then the fall-26 split (5 g) &middot; ▶ the arm that decides a game</span></h2>
+<div class="tw"><table>
+<tr><th class="l">Pitcher</th><th>IP</th><th>ERA</th><th>WHIP</th><th>K%</th><th>BB%</th><th>Str%</th><th class="sep">F26 IP</th><th>F26 K%</th><th>F26 BB%</th><th>F26 Str%</th><th class="l">Read</th></tr>
+<tr class="key"><td class="l">▶Peter W</td><td>35.3</td><td>4.92</td><td>1.90</td><td>13%</td><td><b>6%</b></td><td><b>65%</b></td><td class="sep">4.0</td><td>22%</td><td><b>0%</b></td><td><b>75%</b></td><td class="read">The only strike-thrower on the staff, and sharper this fall. Nothing free &mdash; swing.</td></tr>
+<tr class="key"><td class="l">▶Bryce K</td><td>37.0</td><td>4.38</td><td>1.68</td><td><b>23%</b></td><td>15%</td><td>61%</td><td class="sep">5.0</td><td>19%</td><td>19%</td><td>58%</td><td class="read">Most innings and the best swing-and-miss. Also their leadoff hitter.</td></tr>
+<tr><td class="l">Matthew C</td><td>29.7</td><td><b>3.24</b></td><td>2.22</td><td>11%</td><td>17%</td><td>56%</td><td class="sep">4.0</td><td>5%</td><td>18%</td><td>51%</td><td class="read">Lowest ERA of the regular arms but a 2.22 WHIP &mdash; traffic, few strikeouts.</td></tr>
+<tr><td class="l">William E</td><td>29.7</td><td><b>2.83</b></td><td>1.96</td><td>16%</td><td>25%</td><td>53%</td><td class="sep">3.0</td><td>0%</td><td>25%</td><td>53%</td><td class="read">Good ERA on a 25% walk rate. 53% strikes. Make him prove it.</td></tr>
+<tr><td class="l">Charlie C</td><td>29.7</td><td>4.85</td><td>2.29</td><td>13%</td><td>20%</td><td>57%</td><td class="sep">2.0</td><td>11%</td><td><b>32%</b></td><td>47%</td><td class="read">Walked a third of the fall batters he faced at 47% strikes. Wait him out.</td></tr>
+<tr><td class="l">Neil K</td><td>20.7</td><td>7.84</td><td>2.27</td><td>18%</td><td>15%</td><td>57%</td><td class="sep">5.0</td><td>9%</td><td>9%</td><td>62%</td><td class="read">Career 7.84 ERA but the most fall innings and his best control of the group.</td></tr>
+<tr><td class="l">Jackson D</td><td>19.3</td><td>3.41</td><td>2.07</td><td>12%</td><td>18%</td><td>55%</td><td class="sep">1.0</td><td>0%</td><td>29%</td><td>62%</td><td class="read">Barely used this fall &mdash; his bat has collapsed and it may be costing him innings.</td></tr>
+<tr><td class="l">Graham S</td><td>12.0</td><td>6.50</td><td>2.25</td><td>8%</td><td>13%</td><td>62%</td><td class="sep">2.0</td><td>15%</td><td>8%</td><td>67%</td><td class="read">Strikes but nothing behind them. Ball in play.</td></tr>
+<tr class="dim"><td class="l">Topher B</td><td>13.3</td><td>8.55</td><td>3.60</td><td>8%</td><td><b>29%</b></td><td>48%</td><td class="sep">&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="read">48% strikes, 3.60 WHIP. No fall innings yet &mdash; the one to hope for.</td></tr>
+<tr class="dim"><td class="l">Henry S</td><td>6.7</td><td>1.80</td><td>1.35</td><td>13%</td><td>13%</td><td>60%</td><td class="sep">&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="read">Best rate line on the staff in 6.7 innings. Hasn't thrown this fall.</td></tr>
+</table></div>
+<p class="note">Five fall games, so the split is thin: Bryce K and Neil K have the only meaningful fall workloads. Ethan G (5.7 IP) and Finn R (1.7) round out the staff.</p>
+
+<h2>Their bats <span>&mdash; three seasons, then the fall-26 split &middot; spot = order used Sep 20</span></h2>
+<div class="tw"><table>
+<tr><th class="l">Hitter</th><th>Spot</th><th>PA</th><th>AVG</th><th>OBP</th><th>SLG</th><th>OPS</th><th>HR</th><th>K%</th><th>BB%</th><th>SB</th><th class="sep">F26 PA</th><th>F26 OPS</th><th class="l">Read</th></tr>
+<tr class="key"><td class="l">▶William E</td><td>2</td><td>144</td><td>.385</td><td>.500</td><td>.547</td><td>1.047</td><td>1</td><td><b>3%</b></td><td>19%</td><td><b>68</b></td><td class="sep">13</td><td><b>1.532</b></td><td class="read">Their best player and the only bat that is hot. 3% strikeout rate, 68 steals. Hold him.</td></tr>
+<tr class="key"><td class="l">▶Neil K</td><td>6</td><td>119</td><td>.389</td><td>.513</td><td>.621</td><td>1.134</td><td>3</td><td>13%</td><td>20%</td><td>16</td><td class="sep">10</td><td><b>1.600</b></td><td class="read">Also scorching this fall. Buried in the six hole &mdash; the lineup's best-kept secret.</td></tr>
+<tr class="key"><td class="l">▶Jackson D</td><td>4</td><td>131</td><td>.369</td><td>.504</td><td>.680</td><td><b>1.184</b></td><td><b>7</b></td><td>21%</td><td>21%</td><td>12</td><td class="sep">7</td><td>.143</td><td class="read">Most power on the roster and 0 for 6 with five strikeouts this fall. Dangerous if he finds it.</td></tr>
+<tr><td class="l">Henry S</td><td>3</td><td>134</td><td>.357</td><td>.463</td><td>.616</td><td>1.079</td><td>5</td><td>7%</td><td>16%</td><td>18</td><td class="sep">12</td><td>.977</td><td class="read">Five homers, rarely strikes out. Still producing this fall. The steadiest of the group.</td></tr>
+<tr><td class="l">Matthew C</td><td>5</td><td>104</td><td>.386</td><td>.481</td><td>.511</td><td>.992</td><td>2</td><td>5%</td><td>15%</td><td>23</td><td class="sep">11</td><td>.182</td><td class="read">Career 5% strikeout rate, but 36% and 0 for 9 this fall. Something is off.</td></tr>
+<tr><td class="l">Bryce K</td><td>1</td><td>127</td><td>.343</td><td>.441</td><td>.481</td><td>.922</td><td>1</td><td>9%</td><td>15%</td><td>37</td><td class="sep">13</td><td>.490</td><td class="read">Leads off now. 37 steals. Cold this fall but makes contact.</td></tr>
+<tr><td class="l">Charlie C</td><td>7</td><td>126</td><td>.323</td><td>.468</td><td>.333</td><td>.801</td><td>0</td><td>10%</td><td>21%</td><td>43</td><td class="sep">10</td><td>.733</td><td class="read">43 steals, zero power. Singles and legs &mdash; do not give him first.</td></tr>
+<tr><td class="l">Topher B</td><td>10</td><td>107</td><td>.260</td><td>.467</td><td>.299</td><td>.766</td><td>0</td><td>14%</td><td><b>28%</b></td><td>45</td><td class="sep">9</td><td>.444</td><td class="read">Hitless this fall but walked in 44% of his trips. 45 career steals from the bottom.</td></tr>
+<tr><td class="l">Peter W</td><td>11</td><td>108</td><td>.238</td><td>.435</td><td>.275</td><td>.710</td><td>0</td><td>19%</td><td>26%</td><td>21</td><td class="sep">9</td><td>.944</td><td class="read">Weak bat, heavy walk rate. Attack him &mdash; a .238 hitter should not reach 43% of the time.</td></tr>
+<tr><td class="l">Graham S</td><td>13</td><td>99</td><td>.232</td><td>.364</td><td>.280</td><td>.644</td><td>0</td><td>14%</td><td>17%</td><td>20</td><td class="sep">8</td><td>1.000</td><td class="read">Lowest career OPS in the order and hitting last. Warming up.</td></tr>
+<tr><td class="l">Ethan G</td><td>12</td><td>89</td><td>.235</td><td>.416</td><td>.235</td><td>.651</td><td>0</td><td>18%</td><td>24%</td><td>11</td><td class="sep">7</td><td>.286</td><td class="read">Zero extra-base hits in 89 career PA. Play him shallow.</td></tr>
+<tr class="dim"><td class="l">Finn R</td><td>8</td><td>21</td><td>.421</td><td>.476</td><td>.579</td><td>1.055</td><td>1</td><td>0%</td><td>10%</td><td>5</td><td class="sep">9</td><td>.666</td><td class="read">21 career PA, no strikeouts. Moves around the order.</td></tr>
+<tr class="dim"><td class="l">Erik M</td><td>9</td><td>10</td><td>.333</td><td>.400</td><td>.333</td><td>.733</td><td>0</td><td>10%</td><td>10%</td><td>1</td><td class="sep">10</td><td>.733</td><td class="read">The one newcomer. All ten of his plate appearances are this fall.</td></tr>
+</table></div>
+
+<div class="foot">
+  <div>Opponent-adjusted ratings over 2,496 deduped games in soar.duckdb (ridge, season-weighted 2026-fall 1.0 / spring 0.55 / 2025-fall 0.28), win probability from a 250-rep bootstrap &times; Gamma-Poisson sim. ERA is per six innings; K% and BB% are per batter faced, BB% includes hit batsmen. Steal advice is checked against caught-stealing, not steal totals. Roster continuity verified by name overlap across all three seasons: 12 of 13.</div>
+  <div class="r">HCYP Blue +5.8 (#1) &middot; Loudoun Aces +5.3 (#3) &middot; Gambrills +4.9 (#4) &middot; BCC +4.0 (#9) &middot; Olney Henig +3.1 (#15) &middot; Wild Bill +2.9 (#16) &middot; Jbats +2.1 (#22) &middot; <b>Arsenal Blue +1.7 (#27)</b> &middot; Storm Red +0.6 (#40) &mdash; of 100 teams with 8+ games</div>
+</div>
+</div>
+</body></html>
