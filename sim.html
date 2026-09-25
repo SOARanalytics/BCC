@@ -1,0 +1,326 @@
+<title>Shock and Awe 12U-A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F4F1E9; --surface:#FFFDF7; --ink:#18160F; --muted:#6A6454; --rule:#DCD5C4;
+  --gold:#9C7112; --gold-soft:#EFE3C2; --silver:#6F747C; --silver-soft:#E3E4E6;
+  --good:#2E7A4B; --bad:#A9412D; --tie:#B9B19E; --hi:#FFF4D6;
+  --heat0:#FFFDF7; --heat1:#9C7112;
+  --display:"Barlow Condensed","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --body:"Barlow","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#14120E; --surface:#1D1A14; --ink:#EEE8DA; --muted:#A49C89; --rule:#39342A;
+    --gold:#D7A63A; --gold-soft:#3A2F16; --silver:#A9AEB6; --silver-soft:#2B2D31;
+    --good:#5FB27F; --bad:#E0785F; --tie:#6C6554; --hi:#2E2615; --heat0:#1D1A14; --heat1:#D7A63A;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#14120E; --surface:#1D1A14; --ink:#EEE8DA; --muted:#A49C89; --rule:#39342A;
+  --gold:#D7A63A; --gold-soft:#3A2F16; --silver:#A9AEB6; --silver-soft:#2B2D31;
+  --good:#5FB27F; --bad:#E0785F; --tie:#6C6554; --hi:#2E2615; --heat0:#1D1A14; --heat1:#D7A63A;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.5 var(--body);font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.01em;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,6vw,54px);line-height:1}
+h2{font-size:26px;line-height:1.1;text-transform:uppercase;letter-spacing:.03em}
+h3{font-size:18px;text-transform:uppercase;letter-spacing:.04em}
+.eyebrow{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:13px;color:var(--gold)}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+p{max-width:68ch;margin:0}
+section{display:grid;gap:14px;padding-block:30px;border-top:1px solid var(--rule)}
+header{display:grid;gap:10px;padding-block:6px 26px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--rule);
+    display:flex;gap:4px 18px;flex-wrap:wrap;padding-block:10px;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:14px}
+nav a{color:var(--muted);text-decoration:none}
+nav a:hover,nav a:focus-visible{color:var(--ink);outline:none;text-decoration:underline;text-underline-offset:4px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.tile{background:var(--surface);border:1px solid var(--rule);padding:14px 16px;display:grid;gap:2px}
+.tile .v{font-family:var(--display);font-weight:700;font-size:44px;line-height:1}
+.tile .l{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--muted)}
+.tile.lead{background:var(--gold-soft);border-color:var(--gold)}
+.tile.lead .v{color:var(--gold)}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;color:var(--muted);text-align:left;padding:6px 8px;border-bottom:1.5px solid var(--ink);white-space:nowrap}
+td{padding:7px 8px;border-bottom:1px solid var(--rule);vertical-align:middle;white-space:nowrap}
+td.num,th.num{text-align:right}
+tr.us td{background:var(--hi)}
+tr.us td:first-child{box-shadow:inset 3px 0 0 var(--gold)}
+.team{font-weight:600}
+.bar{position:relative;height:10px;background:var(--rule);min-width:70px}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--gold)}
+.cellbar{display:grid;grid-template-columns:44px 1fr;gap:8px;align-items:center}
+.pool{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.g{background:var(--surface);border:1px solid var(--rule);padding:10px 12px;display:grid;gap:7px}
+.g.us{border-color:var(--gold);box-shadow:inset 0 3px 0 var(--gold)}
+.g .top{display:flex;justify-content:space-between;font-family:var(--display);font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.g .row{display:flex;justify-content:space-between;gap:8px;font-weight:600}
+.g .row span:last-child{font-family:var(--display);font-size:17px}
+.stack{display:flex;height:12px;overflow:hidden}
+.stack b{display:block;height:100%}
+.stack .a{background:var(--gold)} .stack .t{background:var(--tie)} .stack .bb{background:var(--silver)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px}
+.brackets{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,500px),1fr));gap:22px}
+.bk{display:grid;gap:10px;align-content:start}
+.bk h3.goldh{color:var(--gold)} .bk h3.silverh{color:var(--silver)}
+.bgrid{display:grid;grid-template-columns:1.25fr 1.2fr 1fr;gap:8px;align-items:center;min-width:470px}
+.slot{background:var(--surface);border:1px solid var(--rule);padding:6px 8px;font-size:13px;display:grid;gap:1px}
+.slot .h{font-family:var(--display);font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:flex;justify-content:space-between}
+.slot .o{display:flex;justify-content:space-between;gap:6px}
+.slot .o.us{font-weight:700;color:var(--gold)}
+.col{display:grid;gap:8px;align-content:start}
+.lab{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:12.5px;color:var(--muted)}
+.champ{border:1.5px solid currentColor;padding:8px 10px;display:grid;gap:2px}
+.heat td{padding:0;border:1px solid var(--ground);text-align:center;font-size:12px;height:30px;min-width:38px}
+.heat th{border:none;text-align:center;padding:4px}
+.heat td.name{text-align:left;padding:0 8px;min-width:130px;font-weight:600}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:22px}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid currentColor}
+.up{color:var(--good)} .down{color:var(--bad)}
+.note{background:var(--surface);border:1px solid var(--rule);padding:12px 14px;display:grid;gap:6px}
+.note.warn{border-color:var(--gold)}
+ul{margin:0;padding-left:18px;display:grid;gap:6px;max-width:75ch}
+code{font-size:13px;background:var(--surface);border:1px solid var(--rule);padding:1px 5px}
+pre{background:var(--surface);border:1px solid var(--rule);padding:10px 12px;overflow-x:auto;font-size:13px;margin:0}
+a{color:var(--gold)}
+@media (max-width:520px){ .tile .v{font-size:36px} h2{font-size:22px} }
+@media (prefers-reduced-motion:no-preference){ .bar i,.stack b{transition:width .4s ease} }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">SOAR Analytics · Tournament simulator</div>
+  <h1 id="h-title"></h1>
+  <p class="muted" id="h-sub"></p>
+  <div class="tiles" id="tiles"></div>
+  <p class="small muted" id="h-foot"></p>
+</header>
+<nav aria-label="Sections">
+  <a href="#field">The field</a><a href="#saturday">Saturday</a><a href="#sunday">Sunday</a>
+  <a href="#path">Our path</a><a href="#pitching">Pitching plans</a><a href="#h2h">Head to head</a><a href="#model">Model &amp; checks</a>
+</nav>
+
+<section id="field">
+  <h2>The field</h2>
+  <p class="muted">Sorted by Gold title odds. Ratings are runs per 6 innings above an average team in the warehouse (offense scored, defense saved), for fall 2026. "Games" counts games with play-by-play on file, this fall in brackets.</p>
+  <div class="scroll"><table id="field-t"></table></div>
+</section>
+
+<section id="saturday">
+  <h2>Saturday · Pool play</h2>
+  <p class="muted">Pool games can end tied and stop at 1:40 with no new inning. "Ends early" means the game ended before the 6th, by mercy rule or the clock.</p>
+  <div class="legend"><span><i style="background:var(--gold)"></i>first-listed team wins</span><span><i style="background:var(--tie)"></i>tie</span><span><i style="background:var(--silver)"></i>second team wins</span></div>
+  <div class="pool" id="pool"></div>
+  <h3 style="margin-top:10px">Where teams land after Saturday</h3>
+  <p class="muted small">Chance of each final pool seed. Seeds 1–6 go to the Gold bracket, 7–12 to Silver. Tiebreakers follow rule 2.2: record, head-to-head (two-way ties only), average runs allowed, average runs scored, run differential, fewest runs allowed in a game, coin flip.</p>
+  <div class="scroll"><table class="heat" id="heat"></table></div>
+</section>
+
+<section id="sunday">
+  <h2>Sunday · Brackets</h2>
+  <p class="muted">Each slot shows the teams most likely to fill it. The better seed takes home. Extra innings start with a runner on second. Pitchers carry Saturday's counts into Sunday against an 85-pitch weekend cap.</p>
+  <div class="brackets" id="brackets"></div>
+</section>
+
+<section id="path">
+  <h2>Our path</h2>
+  <div class="two">
+    <div class="bk"><h3>Saturday record</h3><div id="rec"></div></div>
+    <div class="bk"><h3>Sunday games</h3><div class="scroll"><table id="sun-t"></table></div></div>
+  </div>
+  <h3>Staff usage in the simulation</h3>
+  <p class="muted small">Depth order is who the coach has actually used most (recency-weighted pitches). "Model R/6" is the posterior runs a league-average lineup scores per 6 innings off that arm, with our defense behind him; lower is better.</p>
+  <div class="scroll"><table id="staff-t"></table></div>
+</section>
+
+<section id="pitching">
+  <h2>Pitching plans</h2>
+  <p class="muted">Same 30,000 tournaments replayed with only our pitching plan changed. Every other team follows its own coach's habits.</p>
+  <div class="scroll"><table id="scen-t"></table></div>
+  <div class="note" id="scen-note"></div>
+</section>
+
+<section id="h2h">
+  <h2>Head to head</h2>
+  <p class="muted">Win probability for the row team against the column team in a bracket game, both staffs fresh. This isolates team strength from Saturday's seeding luck.</p>
+  <div class="scroll"><table class="heat" id="h2h-t"></table></div>
+</section>
+
+<section id="model">
+  <h2>Model &amp; checks</h2>
+  <div class="bk">
+    <h3>Out-of-sample backtest</h3>
+    <p class="muted small">Fit only on games before the cutoff, then predict every later game. Lower Brier and log loss are better. "Ridge" is the previous SOAR ratings method. The second table checks calibration: a team given 75% should win about 75% of the time.</p>
+    <div class="two">
+      <div class="scroll"><table id="bt-t"></table></div>
+      <div class="scroll"><table id="cal-t"></table></div>
+    </div>
+  </div>
+  <div class="two">
+    <div class="bk">
+      <h3>Sensitivity</h3>
+      <div class="scroll"><table id="sens-t"></table></div>
+    </div>
+    <div class="bk">
+      <h3>MCMC diagnostics</h3>
+      <div class="scroll"><table id="diag-t"></table></div>
+    </div>
+  </div>
+  <div class="note warn" id="assume"></div>
+  <div class="note">
+    <h3>How it works</h3>
+    <ul>
+      <li>Every half-inning in the warehouse (about 24,600) is one observation: runs scored by the batting team against the fielding team, with the pitcher who faced most of that inning on the mound.</li>
+      <li>Runs per half-inning follow a negative binomial. The log-mean adds the batting team's offense, subtracts the fielding team's run prevention, and adds the pitcher's deviation from his own staff, a home-field term, a fatigue term on his pitch count, and a random "team day" effect per game.</li>
+      <li>Team offense and defense follow a random walk across seasons (fall 2025, spring 2026, summer 2026, fall 2026). The data decide how much a team drifts, so there are no hand-set season weights.</li>
+      <li>Fitted by Hamiltonian Monte Carlo (numpy only, two chains). Each simulated tournament uses a different posterior draw, so the odds include uncertainty about how good each team is.</li>
+      <li>Pitcher usage copies what coaches in the warehouse actually did on 362 two-day tournament weekends: aces sit Saturday about a third of the time and are held near 35 pitches when they don't, starters go 40–60 pitches, a blow-up inning gets a pitcher pulled, and nobody goes past 85 for the weekend.</li>
+    </ul>
+  </div>
+  <div class="note">
+    <h3>Run it again</h3>
+    <pre id="howto"></pre>
+  </div>
+</section>
+</div>
+
+<script>
+const DATA = {"meta": {"name": "Shock and Awe Fall 2026 - 12U-A", "dates": "Sat Sep 26 (pool) - Sun Sep 27 (brackets), 2026", "sims": 40000, "seed": 20260926, "posterior": "hm-v1-f6a7038b2f-2026-fall-2x800", "diag": {"mu": [0.46246823655151104, 0.03859134480492565, 1.004287115465908, 864.2083745380137], "home": [-0.003116385928703832, 0.017901045099690087, 0.9989763030857386, 1004.4653437991569], "fatigue": [-0.03203361787696232, 0.010752590409629973, 0.9999154864243944, 1094.3102142580651], "log_s_off": [-1.0574344288278221, 0.08259128939175332, 1.0007548599958267, 330.27322887675393], "log_s_dfn": [-0.8056423980024954, 0.056159266538321866, 1.0023907104715393, 435.10382712517736], "log_s_step_off": [-2.379893924981057, 0.3121950903710812, 1.0020734919647527, 207.44784115631052], "log_s_step_dfn": [-2.6410059290258108, 0.3549780868074945, 1.009321728910767, 267.5899867286438], "log_s_pit": [-1.8288034696216715, 0.10864962607923169, 1.0012970292580936, 247.65318138103402], "log_tau": [-1.5450327206509302, 0.11130659627880166, 1.0062267669799083, 178.25523739908246], "log_k": [0.12234763966255574, 0.023994672208832904, 1.003890903857693, 191.16213141312565], "team_rhat_max": [1.0113869872202883, 1.0046359542325367, 0.0, 0.0]}, "policy": {"n_aces": 2, "p_ace_rest_day1": [0.35, 0.22], "ace_day1_cap": 35, "ace_day1_cap_sd": 4, "other_day1_cap": 50, "weekend_cap": 85, "daily_max": 85, "start_w_day1": [3.0, 2.5, 1.0, 1.0, 0.5], "start_w_day2": [4.0, 2.0, 1.0, 0.7, 0.35], "relief_w": [2.0, 1.8, 1.0, 0.9, 0.6], "starter_cap_day1": [42, 12, 25, 65], "starter_cap_day2": [62, 14, 30, 85], "relief_cap": [36, 11, 12, 60], "min_pitches_to_use": 12, "max_arms": 10, "filler_penalty": 0.5, "pull_after_runs": {"4": 0.35, "5": 0.55, "6": 0.8}}, "rules": {"innings": 6, "mercy": {"3": 15, "4": 10, "5": 8}, "pool_time_limit": 100, "time_per_half": 1.5, "time_per_pitch": 0.42, "ghost_runner_add": 0.6}, "ppi": {"a0": 14.048538150867987, "b": 3.602947530114716, "sd": 5.939903203329535}, "built": "2026-09-25 05:08", "our_team": "BCC", "teams_cfg": {"Ole Liners": {"team_id": "ole-liners-national", "label": "Ole Liners Castillo 12U"}, "Olney Williams": {"team_id": "olney-pirates-williams", "label": "Olney Pirates - Williams 12U"}, "Dig In Nation": {"team_id": "dig-in-kaelin", "label": "Dig In Bouquet 12U (\"Dig In Nation\")"}, "Olney Henig": {"team_id": "olney-pirates-henig", "label": "Olney Pirates 12U Henig"}, "Shockers": {"team_id": "shockers-baseball-moco", "label": "Shockers Baseball MoCo 12U"}, "Wild Bill": {"team_id": "stars-pritchard", "label": "Wild Bill 12U (Hunter)"}, "Loudoun South": {"team_id": "fall-loudoun-south-eagles-11u", "label": "Loudoun South Eagles 12U", "note": "Confirmed by Seth 2026-09-25 (he originally wrote 'Loudoun South Aces')."}, "BCC": {"team_id": "bcc-big-train", "label": "BCC Big Train 12U"}, "Elkridge Orange": {"team_id": "elkridge-hurricanes", "label": "Elkridge Hurricanes 12U Orange"}, "Gambrills": {"team_id": "gambrills-athletic-club", "label": "Gambrills Athletic Club 12U"}, "Arsenal Blue": {"team_id": "fall-arlington-arsenal-11u-blue", "label": "Arlington Arsenal Blue 12U"}, "MD Jbats": {"team_id": "maryland-jbats", "label": "Maryland Jbats Purple 12U"}}}, "teams": [{"team": "Ole Liners", "label": "Ole Liners Castillo 12U", "team_id": "ole-liners-national", "games": [58, 8], "seed_dist": [0.002775, 0.00375, 0.0061, 0.011375, 0.016725, 0.026375, 0.03555, 0.0562, 0.105, 0.1566, 0.2406, 0.33895], "exp_seed": 10.2394, "pool_pts": 0.460525, "pool_2_0": 0.009925, "rs": 4.0892125, "ra": 11.266625, "Gold:R1": 0.060575, "Gold:SF": 0.019325, "Gold:F": 0.00365, "Gold:champ": 0.00065, "Silver:R1": 0.84115, "Silver:SF": 0.362925, "Silver:F": 0.0875, "Silver:champ": 0.019875, "off_rating": -0.26208885629115874, "dfn_rating": 0.6940243214951086}, {"team": "Olney Williams", "label": "Olney Pirates - Williams 12U", "team_id": "olney-pirates-williams", "games": [77, 9], "seed_dist": [0.17, 0.1594, 0.141525, 0.141, 0.104375, 0.085875, 0.066225, 0.046575, 0.03455, 0.02525, 0.01675, 0.008475], "exp_seed": 4.200075, "pool_pts": 2.96, "pool_2_0": 0.49825, "rs": 9.2584125, "ra": 5.102525, "Gold:R1": 0.472775, "Gold:SF": 0.604075, "Gold:F": 0.314, "Gold:champ": 0.15185, "Silver:R1": 0.085025, "Silver:SF": 0.174775, "Silver:F": 0.1183, "Silver:champ": 0.073775, "off_rating": 5.3739194214154145, "dfn_rating": 3.623809430609133}, {"team": "Dig In Nation", "label": "Dig In Bouquet 12U (\"Dig In Nation\")", "team_id": "dig-in-kaelin", "games": [54, 2], "seed_dist": [0.0208, 0.035625, 0.05225, 0.06535, 0.074, 0.076525, 0.09355, 0.1338, 0.11755, 0.1195, 0.1159, 0.09515], "exp_seed": 7.73425, "pool_pts": 1.561275, "pool_2_0": 0.135275, "rs": 6.816375, "ra": 8.603975, "Gold:R1": 0.268125, "Gold:SF": 0.151575, "Gold:F": 0.046075, "Gold:champ": 0.014625, "Silver:R1": 0.4481, "Silver:SF": 0.484475, "Silver:F": 0.206775, "Silver:champ": 0.081525, "off_rating": 2.29990806743516, "dfn_rating": 2.0721799504644918}, {"team": "Olney Henig", "label": "Olney Pirates 12U Henig", "team_id": "olney-pirates-henig", "games": [63, 6], "seed_dist": [0.05885, 0.084225, 0.104175, 0.10275, 0.09905, 0.098425, 0.109175, 0.111, 0.082175, 0.0672, 0.050075, 0.0329], "exp_seed": 6.04605, "pool_pts": 2.25525, "pool_2_0": 0.279675, "rs": 8.20545, "ra": 7.11115, "Gold:R1": 0.4044, "Gold:SF": 0.3569, "Gold:F": 0.170425, "Gold:champ": 0.08005, "Silver:R1": 0.23235, "Silver:SF": 0.38785, "Silver:F": 0.24185, "Silver:champ": 0.13945, "off_rating": 4.539979637938245, "dfn_rating": 3.529554913320277}, {"team": "Shockers", "label": "Shockers Baseball MoCo 12U", "team_id": "shockers-baseball-moco", "games": [61, 8], "seed_dist": [0.0022, 0.0048, 0.009325, 0.013275, 0.02035, 0.030625, 0.049525, 0.065125, 0.098175, 0.1502, 0.22855, 0.32785], "exp_seed": 10.079875, "pool_pts": 0.54195, "pool_2_0": 0.016275, "rs": 4.4821125, "ra": 11.1950125, "Gold:R1": 0.073575, "Gold:SF": 0.0176, "Gold:F": 0.0023, "Gold:champ": 0.000175, "Silver:R1": 0.804775, "Silver:SF": 0.301125, "Silver:F": 0.05385, "Silver:champ": 0.00975, "off_rating": -1.0938318057402474, "dfn_rating": -0.20797529698589134}, {"team": "Wild Bill", "label": "Wild Bill 12U (Hunter)", "team_id": "stars-pritchard", "games": [62, 15], "seed_dist": [0.1166, 0.1255, 0.12475, 0.10735, 0.112775, 0.114725, 0.107425, 0.0822, 0.0456, 0.028325, 0.021525, 0.013225], "exp_seed": 4.922175, "pool_pts": 2.69065, "pool_2_0": 0.385675, "rs": 9.095375, "ra": 5.9432, "Gold:R1": 0.4596, "Gold:SF": 0.4849, "Gold:F": 0.225125, "Gold:champ": 0.095425, "Silver:R1": 0.108675, "Silver:SF": 0.263475, "Silver:F": 0.169025, "Silver:champ": 0.09405, "off_rating": 3.3950431577679456, "dfn_rating": 3.7030483063851496}, {"team": "Loudoun South", "label": "Loudoun South Eagles 12U", "team_id": "fall-loudoun-south-eagles-11u", "games": [54, 12], "seed_dist": [0.0488, 0.0595, 0.06235, 0.093325, 0.107525, 0.1092, 0.0959, 0.086275, 0.12605, 0.110725, 0.070075, 0.030275], "exp_seed": 6.6583, "pool_pts": 1.795725, "pool_2_0": 0.171075, "rs": 5.9817875, "ra": 6.672025, "Gold:R1": 0.3724, "Gold:SF": 0.263925, "Gold:F": 0.105075, "Gold:champ": 0.0396, "Silver:R1": 0.337125, "Silver:SF": 0.405325, "Silver:F": 0.2092, "Silver:champ": 0.102525, "off_rating": 0.07338824271658947, "dfn_rating": 4.423465770872571}, {"team": "BCC", "label": "BCC Big Train 12U", "team_id": "bcc-big-train", "games": [91, 12], "seed_dist": [0.088375, 0.112275, 0.1215, 0.1125, 0.109925, 0.10215, 0.093975, 0.08675, 0.067925, 0.0548, 0.034225, 0.0156], "exp_seed": 5.364775, "pool_pts": 2.4741, "pool_2_0": 0.3455, "rs": 7.9206, "ra": 6.1765875, "Gold:R1": 0.446075, "Gold:SF": 0.44945, "Gold:F": 0.226575, "Gold:champ": 0.108775, "Silver:R1": 0.17255, "Silver:SF": 0.312425, "Silver:F": 0.205875, "Silver:champ": 0.127825, "off_rating": 4.093587828756654, "dfn_rating": 4.33084334374925}, {"team": "Elkridge Orange", "label": "Elkridge Hurricanes 12U Orange", "team_id": "elkridge-hurricanes", "games": [63, 6], "seed_dist": [0.121675, 0.1333, 0.132975, 0.109175, 0.1086, 0.10945, 0.103875, 0.07875, 0.043975, 0.025125, 0.020375, 0.012725], "exp_seed": 4.804575, "pool_pts": 2.7674, "pool_2_0": 0.4156, "rs": 9.5187, "ra": 5.957975, "Gold:R1": 0.4602, "Gold:SF": 0.491025, "Gold:F": 0.227725, "Gold:champ": 0.097175, "Silver:R1": 0.1022, "Silver:SF": 0.253525, "Silver:F": 0.1614, "Silver:champ": 0.0901, "off_rating": 4.418034750484278, "dfn_rating": 3.4013543570369857}, {"team": "Gambrills", "label": "Gambrills Athletic Club 12U", "team_id": "gambrills-athletic-club", "games": [77, 11], "seed_dist": [0.31195, 0.204075, 0.14645, 0.1141, 0.072525, 0.0532, 0.0358, 0.02575, 0.018025, 0.009725, 0.00595, 0.00245], "exp_seed": 3.1086, "pool_pts": 3.378425, "pool_2_0": 0.67615, "rs": 10.2281875, "ra": 4.208375, "Gold:R1": 0.386275, "Gold:SF": 0.79425, "Gold:F": 0.54725, "Gold:champ": 0.364625, "Silver:R1": 0.03615, "Silver:SF": 0.091525, "Silver:F": 0.070625, "Silver:champ": 0.0503, "off_rating": 5.062226002232967, "dfn_rating": 5.2547740686766975}, {"team": "Arsenal Blue", "label": "Arlington Arsenal Blue 12U", "team_id": "fall-arlington-arsenal-11u-blue", "games": [48, 5], "seed_dist": [0.03085, 0.045775, 0.059475, 0.07395, 0.095825, 0.098625, 0.103675, 0.12165, 0.10935, 0.111075, 0.091425, 0.058325], "exp_seed": 7.1669, "pool_pts": 1.709375, "pool_2_0": 0.15025, "rs": 6.5751125, "ra": 7.625825, "Gold:R1": 0.327875, "Gold:SF": 0.202475, "Gold:F": 0.0707, "Gold:champ": 0.024625, "Silver:R1": 0.370175, "Silver:SF": 0.45275, "Silver:F": 0.222175, "Silver:champ": 0.097275, "off_rating": 1.5636247187252903, "dfn_rating": 3.1645269051432843}, {"team": "MD Jbats", "label": "Maryland Jbats Purple 12U", "team_id": "maryland-jbats", "games": [61, 2], "seed_dist": [0.027125, 0.031775, 0.039125, 0.05585, 0.078325, 0.094825, 0.105325, 0.105925, 0.151625, 0.141475, 0.10455, 0.064075], "exp_seed": 7.675025, "pool_pts": 1.405325, "pool_2_0": 0.09325, "rs": 5.588825, "ra": 7.896875, "Gold:R1": 0.268125, "Gold:SF": 0.1645, "Gold:F": 0.0611, "Gold:champ": 0.022425, "Silver:R1": 0.461725, "Silver:SF": 0.509825, "Silver:F": 0.253425, "Silver:champ": 0.11355, "off_rating": 3.165781028181547, "dfn_rating": 2.439365602383916}], "pool": [{"game": 1, "a": "Ole Liners", "b": "Olney Williams", "p_a": 0.125725, "p_tie": 0.038075, "p_b": 0.8362, "ra": 4.7375, "rb": 11.3746, "ra_med": 4.0, "rb_med": 11.0, "p_short": 0.655475, "p_mercy": 0.448175, "innings": 4.9031625, "margin_p10": -15.0, "margin_p90": 1.0}, {"game": 2, "a": "Dig In Nation", "b": "Olney Henig", "p_a": 0.29805, "p_tie": 0.0544, "p_b": 0.64755, "ra": 6.544275, "rb": 9.4695, "ra_med": 6.0, "rb_med": 9.0, "p_short": 0.509875, "p_mercy": 0.294075, "innings": 5.194675, "margin_p10": -11.0, "margin_p90": 5.0}, {"game": 3, "a": "Shockers", "b": "Wild Bill", "p_a": 0.121025, "p_tie": 0.03375, "p_b": 0.845225, "ra": 4.338325, "rb": 10.9007, "ra_med": 4.0, "rb_med": 11.0, "p_short": 0.5997, "p_mercy": 0.434725, "innings": 4.9782125, "margin_p10": -14.0, "margin_p90": 1.0}, {"game": 4, "a": "Olney Williams", "b": "Loudoun South", "p_a": 0.590125, "p_tie": 0.069275, "p_b": 0.3406, "ra": 7.142225, "rb": 5.46755, "ra_med": 7.0, "rb_med": 5.0, "p_short": 0.34335, "p_mercy": 0.1779, "innings": 5.4405375, "margin_p10": -5.0, "margin_p90": 9.0}, {"game": 5, "a": "Olney Henig", "b": "BCC", "p_a": 0.4206, "p_tie": 0.06455, "p_b": 0.51485, "ra": 6.9414, "rb": 7.678025, "ra_med": 6.0, "rb_med": 7.0, "p_short": 0.3867, "p_mercy": 0.215625, "innings": 5.380125, "margin_p10": -9.0, "margin_p90": 7.0}, {"game": 6, "a": "Wild Bill", "b": "Elkridge Orange", "p_a": 0.451525, "p_tie": 0.0634, "p_b": 0.485075, "ra": 7.29005, "rb": 7.548075, "ra_med": 7.0, "rb_med": 7.0, "p_short": 0.5054, "p_mercy": 0.226225, "innings": 5.258875, "margin_p10": -8.0, "margin_p90": 8.0}, {"game": 7, "a": "Gambrills", "b": "Ole Liners", "p_a": 0.900725, "p_tie": 0.02755, "p_b": 0.071725, "ra": 11.15865, "rb": 3.440925, "ra_med": 11.0, "rb_med": 3.0, "p_short": 0.5872, "p_mercy": 0.4987, "innings": 4.9260125, "margin_p10": 1.0, "margin_p90": 15.0}, {"game": 8, "a": "Arsenal Blue", "b": "Dig In Nation", "p_a": 0.513175, "p_tie": 0.062875, "p_b": 0.42395, "ra": 7.73845, "rb": 7.088475, "ra_med": 7.0, "rb_med": 7.0, "p_short": 0.43975, "p_mercy": 0.227275, "innings": 5.318425, "margin_p10": -8.0, "margin_p90": 9.0}, {"game": 9, "a": "Elkridge Orange", "b": "Shockers", "p_a": 0.850625, "p_tie": 0.0326, "p_b": 0.116775, "ra": 11.489325, "rb": 4.6259, "ra_med": 11.0, "rb_med": 4.0, "p_short": 0.61435, "p_mercy": 0.459875, "innings": 4.9320125, "margin_p10": -1.0, "margin_p90": 15.0}, {"game": 10, "a": "Loudoun South", "b": "MD Jbats", "p_a": 0.48605, "p_tie": 0.07315, "p_b": 0.4408, "ra": 6.496025, "rb": 6.201825, "ra_med": 6.0, "rb_med": 6.0, "p_short": 0.31605, "p_mercy": 0.1665, "innings": 5.47415, "margin_p10": -7.0, "margin_p90": 8.0}, {"game": 11, "a": "BCC", "b": "Arsenal Blue", "p_a": 0.6591, "p_tie": 0.06165, "p_b": 0.27925, "ra": 8.163175, "rb": 5.411775, "ra_med": 8.0, "rb_med": 5.0, "p_short": 0.394, "p_mercy": 0.2307, "innings": 5.3573875, "margin_p10": -4.0, "margin_p90": 10.0}, {"game": 12, "a": "MD Jbats", "b": "Gambrills", "p_a": 0.19965, "p_tie": 0.051275, "p_b": 0.749075, "ra": 4.975825, "rb": 9.297725, "ra_med": 4.0, "rb_med": 9.0, "p_short": 0.463125, "p_mercy": 0.302025, "innings": 5.236825, "margin_p10": -12.0, "margin_p90": 3.0}], "our": {"seed_dist": [0.088375, 0.112275, 0.1215, 0.1125, 0.109925, 0.10215, 0.093975, 0.08675, 0.067925, 0.0548, 0.034225, 0.0156], "bracket_games": {"Silver R1 (S-G2)": {"p_play": 0.083525, "p_win_if_play": 0.7877880873989823, "opponents": {"Ole Liners": 0.027525, "Dig In Nation": 0.00955, "Shockers": 0.0268, "Loudoun South": 0.0042, "MD Jbats": 0.00645}}, "Gold R1 (G-G2)": {"p_play": 0.22365, "p_win_if_play": 0.5546613011401744, "opponents": {"Ole Liners": 0.0042, "Olney Williams": 0.0262, "Dig In Nation": 0.015625, "Olney Henig": 0.034875, "Shockers": 0.0051, "Wild Bill": 0.0276, "Loudoun South": 0.021175, "Elkridge Orange": 0.028025, "Gambrills": 0.022975, "Arsenal Blue": 0.0216, "MD Jbats": 0.016275}}, "Silver R1 (S-G1)": {"p_play": 0.089025, "p_win_if_play": 0.7402415051951698, "opponents": {"Ole Liners": 0.024825, "Dig In Nation": 0.008875, "Shockers": 0.022, "Loudoun South": 0.010175, "MD Jbats": 0.01205}}, "Gold R1 (G-G1)": {"p_play": 0.222425, "p_win_if_play": 0.5608632123187591, "opponents": {"Olney Williams": 0.02765, "Dig In Nation": 0.022675, "Olney Henig": 0.03425, "Wild Bill": 0.02555, "Loudoun South": 0.022425, "Elkridge Orange": 0.02435, "Gambrills": 0.0208, "Arsenal Blue": 0.02465, "MD Jbats": 0.01345}}, "Silver SF (S-G4)": {"p_play": 0.15255, "p_win_if_play": 0.6574893477548345, "opponents": {"Ole Liners": 0.0172, "Olney Williams": 0.006275, "Dig In Nation": 0.021475, "Olney Henig": 0.013675, "Shockers": 0.0135, "Wild Bill": 0.008525, "Loudoun South": 0.01685, "Elkridge Orange": 0.0084, "Arsenal Blue": 0.019275, "MD Jbats": 0.023575}}, "Gold SF (G-G4)": {"p_play": 0.236325, "p_win_if_play": 0.5098910398815191, "opponents": {"Olney Williams": 0.04265, "Dig In Nation": 0.009075, "Olney Henig": 0.0171, "Wild Bill": 0.03835, "Loudoun South": 0.01785, "Elkridge Orange": 0.038375, "Gambrills": 0.050825, "Arsenal Blue": 0.007925, "MD Jbats": 0.01165}}, "Silver SF (S-G3)": {"p_play": 0.159875, "p_win_if_play": 0.6603596559812354, "opponents": {"Ole Liners": 0.016625, "Olney Williams": 0.008025, "Dig In Nation": 0.025475, "Olney Henig": 0.009725, "Shockers": 0.0131, "Wild Bill": 0.011, "Loudoun South": 0.01985, "Elkridge Orange": 0.009425, "Gambrills": 0.004125, "Arsenal Blue": 0.017875, "MD Jbats": 0.02465}}, "Gold SF (G-G3)": {"p_play": 0.213125, "p_win_if_play": 0.4977126099706745, "opponents": {"Olney Williams": 0.04, "Dig In Nation": 0.0084, "Olney Henig": 0.01495, "Wild Bill": 0.027125, "Loudoun South": 0.01465, "Elkridge Orange": 0.028125, "Gambrills": 0.06205, "Arsenal Blue": 0.00745, "MD Jbats": 0.00825}}, "Silver F (S-G5)": {"p_play": 0.205875, "p_win_if_play": 0.6208864602307226, "opponents": {"Ole Liners": 0.01005, "Olney Williams": 0.013775, "Dig In Nation": 0.025775, "Olney Henig": 0.019025, "Shockers": 0.00605, "Wild Bill": 0.020175, "Loudoun South": 0.026925, "Elkridge Orange": 0.020075, "Gambrills": 0.00845, "Arsenal Blue": 0.021925, "MD Jbats": 0.03365}}, "Gold F (G-G5)": {"p_play": 0.226575, "p_win_if_play": 0.480083857442348, "opponents": {"Olney Williams": 0.040475, "Dig In Nation": 0.0053, "Olney Henig": 0.01115, "Wild Bill": 0.0276, "Loudoun South": 0.01275, "Elkridge Orange": 0.027075, "Gambrills": 0.08875, "Arsenal Blue": 0.004525, "MD Jbats": 0.008125}}}, "pool_record": {"2-0": 0.3455, "1-0-1": 0.072625, "1-1 or 0-0-2": 0.41455, "0-1-1": 0.045125, "0-2": 0.1222}, "p_gold_given": {"2-0": 1.0, "1-0-1": 1.0, "1-1": 0.5514413219153299}, "staff": [{"name": "Grant Richards", "rank": 0, "career_pitches": 1086, "model_r6": 6.324189665556795, "p_sat": 0.598475, "sat_mean": 34.20870921269164, "p_sun": 0.85295, "sun_mean": 53.014726496726915}, {"name": "Ren Endo", "rank": 1, "career_pitches": 890, "model_r6": 5.434337338088152, "p_sat": 0.712525, "sat_mean": 33.8523437083738, "p_sun": 0.7545, "sun_mean": 46.23222904923578}, {"name": "Logan Pressberg", "rank": 2, "career_pitches": 976, "model_r6": 4.640118115667116, "p_sat": 0.7728, "sat_mean": 38.382704430301054, "p_sun": 0.556825, "sun_mean": 39.09902386329944}, {"name": "Oliver Wells", "rank": 3, "career_pitches": 895, "model_r6": 4.8816989874685035, "p_sat": 0.0, "sat_mean": 0, "p_sun": 0.0, "sun_mean": 0}, {"name": "Everett Harkins", "rank": 4, "career_pitches": 546, "model_r6": 5.191751120401594, "p_sat": 0.56345, "sat_mean": 35.687704330628044, "p_sun": 0.363675, "sun_mean": 36.713299844362474}, {"name": "Will Kowalski", "rank": 5, "career_pitches": 862, "model_r6": 4.371931819404501, "p_sat": 0.568175, "sat_mean": 35.30150374340352, "p_sun": 0.362525, "sun_mean": 36.298915032690346}, {"name": "Miles Eidelman", "rank": 6, "career_pitches": 162, "model_r6": 4.783697870273005, "p_sat": 0.5612, "sat_mean": 35.73014871867425, "p_sun": 0.359875, "sun_mean": 36.97181976430169}, {"name": "Darcy Mizejewski", "rank": 7, "career_pitches": 386, "model_r6": 5.166148809382325, "p_sat": 0.5626, "sat_mean": 35.76267927135549, "p_sun": 0.358375, "sun_mean": 36.8422220349925}, {"name": "Grant Wang", "rank": 8, "career_pitches": 367, "model_r6": 5.726688827663934, "p_sat": 0.567025, "sat_mean": 35.85699891833474, "p_sun": 0.36415, "sun_mean": 36.38181151063924}, {"name": "Adam Ingram", "rank": 9, "career_pitches": 336, "model_r6": 5.616650647628413, "p_sat": 0.569625, "sat_mean": 35.829019534351474, "p_sun": 0.3646, "sun_mean": 36.72997142359138}]}, "h2h": {"teams": ["Ole Liners", "Olney Williams", "Dig In Nation", "Olney Henig", "Shockers", "Wild Bill", "Loudoun South", "BCC", "Elkridge Orange", "Gambrills", "Arsenal Blue", "MD Jbats"], "p": [[NaN, 0.134, 0.2941666666666667, 0.16466666666666666, 0.5828333333333333, 0.166, 0.2525, 0.14216666666666666, 0.17083333333333334, 0.08083333333333333, 0.26516666666666666, 0.249], [0.866, NaN, 0.7156666666666667, 0.5595, 0.9073333333333333, 0.5556666666666666, 0.6528333333333334, 0.5255, 0.552, 0.35233333333333333, 0.6746666666666666, 0.6733333333333333], [0.7058333333333333, 0.2843333333333333, NaN, 0.32033333333333336, 0.7768333333333334, 0.3258333333333333, 0.43983333333333335, 0.3025, 0.3275, 0.17733333333333334, 0.4535, 0.4295], [0.8353333333333334, 0.4405, 0.6796666666666666, NaN, 0.8778333333333334, 0.4875, 0.589, 0.46116666666666667, 0.5126666666666667, 0.30866666666666664, 0.6148333333333333, 0.6055], [0.4171666666666667, 0.09266666666666667, 0.22316666666666662, 0.12216666666666665, NaN, 0.12166666666666667, 0.18466666666666667, 0.105, 0.12266666666666666, 0.05, 0.19583333333333333, 0.17983333333333335], [0.834, 0.44433333333333336, 0.6741666666666667, 0.5125, 0.8783333333333333, NaN, 0.5895, 0.4846666666666667, 0.5108333333333334, 0.31466666666666665, 0.638, 0.6241666666666666], [0.7475, 0.3471666666666666, 0.5601666666666667, 0.41100000000000003, 0.8153333333333334, 0.4105, NaN, 0.39216666666666666, 0.4033333333333333, 0.24533333333333332, 0.5361666666666667, 0.5145], [0.8578333333333333, 0.47450000000000003, 0.6975, 0.5388333333333333, 0.895, 0.5153333333333333, 0.6078333333333333, NaN, 0.5235, 0.3295, 0.654, 0.6385], [0.8291666666666666, 0.44799999999999995, 0.6725, 0.4873333333333333, 0.8773333333333333, 0.48916666666666664, 0.5966666666666667, 0.47650000000000003, NaN, 0.31016666666666665, 0.6223333333333333, 0.5998333333333333], [0.9191666666666667, 0.6476666666666666, 0.8226666666666667, 0.6913333333333334, 0.95, 0.6853333333333333, 0.7546666666666667, 0.6705, 0.6898333333333333, NaN, 0.7878333333333334, 0.7765], [0.7348333333333333, 0.32533333333333336, 0.5465, 0.38516666666666666, 0.8041666666666667, 0.362, 0.4638333333333333, 0.346, 0.3776666666666667, 0.21216666666666661, NaN, 0.49266666666666664], [0.751, 0.32666666666666666, 0.5705, 0.39449999999999996, 0.8201666666666667, 0.37583333333333335, 0.48550000000000004, 0.36150000000000004, 0.40016666666666667, 0.22350000000000003, 0.5073333333333334, NaN]]}, "scenarios": [{"name": "A. Coach's usual order (default)", "note": "Depth chart = who BCC has actually leaned on (Richards, Endo, Pressberg, Harkins, Kowalski). Wells out. Aces sit Sat ~30% of the time, else capped ~35.", "p20": 0.3532, "gold": 0.6536, "top2": 0.2065, "goldF": 0.23153333333333334, "champ": 0.11413333333333334, "pool_ra": 6.14135}, {"name": "B. Coach's order, top-2 sit Saturday", "note": "Richards and Endo do not pitch in pool play.", "p20": 0.36643333333333333, "gold": 0.6742, "top2": 0.2173, "goldF": 0.2361, "champ": 0.11466666666666667, "pool_ra": 5.950666666666667}, {"name": "C. Model's order", "note": "Lean on the arms the model rates best: Kowalski, Pressberg, Harkins, then Endo, Richards.", "p20": 0.3463333333333333, "gold": 0.6495333333333333, "top2": 0.2014, "goldF": 0.2517333333333333, "champ": 0.12736666666666666, "pool_ra": 6.163283333333333}, {"name": "D. Model's order, top-2 sit Saturday", "note": "Kowalski and Pressberg saved entirely for Sunday.", "p20": 0.3213666666666667, "gold": 0.6179, "top2": 0.1808, "goldF": 0.24043333333333333, "champ": 0.12433333333333334, "pool_ra": 6.41915}, {"name": "E. Model's order, top-2 throw 35 Saturday", "note": "Kowalski and Pressberg each throw ~35 Saturday, ~50 left for Sunday.", "p20": 0.35126666666666667, "gold": 0.6591666666666667, "top2": 0.20773333333333333, "goldF": 0.2597, "champ": 0.13, "pool_ra": 6.075566666666667}], "sensitivity": [{"name": "Faster games (0.36 min/pitch)", "change": {"rules.time_per_pitch": 0.36}, "our_gold": 0.6406333333333334, "our_champ": 0.11073333333333334, "fav": "Gambrills", "champ": {"Ole Liners": 0.0006333333333333333, "Olney Williams": 0.15423333333333333, "Dig In Nation": 0.014866666666666667, "Olney Henig": 0.07746666666666667, "Shockers": 0.00023333333333333333, "Wild Bill": 0.09573333333333334, "Loudoun South": 0.04073333333333334, "BCC": 0.11073333333333334, "Elkridge Orange": 0.09576666666666667, "Gambrills": 0.36323333333333335, "Arsenal Blue": 0.024066666666666667, "MD Jbats": 0.0223}, "ties": 0.05155277777777778}, {"name": "Slower games (0.48 min/pitch)", "change": {"rules.time_per_pitch": 0.48}, "our_gold": 0.6403, "our_champ": 0.1112, "fav": "Gambrills", "champ": {"Ole Liners": 0.0007666666666666667, "Olney Williams": 0.1527, "Dig In Nation": 0.0151, "Olney Henig": 0.07833333333333334, "Shockers": 0.0005, "Wild Bill": 0.09603333333333333, "Loudoun South": 0.03903333333333334, "BCC": 0.1112, "Elkridge Orange": 0.09713333333333334, "Gambrills": 0.3591666666666667, "Arsenal Blue": 0.0262, "MD Jbats": 0.023833333333333335}, "ties": 0.05624722222222223}, {"name": "Weekend cap 100 pitches", "change": {"policy.weekend_cap": 100, "policy.daily_max": 95}, "our_gold": 0.6443666666666668, "our_champ": 0.10966666666666666, "fav": "Gambrills", "champ": {"Ole Liners": 0.0008, "Olney Williams": 0.15036666666666668, "Dig In Nation": 0.014733333333333333, "Olney Henig": 0.07613333333333333, "Shockers": 0.0002666666666666667, "Wild Bill": 0.0964, "Loudoun South": 0.038566666666666666, "BCC": 0.10966666666666666, "Elkridge Orange": 0.09836666666666667, "Gambrills": 0.36546666666666666, "Arsenal Blue": 0.0253, "MD Jbats": 0.023933333333333334}, "ties": 0.05251666666666666}, {"name": "Wells available after all", "change": {"team_overrides.BCC.unavailable": []}, "our_gold": 0.6471666666666667, "our_champ": 0.11233333333333333, "fav": "Gambrills", "champ": {"Ole Liners": 0.0005666666666666667, "Olney Williams": 0.14933333333333335, "Dig In Nation": 0.014166666666666666, "Olney Henig": 0.07883333333333334, "Shockers": 0.0004333333333333333, "Wild Bill": 0.09546666666666667, "Loudoun South": 0.03956666666666667, "BCC": 0.11233333333333333, "Elkridge Orange": 0.09666666666666666, "Gambrills": 0.3665333333333333, "Arsenal Blue": 0.024066666666666667, "MD Jbats": 0.022033333333333332}, "ties": 0.05311666666666668}], "backtest": {"2026-09-01": {"all": {"hm-team": {"n": 112, "brier": 0.1851068338448661, "logloss": 0.5655717920997695, "acc": 0.6944444444444444, "mae_runs": 4.053712053571428}, "hm-starter": {"n": 112, "brier": 0.1858727621372768, "logloss": 0.568124499447322, "acc": 0.6944444444444444, "mae_runs": 4.078969866071429}, "ridge": {"n": 112, "brier": 0.19434436328125, "logloss": 0.5911458709784717, "acc": 0.7037037037037037, "mae_runs": 3.5986920395369113}}, "known": {"hm-team": {"n": 48, "brier": 0.20562269791666665, "logloss": 0.6115814031966169, "acc": 0.7021276595744681, "mae_runs": 3.9837161458333328}, "hm-starter": {"n": 48, "brier": 0.20740467578125, "logloss": 0.6170412794015572, "acc": 0.7021276595744681, "mae_runs": 4.0100703125}, "ridge": {"n": 48, "brier": 0.209169298828125, "logloss": 0.6188736879347877, "acc": 0.7021276595744681, "mae_runs": 3.532837034538918}}, "calib": {"hm-team": [[0.5, 0.6, 33, 0.5545568181818182, 0.5454545454545454], [0.6, 0.7, 33, 0.6477916666666667, 0.6060606060606061], [0.7, 0.8, 20, 0.7532437500000001, 0.8], [0.8, 0.9, 20, 0.8411125, 0.85], [0.9, 1.0001, 6, 0.9363333333333334, 1.0]], "hm-starter": [[0.5, 0.6, 33, 0.5581325757575757, 0.5606060606060606], [0.6, 0.7, 31, 0.6475927419354838, 0.6129032258064516], [0.7, 0.8, 23, 0.7502554347826087, 0.7608695652173914], [0.8, 0.9, 20, 0.8466125, 0.85], [0.9, 1.0001, 5, 0.9367999999999999, 1.0]], "ridge": [[0.5, 0.6, 37, 0.5448412162162163, 0.6486486486486487], [0.6, 0.7, 38, 0.6465526315789474, 0.6052631578947368], [0.7, 0.8, 26, 0.7442499999999999, 0.7692307692307693], [0.8, 0.9, 11, 0.839465909090909, 1.0]]}}, "2026-05-15": {"all": {"hm-team": {"n": 444, "brier": 0.18236148504363736, "logloss": 0.5540100286773715, "acc": 0.7224770642201835, "mae_runs": 4.4485458896396395}, "hm-starter": {"n": 444, "brier": 0.18195319267314192, "logloss": 0.5540001373339802, "acc": 0.7270642201834863, "mae_runs": 4.4343904842342345}, "ridge": {"n": 444, "brier": 0.2044553027519707, "logloss": 0.6065910861983866, "acc": 0.6926605504587156, "mae_runs": 3.8781067460470795}}, "known": {"hm-team": {"n": 203, "brier": 0.17159987884852215, "logloss": 0.5340244736161258, "acc": 0.7525252525252525, "mae_runs": 4.197552339901478}, "hm-starter": {"n": 203, "brier": 0.17175375631157633, "logloss": 0.5349041067450606, "acc": 0.7575757575757576, "mae_runs": 4.182902093596059}, "ridge": {"n": 203, "brier": 0.19830894381157638, "logloss": 0.597672100847841, "acc": 0.7171717171717171, "mae_runs": 3.8204263616892993}}, "calib": {"hm-team": [[0.5, 0.6, 124, 0.5496058467741934, 0.5604838709677419], [0.6, 0.7, 121, 0.6479297520661156, 0.6900826446280992], [0.7, 0.8, 104, 0.7487439903846153, 0.8028846153846154], [0.8, 0.9, 77, 0.8457727272727272, 0.8506493506493507], [0.9, 1.0001, 18, 0.9375208333333332, 0.9444444444444444]], "hm-starter": [[0.5, 0.6, 123, 0.5513130081300812, 0.5203252032520326], [0.6, 0.7, 122, 0.6496547131147541, 0.7622950819672131], [0.7, 0.8, 104, 0.7471622596153846, 0.7740384615384616], [0.8, 0.9, 80, 0.8474374999999998, 0.86875], [0.9, 1.0001, 15, 0.9427916666666666, 0.9333333333333333]], "ridge": [[0.5, 0.6, 182, 0.546657967032967, 0.5824175824175825], [0.6, 0.7, 157, 0.6499076433121018, 0.7484076433121019], [0.7, 0.8, 88, 0.7392556818181819, 0.7556818181818182], [0.8, 0.9, 16, 0.8189453124999999, 0.9375], [0.9, 1.0001, 1, 0.9167500000000001, 1.0]]}}}};
+const $ = s => document.querySelector(s);
+const pct = (x, d=0) => (x==null||isNaN(x)) ? "–" : (100*x).toFixed(d) + "%";
+const f1 = x => (x>=0?"+":"") + x.toFixed(1);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const OUR = DATA.meta.our_team;
+const T = Object.fromEntries(DATA.teams.map(t => [t.team, t]));
+const us = T[OUR];
+
+$("#h-title").textContent = DATA.meta.name.replace(" - ", " · ");
+$("#h-sub").textContent = `${DATA.meta.dates}. ${DATA.meta.sims.toLocaleString()} simulated tournaments, run ${DATA.meta.built}.`;
+const gold = us.seed_dist.slice(0,6).reduce((a,b)=>a+b,0);
+const top2 = us.seed_dist.slice(0,2).reduce((a,b)=>a+b,0);
+const tiles = [
+  ["Gold bracket", gold, "finish top 6 in pool", false],
+  ["Top-2 seed", top2, "skip Sunday's first round", false],
+  ["Gold final", us["Gold:F"]||0, "play for the title", false],
+  ["Gold champion", us["Gold:champ"]||0, "win the Gold bracket", true],
+  ["Silver champion", us["Silver:champ"]||0, "if we land 7–12", false],
+];
+$("#tiles").innerHTML = tiles.map(([l,v,s,lead]) =>
+  `<div class="tile${lead?" lead":""}"><span class="l">${OUR} · ${l}</span><span class="v">${pct(v)}</span><span class="small muted">${s}</span></div>`).join("");
+const fav = [...DATA.teams].sort((a,b)=>(b["Gold:champ"]||0)-(a["Gold:champ"]||0));
+$("#h-foot").textContent = `Favorites: ${fav[0].team} ${pct(fav[0]["Gold:champ"])}, ${fav[1].team} ${pct(fav[1]["Gold:champ"])}. We rank #${fav.findIndex(t=>t.team===OUR)+1} of 12 on title odds.`;
+
+// field table
+const bar = (x, max=1) => `<div class="cellbar"><span>${pct(x)}</span><div class="bar"><i style="width:${Math.min(100,100*x/max)}%"></i></div></div>`;
+$("#field-t").innerHTML = `<thead><tr><th>Team</th><th class="num">Off</th><th class="num">Def</th><th class="num">Games</th><th class="num">Avg seed</th><th>Gold bracket</th><th>Gold final</th><th>Gold title</th><th class="num">Silver title</th></tr></thead><tbody>` +
+  fav.map(t => `<tr class="${t.team===OUR?"us":""}"><td><div class="team">${esc(t.team)}</div><div class="small muted">${esc(t.label)}</div></td>
+   <td class="num">${f1(t.off_rating)}</td><td class="num">${f1(t.dfn_rating)}</td><td class="num">${t.games[0]} (${t.games[1]})</td>
+   <td class="num">${t.exp_seed.toFixed(1)}</td><td>${bar(t.seed_dist.slice(0,6).reduce((a,b)=>a+b,0))}</td>
+   <td>${bar(t["Gold:F"]||0, .6)}</td><td>${bar(t["Gold:champ"]||0, .4)}</td><td class="num">${pct(t["Silver:champ"]||0)}</td></tr>`).join("") + "</tbody>";
+
+// pool
+$("#pool").innerHTML = DATA.pool.map(g => {
+  const u = g.a===OUR||g.b===OUR;
+  return `<div class="g${u?" us":""}"><div class="top"><span>Game ${g.game}</span><span>ends early ${pct(g.p_short)}</span></div>
+   <div class="row"><span>${esc(g.a)}</span><span>${pct(g.p_a)}</span></div>
+   <div class="stack" role="img" aria-label="${esc(g.a)} ${pct(g.p_a)}, tie ${pct(g.p_tie)}, ${esc(g.b)} ${pct(g.p_b)}"><b class="a" style="width:${100*g.p_a}%"></b><b class="t" style="width:${100*g.p_tie}%"></b><b class="bb" style="width:${100*g.p_b}%"></b></div>
+   <div class="row"><span>${esc(g.b)}</span><span>${pct(g.p_b)}</span></div>
+   <div class="small muted">Expected ${g.ra.toFixed(1)}–${g.rb.toFixed(1)} · tie ${pct(g.p_tie)} · mercy ${pct(g.p_mercy)}</div></div>`;}).join("");
+
+// heat helper
+function heatColor(x, max){ const a = Math.min(1, x/max); return `color-mix(in srgb, var(--heat1) ${Math.round(a*85)}%, var(--heat0))`; }
+function heatText(x, max){ return x/max > .55 ? "var(--ground)" : "var(--ink)"; }
+const byExp = [...DATA.teams].sort((a,b)=>a.exp_seed-b.exp_seed);
+$("#heat").innerHTML = `<thead><tr><th></th>${[...Array(12)].map((_,k)=>`<th style="color:${k<6?"var(--gold)":"var(--silver)"}">${k+1}</th>`).join("")}</tr></thead><tbody>` +
+  byExp.map(t => `<tr class="${t.team===OUR?"us":""}"><td class="name">${esc(t.team)}</td>${t.seed_dist.map(p=>`<td style="background:${heatColor(p,.5)};color:${heatText(p,.5)}">${p>=.005?Math.round(100*p):""}</td>`).join("")}</tr>`).join("") + "</tbody>";
+
+// brackets
+function seedTop(k, n=2){ return DATA.teams.map(t=>[t.team,t.seed_dist[k-1]]).sort((a,b)=>b[1]-a[1]).slice(0,n); }
+function slot(label, rows, extra=""){
+  return `<div class="slot"><div class="h"><span>${label}</span><span>${extra}</span></div>${rows.map(([n,p])=>`<div class="o${n===OUR?" us":""}"><span>${esc(n)}</span><span>${pct(p)}</span></div>`).join("")}</div>`;
+}
+const lab = t => `<div class="lab">${t}</div>`;
+function reachTop(bk, key, n=3){ return DATA.teams.map(t=>[t.team,t[`${bk}:${key}`]||0]).sort((a,b)=>b[1]-a[1]).slice(0,n); }
+function bracket(bk, off, times){
+  const s = k => slot(`Seed ${k+off}`, seedTop(k+off));
+  const cls = bk==="Gold"?"goldh":"silverh";
+  return `<div class="bk"><h3 class="${cls}">${bk} bracket</h3><div class="scroll"><div class="bgrid">
+    <div class="col">${lab(`G1 · ${times[0]}`)}${s(4)}${s(5)}</div>
+    <div class="col">${lab(`G3 · ${times[2]}`)}${s(1)}${slot("Winner of G1", [])}</div>
+    <div class="col"><div class="champ" style="color:var(--${bk==="Gold"?"gold":"silver"})"><span class="h" style="font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:12px">Champion · G5 ${times[4]}</span>${reachTop(bk,"champ").map(([n,p])=>`<div class="o${n===OUR?" us":""}" style="display:flex;justify-content:space-between;color:var(--ink)${n===OUR?";font-weight:700":""}"><span>${esc(n)}</span><span>${pct(p)}</span></div>`).join("")}</div></div>
+    <div class="col">${lab(`G2 · ${times[1]}`)}${s(3)}${s(6)}</div>
+    <div class="col">${lab(`G4 · ${times[3]}`)}${s(2)}${slot("Winner of G2", [])}</div>
+    <div class="col">${slot("Reach the final", reachTop(bk,"F",4))}</div>
+  </div></div></div>`;
+}
+$("#brackets").innerHTML = bracket("Gold", 0, ["11:30","9:30","3:30","1:30","5:30"]) + bracket("Silver", 6, ["11:00","9:00","3:00","1:00","5:00"]);
+
+// our path
+const O = DATA.our;
+const rec = Object.entries(O.pool_record);
+$("#rec").innerHTML = `<table><tbody>${rec.map(([k,v])=>`<tr><td>${k}</td><td style="width:60%">${bar(v,.6)}</td></tr>`).join("")}</tbody></table>
+  <p class="small muted">Gold bracket if 2-0: ${pct(O.p_gold_given["2-0"])}. If 1-1: ${pct(O.p_gold_given["1-1"])} (runs allowed usually decides it). The average runs we allow per pool game is the first tiebreaker after record.</p>`;
+$("#sun-t").innerHTML = `<thead><tr><th>Game</th><th class="num">Play</th><th class="num">Win if play</th><th>Likeliest opponents</th></tr></thead><tbody>` +
+  Object.entries(O.bracket_games).sort((a,b)=>b[1].p_play-a[1].p_play).map(([k,v])=>{
+    const opp = Object.entries(v.opponents).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([n,p])=>`${esc(n)} ${pct(p/v.p_play)}`).join(", ");
+    return `<tr><td>${esc(k)}</td><td class="num">${pct(v.p_play)}</td><td class="num">${pct(v.p_win_if_play)}</td><td class="small">${opp}</td></tr>`;}).join("") + "</tbody>";
+$("#staff-t").innerHTML = `<thead><tr><th class="num">Depth</th><th>Pitcher</th><th class="num">Model R/6</th><th class="num">Career pitches</th><th class="num">Pitches Sat</th><th class="num">Avg if used</th><th class="num">Pitches Sun</th><th class="num">Avg if used</th></tr></thead><tbody>` +
+  O.staff.map(s=>`<tr><td class="num">${s.rank+1}</td><td class="team">${esc(s.name)}</td><td class="num">${s.model_r6.toFixed(1)}</td><td class="num">${s.career_pitches}</td><td class="num">${pct(s.p_sat)}</td><td class="num">${s.sat_mean.toFixed(0)}</td><td class="num">${pct(s.p_sun)}</td><td class="num">${s.sun_mean.toFixed(0)}</td></tr>`).join("") + "</tbody>";
+
+// scenarios
+if (DATA.scenarios){
+  const b = DATA.scenarios[0];
+  const d = (x,y) => { const v = 100*(x-y); if (Math.abs(v)<0.5) return ""; return `<span class="small ${v>0?"up":"down"}"> ${v>0?"+":""}${v.toFixed(1)}</span>`; };
+  $("#scen-t").innerHTML = `<thead><tr><th>Plan</th><th class="num">2-0 Sat</th><th class="num">Gold bracket</th><th class="num">Top-2 seed</th><th class="num">Gold final</th><th class="num">Gold title</th><th class="num">Runs allowed / pool game</th></tr></thead><tbody>` +
+    DATA.scenarios.map((s,i)=>`<tr><td><div class="team">${esc(s.name)}</div><div class="small muted" style="white-space:normal;max-width:46ch">${esc(s.note)}</div></td>
+      <td class="num">${pct(s.p20,1)}${i?d(s.p20,b.p20):""}</td><td class="num">${pct(s.gold,1)}${i?d(s.gold,b.gold):""}</td><td class="num">${pct(s.top2,1)}${i?d(s.top2,b.top2):""}</td>
+      <td class="num">${pct(s.goldF,1)}${i?d(s.goldF,b.goldF):""}</td><td class="num">${pct(s.champ,1)}${i?d(s.champ,b.champ):""}</td><td class="num">${s.pool_ra.toFixed(2)}</td></tr>`).join("") + "</tbody>";
+  const best = [...DATA.scenarios].sort((a,b)=>b.champ-a.champ)[0];
+  $("#scen-note").innerHTML = `<h3>Read</h3><p>Handing the ball to the arms the model rates best is worth about ${(100*(best.champ-b.champ)).toFixed(1)} points of title odds (${pct(b.champ,1)} → ${pct(best.champ,1)}). Whether the top two pitch Saturday matters less than who the top two are. Differences under about 0.5 points are simulation noise.</p>`;
+}
+
+// h2h
+if (DATA.h2h){
+  const names = DATA.h2h.teams, P = DATA.h2h.p;
+  const order = fav.map(t=>names.indexOf(t.team));
+  $("#h2h-t").innerHTML = `<thead><tr><th></th>${order.map(j=>`<th title="${esc(names[j])}">${esc(names[j].split(" ").map(w=>w[0]).join(""))}</th>`).join("")}</tr></thead><tbody>` +
+   order.map(i=>`<tr class="${names[i]===OUR?"us":""}"><td class="name">${esc(names[i])}</td>${order.map(j=>{ if(i===j) return `<td style="background:var(--rule)"></td>`; const p=P[i][j];
+     return `<td style="background:color-mix(in srgb, ${p>=.5?"var(--good)":"var(--bad)"} ${Math.round(Math.abs(p-.5)*150)}%, var(--heat0));color:${Math.abs(p-.5)>.3?"var(--ground)":"var(--ink)"}">${Math.round(100*p)}</td>`;}).join("")}</tr>`).join("") + "</tbody>";
+}
+
+// backtest
+if (DATA.backtest){
+  const rows = [];
+  for (const [cut, v] of Object.entries(DATA.backtest)){
+    for (const [m, s] of Object.entries(v.all)) rows.push([cut, m, s]);
+  }
+  const nice = {"hm-team":"This model","hm-starter":"This model + actual pitchers","ridge":"Ridge (previous)"};
+  $("#bt-t").innerHTML = `<thead><tr><th>Cutoff</th><th>Predictor</th><th class="num">Games</th><th class="num">Brier</th><th class="num">Log loss</th><th class="num">Picks right</th></tr></thead><tbody>` +
+    rows.map(([c,m,s])=>`<tr><td>${c}</td><td>${nice[m]||m}</td><td class="num">${s.n}</td><td class="num">${s.brier.toFixed(3)}</td><td class="num">${s.logloss.toFixed(3)}</td><td class="num">${pct(s.acc)}</td></tr>`).join("") + "</tbody>";
+  const cal = [];
+  for (const [cut, v] of Object.entries(DATA.backtest)) for (const r of v.calib["hm-team"]) cal.push([cut, ...r]);
+  $("#cal-t").innerHTML = `<thead><tr><th>Cutoff</th><th>Favorite given</th><th class="num">Games</th><th class="num">Predicted</th><th class="num">Actual</th></tr></thead><tbody>` +
+    cal.map(([c,lo,hi,n,p,o])=>`<tr><td>${c}</td><td>${Math.round(100*lo)}–${Math.round(100*Math.min(hi,1))}%</td><td class="num">${n}</td><td class="num">${pct(p)}</td><td class="num">${pct(o)}</td></tr>`).join("") + "</tbody>";
+}
+if (DATA.sensitivity){
+  $("#sens-t").innerHTML = `<thead><tr><th>Change</th><th class="num">${OUR} Gold</th><th class="num">${OUR} title</th><th>Favorite</th></tr></thead><tbody>` +
+   `<tr><td>Baseline</td><td class="num">${pct(gold,1)}</td><td class="num">${pct(us["Gold:champ"],1)}</td><td>${esc(fav[0].team)}</td></tr>` +
+   DATA.sensitivity.map(s=>`<tr><td>${esc(s.name)}</td><td class="num">${pct(s.our_gold,1)}</td><td class="num">${pct(s.our_champ,1)}</td><td>${esc(s.fav)}</td></tr>`).join("") + "</tbody>";
+}
+const D = DATA.meta.diag;
+const dn = {mu:"Baseline log-runs / half",home:"Home field",fatigue:"Fatigue per 25 pitches",log_s_off:"Team offense spread",log_s_dfn:"Team defense spread",log_s_step_off:"Offense drift / season",log_s_step_dfn:"Defense drift / season",log_s_pit:"Pitcher spread",log_tau:"Team-day spread",log_k:"Dispersion"};
+$("#diag-t").innerHTML = `<thead><tr><th>Parameter</th><th class="num">Value</th><th class="num">R-hat</th><th class="num">ESS</th></tr></thead><tbody>` +
+  Object.entries(D).filter(([k])=>dn[k]).map(([k,v])=>`<tr><td>${dn[k]}</td><td class="num">${(k.startsWith("log_")?Math.exp(v[0]):v[0]).toFixed(3)}</td><td class="num">${v[2].toFixed(3)}</td><td class="num">${Math.round(v[3])}</td></tr>`).join("") + "</tbody>";
+$("#assume").innerHTML = "<h3>Assumptions to check before Saturday</h3><ul>\n<li><b>Loudoun South</b> = Loudoun South Eagles 12U (Aldie), confirmed by Seth on Sep 25. The first version of this page modeled Loudoun Aces \u2013 Ritchie by mistake.</li>\n<li><b>Dig In Nation</b> = Dig In Bouquet 12U and <b>Maryland Jbats</b> = Jbats Purple 12U, both confirmed from GameChanger schedules for Sep 26. Each has only 2 fall games on file, so their ratings lean on spring.</li>\n<li>Saturday game numbers are taken as the playing order. A tie counts as half a win (W=2, T=1, L=0 points).</li>\n<li>Game pace is set so about a quarter of games that don't hit the mercy rule still end before the 6th, matching the warehouse. Faster or slower pace barely moves anything (see Sensitivity).</li>\n<li><b>Oliver Wells is unavailable</b> all weekend (per Seth). Other injuries or rest go in <code>team_overrides</code> in the config.</li>\n<li>Data: soar.duckdb as scraped Sep 22 (games through Sep 20).</li></ul>";
+$("#howto").textContent = "cd C:\\ClaudeProject\\working\\Soar\\Simulators\\tourney_sim\npip install --pre -U duckdb numpy\npython run_tournament.py configs\\shock_and_awe_fall26_12uA.json\n#   -> configs\\results\\shock_and_awe_fall26_12uA_results.json + .html\n\n# new tournament: copy the config, change teams / pool_games / bracket_games\n# new data: re-scrape + rebuild soar.duckdb; the model refits itself on the next run\npython run_tournament.py backtest configs\\...json --cutoff 2026-09-01   # re-validate\npython run_tournament.py calibrate configs\\...json                     # pitcher-usage check";
+</script>
